@@ -78,3 +78,4 @@ C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\obj\Debug\ShoppingELF.csproj.Co
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\obj\Debug\ShoppingELF.csproj.CopyComplete
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\obj\Debug\ShoppingELF.dll
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\obj\Debug\ShoppingELF.pdb
+C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\obj\Debug\ShoppingELF.csprojAssemblyReference.cache
