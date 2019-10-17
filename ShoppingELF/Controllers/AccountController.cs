@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Web.Helpers;
 using System.Web.Http;
 
 namespace ShoppingELF.Controllers
@@ -18,11 +19,15 @@ namespace ShoppingELF.Controllers
                 UserTable us = new UserTable();
                 using (ShoppingELFEntities db = new ShoppingELFEntities())
                 {
+                    us.ActivationCode = Guid.NewGuid();
+                    user.ActivationCode = us.ActivationCode;
+                    user.password = Crypto.Hash(user.password);
                     db.UserTable.Add(user);
                     db.SaveChanges();
+                    EmailVerification(user.UserID, user.email, us.ActivationCode.ToString());
                     var message = Request.CreateResponse(HttpStatusCode.Created, user);
                     message.Headers.Location = new Uri(Request.RequestUri + user.UserID.ToString());
-                    EmailVerification(user.UserID, user.email, us.ActivationCode.ToString());
+                    
                     return message;
                 }
             }
@@ -64,7 +69,7 @@ namespace ShoppingELF.Controllers
             string Body = "";
             if (EmailFor == "VerifyAccount")
             {
-                Subject = "Email Verification for Mail Pro Account";
+                Subject = "Email Verification for ShoppingELF Account";
                 Body = "<br/>Please click on the link below to verify your account" +
                     "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
             }
