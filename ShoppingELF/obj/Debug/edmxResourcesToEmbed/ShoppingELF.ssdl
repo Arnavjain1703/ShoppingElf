@@ -13,6 +13,7 @@
     <Property Name="IsEmailVerified" Type="bit" />
     <Property Name="ResetPasswordCode" Type="nvarchar(max)" />
     <Property Name="files" Type="nvarchar(max)" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="ShoppingELFModelStoreContainer">
     <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />

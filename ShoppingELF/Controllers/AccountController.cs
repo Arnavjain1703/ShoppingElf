@@ -5,8 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Security.Claims;
 using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace ShoppingELF.Controllers
 {
@@ -21,6 +23,7 @@ namespace ShoppingELF.Controllers
                 {
                     us.ActivationCode = Guid.NewGuid();
                     user.ActivationCode = us.ActivationCode;
+                    user.Role = "User";
                     user.password = Crypto.Hash(user.password);
                     db.UserTable.Add(user);
                     db.SaveChanges();
@@ -37,10 +40,24 @@ namespace ShoppingELF.Controllers
             }
         }
 
-        public HttpResponseMessage PostVerifyAccount(string id, UserModel model)
+        [System.Web.Http.Authorize]
+        [HttpGet]
+        [Route("api/Account/UserLogin")]
+        public IHttpActionResult GetForUser()
         {
-            bool status = false;
-            using (var context = new ShoppingELFEntities())
+            UserTable us = new UserTable();
+            var identity = (ClaimsIdentity)User.Identity;
+            return Ok("Hello" + us.yourName);
+        }
+
+        
+
+        [Route("api/Account/{id}")]
+        [AcceptVerbs("PUT","GET")]
+        public HttpResponseMessage PutVerifyAccount(string id, UserModel model)
+        {
+            //bool status = false;
+            using (ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable us = new UserTable();
                 var v = context.UserTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
@@ -49,25 +66,30 @@ namespace ShoppingELF.Controllers
                     us.IsEmailVerified = true;
                     v.IsEmailVerified = Convert.ToBoolean(us.IsEmailVerified);
                     context.SaveChanges();
-                    status = true;
+                    //status = true;
+                    return Request.CreateResponse(HttpStatusCode.OK, "Account successfully verified"); 
                 }
-                
-                var message = Request.CreateResponse(HttpStatusCode.Created, model);
-                message.Headers.Location = new Uri(Request.RequestUri + model.UserID.ToString());
-                return message;
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "unable to activate account");
+                }
+                //var message = Request.CreateResponse(HttpStatusCode.OK, model);
+                //message.Headers.Location = new Uri(Request.RequestUri + model.UserID.ToString());
+                //return message;
             }
         }
 
-        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode, string EmailFor = "VerifyAccount")
+
+        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode, string EmailFor = "Account")
         {
-            var verifyUrl = "/Account/" + EmailFor + "/" + ActivationCode;
+            var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
             var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
             var ToEmail = new MailAddress(FacultyEmail);
             var FromEmailPassword = "Rishabh@2306";
             string Subject = "";
             string Body = "";
-            if (EmailFor == "VerifyAccount")
+            if (EmailFor == "Account")
             {
                 Subject = "Email Verification for ShoppingELF Account";
                 Body = "<br/>Please click on the link below to verify your account" +

@@ -34,7 +34,8 @@ namespace ShoppingELF.Models
         public Nullable<bool> IsEmailVerified { get; set; }
         public string ResetPasswordCode { get; set; }
         public string files { get; set; }
+        public string Role { get; set; }
 
-        
+
     }
 }

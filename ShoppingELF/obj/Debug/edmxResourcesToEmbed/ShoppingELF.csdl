@@ -13,6 +13,7 @@
     <Property Name="IsEmailVerified" Type="Boolean" />
     <Property Name="ResetPasswordCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityContainer Name="ShoppingELFEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="UserTable" EntityType="Self.UserTable" />
