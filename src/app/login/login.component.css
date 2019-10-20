@@ -1,0 +1,96 @@
+.background
+{
+    background:url(/assets/background2.png);
+    height:700px;
+    padding-top: 7%;
+}
+.row
+{
+   box-shadow:2px 2px 4px #4D5656;
+   height: 450px; 
+   margin: 0%  10%;
+   background: white;
+}
+
+.image
+{
+     width: 100%;
+    padding:5% ;
+    height: 500px;
+}
+.form-control
+{
+ box-shadow: 1px 1px 2px;
+ height: 40px;
+}
+.form
+{
+    text-align: center;
+}
+.width
+{
+    width: 60%;
+    margin-top: 7%;
+    margin-left: 20%;
+
+}
+.heading
+{
+    color:#5DADE2;
+}
+
+.Button
+{
+    background: #45B39D;
+    padding: 7px  10px;
+    color: white;
+    border:2px solid #45B39D;
+    border-radius: 10%;
+    margin-top: 4%;
+}
+input.ng-invalid.ng-touched
+{
+    border:red 1px solid;
+}
+@media only screen and (max-width: 1000px) 
+{
+
+.image
+{
+      width: 100%;
+      padding-top:30% 0% ;
+      height: 400px;
+}
+.width
+{
+    width: 80%;
+    margin-top: 2%;
+    margin-left: 20%;
+}
+.row{
+    padding-top: 3%;
+}
+}
+@media only screen and (max-width: 850px)
+{
+ .display
+ {
+   display: none;
+
+ }
+ .width
+{
+    width: 100%;
+    margin: 2% 35%;
+    
+}
+}
+
+@media only screen and (max-width: 767px)
+{
+   .width{
+     margin:2% 0%;
+    }
+}
+ 
+

@@ -1,0 +1,19 @@
+<nav>
+    <div class="logo">
+    <h4>The  Nav</h4>
+    </div>
+<ul class="nav-links " [class.nav-active]="display"   >
+    <li [class.nav-linkactive]="display"><a>profile</a></li>
+    <li [class.nav-linkactive]="display"><a>Wishlist</a></li>
+    <li [class.nav-linkactive]="display"><a>Bag</a></li>
+    <li [class.nav-linkactive]="display"><a>Login</a></li>
+    <li [class.nav-linkactive]="display"><a>Signup</a></li>
+
+</ul>
+<div class="burger" (click)="Ondisplay()">
+<div class="line1" [class.changeline1]="display" ></div>
+<div class="line2"[class.changeline2]="display"></div>
+<div class="line3"[class.changeline3]="display"></div>    
+</div>
+</nav>
+
