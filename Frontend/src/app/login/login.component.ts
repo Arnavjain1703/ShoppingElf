@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup,  NgForm } from '@angular/forms';
+import { ServerService } from '../services/server.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+tk:any;
+  constructor(private serverService:ServerService){}
+
+
+  ngOnInit() {
+  }
+  onSubmit(form:NgForm)
+  {        
+    
+  
+   const value = form.value;
+    
+    this.serverService.login(value.email,value.password)
+    .subscribe(
+      (response) =>
+       {      
+             this.tk=response;
+            console.log(this.tk);
+          localStorage.setItem('token',this.tk);
+          
+          
+       
+  
+      }                                                
+         
+    );
+    
+  
+    
+  }
+}
