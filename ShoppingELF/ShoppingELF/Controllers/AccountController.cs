@@ -19,21 +19,19 @@ namespace ShoppingELF.Controllers
         {
             try
             {
-                UserTable us = new UserTable();
-                using (ShoppingELFEntities db = new ShoppingELFEntities())
+                var x = new UserModel().IsEmailExist(user.email);
+                if(x)
                 {
-                    us.ActivationCode = Guid.NewGuid();
-                    user.ActivationCode = us.ActivationCode;
-                    user.Role = "User";
-                    user.password = Crypto.Hash(user.password);
-                    db.UserTable.Add(user);
-                    db.SaveChanges();
-                    EmailVerification(user.UserID, user.email, us.ActivationCode.ToString());
-                    var message = Request.CreateResponse(HttpStatusCode.Created, "Account Created");
-                    message.Headers.Location = new Uri(Request.RequestUri + user.UserID.ToString());
-                    
-                    return message;
+                    return Request.CreateResponse(HttpStatusCode.Forbidden, "Account already exist");
                 }
+                else
+                {
+                    new UserModel().AddUser(user);
+                    EmailVerification(user.UserID, user.email, Convert.ToString(user.ActivationCode));
+                    return Request.CreateResponse(HttpStatusCode.Created, "A verification link has been sent to your email , Please Verify it to continue access");
+                }
+                
+
             }
             catch (Exception ex)
             {
@@ -99,12 +97,13 @@ namespace ShoppingELF.Controllers
         }
 
         [NonAction]
-        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode, string EmailFor = "Account")
+        public void EmailVerification(int UserID, string Email, string ActivationCode, string EmailFor = "Account")
         {
             var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
-            var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
+            //var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
+            var link = "https://c37e1b56.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
-            var ToEmail = new MailAddress(FacultyEmail);
+            var ToEmail = new MailAddress(Email);
             var FromEmailPassword = "Rishabh@2306";
             string Subject = "";
             string Body = "";

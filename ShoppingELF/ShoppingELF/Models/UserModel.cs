@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using System.Web.Helpers;
 
 namespace ShoppingELF.Models
 {
@@ -54,6 +55,28 @@ namespace ShoppingELF.Models
             us = context.UserTable.SingleOrDefault(x => x.email == Email);
             string pass = Convert.ToString(us.password);
             return pass;
+        }
+
+        public void AddUser(UserTable user)
+        {
+            UserTable us = new UserTable();
+            using(ShoppingELFEntities db = new ShoppingELFEntities())
+            {
+                us.ActivationCode = Guid.NewGuid();
+                user.ActivationCode = us.ActivationCode;
+                user.Role = "User";
+                user.password = Crypto.Hash(user.password);
+                db.UserTable.Add(user);
+                db.SaveChanges();
+            }
+        }
+        public bool IsEmailExist(string Email)
+        {
+            using(ShoppingELFEntities se = new ShoppingELFEntities())
+            {
+                var v = se.UserTable.Where(a => a.email == Email).FirstOrDefault();
+                return v != null;
+            }
         }
     }
 }
