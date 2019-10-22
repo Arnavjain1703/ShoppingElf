@@ -101,3 +101,5 @@ C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\Microsoft.IdentityModel.Jso
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\Microsoft.IdentityModel.Logging.xml
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\Microsoft.IdentityModel.Tokens.xml
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\Swashbuckle.Core.dll
+C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\WebActivatorEx.dll

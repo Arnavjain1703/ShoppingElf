@@ -36,6 +36,24 @@ namespace ShoppingELF.Models
         public string files { get; set; }
         public string Role { get; set; }
 
+        public bool verification(string Email)
+        {
+            //UserModel model = new UserModel();
+            ShoppingELFEntities context = new ShoppingELFEntities();
+            UserTable Fac = new UserTable();
+            ////FacultyTable faculty1 = new FacultyTable();
+            Fac = context.UserTable.SingleOrDefault(m => m.email == Email);
+            var y = Convert.ToBoolean(Fac.IsEmailVerified);
+            return y;
+        }
 
+        public string Password(string Email)
+        {
+            ShoppingELFEntities context = new ShoppingELFEntities();
+            UserTable us = new UserTable();
+            us = context.UserTable.SingleOrDefault(x => x.email == Email);
+            string pass = Convert.ToString(us.password);
+            return pass;
+        }
     }
 }

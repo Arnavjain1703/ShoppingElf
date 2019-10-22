@@ -14,6 +14,7 @@ namespace ShoppingELF.Controllers
 {
     public class AccountController : ApiController
     {
+        [HttpPost]
         public HttpResponseMessage PostSignup([FromBody]UserTable user)
         {
             try
@@ -28,7 +29,7 @@ namespace ShoppingELF.Controllers
                     db.UserTable.Add(user);
                     db.SaveChanges();
                     EmailVerification(user.UserID, user.email, us.ActivationCode.ToString());
-                    var message = Request.CreateResponse(HttpStatusCode.Created, user);
+                    var message = Request.CreateResponse(HttpStatusCode.Created, "Account Created");
                     message.Headers.Location = new Uri(Request.RequestUri + user.UserID.ToString());
                     
                     return message;
@@ -42,18 +43,21 @@ namespace ShoppingELF.Controllers
 
         [HttpPost]
         [Route("api/Account/UserLogin")]
-        public HttpResponseMessage Login(UserTable user)
+        public HttpResponseMessage Login([FromBody]UserTable user)
         {
+            var y = new UserModel().verification(user.email);
+            var password = new UserModel().Password(user.email);
             UserTable u = new UserRepository().GetUser(user.email);
+            
             if (u == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound,
                      "The Account was not found.");
-            //string Password = Crypto.Hash(user.password);
-            bool credentials = user.password.Equals(user.password);
-            if (!credentials) return Request.CreateResponse(HttpStatusCode.Forbidden,
-                "The email/password combination was wrong.");
-            return Request.CreateResponse(HttpStatusCode.OK,
-                 TokenManager.GenerateToken(user.email));
+            string pass = Crypto.Hash(user.password);
+            bool credentials = pass.Equals(password);
+            if (credentials && y)
+                return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(user.email));
+            else
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
         }
 
         [HttpGet]
@@ -69,8 +73,8 @@ namespace ShoppingELF.Controllers
         }
 
         [Route("api/Account/{id}")]
-        [HttpPut]
-        public IHttpActionResult VerifyAccount(string id, UserModel model)
+        [HttpGet]
+        public HttpResponseMessage VerifyAccount([FromUri]string id, [FromBody]UserModel model)
         {
             //bool status = false;
             using (ShoppingELFEntities context = new ShoppingELFEntities())
@@ -84,17 +88,17 @@ namespace ShoppingELF.Controllers
                     v.IsEmailVerified = Convert.ToBoolean(us.IsEmailVerified);
                     context.SaveChanges();
                     //status = true;
-                    return Ok("Account Verified Successfully");
+                    return Request.CreateResponse(HttpStatusCode.OK, "Account successfully verified");
                 }
                 else
                 {
-                    return NotFound() ;
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Unable to activate account") ;
                 }
                 
             }
         }
 
-
+        [NonAction]
         public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode, string EmailFor = "Account")
         {
             var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
