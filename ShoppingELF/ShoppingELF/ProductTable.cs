@@ -12,32 +12,34 @@ namespace ShoppingELF
     using System;
     using System.Collections.Generic;
     
-    public partial class UserTable
+    public partial class ProductTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserTable()
+        public ProductTable()
         {
-            this.AddressTable = new HashSet<AddressTable>();
             this.CartTable = new HashSet<CartTable>();
             this.OrderTable = new HashSet<OrderTable>();
+            this.SizeTable = new HashSet<SizeTable>();
         }
     
-        public int UserID { get; set; }
-        public string yourName { get; set; }
-        public string email { get; set; }
-        public string phoneNumber { get; set; }
-        public string password { get; set; }
-        public Nullable<System.Guid> ActivationCode { get; set; }
-        public Nullable<bool> IsEmailVerified { get; set; }
-        public string ResetPasswordCode { get; set; }
-        public string files { get; set; }
-        public string Role { get; set; }
+        public int ProductID { get; set; }
+        public string productName { get; set; }
+        public string productBrand { get; set; }
+        public string productDetails { get; set; }
+        public string picture1 { get; set; }
+        public string picture2 { get; set; }
+        public string picture3 { get; set; }
+        public string picture4 { get; set; }
+        public int SubCategoryID { get; set; }
+        public int SellerID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AddressTable> AddressTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartTable> CartTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderTable> OrderTable { get; set; }
+        public virtual SellerTable SellerTable { get; set; }
+        public virtual SubCategoryTable SubCategoryTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SizeTable> SizeTable { get; set; }
     }
 }

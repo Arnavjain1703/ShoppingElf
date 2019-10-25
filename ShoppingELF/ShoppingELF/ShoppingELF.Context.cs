@@ -25,6 +25,16 @@ namespace ShoppingELF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AddressTable> AddressTable { get; set; }
+        public virtual DbSet<CartTable> CartTable { get; set; }
+        public virtual DbSet<CategoryTable> CategoryTable { get; set; }
+        public virtual DbSet<OrderTable> OrderTable { get; set; }
+        public virtual DbSet<ProductTable> ProductTable { get; set; }
+        public virtual DbSet<SellerTable> SellerTable { get; set; }
+        public virtual DbSet<SizeTable> SizeTable { get; set; }
+        public virtual DbSet<SoldTable> SoldTable { get; set; }
+        public virtual DbSet<SubCategoryTable> SubCategoryTable { get; set; }
+        public virtual DbSet<SuitableForTable> SuitableForTable { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
     }
 }

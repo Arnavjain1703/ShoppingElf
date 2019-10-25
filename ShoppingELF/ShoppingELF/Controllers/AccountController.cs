@@ -20,7 +20,7 @@ namespace ShoppingELF.Controllers
             try
             {
                 var x = new UserModel().IsEmailExist(user.email);
-                if(x)
+                if (x)
                 {
                     return Request.CreateResponse(HttpStatusCode.Forbidden, "Account already exist");
                 }
@@ -30,7 +30,7 @@ namespace ShoppingELF.Controllers
                     EmailVerification(user.UserID, user.email, Convert.ToString(user.ActivationCode));
                     return Request.CreateResponse(HttpStatusCode.Created, "A verification link has been sent to your email , Please Verify it to continue access");
                 }
-                
+
 
             }
             catch (Exception ex)
@@ -46,7 +46,7 @@ namespace ShoppingELF.Controllers
             var y = new UserModel().verification(user.email);
             var password = new UserModel().Password(user.email);
             UserTable u = new UserRepository().GetUser(user.email);
-            
+
             if (u == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound,
                      "The Account was not found.");
@@ -77,10 +77,10 @@ namespace ShoppingELF.Controllers
             //bool status = false;
             using (ShoppingELFEntities context = new ShoppingELFEntities())
             {
-             
+
                 UserTable us = new UserTable();
                 var v = context.UserTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
-                if(v != null)
+                if (v != null)
                 {
                     us.IsEmailVerified = true;
                     v.IsEmailVerified = Convert.ToBoolean(us.IsEmailVerified);
@@ -90,9 +90,9 @@ namespace ShoppingELF.Controllers
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "Unable to activate account") ;
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Unable to activate account");
                 }
-                
+
             }
         }
 

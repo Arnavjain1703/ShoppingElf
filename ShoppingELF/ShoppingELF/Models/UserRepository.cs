@@ -21,9 +21,9 @@ namespace ShoppingELF.Models
         {
             try
             {
-                
+
                 return context.UserTable.FirstOrDefault(user => user.email.Equals(username));
-                
+
             }
             catch
             {
