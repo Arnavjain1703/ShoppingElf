@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class ServerService
 {   
      
-    private rootUrl="https://1e325da0.ngrok.io"
+    private rootUrl="https://a56d5cfc.ngrok.io"
     constructor(private http :HttpClient){}
     signup(yourName:string,phoneNumber:number,email:string,password:string,confirmPassword:string) 
     {  

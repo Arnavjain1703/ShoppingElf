@@ -9,6 +9,7 @@ import { ServerService } from '../services/server.service';
 })
 export class LoginComponent implements OnInit {
 tk:any;
+click=false;
   constructor(private serverService:ServerService){}
 
 
@@ -17,6 +18,7 @@ tk:any;
   onSubmit(form:NgForm)
   {        
     
+ this.click=true;
   
    const value = form.value;
     

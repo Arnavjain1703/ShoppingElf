@@ -7,6 +7,8 @@ import { ServerService } from './services/server.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -15,11 +17,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     SignupComponent,
     NavbarComponent,
     LoginComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
+
 
     
   ],

@@ -5,7 +5,7 @@
         </div>
         <div class=" col-sm-7 col-md-6 col-xs-12 ">
                     
-                <div class="form" >
+                <div class="form">
 
                          <form (ngSubmit)="onSubmit(f)" #f="ngForm" >
 
@@ -47,8 +47,12 @@
                                          
                                          
                                      
-                                          <button class="Button" type="submit">Signup</button>
+                                          <button class="Button"  type="submit">Login
+                                          </button>
                                      </form>
+                                     <p class="margin">Don't have an account? <a routerLink="/signup">signup</a></p>
+                                     
+
 
                 </div>
 
