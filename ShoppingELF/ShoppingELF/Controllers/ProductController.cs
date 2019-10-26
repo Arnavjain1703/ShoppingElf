@@ -33,5 +33,21 @@ namespace ShoppingELF.Controllers
             var x = new ProductRepository().GetSubCategory(id);
             return Ok(x);
         }
+
+        [HttpGet]
+        [Route("api/Product/Product/{id}")]
+        public IHttpActionResult GetProducts(int id)
+        {
+            var x = new ProductRepository().GetAllProduct(id);
+            return Ok(x);
+        }
+
+        [HttpGet]
+        [Route("api/Product/ProductDetails/{id}")]
+        public IHttpActionResult GetProductDetails(int id)
+        {
+            var x = new ProductRepository().GetProductDetails(id);
+            return Ok(x);
+        }
     }
 }

@@ -52,5 +52,52 @@ namespace ShoppingELF.Models
                 return result;
             }
         }
+
+        public List<ProductModel> GetAllProduct(int id)
+        {
+            using(var context = new ShoppingELFEntities())
+            {
+                var result = context.ProductTable
+                    .Where(x => x.SubCategoryID == id)
+                    .Select(x => new ProductModel()
+                    {
+                        ProductID = x.ProductID,
+                        productName = x.productName,
+                        productBrand = x.productBrand,
+                        productDetails = x.productDetails,
+                        picture1 = x.picture1,
+                        picture2 = x.picture2,
+                        picture3 = x.picture3,
+                        picture4 = x.picture4,
+                        SellerID = x.SellerID,
+                        SubCategoryID = x.SubCategoryID
+                    }).ToList();
+                return result;
+            }
+        }
+
+        public List<SizeModel> GetProductDetails(int id)
+        {
+            using(var context = new ShoppingELFEntities())
+            {
+                var result = context.SizeTable
+                    .Where(x => x.ProductID == id)
+                    .Select(x => new SizeModel()
+                    {
+                        ProductID = x.ProductID,
+                        productSize = x.productSize,
+                        productQuantity = x.productQuantity,
+                        productPrice = x.productPrice,
+                        ProductTable = new ProductModel()
+                        {
+                            productName = x.ProductTable.productName,
+                            productBrand = x.ProductTable.productBrand,
+                            productDetails = x.ProductTable.productDetails,
+                            ProductID = x.ProductTable.ProductID
+                        }
+                    }).ToList();
+                return result;
+            }
+        }
     }
 }
