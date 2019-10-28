@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MenComponent } from './men/men.component';
+import { MenItemComponent } from './men-item/men-item.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     NavbarComponent,
     LoginComponent,
     HomePageComponent,
+    MenComponent,
+    MenItemComponent,
   ],
   imports: [
     BrowserModule,
