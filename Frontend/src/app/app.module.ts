@@ -9,8 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
-import { MenComponent } from './men/men.component';
-import { MenItemComponent } from './men-item/men-item.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductItemComponent } from './products/product-item/product-item.component';
+import { ProductService } from './services/product.service';
 
 
 @NgModule({
@@ -20,8 +21,8 @@ import { MenItemComponent } from './men-item/men-item.component';
     NavbarComponent,
     LoginComponent,
     HomePageComponent,
-    MenComponent,
-    MenItemComponent,
+    ProductsComponent,
+    ProductItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { MenItemComponent } from './men-item/men-item.component';
 
     
   ],
-  providers: [ServerService],
+  providers: [ServerService,ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
