@@ -13,6 +13,7 @@ namespace ShoppingELF.Models
         public int ProductID { get; set; }
         public int productPrice { get; set; }
 
-        public virtual ProductTable ProductTable { get; set; }
+        public virtual ProductModel ProductModel { get; set; }
+        //public ProductTable ProductModel { get; internal set; }
     }
 }

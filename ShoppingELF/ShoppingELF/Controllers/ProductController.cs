@@ -19,34 +19,34 @@ namespace ShoppingELF.Controllers
         }
 
         [HttpGet]
-        [Route("api/Product/Category/{id}")]
-        public IHttpActionResult GetCategory(int id)
+        [Route("api/Product/Category/{Suitableid}")]
+        public IHttpActionResult GetCategory(int Suitableid)
         {
-            var x = new ProductRepository().GetCategory(id);
+            var x = new ProductRepository().GetCategory(Suitableid);
             return Ok(x);
         }
 
         [HttpGet]
-        [Route("api/Product/SubCategory/{id}")]
-        public IHttpActionResult GetSubCategory(int id)
+        [Route("api/Product/SubCategory/{Categoryid}")]
+        public IHttpActionResult GetSubCategory(int Categoryid)
         {
-            var x = new ProductRepository().GetSubCategory(id);
+            var x = new ProductRepository().GetSubCategory(Categoryid);
             return Ok(x);
         }
 
         [HttpGet]
-        [Route("api/Product/Product/{id}")]
-        public IHttpActionResult GetProducts(int id)
+        [Route("api/Product/GetProduct/{SubCategoryid}")]
+        public IHttpActionResult GetProducts(int SubCategoryid)
         {
-            var x = new ProductRepository().GetAllProduct(id);
+            var x = new ProductRepository().GetAllProduct(SubCategoryid);
             return Ok(x);
         }
 
         [HttpGet]
-        [Route("api/Product/ProductDetails/{id}")]
-        public IHttpActionResult GetProductDetails(int id)
+        [Route("api/Product/ProductDetails/{Productid}")]
+        public IHttpActionResult GetProductDetails(int Productid)
         {
-            var x = new ProductRepository().GetProductDetails(id);
+            var x = new ProductRepository().GetProductDetails(Productid);
             return Ok(x);
         }
     }

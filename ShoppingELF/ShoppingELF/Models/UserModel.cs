@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Helpers;
 
@@ -22,6 +23,13 @@ namespace ShoppingELF.Models
         public virtual ICollection<AddressTable> AddressTable { get; set; }
         public virtual ICollection<CartTable> CartTable { get; set; }
         public virtual ICollection<OrderTable> OrderTable { get; set; }
+
+        //public JWTAuthenticationIdentity(string userName)
+        //    : base(userName)
+        //{
+        //    email = userName;
+        //}
+
 
         public bool verification(string Email)
         {

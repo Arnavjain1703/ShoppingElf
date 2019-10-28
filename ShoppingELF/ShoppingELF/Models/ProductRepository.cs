@@ -84,11 +84,12 @@ namespace ShoppingELF.Models
                     .Where(x => x.ProductID == id)
                     .Select(x => new SizeModel()
                     {
+                        PID = x.PID,
                         ProductID = x.ProductID,
                         productSize = x.productSize,
                         productQuantity = x.productQuantity,
                         productPrice = x.productPrice,
-                        ProductTable = new ProductModel()
+                        ProductModel = new ProductModel()
                         {
                             productName = x.ProductTable.productName,
                             productBrand = x.ProductTable.productBrand,

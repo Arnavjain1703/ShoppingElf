@@ -148,11 +148,14 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\Crypto.cs" />
+    <Compile Include="Models\JwtAuthenticationFilter.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Models\SizeModel.cs" />

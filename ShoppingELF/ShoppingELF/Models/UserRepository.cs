@@ -25,9 +25,19 @@ namespace ShoppingELF.Models
             }
         }
 
-        public List<UserModel> AddToCart()
+        public int AddToCart(int uid, int pid)
         {
-
+            using(var context = new ShoppingELFEntities())
+            {
+                CartTable ct = new CartTable()
+                { 
+                    ProductID = pid,
+                    UserID = uid
+                };
+                context.CartTable.Add(ct);
+                context.SaveChanges();
+                return ct.CartID;
+            }
         }
 
     }

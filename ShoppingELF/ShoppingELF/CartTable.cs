@@ -11,7 +11,8 @@ namespace ShoppingELF
 {
     using System;
     using System.Collections.Generic;
-    
+    using ShoppingELF.Models;
+
     public partial class CartTable
     {
         public int CartID { get; set; }
@@ -20,5 +21,10 @@ namespace ShoppingELF
     
         public virtual ProductTable ProductTable { get; set; }
         public virtual UserTable UserTable { get; set; }
+
+        //public static implicit operator CartTable(CartModel v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
