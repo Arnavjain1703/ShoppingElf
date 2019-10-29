@@ -19,7 +19,7 @@
         <MappingFragment StoreEntitySet="CartTable">
           <ScalarProperty Name="CartID" ColumnName="CartID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -42,7 +42,7 @@
           <ScalarProperty Name="productPrice" ColumnName="productPrice" />
           <ScalarProperty Name="productSize" ColumnName="productSize" />
           <ScalarProperty Name="productPicture" ColumnName="productPicture" />
-          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

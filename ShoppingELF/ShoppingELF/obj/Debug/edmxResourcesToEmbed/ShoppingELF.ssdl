@@ -18,7 +18,7 @@
     </Key>
     <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="PID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CategoryTable">
     <Key>
@@ -39,7 +39,7 @@
     <Property Name="productPrice" Type="int" Nullable="false" />
     <Property Name="productSize" Type="nvarchar(max)" Nullable="false" />
     <Property Name="productPicture" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="productID" Type="int" Nullable="false" />
+    <Property Name="PID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductTable">
     <Key>
@@ -141,15 +141,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CartTable_ProductTable">
-    <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
+  <Association Name="FK_CartTable_SizeTable">
+    <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="1" />
     <End Role="CartTable" Type="Self.CartTable" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProductTable">
-        <PropertyRef Name="ProductID" />
+      <Principal Role="SizeTable">
+        <PropertyRef Name="PID" />
       </Principal>
       <Dependent Role="CartTable">
-        <PropertyRef Name="ProductID" />
+        <PropertyRef Name="PID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -177,15 +177,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderTable_ProductTable">
-    <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
+  <Association Name="FK_OrderTable_SizeTable">
+    <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="1" />
     <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProductTable">
-        <PropertyRef Name="ProductID" />
+      <Principal Role="SizeTable">
+        <PropertyRef Name="PID" />
       </Principal>
       <Dependent Role="OrderTable">
-        <PropertyRef Name="productID" />
+        <PropertyRef Name="PID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -277,8 +277,8 @@
       <End Role="UserTable" EntitySet="UserTable" />
       <End Role="AddressTable" EntitySet="AddressTable" />
     </AssociationSet>
-    <AssociationSet Name="FK_CartTable_ProductTable" Association="Self.FK_CartTable_ProductTable">
-      <End Role="ProductTable" EntitySet="ProductTable" />
+    <AssociationSet Name="FK_CartTable_SizeTable" Association="Self.FK_CartTable_SizeTable">
+      <End Role="SizeTable" EntitySet="SizeTable" />
       <End Role="CartTable" EntitySet="CartTable" />
     </AssociationSet>
     <AssociationSet Name="FK_CartTable_UserTable" Association="Self.FK_CartTable_UserTable">
@@ -289,8 +289,8 @@
       <End Role="SuitableForTable" EntitySet="SuitableForTable" />
       <End Role="CategoryTable" EntitySet="CategoryTable" />
     </AssociationSet>
-    <AssociationSet Name="FK_OrderTable_ProductTable" Association="Self.FK_OrderTable_ProductTable">
-      <End Role="ProductTable" EntitySet="ProductTable" />
+    <AssociationSet Name="FK_OrderTable_SizeTable" Association="Self.FK_OrderTable_SizeTable">
+      <End Role="SizeTable" EntitySet="SizeTable" />
       <End Role="OrderTable" EntitySet="OrderTable" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderTable_UserTable" Association="Self.FK_OrderTable_UserTable">

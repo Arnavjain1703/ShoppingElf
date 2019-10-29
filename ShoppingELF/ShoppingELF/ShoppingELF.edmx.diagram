@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aa7ec0367288409fb23438dafc9b1854" Name="Diagram1">
-        <EntityTypeShape EntityType="ShoppingELFModel.AddressTable" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.CartTable" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.CategoryTable" Width="1.5" PointX="1.5" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.OrderTable" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.ProductTable" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SellerTable" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SizeTable" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SoldTable" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SubCategoryTable" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SuitableForTable" Width="1.5" PointX="1.5" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.UserTable" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="2c2e7bbf8c344705b260f4c81036b5d4" Name="Diagram1">
+        <EntityTypeShape EntityType="ShoppingELFModel.AddressTable" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.CartTable" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.CategoryTable" Width="1.5" PointX="1.5" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.OrderTable" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.ProductTable" Width="1.5" PointX="1.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SellerTable" Width="1.5" PointX="1.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SizeTable" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SoldTable" Width="1.5" PointX="3.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SubCategoryTable" Width="1.5" PointX="1.5" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SuitableForTable" Width="1.5" PointX="1.5" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.UserTable" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="ShoppingELFModel.FK_AddressTable_UserTable" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoppingELFModel.FK_CartTable_ProductTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingELFModel.FK_CartTable_SizeTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_CartTable_UserTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_CategoryTable_SuiitableForTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SubCategoryTable_CategoryTable" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoppingELFModel.FK_OrderTable_ProductTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingELFModel.FK_OrderTable_SizeTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_OrderTable_UserTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_ProductTable_SellerTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_ProductTable_SubCategoryTable" ManuallyRouted="false" />

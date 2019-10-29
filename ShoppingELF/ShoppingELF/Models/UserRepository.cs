@@ -31,12 +31,39 @@ namespace ShoppingELF.Models
             {
                 CartTable ct = new CartTable()
                 { 
-                    ProductID = pid,
+                    PID = pid,
                     UserID = uid
                 };
                 context.CartTable.Add(ct);
                 context.SaveChanges();
                 return ct.CartID;
+            }
+        }
+
+        public List<CartModel> GetCart(int uid)
+        {
+            using(var context = new ShoppingELFEntities())
+            {
+                var result = context.CartTable
+                    .Where(x => x.UserID == uid)
+                    .Select(x => new CartModel()
+                    {
+                        UserID = uid,
+                        PID = x.PID,
+                        CartID = x.CartID,
+                        SizeModel = new SizeModel()
+                        {
+                            productPrice = x.SizeTable.productPrice,
+                            productSize = x.SizeTable.productSize,
+                            ProductModel = new ProductModel()
+                            {
+                                productName = x.SizeTable.ProductTable.productName,
+                                productBrand = x.SizeTable.ProductTable.productBrand,
+                                productDetails = x.SizeTable.ProductTable.productDetails
+                            }
+                        }
+                    }).ToList();
+                return result;
             }
         }
 

@@ -11,15 +11,12 @@ namespace ShoppingELF
 {
     using System;
     using System.Collections.Generic;
-    using ShoppingELF.Models;
-
+    
     public partial class ProductTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductTable()
         {
-            this.CartTable = new HashSet<CartTable>();
-            this.OrderTable = new HashSet<OrderTable>();
             this.SizeTable = new HashSet<SizeTable>();
         }
     
@@ -33,20 +30,10 @@ namespace ShoppingELF
         public string picture4 { get; set; }
         public int SubCategoryID { get; set; }
         public int SellerID { get; set; }
-
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CartTable> CartTable { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderTable> OrderTable { get; set; }
         public virtual SellerTable SellerTable { get; set; }
         public virtual SubCategoryTable SubCategoryTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SizeTable> SizeTable { get; set; }
-
-        //public static implicit operator ProductTable(ProductModel v)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

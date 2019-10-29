@@ -14,12 +14,23 @@ namespace ShoppingELF
     
     public partial class SizeTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SizeTable()
+        {
+            this.CartTable = new HashSet<CartTable>();
+            this.OrderTable = new HashSet<OrderTable>();
+        }
+    
         public int PID { get; set; }
         public string productSize { get; set; }
         public int productQuantity { get; set; }
         public int ProductID { get; set; }
         public int productPrice { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CartTable> CartTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderTable> OrderTable { get; set; }
         public virtual ProductTable ProductTable { get; set; }
     }
 }

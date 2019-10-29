@@ -124,8 +124,8 @@
     <Content Include="Global.asax" />
     <Content Include="ShoppingELF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ShoppingELF.Context.cs</LastGenOutput>
       <DependentUpon>ShoppingELF.edmx</DependentUpon>
+      <LastGenOutput>ShoppingELF.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ShoppingELF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -155,7 +155,6 @@
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\Crypto.cs" />
-    <Compile Include="Models\JwtAuthenticationFilter.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Models\SizeModel.cs" />

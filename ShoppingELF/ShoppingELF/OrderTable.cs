@@ -21,9 +21,9 @@ namespace ShoppingELF
         public int productPrice { get; set; }
         public string productSize { get; set; }
         public string productPicture { get; set; }
-        public int productID { get; set; }
+        public int PID { get; set; }
     
-        public virtual ProductTable ProductTable { get; set; }
+        public virtual SizeTable SizeTable { get; set; }
         public virtual UserTable UserTable { get; set; }
     }
 }

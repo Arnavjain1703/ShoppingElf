@@ -11,20 +11,14 @@ namespace ShoppingELF
 {
     using System;
     using System.Collections.Generic;
-    using ShoppingELF.Models;
-
+    
     public partial class CartTable
     {
         public int CartID { get; set; }
         public int UserID { get; set; }
-        public int ProductID { get; set; }
+        public int PID { get; set; }
     
-        public virtual ProductTable ProductTable { get; set; }
+        public virtual SizeTable SizeTable { get; set; }
         public virtual UserTable UserTable { get; set; }
-
-        //public static implicit operator CartTable(CartModel v)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
