@@ -9,10 +9,23 @@ import { Product } from 'src/app/shared/product.module';
 export class ProductItemComponent implements OnInit {
   @Input () product:Product;
   @Input() index:number;
-
+  display=false;
   constructor() { }
 
   ngOnInit() {
   }
 
+
+
+  call()
+  {
+    this.display=true;
+  }
+  uncall()
+  {
+    this.display=false;
+  }
+ 
 }
+
+
