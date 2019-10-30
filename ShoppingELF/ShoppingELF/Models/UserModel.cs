@@ -72,5 +72,43 @@ namespace ShoppingELF.Models
                 return v != null;
             }
         }
+
+        public void AddAddress(int uid, AddressModel model)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                AddressTable at = new AddressTable()
+                {
+                    AddressLine1 = model.AddressLine1,
+                    AddressLine2 = model.AddressLine2,
+                    Pincode = model.Pincode,
+                    State = model.State,
+                    city = model.city,
+                    UserID = uid
+                };
+                context.AddressTable.Add(at);
+                context.SaveChanges();
+            }
+        }
+
+        public bool EditAddress(int uid, AddressModel model)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var Address = context.AddressTable.FirstOrDefault(x => x.UserID == uid);
+                if (Address != null)
+                {
+                    Address.AddressLine1 = model.AddressLine1;
+                    Address.AddressLine2 = model.AddressLine2;
+                    Address.city = model.city;
+                    Address.Pincode = model.Pincode;
+                    Address.State = model.State;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
     }
 }

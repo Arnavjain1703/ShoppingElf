@@ -100,5 +100,28 @@ namespace ShoppingELF.Controllers
             else
                 return Ok("The item you are looking for seems to be out of stock");
         }
+
+        //[Authorize]
+        [HttpPost]
+        [Route("api/User/Address/{uid}")]
+        public IHttpActionResult AddAddress(int uid, AddressModel model)
+        {
+            new UserModel().AddAddress(uid, model);
+            return Ok("Address added successfully");
+        }
+
+        //[Authorize]
+        [HttpPut]
+        [Route("api/User/EditAddress/{uid}")]
+        public IHttpActionResult EditAddress(int uid, AddressModel model)
+        {
+            bool x = new UserModel().EditAddress(uid, model);
+            if (x)
+                return Ok("Address updated successfully");
+            else
+                return Ok("Something went Wrong , unable to update Address");
+
+        }
+        
     }
 }
