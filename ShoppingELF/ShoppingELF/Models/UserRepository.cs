@@ -67,5 +67,89 @@ namespace ShoppingELF.Models
             }
         }
 
+        public int RemoveFromCart(int cid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var result = context.CartTable.FirstOrDefault(x => x.CartID == cid);
+                if(result != null)
+                {
+                    context.CartTable.Remove(result);
+                    context.SaveChanges();
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public List<OrderModel> ShowOrderedItem(int uid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var result = context.OrderTable
+                    .Where(x => x.UserID == uid)
+                    .Select(x => new OrderModel()
+                    {
+                        OrderID = x.OrderID,
+                        UserID = x.UserID,
+                        ProductName = x.ProductName,
+                        productBrand = x.productBrand,
+                        productPrice = x.productPrice,
+                        productSize = x.productSize,
+                        productPicture = x.productPicture,
+                        PID = x.PID
+                    }).ToList();
+                return result;
+            }
+        }
+
+        public void ClearCart()
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var querry = context.CartTable.ToList();
+                foreach(var q in querry)
+                {
+                    context.CartTable.Remove(q);
+                }
+                context.SaveChanges();
+            }
+        }
+
+        public int AddFromCartToOrder(int uid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                CartTable ct = new CartTable();
+                ct = context.CartTable.SingleOrDefault(m => m.UserID == uid);
+                var cartitems = context.CartTable.Where(m => m.UserID == uid).ToList();
+                if(ct != null)
+                {
+                    foreach (var i in cartitems)
+                    {
+                        OrderTable ot = new OrderTable()
+                        {
+                            UserID = uid,
+                            productBrand = i.SizeTable.ProductTable.productBrand,
+                            ProductName = i.SizeTable.ProductTable.productName,
+                            productPicture = i.SizeTable.ProductTable.picture1,
+                            productPrice = i.SizeTable.productPrice,
+                            productSize = i.SizeTable.productSize,
+                            PID = i.PID
+                        };
+                        context.OrderTable.Add(ot);
+                        context.SaveChanges();
+                    }
+
+                    return 1;
+                }
+                else
+                    return 0;
+            }
+        }
+
     }
 }
