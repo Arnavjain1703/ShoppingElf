@@ -52,6 +52,14 @@ namespace ShoppingELF.Controllers
         }
 
         //[Authorize]
+        [Route("api/User/ClearCart/{uid}")]
+        public IHttpActionResult ClearCart(int uid)
+        {
+            new UserRepository().ClearCart(uid);
+            return Ok("All items removed from cart");
+        }
+
+        //[Authorize]
         [HttpGet]
         [Route("api/User/OrderList/{uid}")]
         public IHttpActionResult ShowOrderedItems(int uid)
@@ -66,12 +74,31 @@ namespace ShoppingELF.Controllers
         public IHttpActionResult OrderFromCart(int uid)
         {
             int x = new UserRepository().AddFromCartToOrder(uid);
-            new UserRepository().ClearCart();
-            if (x == 1)
+            
+            if (x == 1 || x == 3)
+            {
+                new UserRepository().ClearCart(uid);
                 return Ok("Order Placed Successfully");
+            }
+            else if (x == 2 || x == 3)
+                return Ok("Item you are looking for seems to be out of stock");
             else
                 return BadRequest("cart is empty");
 
+        }
+
+        //[Authorize]
+        [HttpPost]
+        [Route("api/User/OrderNow/{uid}/{pid}")]
+        public IHttpActionResult OrderNow(int uid, int pid)
+        {
+            int x = new UserRepository().OrderNow(uid, pid);
+            if (x == 1)
+            {
+                return Ok("Order Placed Successfully");
+            }
+            else
+                return Ok("The item you are looking for seems to be out of stock");
         }
     }
 }

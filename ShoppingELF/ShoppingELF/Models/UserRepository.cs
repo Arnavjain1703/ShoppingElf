@@ -106,11 +106,11 @@ namespace ShoppingELF.Models
             }
         }
 
-        public void ClearCart()
+        public void ClearCart(int uid)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
-                var querry = context.CartTable.ToList();
+                var querry = context.CartTable.Where(m => m.UserID == uid).ToList();
                 foreach(var q in querry)
                 {
                     context.CartTable.Remove(q);
@@ -124,26 +124,63 @@ namespace ShoppingELF.Models
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 CartTable ct = new CartTable();
+                SizeTable st = new SizeTable();
                 ct = context.CartTable.SingleOrDefault(m => m.UserID == uid);
                 var cartitems = context.CartTable.Where(m => m.UserID == uid).ToList();
                 if(ct != null)
                 {
                     foreach (var i in cartitems)
                     {
-                        OrderTable ot = new OrderTable()
+                        st = context.SizeTable.FirstOrDefault(x => x.PID == i.PID);
+                        if (st.productQuantity > 0)
                         {
-                            UserID = uid,
-                            productBrand = i.SizeTable.ProductTable.productBrand,
-                            ProductName = i.SizeTable.ProductTable.productName,
-                            productPicture = i.SizeTable.ProductTable.picture1,
-                            productPrice = i.SizeTable.productPrice,
-                            productSize = i.SizeTable.productSize,
-                            PID = i.PID
-                        };
-                        context.OrderTable.Add(ot);
-                        context.SaveChanges();
-                    }
+                            OrderTable ot = new OrderTable()
+                            {
+                                UserID = uid,
+                                productBrand = i.SizeTable.ProductTable.productBrand,
+                                ProductName = i.SizeTable.ProductTable.productName,
+                                productPicture = i.SizeTable.ProductTable.picture1,
+                                productPrice = i.SizeTable.productPrice,
+                                productSize = i.SizeTable.productSize,
+                                PID = i.PID
+                            };
 
+                            st.productQuantity -= 1;
+                            context.OrderTable.Add(ot);
+                            context.SaveChanges();
+                            return 1;
+                        }
+                        else
+                            return 2;
+                    }
+                    return 3;
+                }
+                else
+                    return 0;
+            }
+        }
+
+        public int OrderNow(int uid, int pid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SizeTable st = new SizeTable();
+                st = context.SizeTable.FirstOrDefault(m => m.PID == pid);
+                if (st.productQuantity > 0)
+                {
+                    OrderTable ot = new OrderTable()
+                    {
+                        UserID = uid,
+                        PID = pid,
+                        productBrand = st.ProductTable.productBrand,
+                        ProductName = st.ProductTable.productName,
+                        productPicture = st.ProductTable.picture1,
+                        productPrice = st.productPrice,
+                        productSize = st.productSize
+                    };
+                    st.productQuantity -= 1;
+                    context.OrderTable.Add(ot);
+                    context.SaveChanges();
                     return 1;
                 }
                 else
