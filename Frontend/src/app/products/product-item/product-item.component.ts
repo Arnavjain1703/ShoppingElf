@@ -1,5 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Product } from 'src/app/shared/product.module';
+import { ProductBagService } from 'src/app/services/product-bag.service';
 
 @Component({
   selector: 'app-product-item',
@@ -10,7 +11,7 @@ export class ProductItemComponent implements OnInit {
   @Input () product:Product;
   @Input() index:number;
   display=false;
-  constructor() { }
+  constructor( private productBagService:ProductBagService) { }
 
   ngOnInit() {
   }
@@ -24,6 +25,11 @@ export class ProductItemComponent implements OnInit {
   uncall()
   {
     this.display=false;
+  }
+
+  orders()
+  {
+    this.productBagService.addorder(this.product);
   }
  
 }

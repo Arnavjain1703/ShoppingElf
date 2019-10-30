@@ -1,0 +1,22 @@
+<!-- {{jjjj}}
+<button (click)="add(jjjj)">hello</button>
+{{totalamount}} -->
+
+<div class="row">
+    <div class="col-lg-8 padding">
+       
+          <app-product-bag-item 
+           *ngFor="let order of orders; let i=index" 
+
+           [order]="order"
+           [index]="i">
+    
+         </app-product-bag-item>
+
+    </div>
+
+    <div class="col-lg-4">
+
+    </div>
+
+</div>

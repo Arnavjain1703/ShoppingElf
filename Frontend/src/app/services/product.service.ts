@@ -10,26 +10,31 @@ export class ProductService
     
     private products:Product[]=[
 
-        new Product ('sdnvjo',456,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
-        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw'),
+        new Product ('sdnvjo',456,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+        new Product ('sdnvjo',456,'/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
 
     ]
 
     getProducts()
     {
         return this.products.slice()
+    }
+
+    getProduct(index:number)
+    {
+        return this.products.slice()[index];
     }
 
     addProducts(product:Product)

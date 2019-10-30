@@ -12,6 +12,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ProductService } from './services/product.service';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductBagComponent } from './product-bag/product-bag.component';
+import { ProductBagService } from './services/product-bag.service';
+import { ProductBagItemComponent } from './product-bag/product-bag-item/product-bag-item.component';
 
 
 @NgModule({
@@ -23,6 +27,9 @@ import { ProductService } from './services/product.service';
     HomePageComponent,
     ProductsComponent,
     ProductItemComponent,
+    ProductDetailsComponent,
+    ProductBagComponent,
+    ProductBagItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,7 @@ import { ProductService } from './services/product.service';
 
     
   ],
-  providers: [ServerService,ProductService],
+  providers: [ServerService,ProductService,ProductBagService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

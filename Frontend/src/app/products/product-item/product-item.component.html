@@ -1,10 +1,14 @@
  <div  class="background col-lg-3">
 <div class="shadow" (mouseover)="call()" (mouseout)="uncall()" >
                      <!-- <img  [class.showImg]="display" [src]="product.picture1"> -->
+                     
+
                      <div id="carousel-example-{{index}}" class="carousel slide"  data-interval="false">
                                    <!-- Indicators -->
                                 
                                    <!-- Wrapper for slides -->
+                     <a routerLink="/details/{{index}}">
+
                                    <div class="carousel-inner" role="listbox">
                                      <div class="item active">
                                        <img style="height:250px;" [src]="product.picture1" alt="...">
@@ -25,7 +29,9 @@
                                       
                                     </div>
                                    </div>
-                                 
+                                        
+                                   </a>
+
                                    <!-- Controls -->
                                    <a  class=" carousel-control arrow" [class.show]="display" href="#carousel-example-{{index}}" role="button" data-slide="prev">
                                      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -38,14 +44,15 @@
                                  </div>
 <div>
   <div class="btn-background"  [class.show]="display">               
-     <button class="Button" >
+     <button class="Button" (click)="orders()" >
             <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button> 
   </div>
        <div class="name" [class.name-hover]="display">{{product.productName }}</div>
        <div class="brand">{{product.productBrand}}</div>
        <div class="price"> Rs  {{product.productPrice}}</div>
 </div>
-       
+     
+
 </div>
 
 

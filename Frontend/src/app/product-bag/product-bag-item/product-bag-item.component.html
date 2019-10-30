@@ -1,0 +1,55 @@
+<div class="margin" >
+        <div class="row">
+           
+            <div class="col-xs-3">
+           
+                <img  [src]="order.picture3">
+           
+            </div>
+           
+            <div class="col-xs-3 margins">
+           
+                {{order.productName}}
+           
+                <div class="margins2">Size</div>
+           
+            </div>
+           
+            <div class="col-xs-3 margins">
+           
+                {{order.productBrand}}
+                
+                <div class="margins2">
+                
+                    <button (click)="remove()" class=" btn btn-danger position">
+           
+                        <span class="glyphicon glyphicon-trash"></span>  Remove</button>
+                
+                    </div>
+           
+                </div>
+           
+                <div class="col-xs-2 margins">
+           
+                   Rs {{order.productPrice}}
+
+
+                <div class="margins2">
+                
+                    <div>Quantity</div>
+                
+                    <span ><button (click)="add()"class="Button">+</button></span>
+                
+                    <span>{{quantity}}</span>  
+                
+                    <span ><button *ngIf="quantity >0" (click)="subtract()" class="Button">-</button></span>     
+                
+                </div>
+            
+            </div>
+    
+
+
+   
+       </div>
+</div>

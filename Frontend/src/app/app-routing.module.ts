@@ -4,6 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProductsComponent } from './products/products.component';
+import { Product } from './shared/product.module';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductBagComponent } from './product-bag/product-bag.component';
 
 
   
@@ -13,6 +16,11 @@ const appRoutes: Routes=[
     {path:'signup',component:SignupComponent},
     {path:'frontpage',component:HomePageComponent},
     {path:'products',component:ProductsComponent},
+     
+    {path:'bag',component:ProductBagComponent},
+     
+    {path:'details/:id',component: ProductDetailsComponent},
+
 
 
 ]
