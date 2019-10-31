@@ -40,9 +40,9 @@
                 
                     <span ><button (click)="add()"class="Button">+</button></span>
                 
-                    <span>{{quantity}}</span>  
+                    <span>{{order.OrderQ}}</span>  
                 
-                    <span ><button *ngIf="quantity >0" (click)="subtract()" class="Button">-</button></span>     
+                    <span ><button *ngIf="order.OrderQ >0" (click)="subtract()" class="Button">-</button></span>     
                 
                 </div>
             

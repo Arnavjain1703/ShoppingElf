@@ -11,34 +11,25 @@ import { Subscription } from 'rxjs';
 })
 export class ProductBagComponent implements OnInit {
  orders:Product[];
-//  product:Product;
-// jjjj=0;
-// totalamount:number;
+ number:number;
      bagSubscription:Subscription;
- 
-constructor(private productService:ProductService,
-             private productBagService:ProductBagService) { }
+constructor(
+             private productBagService:ProductBagService
+           ) { }
 
   ngOnInit() {
-  // this.product=this.productService.getProduct(1);
-  //  this.totalamount=this.product.productPrice;
+
     this.bagSubscription=this.productBagService.bagChanged
     .subscribe((orders:Product[])=>
     {
       this.orders=orders;
+      
+
     }
+    
     )
-  
-    this.orders=this.productBagService.getOrders();
   }
   
-// add(data:number)
-// {  
-//    data=data+1;
-//    this.jjjj=data
-//    this.totalamount=this.totalamount+this.product.productPrice
-   
-// }
 
 
 

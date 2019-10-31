@@ -27,13 +27,19 @@ remove()
 
 add()
 {
-  this.quantity=this.quantity+1;
+  this.order.OrderQ=this.order.OrderQ+1;
   console.log(this.quantity);
+  this.order.productTotal=this.order.OrderQ*this.order.productPrice;
 }
 
 subtract()
 {
-  this.quantity=this.quantity-1;
+  this.order.OrderQ=this.order.OrderQ-1;
+  this.order.productTotal=this.order.OrderQ*this.order.productPrice;
+
+  
   
 }
+
+
 }

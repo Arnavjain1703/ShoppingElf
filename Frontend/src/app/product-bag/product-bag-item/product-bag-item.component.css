@@ -27,7 +27,9 @@ font-size:20px;
     background: #3498DB;
     border:2px solid #3498DB ;
     color: white;
-     width:40%;
-     margin: 0px 1px
+     width:30%;
+     height:30px;
+     margin: 0px 1px;
+     text-align:center;
     
 }

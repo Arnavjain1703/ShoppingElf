@@ -8,7 +8,7 @@ export class ProductBagService
 bagChanged= new Subject<Product[]>();
 private orders:Product[]=[
 
-    new Product ('sdnvjo',456,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
+    new Product ('sdnvjo',456,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0,),
     new Product ('sdnvjo',456,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','wkebviw',0),
 
 
@@ -32,7 +32,10 @@ deleteorder(index:number)
     this.bagChanged.next(this.orders.slice());
 }
 
-
+length()
+{
+   return this.orders.length 
+}
 
 
 }

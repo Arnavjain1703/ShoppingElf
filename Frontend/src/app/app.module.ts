@@ -16,6 +16,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductBagComponent } from './product-bag/product-bag.component';
 import { ProductBagService } from './services/product-bag.service';
 import { ProductBagItemComponent } from './product-bag/product-bag-item/product-bag-item.component';
+import { ProdictCostComponent } from './product-bag/prodict-cost/prodict-cost.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ProductBagItemComponent } from './product-bag/product-bag-item/product-
     ProductDetailsComponent,
     ProductBagComponent,
     ProductBagItemComponent,
+    ProdictCostComponent,
   ],
   imports: [
     BrowserModule,

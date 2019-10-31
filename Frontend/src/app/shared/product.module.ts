@@ -11,6 +11,7 @@ export class Product
     public SubCategoryID:number;
     public SellerID:number;
     public  OrderQ:number;
+    public productTotal:number;
     
 
 

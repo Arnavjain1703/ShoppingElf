@@ -16,7 +16,23 @@
     </div>
 
     <div class="col-lg-4">
+               
+          <app-prodict-cost
+          
+          *ngFor="let order of orders; let i=index" 
+
+          [order]="order"
+          [index]="i"
+
+          >
+               
+                
+               
+          </app-prodict-cost>
+
+
+          <h4>ownvorn</h4>
+
 
     </div>
-
 </div>
