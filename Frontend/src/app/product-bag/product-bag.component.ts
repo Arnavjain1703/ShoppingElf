@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../shared/product.module';
 import { ProductBagService } from '../services/product-bag.service';
 import { Subscription } from 'rxjs';
@@ -9,10 +8,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './product-bag.component.html',
   styleUrls: ['./product-bag.component.css']
 })
-export class ProductBagComponent implements OnInit {
+export class ProductBagComponent implements OnInit,OnDestroy {
  orders:Product[];
- number:number;
      bagSubscription:Subscription;
+     i:number;
+     total:number;
+     
 constructor(
              private productBagService:ProductBagService
            ) { }
@@ -28,8 +29,33 @@ constructor(
     }
     
     )
+    this.orders=this.productBagService.getOrders();
   }
   
+ngOnDestroy()
+{
+  this.bagSubscription.unsubscribe(); 
+}
+
+Total()
+{ this.total=0;
+ for(this.i=0; this.i<this.productBagService.length();this.i++ )  
+  {
+    
+      this.total=this.total+this.orders[this.i].productTotal;
+
+
+   }
+
+  
+
+
+}
+
+Delete(index:number)
+{
+   this.total=this.total-this.orders[index].productTotal; 
+}
 
 
 
