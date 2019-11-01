@@ -12,7 +12,7 @@ export class ProductBagComponent implements OnInit,OnDestroy {
  orders:Product[];
      bagSubscription:Subscription;
      i:number;
-     total:number;
+     total=0;
      
 constructor(
              private productBagService:ProductBagService

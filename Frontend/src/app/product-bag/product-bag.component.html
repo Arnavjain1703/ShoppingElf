@@ -1,6 +1,22 @@
 
-<div class="row">
-    <div class="col-lg-8 padding">
+<div class="row background">
+    <div class="col-lg-7 padding">
+          <div class="row">
+                <div class="col-xs-3 "></div>
+                
+               <div class="heading col-xs-6">
+                        <img  class="image" src="/assets/bag.svg">
+                     
+                  My Shopping Bag
+
+
+               </div>
+
+               <div class="col-xs-3 ">
+                      
+               </div>
+             
+          </div>
        
           <app-product-bag-item 
            *ngFor="let order of orders; let i=index" 
@@ -14,6 +30,15 @@
 
     <div class="col-lg-4">
                
+      <div class="row">
+       
+            <div class=col-xs-3><img src="/assets/notebook.svg" ></div>
+       
+               <div class="heading2 col-xs-6">Cost Details</div>
+       
+          <div class="col-xs-3"></div>
+     
+      </div>
           <app-prodict-cost
           
           *ngFor="let order of orders; let i=index" 
@@ -24,7 +49,7 @@
           >
                
          </app-prodict-cost>
-         {{total}}
+         <div class="total"> Total cost = {{total}} RS</div>
 
 
 

@@ -12,6 +12,7 @@
      
      width: 250px;
      padding: 15px;
+     background: #FCF3CF;
 }
 
 .name,.brand,.price
@@ -87,6 +88,8 @@
       border-radius: 1px;
       transition: box-shadow 1s;
       height: 350px;
+     background: white;
+      
 
        
   }    

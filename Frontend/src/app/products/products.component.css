@@ -6,3 +6,27 @@
      width: 100%;
      height: 500px;
 }
+.background
+{
+    background:#E9F7EF  ;
+}
+
+.image
+{
+    height: 400px;
+
+}
+.padding
+{
+    padding: 3%;
+     ;
+    margin-top:2%;
+    box-shadow: 1px 1px 4px #7B7D7D ;
+    border-radius: 2%;
+}
+.para
+{
+    font-size:150%;
+   letter-spacing: 2px;
+   color:#2874A6 ;
+}

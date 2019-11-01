@@ -1,0 +1,30 @@
+.background
+{
+    background:#F9E79F; 
+    min-height:680px;
+}
+.heading,.heading2
+{
+    text-align:center;
+    color:#2980B9;
+   font-size:200%;
+   /* margin-top:1%; */
+   border-bottom:2px solid;
+   letter-spacing: 2px;
+}
+
+.heading2{
+    margin-top:9%;
+}
+.total
+{
+    text-align: right;
+    margin-top:5%;
+    font-size:150%;
+    color:#2980B9;
+    letter-spacing: 2px;
+}
+.image
+{
+    height:120px;
+}

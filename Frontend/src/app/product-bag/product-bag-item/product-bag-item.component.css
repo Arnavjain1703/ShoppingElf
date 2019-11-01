@@ -2,7 +2,8 @@
 {
     
     box-shadow: 2px 2px 4px #979A9A;
-    margin: 2% 20%;
+    margin: 2% 15%;
+    background: white;
 
 }
 img
@@ -15,11 +16,16 @@ img
 margin-top:3px;
 font-weight:500;
 font-size:20px;
+color:#21618C ;
+    letter-spacing: 1px;
 }
 
 .margins2
 {
-    margin-top:10px
+    margin-top:10px;
+    letter-spacing: 2px;
+    
+
 }
 .Button
 {
@@ -32,4 +38,8 @@ font-size:20px;
      margin: 0px 1px;
      text-align:center;
     
+}
+
+.letter
+{
 }
