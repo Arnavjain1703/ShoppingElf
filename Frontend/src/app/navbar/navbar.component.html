@@ -40,13 +40,22 @@
      
         <ul class="nav navbar-nav navbar-right">
          
-          <li class="items">
+          <!-- <li class="items">
            <a>
-             <span class="color">
-             Profile
-             </span>
+            
             </a>
-          </li>
+          </li> -->
+          <li class="dropdown">
+              <a   class="dropdown-toggle" data-toggle="dropdown">
+                 
+                <span class="color items">
+                      Profile
+                      </span> </a>
+
+              <ul class="dropdown-menu">
+                <li class="margin" ><a   routerLink="/orders" class="color1" >  My Orders </a></li>
+              </ul>
+            </li>
          
           <li class="items">
             <a routerLink="/bag"> 

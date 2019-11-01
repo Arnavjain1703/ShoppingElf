@@ -7,6 +7,7 @@ import { ProductsComponent } from './products/products.component';
 import { Product } from './shared/product.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductBagComponent } from './product-bag/product-bag.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 
   
@@ -20,6 +21,7 @@ const appRoutes: Routes=[
     {path:'bag',component:ProductBagComponent},
      
     {path:'details/:id',component: ProductDetailsComponent},
+    {path:'orders',component: MyOrderComponent},
 
 
 

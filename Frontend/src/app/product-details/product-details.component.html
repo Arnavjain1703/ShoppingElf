@@ -2,27 +2,50 @@
     
         <div class="bg-img row">
             <div class="col-xs-4 col-md-2"></div>
+           
             <div class="col-xs-4 col-md-2">
             
                 <img class="bgImg" src="/assets/details.svg">
             
             </div>
+           
             <div class="col-xs-3 col-md-5 center ">
 
                 <span>Get your product details here</span>
 
             </div>
+           
             <div class="col-xs-1 ">
                 
             </div>
         
         </div>
+
+
+      <div *ngIf="display" class="alert alert-info">
+          
+        <h3>Confirm Order</h3>
+        
+        <button class="btn btn-success " (click)="dplay()"><span class="text">confirm</span>!!</button>
+      
+    </div>
+
+      <div *ngIf="added" class="alert alert-success">
+          
+        <h3> Added to bag</h3>
+    
+     <button class="btn btn-primary" (click)="orders()"><span class="text">ok</span></button>
+    
+    </div>
           
             
-<div class="row ">
-<div class="col-lg-6 margin">
 
-    <div class="row border ">
+    <div class="row ">
+
+        <div class="col-lg-6 margin">
+
+
+            <div class="row border ">
              
             <div class="col-lg-6 image">
                 
@@ -69,11 +92,15 @@
                 <button class="Button" (click)="orders()" >
                         <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button>
         </div>
-        <div ><button class="Button"><span class="text">Order now  </span></button></div>
+        <div ><button class="Button" (click)="dplay()"><span class="text ">Order now  </span></button></div>
+       
     </div>
     
      
 
+
 </div>
+
 </div> 
+
 </div>

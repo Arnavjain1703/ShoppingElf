@@ -137,3 +137,28 @@ nav
          min-height: 60px;
 
       }
+      .dropdown-menu
+      {
+          background:#FAD7A0;
+          text-align:center;
+          padding:5px 40px;
+          
+          
+      }
+    .margin
+    {
+        margin:10px;
+        
+    }
+  
+    .color1
+    {
+        color:#1A5276;
+        letter-spacing: 2px;
+        font-size:150%;
+    }
+    .color1:hover
+    {
+        background:#FAD7A0;
+        color:white;
+    }

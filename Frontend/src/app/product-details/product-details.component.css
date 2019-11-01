@@ -72,3 +72,13 @@
   color:#21618C ;
   letter-spacing: 2px;
 }
+.alert
+{
+  text-align: center;
+  margin:2% 10% ;
+  box-shadow: 1px 1px 4px #B3B6B7 ;
+  letter-spacing:2px;
+
+
+}
+

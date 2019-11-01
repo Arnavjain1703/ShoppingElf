@@ -12,6 +12,8 @@ import { ProductService } from '../services/product.service';
 export class ProductDetailsComponent implements OnInit {
  paramsubscription:Subscription
 index:number;
+display=false;
+added=false;
 product:Product;
   constructor( private route:ActivatedRoute ,
                private productService:ProductService
@@ -31,5 +33,14 @@ product:Product;
     this.product=this.productService.getProduct(this.index);
 
 
+  }
+
+  dplay()
+  {
+    this.display=!this.display;
+  }
+  orders()
+  {
+     this.added=!this.added;
   }
 }

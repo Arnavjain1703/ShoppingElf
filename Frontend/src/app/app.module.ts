@@ -17,6 +17,10 @@ import { ProductBagComponent } from './product-bag/product-bag.component';
 import { ProductBagService } from './services/product-bag.service';
 import { ProductBagItemComponent } from './product-bag/product-bag-item/product-bag-item.component';
 import { ProdictCostComponent } from './product-bag/prodict-cost/prodict-cost.component';
+import { MyOrderComponent } from './my-order/my-order.component';
+import { Category1Service } from './services/category1.service';
+import { Category2Service } from './services/category2.service';
+import { ProductCategoryComponent } from './products/product-category/product-category.component';
 
 
 @NgModule({
@@ -32,6 +36,8 @@ import { ProdictCostComponent } from './product-bag/prodict-cost/prodict-cost.co
     ProductBagComponent,
     ProductBagItemComponent,
     ProdictCostComponent,
+    MyOrderComponent,
+    ProductCategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,7 @@ import { ProdictCostComponent } from './product-bag/prodict-cost/prodict-cost.co
 
     
   ],
-  providers: [ServerService,ProductService,ProductBagService],
+  providers: [ServerService,ProductService,ProductBagService,Category1Service,Category2Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

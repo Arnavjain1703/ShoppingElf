@@ -62,12 +62,39 @@
   </div>
 </div>
 <div class="row">
-  
-    <div class="col-lg-2"></div>
+    <div class="col-lg-2 margin">
+
+        <div class="center font">Filters</div>
+
+        <div class="hello">
+
+
+      <div class="center"><u>Categories</u></div>
+
+                
+         <app-product-category
+   
+   
+        *ngFor="let category of categories,let i=index"
+   
+        [category]=category
+   
+        [index]=i
+   
+            > 
+            
+          
+        </app-product-category>
+        
+      <div class="opacity">v</div>
+
+        
+       </div>
+    </div>
    
       <div class="col-lg-10">
        
-          <div class="margin">
+          
                <app-product-item
                 
                *ngFor="let product of products ; let i=index "
@@ -77,9 +104,9 @@
                [index]="i">
 
                </app-product-item>
-          </div>
+          
 
-    </div>
+     </div>
 
 </div>
 </div>

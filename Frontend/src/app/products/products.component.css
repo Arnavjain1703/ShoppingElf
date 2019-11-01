@@ -30,3 +30,26 @@
    letter-spacing: 2px;
    color:#2874A6 ;
 }
+
+.hello{
+    margin: 2%;
+    box-shadow: 1px 1px 4px #7B7D7D ;
+     
+
+}
+
+.center
+{
+    font-size:150%;
+    color:#154360 ;
+    text-align:center;
+    letter-spacing: 2px;
+}
+.font
+{
+    font-size: 200%;
+}
+.opacity
+{
+color:#E9F7EF 
+}
