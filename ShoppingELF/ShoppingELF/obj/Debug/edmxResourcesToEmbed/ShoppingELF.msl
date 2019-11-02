@@ -128,6 +128,7 @@
     <EntitySetMapping Name="UserTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.UserTable">
         <MappingFragment StoreEntitySet="UserTable">
+          <ScalarProperty Name="IsResetPassword" ColumnName="IsResetPassword" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="yourName" ColumnName="yourName" />
           <ScalarProperty Name="email" ColumnName="email" />

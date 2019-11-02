@@ -150,6 +150,7 @@
     <NavigationProperty Name="AddressTable" Relationship="Self.FK_AddressTable_UserTable" FromRole="UserTable" ToRole="AddressTable" />
     <NavigationProperty Name="CartTable" Relationship="Self.FK_CartTable_UserTable" FromRole="UserTable" ToRole="CartTable" />
     <NavigationProperty Name="OrderTable" Relationship="Self.FK_OrderTable_UserTable" FromRole="UserTable" ToRole="OrderTable" />
+    <Property Name="IsResetPassword" Type="Boolean" />
   </EntityType>
   <Association Name="FK_AddressTable_UserTable">
     <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />

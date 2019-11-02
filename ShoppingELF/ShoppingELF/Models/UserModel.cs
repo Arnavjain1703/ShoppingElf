@@ -35,7 +35,7 @@ namespace ShoppingELF.Models
         public string ResetPasswordCode { get; set; }
         public string files { get; set; }
         public string Role { get; set; }
-
+        public Nullable<bool> IsResetPassword { get; set; }
         public virtual ICollection<AddressTable> AddressTable { get; set; }
         public virtual ICollection<CartTable> CartTable { get; set; }
         public virtual ICollection<OrderTable> OrderTable { get; set; }
@@ -191,5 +191,6 @@ namespace ShoppingELF.Models
                     return 3;
             }
         }
+
     }
 }

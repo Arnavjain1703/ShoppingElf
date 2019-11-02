@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShoppingELFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShoppingELFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AddressTable">
           <Key>
             <PropertyRef Name="AddressID" />
@@ -133,6 +133,7 @@
           <Property Name="ResetPasswordCode" Type="nvarchar(max)" />
           <Property Name="files" Type="nvarchar(max)" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsResetPassword" Type="bit" />
         </EntityType>
         <Association Name="FK_AddressTable_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
@@ -323,8 +324,7 @@
             <End Role="SubCategoryTable" EntitySet="SubCategoryTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoppingELFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -478,6 +478,7 @@
           <NavigationProperty Name="AddressTable" Relationship="Self.FK_AddressTable_UserTable" FromRole="UserTable" ToRole="AddressTable" />
           <NavigationProperty Name="CartTable" Relationship="Self.FK_CartTable_UserTable" FromRole="UserTable" ToRole="CartTable" />
           <NavigationProperty Name="OrderTable" Relationship="Self.FK_OrderTable_UserTable" FromRole="UserTable" ToRole="OrderTable" />
+          <Property Name="IsResetPassword" Type="Boolean" />
         </EntityType>
         <Association Name="FK_AddressTable_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
@@ -801,6 +802,7 @@
           <EntitySetMapping Name="UserTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.UserTable">
               <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="IsResetPassword" ColumnName="IsResetPassword" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="yourName" ColumnName="yourName" />
                 <ScalarProperty Name="email" ColumnName="email" />

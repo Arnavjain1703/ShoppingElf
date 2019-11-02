@@ -128,6 +128,7 @@
     <Property Name="ResetPasswordCode" Type="nvarchar(max)" />
     <Property Name="files" Type="nvarchar(max)" />
     <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsResetPassword" Type="bit" />
   </EntityType>
   <Association Name="FK_AddressTable_UserTable">
     <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />

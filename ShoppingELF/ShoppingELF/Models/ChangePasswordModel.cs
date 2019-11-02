@@ -19,5 +19,7 @@ namespace ShoppingELF.Models
         [Required(ErrorMessage = "Confirm your new password")]
         [Compare("NewPassword")]
         public string compareNewPassword { get; set; }
+        public string ResetCode { get; set; } 
+        public string EmailID { get; set; }
     }
 }
