@@ -8,7 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { HomePageComponent } from './home-page/home-page.component';
+// import { HomePageComponent } from './home-page/home-page.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ProductService } from './services/product.service';
@@ -21,6 +21,7 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { Category1Service } from './services/category1.service';
 import { Category2Service } from './services/category2.service';
 import { ProductCategoryComponent } from './products/product-category/product-category.component';
+import { ProductCategory2Component } from './products/product-category2/product-category2.component';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { ProductCategoryComponent } from './products/product-category/product-ca
     SignupComponent,
     NavbarComponent,
     LoginComponent,
-    HomePageComponent,
+    // HomePageComponent,
     ProductsComponent,
     ProductItemComponent,
     ProductDetailsComponent,
@@ -38,6 +39,7 @@ import { ProductCategoryComponent } from './products/product-category/product-ca
     ProdictCostComponent,
     MyOrderComponent,
     ProductCategoryComponent,
+    ProductCategory2Component,
   ],
   imports: [
     BrowserModule,

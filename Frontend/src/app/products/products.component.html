@@ -62,7 +62,7 @@
   </div>
 </div>
 <div class="row">
-    <div class="col-lg-2 margin">
+    <div class="col-lg-2 fixed" >
 
         <div class="center font">Filters</div>
 
@@ -90,9 +90,36 @@
 
         
        </div>
+       <div class="hello">
+
+       <div class="center"><u>SubCategories</u></div>
+
+       <app-product-category2 
+                    
+       *ngFor="let category2 of categories2,let i=index"
+
+        [category2]=category2
+        [Index]=i
+  
+       
+       >
+
+        </app-product-category2>
+
+       </div>
+       <div class="hello">
+
+        <div class="center">Top Brands</div>
+        <div *ngFor=" let Brand of Brands,let i=index">
+
+          <button class="btn btn-default">{{Brand}}</button>
+
+   
+        </div>
+       </div>
     </div>
    
-      <div class="col-lg-10">
+      <div class="col-lg-10 shadow">
        
           
                <app-product-item

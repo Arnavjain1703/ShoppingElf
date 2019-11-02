@@ -1,4 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-category',
@@ -9,14 +10,14 @@ export class ProductCategoryComponent implements OnInit {
   
   @Input() category:string;
   @Input() index:number;
-  
-  constructor() { }
+   
+  category2Subscription:Subscription;
+   
+   categories2:string[]
+  constructor(
+  ) { }
 
-  ale()
-  {
-    alert(this.category);
-    console.log('jfn')
-  }
+  
   ngOnInit() {
   }
 

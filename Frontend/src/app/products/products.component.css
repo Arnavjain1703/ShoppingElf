@@ -19,7 +19,7 @@
 .padding
 {
     padding: 3%;
-     ;
+     
     margin-top:2%;
     box-shadow: 1px 1px 4px #7B7D7D ;
     border-radius: 2%;
@@ -52,4 +52,16 @@
 .opacity
 {
 color:#E9F7EF 
+}
+.shadow
+{
+    margin-left:18%
+
+}
+.fixed
+{
+    position:fixed;
+    top:20px;
+    left:2px;
+    background:#E9F7EF;
 }
