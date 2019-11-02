@@ -123,5 +123,42 @@ namespace ShoppingELF.Controllers
 
         }
         
+        //[Authorize]
+        [HttpGet]
+        [Route("api/User/GetAddress/{uid}")]
+        public IHttpActionResult GetAddress(int uid)
+        {
+            var x = new UserModel().GetAddress(uid);
+            return Ok(x);
+        }
+
+        //[Authorize]
+        [HttpPut]
+        [Route("api/User/EditAccount/{uid}")]
+        public IHttpActionResult EditAccount(int uid, UserModel model)
+        {
+            bool x = new UserModel().EditAccount(uid, model);
+            if (x)
+                return Ok("Account details has been updated");
+            else
+                return Ok("unable to update account");
+        }
+
+        //[Authorize]
+        [HttpPut]
+        [Route("api/User/ChangePassword/{uid}")]
+        public IHttpActionResult ChangePassword(int uid, ChangePasswordModel model)
+        {
+            int x = new UserModel().ChangePassword(uid, model);
+            if (x == 1)
+                return Ok("Please enter correct old password");
+            else if (x == 4)
+                return Ok("new password cannot be equal to old password");
+            else if (x == 2)
+                return Ok("Password Updated successfully");
+            else
+                return BadRequest("Something went wrong");
+
+        }
     }
 }
