@@ -1,7 +1,7 @@
- <div  class="background col-lg-3">
-<div class="shadow" (mouseover)="call()" (mouseout)="uncall()" >
+ <div *ngIf="product.productBrand == brand || show "  class="background col-lg-3">
+<div  class="shadow" (mouseover)="call()" (mouseout)="uncall()" >
                      <!-- <img  [class.showImg]="display" [src]="product.picture1"> -->
-                     
+                    
 
                      <div id="carousel-example-{{index}}" class="carousel slide"  data-interval="false">
                                    <!-- Indicators -->

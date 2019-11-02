@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../shared/product.module';
 import { Subscription } from 'rxjs';
-import { SignupComponent } from '../signup/signup.component';
 import { Category1Service } from '../services/category1.service';
 import { Category2Service } from '../services/category2.service';
+import { BrandsService } from '../services/brands.service';
+import { ShowService } from '../services/show.service';
 
 @Component({
   selector: 'app-products',
@@ -15,15 +16,23 @@ export class ProductsComponent implements OnInit, OnDestroy  {
    products:Product[];
    categories:string[];
    categories2:string[];
+   Brands:string[];
+
    subscription:Subscription;
    category1Subscription:Subscription;
    category2Subscription:Subscription;
+   
 
   constructor( private productService:ProductService,
                 private category1Service:Category1Service,
-                private category2Service:Category2Service) { }
+                private category2Service:Category2Service,
+                private brandsService:BrandsService,
+                private productItem:ShowService,
+                ) { }
 
   ngOnInit() {
+    
+
     this.category2Subscription = this.category2Service.category2Changed
     .subscribe(( categories2:string[])=>
     {
@@ -52,13 +61,22 @@ export class ProductsComponent implements OnInit, OnDestroy  {
     }
     )
  
-     this.categories=this.category1Service.getCategories()
+     this.categories=this.category1Service.getCategories();
+     this.Brands=this.brandsService.getBrands();
 
+
+    
+  }
+  call(brand:string)
+  {
+    this.productItem.change();
+    this.productItem.changeBrand(brand)
   }
   ngOnDestroy()
   {
    this.subscription.unsubscribe();  
    this.category2Subscription.unsubscribe();
+
   }
 
   

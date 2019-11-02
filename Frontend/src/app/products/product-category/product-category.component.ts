@@ -1,5 +1,4 @@
-import { Component, OnInit,Input, } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit,Input,  } from '@angular/core';
 
 @Component({
   selector: 'app-product-category',
@@ -11,9 +10,7 @@ export class ProductCategoryComponent implements OnInit {
   @Input() category:string;
   @Input() index:number;
    
-  category2Subscription:Subscription;
    
-   categories2:string[]
   constructor(
   ) { }
 

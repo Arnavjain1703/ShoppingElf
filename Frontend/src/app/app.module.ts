@@ -22,6 +22,8 @@ import { Category1Service } from './services/category1.service';
 import { Category2Service } from './services/category2.service';
 import { ProductCategoryComponent } from './products/product-category/product-category.component';
 import { ProductCategory2Component } from './products/product-category2/product-category2.component';
+import { BrandsService } from './services/brands.service';
+import { ShowService } from './services/show.service';
 
 
 @NgModule({
@@ -50,7 +52,7 @@ import { ProductCategory2Component } from './products/product-category2/product-
 
     
   ],
-  providers: [ServerService,ProductService,ProductBagService,Category1Service,Category2Service],
+  providers: [ServerService,ProductService,ProductBagService,Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

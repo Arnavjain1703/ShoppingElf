@@ -9,11 +9,12 @@ import { NgForm } from '@angular/Forms';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
 
+export class SignupComponent implements OnInit {
    constructor(private serverService:ServerService) { }
 
   ngOnInit() {
+  
   }
 
   display()
@@ -36,6 +37,6 @@ export class SignupComponent implements OnInit {
     
       
   }
-
+ 
 
 }

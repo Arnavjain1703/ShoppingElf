@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 export class Category1Service
 {
-   private  category:string;
+   
 
     category1Changed= new Subject<string[]>();
 
@@ -22,6 +22,7 @@ export class Category1Service
     {
         this.category1.push(category);
         this.category1Changed.next(this.category1.slice())
+        
     }       
 
     deleteCategories(index:number)
@@ -29,6 +30,14 @@ export class Category1Service
         this.category1.slice(index,1)
         this.category1Changed.next(this.category1.slice())
 
+    }
+    Update(index:number,category:string)
+    { 
+        this.category1[index]=category;
+        this.category1Changed.next(this.category1.slice())
+
+
+         
     }
 
 }

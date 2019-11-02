@@ -111,9 +111,11 @@
 
         <div class="center">Top Brands</div>
         <div *ngFor=" let Brand of Brands,let i=index">
+         <div class="align">
 
-          <button class="btn btn-default">{{Brand}}</button>
+          <button class="btn btn-default" (click)="call(Brand)" > <span class="name">{{Brand}}</span></button>
 
+          </div>
    
         </div>
        </div>
