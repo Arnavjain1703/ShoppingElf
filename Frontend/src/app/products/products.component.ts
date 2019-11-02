@@ -6,6 +6,8 @@ import { Category1Service } from '../services/category1.service';
 import { Category2Service } from '../services/category2.service';
 import { BrandsService } from '../services/brands.service';
 import { ShowService } from '../services/show.service';
+import { PriceService } from '../services/priceService';
+import { Price } from '../shared/price.module';
 
 @Component({
   selector: 'app-products',
@@ -17,10 +19,12 @@ export class ProductsComponent implements OnInit, OnDestroy  {
    categories:string[];
    categories2:string[];
    Brands:string[];
+   Prices:Price[];
 
    subscription:Subscription;
    category1Subscription:Subscription;
    category2Subscription:Subscription;
+   PriceSubscription:Subscription;
    
 
   constructor( private productService:ProductService,
@@ -28,11 +32,17 @@ export class ProductsComponent implements OnInit, OnDestroy  {
                 private category2Service:Category2Service,
                 private brandsService:BrandsService,
                 private productItem:ShowService,
+                private priceService:PriceService
                 ) { }
 
   ngOnInit() {
     
-
+    this.PriceSubscription=this.priceService.priceChanged
+    .subscribe((prices:Price[])=>
+    {
+        this.Prices=prices;
+    })
+       this.Prices=this.priceService.getPrices();
     this.category2Subscription = this.category2Service.category2Changed
     .subscribe(( categories2:string[])=>
     {

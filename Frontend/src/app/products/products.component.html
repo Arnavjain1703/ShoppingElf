@@ -119,6 +119,15 @@
    
         </div>
        </div>
+
+       <div class="hello">
+         <div class="center">Prices Ranges</div>
+         <div *ngFor="let price of Prices ,let i=index">
+           <div class="align">
+             <button class="btn btn-default"(click)="ranges(price)"><span class="name">RS {{price.price1}} to RS {{price.price2}} </span></button>
+           </div>
+         </div>
+       </div>
     </div>
    
       <div class="col-lg-10 shadow">

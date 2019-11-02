@@ -24,6 +24,7 @@ import { ProductCategoryComponent } from './products/product-category/product-ca
 import { ProductCategory2Component } from './products/product-category2/product-category2.component';
 import { BrandsService } from './services/brands.service';
 import { ShowService } from './services/show.service';
+import { PriceService } from './services/priceService';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ShowService } from './services/show.service';
 
     
   ],
-  providers: [ServerService,ProductService,ProductBagService,Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService],
+  providers: [ServerService,ProductService,ProductBagService,
+    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
