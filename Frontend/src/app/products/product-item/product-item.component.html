@@ -1,4 +1,4 @@
- <div *ngIf="  4>3 ||  product.productBrand == brand || show" class="background col-lg-3">
+ <div *ngIf="show ||( ( product.productBrand == brand || showBrand) && (showPrice || ((product.productPrice >= price1)&&( price2 >=product.productPrice))) )" class="background col-lg-3">
 <div  class="shadow" (mouseover)="call()" (mouseout)="uncall()" >
                      <!-- <img  [class.showImg]="display" [src]="product.picture1"> -->
                     

@@ -115,9 +115,13 @@
 
           <button class="btn btn-default" (click)="call(Brand)" > <span class="name">{{Brand}}</span></button>
 
+
           </div>
    
         </div>
+        <div class="align">
+           <button class="btn btn-default" (click)="AllBrand()" > <span class="name"> All Brands</span></button>
+         </div>
        </div>
 
        <div class="hello">
@@ -126,6 +130,9 @@
            <div class="align">
              <button class="btn btn-default"(click)="ranges(price)"><span class="name">RS {{price.price1}} to RS {{price.price2}} </span></button>
            </div>
+         </div>
+         <div class="align">
+           <button class="btn btn-default" (click)="allPrices()" ><span class="name">All Prices</span></button>
          </div>
        </div>
     </div>

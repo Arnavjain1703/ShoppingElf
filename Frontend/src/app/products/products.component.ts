@@ -80,7 +80,20 @@ export class ProductsComponent implements OnInit, OnDestroy  {
   call(brand:string)
   {
     this.productItem.change();
-    this.productItem.changeBrand(brand)
+    this.productItem.changeBrand(brand);
+  }
+  AllBrand()
+  {
+     this.productItem.AllBrand();  
+  }
+
+  allPrices()
+  {
+    this.productItem.AllPrices();
+  }
+  ranges(price:Price)
+  {
+     this.productItem.priceChanged(price)    
   }
   ngOnDestroy()
   {
@@ -88,6 +101,8 @@ export class ProductsComponent implements OnInit, OnDestroy  {
    this.category2Subscription.unsubscribe();
 
   }
+  
+ 
 
   
 
