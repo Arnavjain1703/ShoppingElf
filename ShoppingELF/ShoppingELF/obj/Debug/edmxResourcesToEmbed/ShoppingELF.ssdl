@@ -55,6 +55,7 @@
     <Property Name="picture4" Type="nvarchar(max)" />
     <Property Name="SubCategoryID" Type="int" Nullable="false" />
     <Property Name="SellerID" Type="int" Nullable="false" />
+    <Property Name="SuitableID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SellerTable">
     <Key>
@@ -226,6 +227,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProductTable_SuitableForTable">
+    <End Role="SuitableForTable" Type="Self.SuitableForTable" Multiplicity="1" />
+    <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SuitableForTable">
+        <PropertyRef Name="SuitableID" />
+      </Principal>
+      <Dependent Role="ProductTable">
+        <PropertyRef Name="SuitableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SizeTable_ProductTable">
     <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
     <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
@@ -304,6 +317,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_ProductTable_SubCategoryTable" Association="Self.FK_ProductTable_SubCategoryTable">
       <End Role="SubCategoryTable" EntitySet="SubCategoryTable" />
+      <End Role="ProductTable" EntitySet="ProductTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductTable_SuitableForTable" Association="Self.FK_ProductTable_SuitableForTable">
+      <End Role="SuitableForTable" EntitySet="SuitableForTable" />
       <End Role="ProductTable" EntitySet="ProductTable" />
     </AssociationSet>
     <AssociationSet Name="FK_SizeTable_ProductTable" Association="Self.FK_SizeTable_ProductTable">

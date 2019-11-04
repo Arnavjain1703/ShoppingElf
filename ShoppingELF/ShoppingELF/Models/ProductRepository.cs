@@ -70,7 +70,32 @@ namespace ShoppingELF.Models
                         picture3 = x.picture3,
                         picture4 = x.picture4,
                         SellerID = x.SellerID,
-                        SubCategoryID = x.SubCategoryID
+                        SubCategoryID = x.SubCategoryID,
+                        SuitableID = x.SuitableID
+                    }).ToList();
+                return result;
+            }
+        }
+
+        public List<ProductModel> GetProductsBySuitableID(int sid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var result = context.ProductTable
+                    .Where(x => x.SuitableID == sid)
+                    .Select(x => new ProductModel()
+                    {
+                        ProductID = x.ProductID,
+                        productName = x.productName,
+                        productBrand = x.productBrand,
+                        productDetails = x.productDetails,
+                        picture1 = x.picture1,
+                        picture2 = x.picture2,
+                        picture3 = x.picture3,
+                        picture4 = x.picture4,
+                        SellerID = x.SellerID,
+                        SubCategoryID = x.SubCategoryID,
+                        SuitableID = x.SuitableID
                     }).ToList();
                 return result;
             }
@@ -100,5 +125,7 @@ namespace ShoppingELF.Models
                 return result;
             }
         }
+
+        
     }
 }

@@ -30,10 +30,12 @@ namespace ShoppingELF
         public string picture4 { get; set; }
         public int SubCategoryID { get; set; }
         public int SellerID { get; set; }
+        public int SuitableID { get; set; }
     
         public virtual SellerTable SellerTable { get; set; }
         public virtual SubCategoryTable SubCategoryTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SizeTable> SizeTable { get; set; }
+        public virtual SuitableForTable SuitableForTable { get; set; }
     }
 }

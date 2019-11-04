@@ -18,6 +18,7 @@ namespace ShoppingELF
         public SuitableForTable()
         {
             this.CategoryTable = new HashSet<CategoryTable>();
+            this.ProductTable = new HashSet<ProductTable>();
         }
     
         public int SuitableID { get; set; }
@@ -25,5 +26,7 @@ namespace ShoppingELF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CategoryTable> CategoryTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductTable> ProductTable { get; set; }
     }
 }

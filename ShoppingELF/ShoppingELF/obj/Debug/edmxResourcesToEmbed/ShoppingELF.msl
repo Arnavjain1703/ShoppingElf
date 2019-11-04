@@ -49,6 +49,7 @@
     <EntitySetMapping Name="ProductTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.ProductTable">
         <MappingFragment StoreEntitySet="ProductTable">
+          <ScalarProperty Name="SuitableID" ColumnName="SuitableID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="productBrand" ColumnName="productBrand" />

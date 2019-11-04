@@ -17,11 +17,13 @@ namespace ShoppingELF.Models
         public string picture4 { get; set; }
         public int SubCategoryID { get; set; }
         public int SellerID { get; set; }
+        public int SuitableID { get; set; }
 
         public virtual ICollection<CartTable> CartTable { get; set; }
         public virtual ICollection<OrderTable> OrderTable { get; set; }
         public virtual SellerTable SellerTable { get; set; }
         public virtual SubCategoryTable SubCategoryTable { get; set; }
         public virtual ICollection<SizeTable> SizeTable { get; set; }
+        public virtual SuitableForTable SuitableForTable { get; set; }
     }
 }

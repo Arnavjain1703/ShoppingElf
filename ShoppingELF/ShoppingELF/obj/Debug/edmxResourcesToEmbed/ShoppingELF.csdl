@@ -65,6 +65,8 @@
     <NavigationProperty Name="SellerTable" Relationship="Self.FK_ProductTable_SellerTable" FromRole="ProductTable" ToRole="SellerTable" />
     <NavigationProperty Name="SubCategoryTable" Relationship="Self.FK_ProductTable_SubCategoryTable" FromRole="ProductTable" ToRole="SubCategoryTable" />
     <NavigationProperty Name="SizeTable" Relationship="Self.FK_SizeTable_ProductTable" FromRole="ProductTable" ToRole="SizeTable" />
+    <Property Name="SuitableID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SuitableForTable" Relationship="ShoppingELFModel.FK_ProductTable_SuitableForTable" FromRole="ProductTable" ToRole="SuitableForTable" />
   </EntityType>
   <EntityType Name="SellerTable">
     <Key>
@@ -132,6 +134,7 @@
     <Property Name="SuitableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SuitableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_SuiitableForTable" FromRole="SuitableForTable" ToRole="CategoryTable" />
+    <NavigationProperty Name="ProductTable" Relationship="ShoppingELFModel.FK_ProductTable_SuitableForTable" FromRole="SuitableForTable" ToRole="ProductTable" />
   </EntityType>
   <EntityType Name="UserTable">
     <Key>
@@ -340,5 +343,21 @@
       <End Role="SellerTable" EntitySet="SellerTable" />
       <End Role="SoldTable" EntitySet="SoldTable" />
     </AssociationSet>
+    <AssociationSet Name="FK_ProductTable_SuitableForTable" Association="ShoppingELFModel.FK_ProductTable_SuitableForTable">
+      <End Role="SuitableForTable" EntitySet="SuitableForTable" />
+      <End Role="ProductTable" EntitySet="ProductTable" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_ProductTable_SuitableForTable">
+    <End Type="ShoppingELFModel.SuitableForTable" Role="SuitableForTable" Multiplicity="1" />
+    <End Type="ShoppingELFModel.ProductTable" Role="ProductTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SuitableForTable">
+        <PropertyRef Name="SuitableID" />
+      </Principal>
+      <Dependent Role="ProductTable">
+        <PropertyRef Name="SuitableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

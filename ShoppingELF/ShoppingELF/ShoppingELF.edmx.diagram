@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c2e7bbf8c344705b260f4c81036b5d4" Name="Diagram1">
+      <Diagram DiagramId="2c2e7bbf8c344705b260f4c81036b5d4" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="ShoppingELFModel.AddressTable" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.CartTable" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.CategoryTable" Width="1.5" PointX="1.5" PointY="30.5" IsExpanded="true" />
@@ -27,6 +27,7 @@
         <AssociationConnector Association="ShoppingELFModel.FK_ProductTable_SubCategoryTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SizeTable_ProductTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SoldTable_SoldTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingELFModel.FK_ProductTable_SuitableForTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
