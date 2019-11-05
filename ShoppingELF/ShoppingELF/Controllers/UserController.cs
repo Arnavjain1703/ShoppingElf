@@ -42,29 +42,62 @@ namespace ShoppingELF.Controllers
         //[Authorize]
         [HttpGet]
         [Route("api/User/GetCart/{uid}")]
-        public IHttpActionResult GetCart(int uid)
+        public IHttpActionResult GetCart(int uid, string Username, string token)
         {
-            var x = new UserRepository().GetCart(uid);
-            return Ok(x);
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                UserTable user = new UserTable();
+                user = context.UserTable.FirstOrDefault(m => m.email == Username);
+                bool y = TokenManager.ValidateToken(token, Username);
+                if (y && user.Role == "User")
+                {
+                    var x = new UserRepository().GetCart(uid);
+                    return Ok(x);
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         //[Authorize]
         [Route("api/User/Cart/{cid}")]
-        public IHttpActionResult DeleteFromCart(int cid)
+        public IHttpActionResult DeleteFromCart(int cid, string Username, string token)
         {
-            int x = new UserRepository().RemoveFromCart(cid);
-            if (x == 1)
-                return Ok("Item removed from cart successfully");
-            else
-                return BadRequest("Cart is already empty");
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                UserTable user = new UserTable();
+                user = context.UserTable.FirstOrDefault(m => m.email == Username);
+                bool y = TokenManager.ValidateToken(token, Username);
+                if (y && user.Role == "User")
+                {
+                    int x = new UserRepository().RemoveFromCart(cid);
+                    if (x == 1)
+                        return Ok("Item removed from cart successfully");
+                    else
+                        return BadRequest("Cart is already empty");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         //[Authorize]
         [Route("api/User/ClearCart/{uid}")]
-        public IHttpActionResult ClearCart(int uid)
+        public IHttpActionResult ClearCart(int uid, string Username, string token)
         {
-            new UserRepository().ClearCart(uid);
-            return Ok("All items removed from cart");
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                UserTable user = new UserTable();
+                user = context.UserTable.FirstOrDefault(m => m.email == Username);
+                bool y = TokenManager.ValidateToken(token, Username);
+                if (y && user.email == Username)
+                {
+                    new UserRepository().ClearCart(uid);
+                    return Ok("All items removed from cart");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         //[Authorize]
