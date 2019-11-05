@@ -57,7 +57,7 @@ namespace ShoppingELF.Models
             }
         }
 
-        public static bool ValidateToken(string token, String email)
+        public static bool ValidateToken(string token, string email)
         {
             
             string username = null;
