@@ -17,6 +17,7 @@ namespace ShoppingELF
         public int CartID { get; set; }
         public int UserID { get; set; }
         public int PID { get; set; }
+        public int Quantity { get; set; }
     
         public virtual SizeTable SizeTable { get; set; }
         public virtual UserTable UserTable { get; set; }

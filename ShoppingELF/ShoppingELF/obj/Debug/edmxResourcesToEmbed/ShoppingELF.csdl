@@ -22,6 +22,7 @@
     <Property Name="PID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="SizeTable" Relationship="Self.FK_CartTable_SizeTable" FromRole="CartTable" ToRole="SizeTable" />
     <NavigationProperty Name="UserTable" Relationship="Self.FK_CartTable_UserTable" FromRole="CartTable" ToRole="UserTable" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="CategoryTable">
     <Key>
@@ -47,6 +48,7 @@
     <Property Name="PID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="SizeTable" Relationship="Self.FK_OrderTable_SizeTable" FromRole="OrderTable" ToRole="SizeTable" />
     <NavigationProperty Name="UserTable" Relationship="Self.FK_OrderTable_UserTable" FromRole="OrderTable" ToRole="UserTable" />
+    <Property Name="productQuantity" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductTable">
     <Key>

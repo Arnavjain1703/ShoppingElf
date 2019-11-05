@@ -39,6 +39,30 @@ namespace ShoppingELF.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/User/UpdateCart/{cid}")]
+        public IHttpActionResult UpdateCart(int cid, CartModel model, string Username, string token)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                UserTable user = new UserTable();
+                user = context.UserTable.FirstOrDefault(m => m.email == Username);
+                bool y = TokenManager.ValidateToken(token, Username);
+                if (y && user.Role == "User")
+                {
+                    bool x = new UserRepository().UpdateCartModel(cid, model);
+                    if (x)
+                    {
+                        return Ok("updated cart");
+                    }
+                    else
+                        return Ok("Something went wrong , please try again later");
+                }
+                else
+                    return Unauthorized();
+            }
+        }
+
         //[Authorize]
         [HttpGet]
         [Route("api/User/GetCart/{uid}")]
@@ -152,7 +176,7 @@ namespace ShoppingELF.Controllers
         //[Authorize]
         [HttpPost]
         [Route("api/User/OrderNow/{uid}/{pid}")]
-        public IHttpActionResult OrderNow(int uid, int pid, string Username, string token)
+        public IHttpActionResult OrderNow(int uid, int pid, OrderModel model, string Username, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
@@ -161,7 +185,7 @@ namespace ShoppingELF.Controllers
                 bool y = TokenManager.ValidateToken(token, Username);
                 if (y && user.Role == "User")
                 {
-                    int x = new UserRepository().OrderNow(uid, pid);
+                    int x = new UserRepository().OrderNow(uid, pid, model);
                     if (x == 1)
                     {
                         return Ok("Order Placed Successfully");

@@ -17,6 +17,7 @@
     <EntitySetMapping Name="CartTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.CartTable">
         <MappingFragment StoreEntitySet="CartTable">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="CartID" ColumnName="CartID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="PID" ColumnName="PID" />
@@ -35,6 +36,7 @@
     <EntitySetMapping Name="OrderTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.OrderTable">
         <MappingFragment StoreEntitySet="OrderTable">
+          <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="productBrand" ColumnName="productBrand" />

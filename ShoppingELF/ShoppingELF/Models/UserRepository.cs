@@ -32,11 +32,28 @@ namespace ShoppingELF.Models
                 CartTable ct = new CartTable()
                 { 
                     PID = pid,
-                    UserID = uid
+                    UserID = uid,
+                    Quantity = 1
                 };
                 context.CartTable.Add(ct);
                 context.SaveChanges();
                 return ct.CartID;
+            }
+        }
+
+        public bool UpdateCartModel(int cid, CartModel model)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var cart = context.CartTable.FirstOrDefault(m => m.CartID == cid);
+                if (cart != null)
+                {
+                    cart.Quantity = model.Quantity;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
             }
         }
 
@@ -59,7 +76,11 @@ namespace ShoppingELF.Models
                             {
                                 productName = x.SizeTable.ProductTable.productName,
                                 productBrand = x.SizeTable.ProductTable.productBrand,
-                                productDetails = x.SizeTable.ProductTable.productDetails
+                                productDetails = x.SizeTable.ProductTable.productDetails,
+                                picture1 = x.SizeTable.ProductTable.picture1,
+                                picture2 = x.SizeTable.ProductTable.picture2,
+                                picture3 = x.SizeTable.ProductTable.picture3,
+                                picture4 = x.SizeTable.ProductTable.picture4
                             }
                         }
                     }).ToList();
@@ -100,6 +121,7 @@ namespace ShoppingELF.Models
                         productPrice = x.productPrice,
                         productSize = x.productSize,
                         productPicture = x.productPicture,
+                        productQuantity = x.productQuantity,
                         PID = x.PID
                     }).ToList();
                 return result;
@@ -142,10 +164,11 @@ namespace ShoppingELF.Models
                                 productPicture = i.SizeTable.ProductTable.picture1,
                                 productPrice = i.SizeTable.productPrice,
                                 productSize = i.SizeTable.productSize,
+                                productQuantity = i.Quantity,
                                 PID = i.PID
                             };
 
-                            st.productQuantity -= 1;
+                            st.productQuantity -= i.Quantity;
                             context.OrderTable.Add(ot);
                             context.SaveChanges();
                             return 1;
@@ -160,7 +183,7 @@ namespace ShoppingELF.Models
             }
         }
 
-        public int OrderNow(int uid, int pid)
+        public int OrderNow(int uid, int pid, OrderModel model)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
@@ -176,9 +199,10 @@ namespace ShoppingELF.Models
                         ProductName = st.ProductTable.productName,
                         productPicture = st.ProductTable.picture1,
                         productPrice = st.productPrice,
-                        productSize = st.productSize
+                        productSize = st.productSize,
+                        productQuantity = model.productQuantity
                     };
-                    st.productQuantity -= 1;
+                    st.productQuantity -= model.productQuantity;
                     context.OrderTable.Add(ot);
                     context.SaveChanges();
                     return 1;
