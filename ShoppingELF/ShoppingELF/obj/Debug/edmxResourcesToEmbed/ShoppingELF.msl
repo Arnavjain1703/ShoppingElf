@@ -17,10 +17,10 @@
     <EntitySetMapping Name="CartTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.CartTable">
         <MappingFragment StoreEntitySet="CartTable">
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="CartID" ColumnName="CartID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -36,13 +36,13 @@
     <EntitySetMapping Name="OrderTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.OrderTable">
         <MappingFragment StoreEntitySet="OrderTable">
-          <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="productBrand" ColumnName="productBrand" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="productPrice" ColumnName="productPrice" />
           <ScalarProperty Name="productSize" ColumnName="productSize" />
+          <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
           <ScalarProperty Name="productPicture" ColumnName="productPicture" />
           <ScalarProperty Name="PID" ColumnName="PID" />
         </MappingFragment>
@@ -51,7 +51,6 @@
     <EntitySetMapping Name="ProductTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.ProductTable">
         <MappingFragment StoreEntitySet="ProductTable">
-          <ScalarProperty Name="SuitableID" ColumnName="SuitableID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="productBrand" ColumnName="productBrand" />
@@ -61,6 +60,27 @@
           <ScalarProperty Name="picture3" ColumnName="picture3" />
           <ScalarProperty Name="picture4" ColumnName="picture4" />
           <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+          <ScalarProperty Name="SuitableID" ColumnName="SuitableID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellerDetailsTable">
+      <EntityTypeMapping TypeName="ShoppingELFModel.SellerDetailsTable">
+        <MappingFragment StoreEntitySet="SellerDetailsTable">
+          <ScalarProperty Name="SellerDetailID" ColumnName="SellerDetailID" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+          <ScalarProperty Name="accountType" ColumnName="accountType" />
+          <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+          <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
+          <ScalarProperty Name="PANCardNumber" ColumnName="PANCardNumber" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -73,18 +93,8 @@
           <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="pincode" ColumnName="pincode" />
-          <ScalarProperty Name="state" ColumnName="state" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
-          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
-          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
-          <ScalarProperty Name="accountType" ColumnName="accountType" />
           <ScalarProperty Name="Role" ColumnName="Role" />
-          <ScalarProperty Name="shippingFeeDetails" ColumnName="shippingFeeDetails" />
-          <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
-          <ScalarProperty Name="PANCardNumber" ColumnName="PANCardNumber" />
+          <ScalarProperty Name="SellerDetailID" ColumnName="SellerDetailID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -131,7 +141,6 @@
     <EntitySetMapping Name="UserTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.UserTable">
         <MappingFragment StoreEntitySet="UserTable">
-          <ScalarProperty Name="IsResetPassword" ColumnName="IsResetPassword" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="yourName" ColumnName="yourName" />
           <ScalarProperty Name="email" ColumnName="email" />
@@ -142,6 +151,7 @@
           <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
           <ScalarProperty Name="files" ColumnName="files" />
           <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="IsResetPassword" ColumnName="IsResetPassword" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

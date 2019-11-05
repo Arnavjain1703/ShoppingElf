@@ -30,6 +30,7 @@ namespace ShoppingELF
         public virtual DbSet<CategoryTable> CategoryTable { get; set; }
         public virtual DbSet<OrderTable> OrderTable { get; set; }
         public virtual DbSet<ProductTable> ProductTable { get; set; }
+        public virtual DbSet<SellerDetailsTable> SellerDetailsTable { get; set; }
         public virtual DbSet<SellerTable> SellerTable { get; set; }
         public virtual DbSet<SizeTable> SizeTable { get; set; }
         public virtual DbSet<SoldTable> SoldTable { get; set; }

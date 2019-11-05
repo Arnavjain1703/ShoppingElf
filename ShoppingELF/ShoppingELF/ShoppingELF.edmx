@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ShoppingELFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ShoppingELFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AddressTable">
           <Key>
             <PropertyRef Name="AddressID" />
@@ -64,6 +64,25 @@
           <Property Name="SellerID" Type="int" Nullable="false" />
           <Property Name="SuitableID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="SellerDetailsTable">
+          <Key>
+            <PropertyRef Name="SellerDetailID" />
+          </Key>
+          <Property Name="SellerDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pincode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="state" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="city" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AccountHolderName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="accountNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IFSCCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="accountType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ShippingFee" Type="int" Nullable="false" />
+          <Property Name="GSTNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PANCardNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SellerID" Type="int" />
+        </EntityType>
         <EntityType Name="SellerTable">
           <Key>
             <PropertyRef Name="SellerID" />
@@ -73,18 +92,8 @@
           <Property Name="mobileNumber" Type="nvarchar(max)" Nullable="false" />
           <Property Name="email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="address" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="pincode" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="city" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="AccountHolderName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="accountNumber" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IFSCCode" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="accountType" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="shippingFeeDetails" Type="int" Nullable="false" />
-          <Property Name="GSTNumber" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PANCardNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SellerDetailID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SizeTable">
           <Key>
@@ -246,6 +255,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SellerDetailsTable_SellerTable">
+          <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="0..1" />
+          <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SellerTable">
+              <PropertyRef Name="SellerID" />
+            </Principal>
+            <Dependent Role="SellerDetailsTable">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SellerTable_SellerDetailsTable">
+          <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="1" />
+          <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SellerDetailsTable">
+              <PropertyRef Name="SellerDetailID" />
+            </Principal>
+            <Dependent Role="SellerTable">
+              <PropertyRef Name="SellerDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SizeTable_ProductTable">
           <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
           <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
@@ -288,6 +321,7 @@
           <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderTable" EntityType="Self.OrderTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTable" EntityType="Self.ProductTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellerDetailsTable" EntityType="Self.SellerDetailsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SellerTable" EntityType="Self.SellerTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SizeTable" EntityType="Self.SizeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SoldTable" EntityType="Self.SoldTable" Schema="dbo" store:Type="Tables" />
@@ -330,6 +364,14 @@
             <End Role="SuitableForTable" EntitySet="SuitableForTable" />
             <End Role="ProductTable" EntitySet="ProductTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_SellerDetailsTable_SellerTable" Association="Self.FK_SellerDetailsTable_SellerTable">
+            <End Role="SellerTable" EntitySet="SellerTable" />
+            <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SellerTable_SellerDetailsTable" Association="Self.FK_SellerTable_SellerDetailsTable">
+            <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
+            <End Role="SellerTable" EntitySet="SellerTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_SizeTable_ProductTable" Association="Self.FK_SizeTable_ProductTable">
             <End Role="ProductTable" EntitySet="ProductTable" />
             <End Role="SizeTable" EntitySet="SizeTable" />
@@ -343,7 +385,8 @@
             <End Role="SubCategoryTable" EntitySet="SubCategoryTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoppingELFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -367,9 +410,9 @@
           <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SizeTable" Relationship="Self.FK_CartTable_SizeTable" FromRole="CartTable" ToRole="SizeTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_CartTable_UserTable" FromRole="CartTable" ToRole="UserTable" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoryTable">
           <Key>
@@ -391,11 +434,11 @@
           <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="productPrice" Type="Int32" Nullable="false" />
           <Property Name="productSize" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="productQuantity" Type="Int32" Nullable="false" />
           <Property Name="productPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SizeTable" Relationship="Self.FK_OrderTable_SizeTable" FromRole="OrderTable" ToRole="SizeTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_OrderTable_UserTable" FromRole="OrderTable" ToRole="UserTable" />
-          <Property Name="productQuantity" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductTable">
           <Key>
@@ -411,11 +454,32 @@
           <Property Name="picture4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
           <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SuitableID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SellerTable" Relationship="Self.FK_ProductTable_SellerTable" FromRole="ProductTable" ToRole="SellerTable" />
           <NavigationProperty Name="SubCategoryTable" Relationship="Self.FK_ProductTable_SubCategoryTable" FromRole="ProductTable" ToRole="SubCategoryTable" />
+          <NavigationProperty Name="SuitableForTable" Relationship="Self.FK_ProductTable_SuitableForTable" FromRole="ProductTable" ToRole="SuitableForTable" />
           <NavigationProperty Name="SizeTable" Relationship="Self.FK_SizeTable_ProductTable" FromRole="ProductTable" ToRole="SizeTable" />
-          <Property Name="SuitableID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SuitableForTable" Relationship="ShoppingELFModel.FK_ProductTable_SuitableForTable" FromRole="ProductTable" ToRole="SuitableForTable" />
+        </EntityType>
+        <EntityType Name="SellerDetailsTable">
+          <Key>
+            <PropertyRef Name="SellerDetailID" />
+          </Key>
+          <Property Name="SellerDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pincode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountHolderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="accountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IFSCCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="accountType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingFee" Type="Int32" Nullable="false" />
+          <Property Name="GSTNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PANCardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" />
+          <NavigationProperty Name="SellerTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerDetailsTable" ToRole="SellerTable" />
+          <NavigationProperty Name="SellerTable1" Relationship="Self.FK_SellerTable_SellerDetailsTable" FromRole="SellerDetailsTable" ToRole="SellerTable" />
         </EntityType>
         <EntityType Name="SellerTable">
           <Key>
@@ -426,19 +490,11 @@
           <Property Name="mobileNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="pincode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AccountHolderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="accountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IFSCCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="accountType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="shippingFeeDetails" Type="Int32" Nullable="false" />
-          <Property Name="GSTNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PANCardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SellerDetailID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ProductTable" Relationship="Self.FK_ProductTable_SellerTable" FromRole="SellerTable" ToRole="ProductTable" />
+          <NavigationProperty Name="SellerDetailsTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
+          <NavigationProperty Name="SellerDetailsTable1" Relationship="Self.FK_SellerTable_SellerDetailsTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
           <NavigationProperty Name="SoldTable" Relationship="Self.FK_SoldTable_SoldTable" FromRole="SellerTable" ToRole="SoldTable" />
         </EntityType>
         <EntityType Name="SizeTable">
@@ -483,7 +539,7 @@
           <Property Name="SuitableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SuitableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_SuiitableForTable" FromRole="SuitableForTable" ToRole="CategoryTable" />
-          <NavigationProperty Name="ProductTable" Relationship="ShoppingELFModel.FK_ProductTable_SuitableForTable" FromRole="SuitableForTable" ToRole="ProductTable" />
+          <NavigationProperty Name="ProductTable" Relationship="Self.FK_ProductTable_SuitableForTable" FromRole="SuitableForTable" ToRole="ProductTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -499,10 +555,10 @@
           <Property Name="ResetPasswordCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsResetPassword" Type="Boolean" />
           <NavigationProperty Name="AddressTable" Relationship="Self.FK_AddressTable_UserTable" FromRole="UserTable" ToRole="AddressTable" />
           <NavigationProperty Name="CartTable" Relationship="Self.FK_CartTable_UserTable" FromRole="UserTable" ToRole="CartTable" />
           <NavigationProperty Name="OrderTable" Relationship="Self.FK_OrderTable_UserTable" FromRole="UserTable" ToRole="OrderTable" />
-          <Property Name="IsResetPassword" Type="Boolean" />
         </EntityType>
         <Association Name="FK_AddressTable_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
@@ -612,6 +668,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductTable_SuitableForTable">
+          <End Role="SuitableForTable" Type="Self.SuitableForTable" Multiplicity="1" />
+          <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuitableForTable">
+              <PropertyRef Name="SuitableID" />
+            </Principal>
+            <Dependent Role="ProductTable">
+              <PropertyRef Name="SuitableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SizeTable_ProductTable">
           <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
           <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
@@ -621,6 +689,30 @@
             </Principal>
             <Dependent Role="SizeTable">
               <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SellerDetailsTable_SellerTable">
+          <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="0..1" />
+          <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SellerTable">
+              <PropertyRef Name="SellerID" />
+            </Principal>
+            <Dependent Role="SellerDetailsTable">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SellerTable_SellerDetailsTable">
+          <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="1" />
+          <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SellerDetailsTable">
+              <PropertyRef Name="SellerDetailID" />
+            </Principal>
+            <Dependent Role="SellerTable">
+              <PropertyRef Name="SellerDetailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -642,6 +734,7 @@
           <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" />
           <EntitySet Name="OrderTable" EntityType="Self.OrderTable" />
           <EntitySet Name="ProductTable" EntityType="Self.ProductTable" />
+          <EntitySet Name="SellerDetailsTable" EntityType="Self.SellerDetailsTable" />
           <EntitySet Name="SellerTable" EntityType="Self.SellerTable" />
           <EntitySet Name="SizeTable" EntityType="Self.SizeTable" />
           <EntitySet Name="SoldTable" EntityType="Self.SoldTable" />
@@ -684,31 +777,27 @@
             <End Role="SubCategoryTable" EntitySet="SubCategoryTable" />
             <End Role="ProductTable" EntitySet="ProductTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductTable_SuitableForTable" Association="Self.FK_ProductTable_SuitableForTable">
+            <End Role="SuitableForTable" EntitySet="SuitableForTable" />
+            <End Role="ProductTable" EntitySet="ProductTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_SizeTable_ProductTable" Association="Self.FK_SizeTable_ProductTable">
             <End Role="ProductTable" EntitySet="ProductTable" />
             <End Role="SizeTable" EntitySet="SizeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SellerDetailsTable_SellerTable" Association="Self.FK_SellerDetailsTable_SellerTable">
+            <End Role="SellerTable" EntitySet="SellerTable" />
+            <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SellerTable_SellerDetailsTable" Association="Self.FK_SellerTable_SellerDetailsTable">
+            <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
+            <End Role="SellerTable" EntitySet="SellerTable" />
           </AssociationSet>
           <AssociationSet Name="FK_SoldTable_SoldTable" Association="Self.FK_SoldTable_SoldTable">
             <End Role="SellerTable" EntitySet="SellerTable" />
             <End Role="SoldTable" EntitySet="SoldTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductTable_SuitableForTable" Association="ShoppingELFModel.FK_ProductTable_SuitableForTable">
-            <End Role="SuitableForTable" EntitySet="SuitableForTable" />
-            <End Role="ProductTable" EntitySet="ProductTable" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_ProductTable_SuitableForTable">
-          <End Type="ShoppingELFModel.SuitableForTable" Role="SuitableForTable" Multiplicity="1" />
-          <End Type="ShoppingELFModel.ProductTable" Role="ProductTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SuitableForTable">
-              <PropertyRef Name="SuitableID" />
-            </Principal>
-            <Dependent Role="ProductTable">
-              <PropertyRef Name="SuitableID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -731,10 +820,10 @@
           <EntitySetMapping Name="CartTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.CartTable">
               <MappingFragment StoreEntitySet="CartTable">
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -750,13 +839,13 @@
           <EntitySetMapping Name="OrderTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.OrderTable">
               <MappingFragment StoreEntitySet="OrderTable">
-                <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="productBrand" ColumnName="productBrand" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="productPrice" ColumnName="productPrice" />
                 <ScalarProperty Name="productSize" ColumnName="productSize" />
+                <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
                 <ScalarProperty Name="productPicture" ColumnName="productPicture" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
               </MappingFragment>
@@ -765,7 +854,6 @@
           <EntitySetMapping Name="ProductTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.ProductTable">
               <MappingFragment StoreEntitySet="ProductTable">
-                <ScalarProperty Name="SuitableID" ColumnName="SuitableID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="productName" ColumnName="productName" />
                 <ScalarProperty Name="productBrand" ColumnName="productBrand" />
@@ -775,6 +863,27 @@
                 <ScalarProperty Name="picture3" ColumnName="picture3" />
                 <ScalarProperty Name="picture4" ColumnName="picture4" />
                 <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="SuitableID" ColumnName="SuitableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellerDetailsTable">
+            <EntityTypeMapping TypeName="ShoppingELFModel.SellerDetailsTable">
+              <MappingFragment StoreEntitySet="SellerDetailsTable">
+                <ScalarProperty Name="SellerDetailID" ColumnName="SellerDetailID" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+                <ScalarProperty Name="accountType" ColumnName="accountType" />
+                <ScalarProperty Name="ShippingFee" ColumnName="ShippingFee" />
+                <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
+                <ScalarProperty Name="PANCardNumber" ColumnName="PANCardNumber" />
                 <ScalarProperty Name="SellerID" ColumnName="SellerID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -787,18 +896,8 @@
                 <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="pincode" ColumnName="pincode" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
-                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
-                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
-                <ScalarProperty Name="accountType" ColumnName="accountType" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="shippingFeeDetails" ColumnName="shippingFeeDetails" />
-                <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
-                <ScalarProperty Name="PANCardNumber" ColumnName="PANCardNumber" />
+                <ScalarProperty Name="SellerDetailID" ColumnName="SellerDetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -845,7 +944,6 @@
           <EntitySetMapping Name="UserTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.UserTable">
               <MappingFragment StoreEntitySet="UserTable">
-                <ScalarProperty Name="IsResetPassword" ColumnName="IsResetPassword" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="yourName" ColumnName="yourName" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -856,6 +954,7 @@
                 <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
                 <ScalarProperty Name="files" ColumnName="files" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsResetPassword" ColumnName="IsResetPassword" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

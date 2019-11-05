@@ -18,6 +18,7 @@ namespace ShoppingELF
         public SellerTable()
         {
             this.ProductTable = new HashSet<ProductTable>();
+            this.SellerDetailsTable = new HashSet<SellerDetailsTable>();
             this.SoldTable = new HashSet<SoldTable>();
         }
     
@@ -26,21 +27,14 @@ namespace ShoppingELF
         public string mobileNumber { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public string address { get; set; }
-        public string pincode { get; set; }
-        public string state { get; set; }
-        public string city { get; set; }
-        public string AccountHolderName { get; set; }
-        public string accountNumber { get; set; }
-        public string IFSCCode { get; set; }
-        public string accountType { get; set; }
         public string Role { get; set; }
-        public int shippingFeeDetails { get; set; }
-        public string GSTNumber { get; set; }
-        public string PANCardNumber { get; set; }
+        public int SellerDetailID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTable> ProductTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SellerDetailsTable> SellerDetailsTable { get; set; }
+        public virtual SellerDetailsTable SellerDetailsTable1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoldTable> SoldTable { get; set; }
     }

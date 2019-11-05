@@ -34,8 +34,8 @@ namespace ShoppingELF
     
         public virtual SellerTable SellerTable { get; set; }
         public virtual SubCategoryTable SubCategoryTable { get; set; }
+        public virtual SuitableForTable SuitableForTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SizeTable> SizeTable { get; set; }
-        public virtual SuitableForTable SuitableForTable { get; set; }
     }
 }

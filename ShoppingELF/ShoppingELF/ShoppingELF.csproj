@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,6 +180,9 @@
       <DependentUpon>ShoppingELF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SellerDetailsTable.cs">
+      <DependentUpon>ShoppingELF.tt</DependentUpon>
+    </Compile>
     <Compile Include="SellerTable.cs">
       <DependentUpon>ShoppingELF.tt</DependentUpon>
     </Compile>

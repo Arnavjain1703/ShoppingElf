@@ -59,6 +59,25 @@
     <Property Name="SellerID" Type="int" Nullable="false" />
     <Property Name="SuitableID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="SellerDetailsTable">
+    <Key>
+      <PropertyRef Name="SellerDetailID" />
+    </Key>
+    <Property Name="SellerDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressLine1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressLine2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="pincode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="state" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="city" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountHolderName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="accountNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IFSCCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="accountType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShippingFee" Type="int" Nullable="false" />
+    <Property Name="GSTNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PANCardNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SellerID" Type="int" />
+  </EntityType>
   <EntityType Name="SellerTable">
     <Key>
       <PropertyRef Name="SellerID" />
@@ -68,18 +87,8 @@
     <Property Name="mobileNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="pincode" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="city" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="AccountHolderName" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="accountNumber" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IFSCCode" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="accountType" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="shippingFeeDetails" Type="int" Nullable="false" />
-    <Property Name="GSTNumber" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PANCardNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SellerDetailID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SizeTable">
     <Key>
@@ -241,6 +250,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SellerDetailsTable_SellerTable">
+    <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="0..1" />
+    <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellerTable">
+        <PropertyRef Name="SellerID" />
+      </Principal>
+      <Dependent Role="SellerDetailsTable">
+        <PropertyRef Name="SellerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerTable_SellerDetailsTable">
+    <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="1" />
+    <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellerDetailsTable">
+        <PropertyRef Name="SellerDetailID" />
+      </Principal>
+      <Dependent Role="SellerTable">
+        <PropertyRef Name="SellerDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SizeTable_ProductTable">
     <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
     <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
@@ -283,6 +316,7 @@
     <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderTable" EntityType="Self.OrderTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductTable" EntityType="Self.ProductTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SellerDetailsTable" EntityType="Self.SellerDetailsTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellerTable" EntityType="Self.SellerTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SizeTable" EntityType="Self.SizeTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SoldTable" EntityType="Self.SoldTable" Schema="dbo" store:Type="Tables" />
@@ -324,6 +358,14 @@
     <AssociationSet Name="FK_ProductTable_SuitableForTable" Association="Self.FK_ProductTable_SuitableForTable">
       <End Role="SuitableForTable" EntitySet="SuitableForTable" />
       <End Role="ProductTable" EntitySet="ProductTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerDetailsTable_SellerTable" Association="Self.FK_SellerDetailsTable_SellerTable">
+      <End Role="SellerTable" EntitySet="SellerTable" />
+      <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerTable_SellerDetailsTable" Association="Self.FK_SellerTable_SellerDetailsTable">
+      <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
+      <End Role="SellerTable" EntitySet="SellerTable" />
     </AssociationSet>
     <AssociationSet Name="FK_SizeTable_ProductTable" Association="Self.FK_SizeTable_ProductTable">
       <End Role="ProductTable" EntitySet="ProductTable" />
