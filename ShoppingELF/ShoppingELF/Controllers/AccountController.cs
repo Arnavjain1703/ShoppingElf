@@ -64,8 +64,8 @@ namespace ShoppingELF.Controllers
             bool exists = new UserRepository().GetUser(username) != null;
             if (!exists) return Request.CreateResponse(HttpStatusCode.NotFound,
                  "The Account was not found.");
-            string tokenUsername = TokenManager.ValidateToken(token);
-            if (username.Equals(tokenUsername))
+            bool x = TokenManager.ValidateToken(token, username);
+            if (x)
                 return Request.CreateResponse(HttpStatusCode.OK);
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
@@ -166,6 +166,17 @@ namespace ShoppingELF.Controllers
                 }
             }
         }
+
+        //[HttpGet]
+        //[Route("api/Logout")]
+        //public IHttpActionResult Logout(string email)
+        //{
+        //    bool x = new TokenManager().Logout(email);
+        //    if (x)
+        //        return Ok("You have been logged out");
+        //    else
+        //        return Ok("");
+        //}
 
         [NonAction]
         public void EmailVerification(int UserID, string Email, string ActivationCode, string EmailFor = "Account")

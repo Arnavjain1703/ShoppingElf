@@ -13,21 +13,29 @@ namespace ShoppingELF.Controllers
         //[Authorize] 
         [HttpPost]
         [Route("api/User/Addtocart/{uid}/{pid}")]
-        public IHttpActionResult AddToCart(int uid, int pid)
+        public IHttpActionResult AddToCart(int uid, int pid, string Username, string token)
         {
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
-                var v = context.CartTable.Where(a => a.PID == pid).FirstOrDefault();
-
-                if (v != null)
+                UserTable user = new UserTable();
+                user = context.UserTable.FirstOrDefault(m => m.email == Username);
+                bool y = TokenManager.ValidateToken(token, Username);
+                if (y && user.Role == "User")
                 {
-                    return BadRequest("Product already added in the cart");
+                    var v = context.CartTable.Where(a => a.PID == pid).FirstOrDefault();
+
+                    if (v != null)
+                    {
+                        return BadRequest("Product already added in the cart");
+                    }
+                    else
+                    {
+                        var x = new UserRepository().AddToCart(uid, pid);
+                        return Ok("Product has been added to cart Successfully");
+                    }
                 }
                 else
-                {
-                    var x = new UserRepository().AddToCart(uid, pid);
-                    return Ok("Product has been added to cart Successfully");
-                }
+                    return Unauthorized();
             }
         }
 

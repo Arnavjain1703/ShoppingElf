@@ -57,12 +57,13 @@ namespace ShoppingELF.Models
             }
         }
 
-        public static string ValidateToken(string token)
+        public static bool ValidateToken(string token, String email)
         {
+            
             string username = null;
             ClaimsPrincipal principal = GetPrincipal(token);
             if (principal == null)
-                return null;
+                return false;
             ClaimsIdentity identity = null;
             try
             {
@@ -70,11 +71,28 @@ namespace ShoppingELF.Models
             }
             catch (NullReferenceException)
             {
-                return null;
+                return false;
             }
             Claim usernameClaim = identity.FindFirst(ClaimTypes.Name);
             username = usernameClaim.Value;
-            return username;
+            if (email == username)
+                return true;
+            else
+                return false;
+
         }
+
+        //public bool Logout(string username)
+        //{
+        //    SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor()
+        //    {
+        //        Subject = new ClaimsIdentity(new[] {
+        //              new Claim(ClaimTypes.Name, username)}),
+        //        Expires = DateTime.UtcNow.AddSeconds(1),
+        //        //SigningCredentials = new SigningCredentials(securityKey,
+        //        //SecurityAlgorithms.HmacSha256Signature)
+        //    };
+        //    return true;
+        //}
     }
 }
