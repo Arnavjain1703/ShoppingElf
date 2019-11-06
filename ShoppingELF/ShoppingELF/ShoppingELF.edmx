@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShoppingELFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShoppingELFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AddressTable">
           <Key>
             <PropertyRef Name="AddressID" />
@@ -93,7 +93,8 @@
           <Property Name="email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="SellerDetailID" Type="int" Nullable="false" />
+          <Property Name="OTP" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsAccountVerified" Type="bit" />
         </EntityType>
         <EntityType Name="SizeTable">
           <Key>
@@ -267,18 +268,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SellerTable_SellerDetailsTable">
-          <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="1" />
-          <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SellerDetailsTable">
-              <PropertyRef Name="SellerDetailID" />
-            </Principal>
-            <Dependent Role="SellerTable">
-              <PropertyRef Name="SellerDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SizeTable_ProductTable">
           <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
           <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
@@ -368,10 +357,6 @@
             <End Role="SellerTable" EntitySet="SellerTable" />
             <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_SellerTable_SellerDetailsTable" Association="Self.FK_SellerTable_SellerDetailsTable">
-            <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
-            <End Role="SellerTable" EntitySet="SellerTable" />
-          </AssociationSet>
           <AssociationSet Name="FK_SizeTable_ProductTable" Association="Self.FK_SizeTable_ProductTable">
             <End Role="ProductTable" EntitySet="ProductTable" />
             <End Role="SizeTable" EntitySet="SizeTable" />
@@ -385,8 +370,7 @@
             <End Role="SubCategoryTable" EntitySet="SubCategoryTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoppingELFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -479,7 +463,6 @@
           <Property Name="PANCardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SellerID" Type="Int32" />
           <NavigationProperty Name="SellerTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerDetailsTable" ToRole="SellerTable" />
-          <NavigationProperty Name="SellerTable1" Relationship="Self.FK_SellerTable_SellerDetailsTable" FromRole="SellerDetailsTable" ToRole="SellerTable" />
         </EntityType>
         <EntityType Name="SellerTable">
           <Key>
@@ -491,11 +474,11 @@
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SellerDetailID" Type="Int32" Nullable="false" />
+          <Property Name="OTP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductTable" Relationship="Self.FK_ProductTable_SellerTable" FromRole="SellerTable" ToRole="ProductTable" />
           <NavigationProperty Name="SellerDetailsTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
-          <NavigationProperty Name="SellerDetailsTable1" Relationship="Self.FK_SellerTable_SellerDetailsTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
           <NavigationProperty Name="SoldTable" Relationship="Self.FK_SoldTable_SoldTable" FromRole="SellerTable" ToRole="SoldTable" />
+          <Property Name="IsAccountVerified" Type="Boolean" />
         </EntityType>
         <EntityType Name="SizeTable">
           <Key>
@@ -704,18 +687,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SellerTable_SellerDetailsTable">
-          <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="1" />
-          <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SellerDetailsTable">
-              <PropertyRef Name="SellerDetailID" />
-            </Principal>
-            <Dependent Role="SellerTable">
-              <PropertyRef Name="SellerDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SoldTable_SoldTable">
           <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="1" />
           <End Role="SoldTable" Type="Self.SoldTable" Multiplicity="*" />
@@ -788,10 +759,6 @@
           <AssociationSet Name="FK_SellerDetailsTable_SellerTable" Association="Self.FK_SellerDetailsTable_SellerTable">
             <End Role="SellerTable" EntitySet="SellerTable" />
             <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SellerTable_SellerDetailsTable" Association="Self.FK_SellerTable_SellerDetailsTable">
-            <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
-            <End Role="SellerTable" EntitySet="SellerTable" />
           </AssociationSet>
           <AssociationSet Name="FK_SoldTable_SoldTable" Association="Self.FK_SoldTable_SoldTable">
             <End Role="SellerTable" EntitySet="SellerTable" />
@@ -891,13 +858,14 @@
           <EntitySetMapping Name="SellerTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.SellerTable">
               <MappingFragment StoreEntitySet="SellerTable">
+                <ScalarProperty Name="IsAccountVerified" ColumnName="IsAccountVerified" />
                 <ScalarProperty Name="SellerID" ColumnName="SellerID" />
                 <ScalarProperty Name="yourName" ColumnName="yourName" />
                 <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="SellerDetailID" ColumnName="SellerDetailID" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

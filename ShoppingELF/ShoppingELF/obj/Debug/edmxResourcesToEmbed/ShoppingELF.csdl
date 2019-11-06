@@ -89,7 +89,6 @@
     <Property Name="PANCardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SellerID" Type="Int32" />
     <NavigationProperty Name="SellerTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerDetailsTable" ToRole="SellerTable" />
-    <NavigationProperty Name="SellerTable1" Relationship="Self.FK_SellerTable_SellerDetailsTable" FromRole="SellerDetailsTable" ToRole="SellerTable" />
   </EntityType>
   <EntityType Name="SellerTable">
     <Key>
@@ -101,10 +100,9 @@
     <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="SellerDetailID" Type="Int32" Nullable="false" />
+    <Property Name="OTP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ProductTable" Relationship="Self.FK_ProductTable_SellerTable" FromRole="SellerTable" ToRole="ProductTable" />
     <NavigationProperty Name="SellerDetailsTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
-    <NavigationProperty Name="SellerDetailsTable1" Relationship="Self.FK_SellerTable_SellerDetailsTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
     <NavigationProperty Name="SoldTable" Relationship="Self.FK_SoldTable_SoldTable" FromRole="SellerTable" ToRole="SoldTable" />
   </EntityType>
   <EntityType Name="SizeTable">
@@ -314,18 +312,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SellerTable_SellerDetailsTable">
-    <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="1" />
-    <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SellerDetailsTable">
-        <PropertyRef Name="SellerDetailID" />
-      </Principal>
-      <Dependent Role="SellerTable">
-        <PropertyRef Name="SellerDetailID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SoldTable_SoldTable">
     <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="1" />
     <End Role="SoldTable" Type="Self.SoldTable" Multiplicity="*" />
@@ -398,10 +384,6 @@
     <AssociationSet Name="FK_SellerDetailsTable_SellerTable" Association="Self.FK_SellerDetailsTable_SellerTable">
       <End Role="SellerTable" EntitySet="SellerTable" />
       <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SellerTable_SellerDetailsTable" Association="Self.FK_SellerTable_SellerDetailsTable">
-      <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
-      <End Role="SellerTable" EntitySet="SellerTable" />
     </AssociationSet>
     <AssociationSet Name="FK_SoldTable_SoldTable" Association="Self.FK_SoldTable_SoldTable">
       <End Role="SellerTable" EntitySet="SellerTable" />

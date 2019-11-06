@@ -94,7 +94,7 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="Role" ColumnName="Role" />
-          <ScalarProperty Name="SellerDetailID" ColumnName="SellerDetailID" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

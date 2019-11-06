@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="59961750744a4d22a4eb80067c8465a6" Name="Diagram1">
+      <Diagram DiagramId="059230d8b8eb484cb6d704cbe640e50d" Name="Diagram1">
         <EntityTypeShape EntityType="ShoppingELFModel.AddressTable" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.CartTable" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.CategoryTable" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.OrderTable" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.ProductTable" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SellerDetailsTable" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SellerTable" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SellerDetailsTable" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SellerTable" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.SizeTable" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoppingELFModel.SoldTable" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingELFModel.SoldTable" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.SubCategoryTable" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.SuitableForTable" Width="1.5" PointX="1.5" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoppingELFModel.UserTable" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
@@ -29,7 +29,6 @@
         <AssociationConnector Association="ShoppingELFModel.FK_ProductTable_SuitableForTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SizeTable_ProductTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SellerDetailsTable_SellerTable" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoppingELFModel.FK_SellerTable_SellerDetailsTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SoldTable_SoldTable" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

@@ -88,7 +88,7 @@
     <Property Name="email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="SellerDetailID" Type="int" Nullable="false" />
+    <Property Name="OTP" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="SizeTable">
     <Key>
@@ -262,18 +262,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SellerTable_SellerDetailsTable">
-    <End Role="SellerDetailsTable" Type="Self.SellerDetailsTable" Multiplicity="1" />
-    <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SellerDetailsTable">
-        <PropertyRef Name="SellerDetailID" />
-      </Principal>
-      <Dependent Role="SellerTable">
-        <PropertyRef Name="SellerDetailID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SizeTable_ProductTable">
     <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
     <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
@@ -362,10 +350,6 @@
     <AssociationSet Name="FK_SellerDetailsTable_SellerTable" Association="Self.FK_SellerDetailsTable_SellerTable">
       <End Role="SellerTable" EntitySet="SellerTable" />
       <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SellerTable_SellerDetailsTable" Association="Self.FK_SellerTable_SellerDetailsTable">
-      <End Role="SellerDetailsTable" EntitySet="SellerDetailsTable" />
-      <End Role="SellerTable" EntitySet="SellerTable" />
     </AssociationSet>
     <AssociationSet Name="FK_SizeTable_ProductTable" Association="Self.FK_SizeTable_ProductTable">
       <End Role="ProductTable" EntitySet="ProductTable" />

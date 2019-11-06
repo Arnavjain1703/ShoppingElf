@@ -14,12 +14,6 @@ namespace ShoppingELF
     
     public partial class SellerDetailsTable
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SellerDetailsTable()
-        {
-            this.SellerTable1 = new HashSet<SellerTable>();
-        }
-    
         public int SellerDetailID { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
@@ -36,7 +30,5 @@ namespace ShoppingELF
         public Nullable<int> SellerID { get; set; }
     
         public virtual SellerTable SellerTable { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SellerTable> SellerTable1 { get; set; }
     }
 }

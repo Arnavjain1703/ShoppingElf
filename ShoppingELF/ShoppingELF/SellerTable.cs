@@ -28,13 +28,13 @@ namespace ShoppingELF
         public string email { get; set; }
         public string password { get; set; }
         public string Role { get; set; }
-        public int SellerDetailID { get; set; }
+        public string OTP { get; set; }
+        public Nullable<bool> IsAccountVerified { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTable> ProductTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SellerDetailsTable> SellerDetailsTable { get; set; }
-        public virtual SellerDetailsTable SellerDetailsTable1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoldTable> SoldTable { get; set; }
     }
