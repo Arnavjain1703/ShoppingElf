@@ -37,6 +37,7 @@ namespace ShoppingELF.Controllers
             }
         }
 
+        //[Authorize]
         [HttpPost]
         [Route("api/Seller/EnterOTP/{sid}")]
         public IHttpActionResult EnterOTP(int sid, SellerModel model)
