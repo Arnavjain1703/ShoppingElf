@@ -51,6 +51,7 @@
     <EntitySetMapping Name="ProductTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.ProductTable">
         <MappingFragment StoreEntitySet="ProductTable">
+          <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="productBrand" ColumnName="productBrand" />
@@ -88,6 +89,7 @@
     <EntitySetMapping Name="SellerTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.SellerTable">
         <MappingFragment StoreEntitySet="SellerTable">
+          <ScalarProperty Name="IsAccountVerified" ColumnName="IsAccountVerified" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
           <ScalarProperty Name="yourName" ColumnName="yourName" />
           <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />

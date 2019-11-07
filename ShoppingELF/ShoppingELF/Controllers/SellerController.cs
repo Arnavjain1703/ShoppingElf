@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Web.Helpers;
 using System.Web.Http;
 
 namespace ShoppingELF.Controllers
@@ -26,6 +27,7 @@ namespace ShoppingELF.Controllers
                 {
                     new SellerAccountModel().AddSeller(seller);
                     EmailVerification(seller.SellerID, seller.email, seller.OTP);
+                    var time = DateTime.Now;
                     return Request.CreateResponse(HttpStatusCode.Created, "An OTP has been sent to your email , Please Verify it to continue access");
                 }
 
@@ -37,7 +39,25 @@ namespace ShoppingELF.Controllers
             }
         }
 
-        //[Authorize]
+        [HttpPost]
+        [Route("api/Seller/Login")]
+        public HttpResponseMessage Login([FromBody]SellerTable seller)
+        {
+            var y = new SellerAccountModel().verification(seller.email);
+            var password = new SellerAccountModel().Password(seller.email);
+            SellerTable u = new SellerAccountModel().GetSeller(seller.email);
+
+            if (u == null)
+                return Request.CreateResponse(HttpStatusCode.NotFound,
+                     "The Account was not found.");
+            string pass = Crypto.Hash(seller.password);
+            bool credentials = pass.Equals(password);
+            if (credentials && y)
+                return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(seller.email));
+            else
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
+        }
+
         [HttpPost]
         [Route("api/Seller/EnterOTP/{sid}")]
         public IHttpActionResult EnterOTP(int sid, SellerModel model)
@@ -49,6 +69,7 @@ namespace ShoppingELF.Controllers
                 if (seller.OTP == model.OTP)
                 {
                     seller.IsAccountVerified = true;
+                    context.SaveChanges();
                     return Ok("Your Account has been verified Successfully");
                 }
                 else

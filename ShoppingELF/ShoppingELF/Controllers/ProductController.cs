@@ -57,5 +57,13 @@ namespace ShoppingELF.Controllers
             var x = new ProductRepository().GetProductsBySuitableID(sid);
             return Ok(x);
         }
+
+        [HttpPost]
+        [Route("api/Product/AddProduct/{subid}/{sid}/{Suitid}")]
+        public IHttpActionResult AddProduct(int subid, int sid, int suitid, ProductModel model)
+        {
+            int x = new ProductRepository().AddProduct(subid, sid, suitid, model);
+            return Ok("Product Added successfully");
+        }
     }
 }
