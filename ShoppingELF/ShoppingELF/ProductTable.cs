@@ -31,6 +31,7 @@ namespace ShoppingELF
         public int SubCategoryID { get; set; }
         public int SellerID { get; set; }
         public int SuitableID { get; set; }
+        public Nullable<int> price { get; set; }
     
         public virtual SellerTable SellerTable { get; set; }
         public virtual SubCategoryTable SubCategoryTable { get; set; }

@@ -126,6 +126,24 @@ namespace ShoppingELF.Models
             }
         }
 
+        public int AddProduct(int subid, int sid, int suitid, ProductModel model)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                ProductTable pt = new ProductTable()
+                {
+                    productName = model.productName,
+                    productBrand = model.productBrand,
+                    productDetails = model.productDetails,
+                    SubCategoryID = subid,
+                    SellerID = sid,
+                    SuitableID = suitid
+                };
+                context.ProductTable.Add(pt);
+                context.SaveChanges();
+                return pt.ProductID;
+            }
+        }
         
     }
 }

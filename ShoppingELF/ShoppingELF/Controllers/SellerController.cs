@@ -26,6 +26,7 @@ namespace ShoppingELF.Controllers
                 {
                     new SellerAccountModel().AddSeller(seller);
                     EmailVerification(seller.SellerID, seller.email, seller.OTP);
+                    var time = DateTime.Now;
                     return Request.CreateResponse(HttpStatusCode.Created, "An OTP has been sent to your email , Please Verify it to continue access");
                 }
 
@@ -37,6 +38,7 @@ namespace ShoppingELF.Controllers
             }
         }
 
+        //[Authorize]
         [HttpPost]
         [Route("api/Seller/EnterOTP/{sid}")]
         public IHttpActionResult EnterOTP(int sid, SellerModel model)
@@ -48,6 +50,7 @@ namespace ShoppingELF.Controllers
                 if (seller.OTP == model.OTP)
                 {
                     seller.IsAccountVerified = true;
+                    context.SaveChanges();
                     return Ok("Your Account has been verified Successfully");
                 }
                 else

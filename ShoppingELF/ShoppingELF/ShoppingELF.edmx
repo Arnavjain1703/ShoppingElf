@@ -55,6 +55,7 @@
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="productName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="productBrand" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="int" />
           <Property Name="productDetails" Type="nvarchar(max)" Nullable="false" />
           <Property Name="picture1" Type="nvarchar(max)" Nullable="false" />
           <Property Name="picture2" Type="nvarchar(max)" />
@@ -443,6 +444,7 @@
           <NavigationProperty Name="SubCategoryTable" Relationship="Self.FK_ProductTable_SubCategoryTable" FromRole="ProductTable" ToRole="SubCategoryTable" />
           <NavigationProperty Name="SuitableForTable" Relationship="Self.FK_ProductTable_SuitableForTable" FromRole="ProductTable" ToRole="SuitableForTable" />
           <NavigationProperty Name="SizeTable" Relationship="Self.FK_SizeTable_ProductTable" FromRole="ProductTable" ToRole="SizeTable" />
+          <Property Name="price" Type="Int32" />
         </EntityType>
         <EntityType Name="SellerDetailsTable">
           <Key>
@@ -821,6 +823,7 @@
           <EntitySetMapping Name="ProductTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.ProductTable">
               <MappingFragment StoreEntitySet="ProductTable">
+                <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="productName" ColumnName="productName" />
                 <ScalarProperty Name="productBrand" ColumnName="productBrand" />

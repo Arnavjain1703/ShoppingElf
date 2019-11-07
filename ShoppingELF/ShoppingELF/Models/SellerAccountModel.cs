@@ -36,5 +36,12 @@ namespace ShoppingELF.Models
                 return v != null;
             }
         }
+
+        //public bool ExpireOTP(DateTime time)
+        //{
+        //    DateTime timeNow = DateTime.Now;
+        //    var Timer = new System.Timers.Timer(120000);
+        //    if((timeNow - time) <= )
+        //}
     }
 }

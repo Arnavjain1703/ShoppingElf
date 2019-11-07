@@ -50,6 +50,7 @@
     <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="productName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="productBrand" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="int" />
     <Property Name="productDetails" Type="nvarchar(max)" Nullable="false" />
     <Property Name="picture1" Type="nvarchar(max)" Nullable="false" />
     <Property Name="picture2" Type="nvarchar(max)" />
@@ -89,6 +90,7 @@
     <Property Name="password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
     <Property Name="OTP" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsAccountVerified" Type="bit" />
   </EntityType>
   <EntityType Name="SizeTable">
     <Key>

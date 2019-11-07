@@ -69,6 +69,7 @@
     <NavigationProperty Name="SubCategoryTable" Relationship="Self.FK_ProductTable_SubCategoryTable" FromRole="ProductTable" ToRole="SubCategoryTable" />
     <NavigationProperty Name="SuitableForTable" Relationship="Self.FK_ProductTable_SuitableForTable" FromRole="ProductTable" ToRole="SuitableForTable" />
     <NavigationProperty Name="SizeTable" Relationship="Self.FK_SizeTable_ProductTable" FromRole="ProductTable" ToRole="SizeTable" />
+    <Property Name="price" Type="Int32" />
   </EntityType>
   <EntityType Name="SellerDetailsTable">
     <Key>
@@ -104,6 +105,7 @@
     <NavigationProperty Name="ProductTable" Relationship="Self.FK_ProductTable_SellerTable" FromRole="SellerTable" ToRole="ProductTable" />
     <NavigationProperty Name="SellerDetailsTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
     <NavigationProperty Name="SoldTable" Relationship="Self.FK_SoldTable_SoldTable" FromRole="SellerTable" ToRole="SoldTable" />
+    <Property Name="IsAccountVerified" Type="Boolean" />
   </EntityType>
   <EntityType Name="SizeTable">
     <Key>
