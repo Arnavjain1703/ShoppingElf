@@ -89,6 +89,7 @@
     <EntitySetMapping Name="SellerTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.SellerTable">
         <MappingFragment StoreEntitySet="SellerTable">
+          <ScalarProperty Name="OTPSentTIme" ColumnName="OTPSentTIme" />
           <ScalarProperty Name="IsAccountVerified" ColumnName="IsAccountVerified" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
           <ScalarProperty Name="yourName" ColumnName="yourName" />

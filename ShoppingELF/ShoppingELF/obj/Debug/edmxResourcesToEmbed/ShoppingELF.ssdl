@@ -52,7 +52,7 @@
     <Property Name="productBrand" Type="nvarchar(max)" Nullable="false" />
     <Property Name="price" Type="int" />
     <Property Name="productDetails" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="picture1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="picture1" Type="nvarchar(max)" />
     <Property Name="picture2" Type="nvarchar(max)" />
     <Property Name="picture3" Type="nvarchar(max)" />
     <Property Name="picture4" Type="nvarchar(max)" />
@@ -91,6 +91,7 @@
     <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
     <Property Name="OTP" Type="nvarchar" MaxLength="50" />
     <Property Name="IsAccountVerified" Type="bit" />
+    <Property Name="OTPSentTIme" Type="int" />
   </EntityType>
   <EntityType Name="SizeTable">
     <Key>

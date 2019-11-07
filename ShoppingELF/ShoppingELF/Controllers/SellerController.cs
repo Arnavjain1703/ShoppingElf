@@ -21,17 +21,16 @@ namespace ShoppingELF.Controllers
                 var x = new SellerAccountModel().IsSellerExist(seller.email);
                 if (x)
                 {
+                    var timeSent1 = DateTime.Now.TimeOfDay.Seconds;
                     return Request.CreateResponse(HttpStatusCode.Forbidden, "Account already exist");
                 }
                 else
                 {
                     new SellerAccountModel().AddSeller(seller);
                     EmailVerification(seller.SellerID, seller.email, seller.OTP);
-                    var time = DateTime.Now;
+                    new SellerAccountModel().OTPSentTime(seller.email);
                     return Request.CreateResponse(HttpStatusCode.Created, "An OTP has been sent to your email , Please Verify it to continue access");
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -57,7 +56,7 @@ namespace ShoppingELF.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
         }
-
+        
         [HttpPost]
         [Route("api/Seller/EnterOTP/{sid}")]
         public IHttpActionResult EnterOTP(int sid, SellerModel model)
@@ -66,7 +65,8 @@ namespace ShoppingELF.Controllers
             {
                 SellerTable seller = new SellerTable();
                 seller = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
-                if (seller.OTP == model.OTP)
+                bool x = new SellerAccountModel().IsOTPExpired(sid);
+                if (seller.OTP == model.OTP && !x)
                 {
                     seller.IsAccountVerified = true;
                     context.SaveChanges();

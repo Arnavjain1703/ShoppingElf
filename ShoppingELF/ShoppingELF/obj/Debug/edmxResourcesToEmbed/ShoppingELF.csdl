@@ -58,7 +58,7 @@
     <Property Name="productName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="productBrand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="productDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="picture1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="picture1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="picture2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="picture3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="picture4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -106,6 +106,7 @@
     <NavigationProperty Name="SellerDetailsTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
     <NavigationProperty Name="SoldTable" Relationship="Self.FK_SoldTable_SoldTable" FromRole="SellerTable" ToRole="SoldTable" />
     <Property Name="IsAccountVerified" Type="Boolean" />
+    <Property Name="OTPSentTIme" Type="Int32" />
   </EntityType>
   <EntityType Name="SizeTable">
     <Key>

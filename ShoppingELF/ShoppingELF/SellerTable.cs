@@ -30,6 +30,7 @@ namespace ShoppingELF
         public string Role { get; set; }
         public string OTP { get; set; }
         public Nullable<bool> IsAccountVerified { get; set; }
+        public Nullable<int> OTPSentTIme { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTable> ProductTable { get; set; }

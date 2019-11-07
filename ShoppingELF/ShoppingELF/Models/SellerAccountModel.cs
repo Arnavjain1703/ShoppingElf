@@ -29,6 +29,33 @@ namespace ShoppingELF.Models
             }
         }
 
+        public void OTPSentTime(string Email)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable st = new SellerTable();
+                st = context.SellerTable.FirstOrDefault(m => m.email == Email);
+                st.OTPSentTIme = DateTime.Now.TimeOfDay.Minutes;
+                context.SaveChanges();
+            }
+        }
+
+        public bool IsOTPExpired(int sid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable st = new SellerTable();
+                st = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
+                if ((st.OTPSentTIme - DateTime.Now.TimeOfDay.Minutes) > 3)
+                {
+                    st.OTP = "NULL";
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
         public bool IsSellerExist(string Email)
         {
             using (ShoppingELFEntities se = new ShoppingELFEntities())
@@ -69,7 +96,6 @@ namespace ShoppingELF.Models
                 return null;
             }
         }
-        //public
 
     }
 }

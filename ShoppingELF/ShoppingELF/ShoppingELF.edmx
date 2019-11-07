@@ -57,7 +57,7 @@
           <Property Name="productBrand" Type="nvarchar(max)" Nullable="false" />
           <Property Name="price" Type="int" />
           <Property Name="productDetails" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="picture1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="picture1" Type="nvarchar(max)" />
           <Property Name="picture2" Type="nvarchar(max)" />
           <Property Name="picture3" Type="nvarchar(max)" />
           <Property Name="picture4" Type="nvarchar(max)" />
@@ -96,6 +96,7 @@
           <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
           <Property Name="OTP" Type="nvarchar" MaxLength="50" />
           <Property Name="IsAccountVerified" Type="bit" />
+          <Property Name="OTPSentTIme" Type="int" />
         </EntityType>
         <EntityType Name="SizeTable">
           <Key>
@@ -433,7 +434,7 @@
           <Property Name="productName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="productBrand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="productDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="picture1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="picture1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="picture2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="picture3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="picture4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -481,6 +482,7 @@
           <NavigationProperty Name="SellerDetailsTable" Relationship="Self.FK_SellerDetailsTable_SellerTable" FromRole="SellerTable" ToRole="SellerDetailsTable" />
           <NavigationProperty Name="SoldTable" Relationship="Self.FK_SoldTable_SoldTable" FromRole="SellerTable" ToRole="SoldTable" />
           <Property Name="IsAccountVerified" Type="Boolean" />
+          <Property Name="OTPSentTIme" Type="Int32" />
         </EntityType>
         <EntityType Name="SizeTable">
           <Key>
@@ -861,6 +863,7 @@
           <EntitySetMapping Name="SellerTable">
             <EntityTypeMapping TypeName="ShoppingELFModel.SellerTable">
               <MappingFragment StoreEntitySet="SellerTable">
+                <ScalarProperty Name="OTPSentTIme" ColumnName="OTPSentTIme" />
                 <ScalarProperty Name="IsAccountVerified" ColumnName="IsAccountVerified" />
                 <ScalarProperty Name="SellerID" ColumnName="SellerID" />
                 <ScalarProperty Name="yourName" ColumnName="yourName" />
