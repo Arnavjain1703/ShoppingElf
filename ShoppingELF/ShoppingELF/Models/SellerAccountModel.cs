@@ -8,6 +8,7 @@ namespace ShoppingELF.Models
 {
     public class SellerAccountModel
     {
+        ShoppingELFEntities context = new ShoppingELFEntities();
         public string GenerateRandomNumber()
         {
             Random generator = new Random();
@@ -34,6 +35,38 @@ namespace ShoppingELF.Models
             {
                 var v = se.SellerTable.Where(a => a.email == Email).FirstOrDefault();
                 return v != null;
+            }
+        }
+
+        public string Password(string Email)
+        {
+            ShoppingELFEntities context = new ShoppingELFEntities();
+            SellerTable us = new SellerTable();
+            us = context.SellerTable.SingleOrDefault(x => x.email == Email);
+            string pass = Convert.ToString(us.password);
+            return pass;
+        }
+
+        public bool verification(string Email)
+        {
+            ShoppingELFEntities context = new ShoppingELFEntities();
+            SellerTable Fac = new SellerTable();
+            Fac = context.SellerTable.SingleOrDefault(m => m.email == Email);
+            var y = Convert.ToBoolean(Fac.IsAccountVerified);
+            return y;
+        }
+
+        public SellerTable GetSeller(string username)
+        {
+            try
+            {
+
+                return context.SellerTable.FirstOrDefault(user => user.email.Equals(username));
+
+            }
+            catch
+            {
+                return null;
             }
         }
 

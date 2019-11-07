@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Web.Helpers;
 using System.Web.Http;
 
 namespace ShoppingELF.Controllers
@@ -38,7 +39,25 @@ namespace ShoppingELF.Controllers
             }
         }
 
-        //[Authorize]
+        [HttpPost]
+        [Route("api/Seller/Login")]
+        public HttpResponseMessage Login([FromBody]SellerTable seller)
+        {
+            var y = new SellerAccountModel().verification(seller.email);
+            var password = new SellerAccountModel().Password(seller.email);
+            SellerTable u = new SellerAccountModel().GetSeller(seller.email);
+
+            if (u == null)
+                return Request.CreateResponse(HttpStatusCode.NotFound,
+                     "The Account was not found.");
+            string pass = Crypto.Hash(seller.password);
+            bool credentials = pass.Equals(password);
+            if (credentials && y)
+                return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(seller.email));
+            else
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
+        }
+
         [HttpPost]
         [Route("api/Seller/EnterOTP/{sid}")]
         public IHttpActionResult EnterOTP(int sid, SellerModel model)
