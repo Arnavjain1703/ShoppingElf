@@ -8,10 +8,12 @@ using System.Net.Mail;
 using System.Security.Claims;
 using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Security;
 
 namespace ShoppingELF.Controllers
 {
+    [EnableCors(origins: "http://client.domain", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         [HttpPost]
@@ -86,7 +88,7 @@ namespace ShoppingELF.Controllers
                     v.IsEmailVerified = Convert.ToBoolean(us.IsEmailVerified);
                     context.SaveChanges();
                     //status = true;
-                    return Request.CreateResponse(HttpStatusCode.OK, "Account successfully verified");
+                    return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(us.email));
                 }
                 else
                 {
@@ -183,7 +185,7 @@ namespace ShoppingELF.Controllers
         {
             var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
             //var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
-            var link = "http://localhost:54039/api/" + EmailFor + "/" + ActivationCode;
+            var link = "https://d71b2502.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
             var ToEmail = new MailAddress(Email);
             var FromEmailPassword = "Rishabh@2306";

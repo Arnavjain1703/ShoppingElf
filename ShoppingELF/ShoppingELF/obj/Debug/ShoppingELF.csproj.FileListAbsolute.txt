@@ -92,3 +92,6 @@ C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\Owin.dll
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\Microsoft.Owin.xml
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\Swashbuckle.Core.dll
 C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\WebActivatorEx.dll
+C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\System.Web.Cors.dll
+C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\System.Web.Http.Cors.dll
+C:\Users\hp\source\repos\ShoppingELF\ShoppingELF\bin\System.Web.Http.Cors.xml

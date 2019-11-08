@@ -29,6 +29,19 @@ namespace ShoppingELF.Models
             }
         }
 
+        public void ResendOTP(int sid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable st = new SellerTable();
+                st = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
+                string otp = GenerateRandomNumber();
+                st.OTP = otp;
+                st.OTPSentTIme = DateTime.Now.TimeOfDay.Minutes;
+                context.SaveChanges();
+            }
+        }
+
         public void OTPSentTime(string Email)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
@@ -46,7 +59,7 @@ namespace ShoppingELF.Models
             {
                 SellerTable st = new SellerTable();
                 st = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
-                if ((st.OTPSentTIme - DateTime.Now.TimeOfDay.Minutes) > 3)
+                if ((DateTime.Now.TimeOfDay.Minutes - st.OTPSentTIme) > 3)
                 {
                     st.OTP = "NULL";
                     return true;

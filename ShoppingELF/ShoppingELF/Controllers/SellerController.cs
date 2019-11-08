@@ -77,6 +77,21 @@ namespace ShoppingELF.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Seller/ResendOTP/{sid}")]
+        public IHttpActionResult ResendOTP(int sid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                new SellerAccountModel().ResendOTP(sid);
+                SellerTable st = new SellerTable();
+                st = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
+                EmailVerification(sid, st.email, st.OTP);
+                return Ok("OTP sent sucessfully");
+            }
+
+        }
+
         [NonAction]
         public void EmailVerification(int UserID, string Email, string OTP, string EmailFor = "Account")
         {
