@@ -9,7 +9,7 @@ export class  SizeService
 
 private  Size:ProductSize[]=[
 
-        new ProductSize ('sdnvjo',10,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','arnav',23,'x'),
+        new ProductSize ('')
 
 
                 
