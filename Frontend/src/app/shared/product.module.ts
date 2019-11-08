@@ -10,8 +10,8 @@ export class Product
     public productBrand:string;
     public SubCategoryID:number;
     public SellerID:number;
-    public  OrderQ:number;
-    public productTotal:number;
+    // public  OrderQ:number;
+    // public productTotal:number;
     
 
 
@@ -20,7 +20,7 @@ export class Product
 
 constructor(productName:string,productPrice:number,picture1:string ,picture2:string,picture3:string,picture4:string
            
-           ,productDetails:string,productBrand:string,OrderQ:number)
+           ,productDetails:string,productBrand:string)
  
            {
                 this.productName=productName;
@@ -31,7 +31,6 @@ constructor(productName:string,productPrice:number,picture1:string ,picture2:str
                 this.picture4=picture4;
                 this.productDetails=productDetails;
                 this.productPrice=productPrice;
-                this.OrderQ=OrderQ;
 
 
            }

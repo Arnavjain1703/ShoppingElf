@@ -2,10 +2,10 @@
 
 <div  class="background">
         <div class="row">
-                <div class="col-sm-5 col-md-6 display">
+                <div class="col-sm-0 col-md-4 col-lg-6 display">
                        <img class="image"src="/assets/image.1.svg"> 
                 </div>
-                <div class=" col-sm-7 col-md-6 col-xs-12">
+                <div class=" col-sm-12 col-md-8 col-lg-6 col-xs-12">
                     
                        <div class="form" >
 
@@ -14,25 +14,35 @@
                                             <h1 class="heading">Signup</h1>
                                                     
                                                    <div class="width"> 
-                                                    <input type="text" 
+                                                
+                                                        <div class="border">
+                                                
+                                                                <input type="text" 
                                                     
-                                                    id="yourName"
+                                                
+                                                                id="yourName"
                                                     
-                                                    placeholder="your-name"
+                                                
+                                                                placeholder="your name"
                                                     
                                                     
 
-                                                    class="form-control"
-                                                    
-                                                    name="yourName"
-                                                    
-                                                    ngModel
-                                                    
-                                                    required
-                                                    
-                                                    #yourName="ngModel"
-                                                   >
                                                 
+                                                                class="form-control"
+                                                    
+                                                
+                                                                name="yourName"
+                                                    
+                                                
+                                                                ngModel
+                                                    
+                                                
+                                                                required
+                                                    
+                                                
+                                                                #yourName="ngModel"
+                                                    >
+                                                        </div>                                                
                                                    <span 
                                                     
                                                    class="help-block" *ngIf="!yourName.valid && yourName.touched"  > please enter your name 
@@ -43,11 +53,12 @@
                                                 </div>
                                                
                                                 <div class="width" >
-                                                        <input type="number" 
+                                                        <div class="border">
+                                                        <input type="text" 
                                                          id="phoneNumber"
                                                           name="phoneNumber"
-                                                          pattern=".{10,13}"
-                                                          placeholder="phone-number"
+                                                          
+                                                          placeholder="phone number"
                                                           class="form-control"
                                                           ngModel
                                                           required
@@ -56,10 +67,12 @@
                                                           minlength="10"
                                                           #phoneNumber="ngModel"
                                                         >
+                                                        </div>
                                                         <span class="help-block" *ngIf="!phoneNumber.valid && phoneNumber.touched">please enter phone number</span> 
                                                 </div>
                                             
                                                 <div class="width" >
+                                                        <div class="border">
                                                     <input type="email" 
                                                      id="email"
                                                       name="email"
@@ -70,10 +83,12 @@
                                                       required
                                                       #email="ngModel"
                                                 >
+                                                </div>
                                                    <span class="help-block" *ngIf="email.touched && !email.valid">please enter correct email</span>
                                                </div>
                                             
                                                <div  class="width">
+                                                       <div class="border">
                                                <input 
                                                type="password" 
                                                  id="password"
@@ -84,15 +99,18 @@
                                                 required
                                                 ngModel
                                                 #password="ngModel">
-                                                <span class="help-block" *ngIf="!password.valid && password.touched">please enter strong password of minimum 6 length</span>
+                                                </div>
+                                                <span  *ngIf="!password.valid && password.touched">please enter strong password of minimum 6 length</span>
                                                </div>
                                             
                                              
                                                 <div class="width"  [class.has-error]="confirmPassword.touched && confirmPassword.invalid">    
-                                                 <input
+                                             
+                                                 <div class="border">
+                                                <input
                                                  name="confirmPassword" 
                                                  type="password"
-                                                 placeholder="confirm-Password"
+                                                 placeholder="confirm Password"
                                                  appConfirmEqualValidator="password"
                                                  class="form-control"
                                                  id="confirmPassword"
@@ -100,24 +118,17 @@
                                                  ngModel
                                                  #confirmPassword ="ngModel"
                                                  >
+                                                 </div>
                                                  <span  class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required">ConfirmPassword is reqired</span>
                                                  <span  class="help-block  "*ngIf="!confirmPassword.touched && confirmPassword.errors?.notEqual">password not equal</span>
                                             
                                                 </div>
                                                 
-                                            
                                                 
-                                                <!-- <div class="width" >
-                                                 <label for="File">Please Uplode Your Profile Pic (OPTIONAL)</label>
-                                                 <input 
-                                                 type="file" 
-                                                 class="form-control-file" 
-                                                 ngModel
-                                                 id="File"
-                                      N           name="file">
-                                                 </div> -->
                                             
-                                                 <button class="Button"  type="submit">Signup</button>
+                                              
+                                                 <button class="Button"[disabled]="!f.valid"  [class.cursor]="!f.valid" type="submit">Signup</button>
+                                              
                                             </form>
                        <p class="margin">Already have an account ?<a routerLink="/login">login</a></p>
 

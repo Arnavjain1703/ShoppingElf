@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../shared/product.module';
 import { Subscription } from 'rxjs';
@@ -20,11 +20,16 @@ export class ProductsComponent implements OnInit, OnDestroy  {
    categories2:string[];
    Brands:string[];
    Prices:Price[];
-
+   disply = false;
+   display=false;
+   display1=false;
+   display2=false;
+   display3=false;
    subscription:Subscription;
    category1Subscription:Subscription;
    category2Subscription:Subscription;
    PriceSubscription:Subscription;
+
    
 
   constructor( private productService:ProductService,
@@ -32,10 +37,12 @@ export class ProductsComponent implements OnInit, OnDestroy  {
                 private category2Service:Category2Service,
                 private brandsService:BrandsService,
                 private productItem:ShowService,
-                private priceService:PriceService
+                private priceService:PriceService,
+                private Elref:ElementRef
                 ) { }
 
   ngOnInit() {
+    
     
     this.PriceSubscription=this.priceService.priceChanged
     .subscribe((prices:Price[])=>
@@ -95,10 +102,46 @@ export class ProductsComponent implements OnInit, OnDestroy  {
   {
      this.productItem.priceChanged(price)    
   }
+
+  
+ 
+  show()
+  {
+   this.display=!this.display;
+   this.display=false;
+   this.display3=false;
+   this.display1=false;
+  }
+  show1()
+  {
+   this.display1=!this.display1;
+   this.display=false;
+   this.display2=false;
+   this.display3=false;
+  }
+  show2()
+  {
+   this.display2=!this.display2;
+   this.display=false;
+   this.display3=false;
+   this.display1=false;
+  }
+  show3()
+  {
+   this.display3=!this.display3;
+   this.display=false;
+   this.display2=false;
+   this.display1=false;
+  }
+
+
+
   ngOnDestroy()
   {
    this.subscription.unsubscribe();  
    this.category2Subscription.unsubscribe();
+   
+
 
   }
   

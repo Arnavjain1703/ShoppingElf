@@ -132,9 +132,10 @@ nav
            text-shadow: 0px 0px 1px ;
       }
       nav{
-          background: #E8DAEF;
           box-shadow: 0px 0px 10px #B3B6B7 ;
          min-height: 60px;
+         background: #FDFEFE;
+
 
       }
       .dropdown-menu
@@ -161,4 +162,8 @@ nav
     {
         background:#FAD7A0;
         color:white;
+    }
+    .background
+    {
+        background:#ECF0F1 ;
     }

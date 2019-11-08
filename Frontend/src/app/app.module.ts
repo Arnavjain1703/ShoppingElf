@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ParticlesModule } from 'angular-particle';
 import {FormsModule} from '@angular/Forms';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -25,6 +26,8 @@ import { ProductCategory2Component } from './products/product-category2/product-
 import { BrandsService } from './services/brands.service';
 import { ShowService } from './services/show.service';
 import { PriceService } from './services/priceService';
+import { SizeService } from './services/size.service';
+import { FrontpageComponent } from './frontpage/frontpage.component';
 
 
 @NgModule({
@@ -43,18 +46,19 @@ import { PriceService } from './services/priceService';
     MyOrderComponent,
     ProductCategoryComponent,
     ProductCategory2Component,
+    FrontpageComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    ParticlesModule
 
     
   ],
-  providers: [ServerService,ProductService,ProductBagService,
-    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService],
+  providers: [ServerService,ProductService,ProductBagService,ProductBagItemComponent,ProductBagComponent,
+    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

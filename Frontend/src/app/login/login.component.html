@@ -1,19 +1,20 @@
 <div class="background">
     <div class="row">
         <div class="col-sm-5 col-md-6 display ">
-        <img class="image" src="/assets/Mask Group 2.png">
+        <img class="image" src="/assets/loginImg.svg">
         </div>
         <div class=" col-sm-7 col-md-6 col-xs-12 ">
                     
                 <div class="form">
 
-                         <form (ngSubmit)="onSubmit(f)" #f="ngForm" >
+                         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
 
                                      <h1 class="heading">Login</h1>
                                              
                                                                                    
                                                                              
                                          <div class="width " >
+                                             <div class="border">
                                              <input type="email" 
                                               id="email"
                                                name="email"
@@ -23,11 +24,13 @@
                                                ngModel
                                                required
                                                #email="ngModel"
-                                         >
+                                         >   
+                                            </div>
                                             <span class="help-block" *ngIf="email.touched && !email.valid">please enter correct email</span>
                                         </div>
-                                     
+                                        
                                         <div  class="width">
+                                        <div class="border">
                                         <input 
                                         type="password" 
                                           id="password"
@@ -38,7 +41,8 @@
                                          required
                                          ngModel
                                          #password="ngModel">
-                                         <span class="help-block" *ngIf="!password.valid && password.touched">please enter strong password of minimum 6 length</span>
+                                         </div>
+                                         <span class="help-block" *ngIf="!password.valid && password.touched">please enter password of minimum 6 length</span>
                                         </div>
                                      
                                       
@@ -47,8 +51,10 @@
                                          
                                          
                                      
-                                          <button class="Button"  type="submit">Login
+
+                                          <button class="Button" [class.cursor]="!f.valid" [disabled]="!f.valid"  type="submit">Login
                                           </button>
+                                        
                                      </form>
                                      <p class="margin">Don't have an account? <a routerLink="/signup">signup</a></p>
                                      
@@ -58,4 +64,5 @@
 
          </div>
     </div>
+   
 </div>

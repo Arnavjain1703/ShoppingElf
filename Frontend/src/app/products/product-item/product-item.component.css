@@ -12,7 +12,11 @@
      
      width: 250px;
      padding: 15px;
-     background: #FCF3CF;
+}
+
+#slider
+{
+  height:500px
 }
 
 .name,.brand,.price
@@ -25,7 +29,7 @@
 
 }
 .name-hover{
-  margin-top: 40px;
+  margin-top: 27px;
 }
 
 .text
@@ -47,11 +51,10 @@
     color: white;
     border: 2px solid #E91D83;
     border-radius: 5px ;
-    height: 40px;
+    height: 35px;
     width: 150px;
-  
-   
-    margin: 10px  30px;
+    /* margin: 10px  30px; */
+    margin-top:10px;
        }
 
   .Button:hover
@@ -69,6 +72,7 @@
     width: 220px; 
    
     transition: opacity 0.5s;
+    text-align:center;
     
     
 
@@ -83,18 +87,22 @@
 
   .shadow
   {
-      box-shadow: 0px 0px 1px #D7BDE2 ; 
-      border-radius:1px;
-      border-radius: 1px;
-      transition: box-shadow 1s;
+    box-shadow: 0px 0px 10px #979A9A;
+
+      /* box-shadow: 0px 0px 1px #D7BDE2 ;  */
+      border-radius:3%;
+      transition: box-shadow 0.5s;
       height: 350px;
      background: white;
+     
       
 
        
   }    
   .shadow:hover{
-    box-shadow: 0px 0px 15px #979A9A;
+    /* box-shadow: 0px 0px 15px #979A9A; */
+    box-shadow: 0px 0px 1px #D7BDE2 ; 
+
   }
   .show
   {
@@ -106,5 +114,51 @@
   {
     height:250px;
   }
+
+  #height
+  {
+    height:250px;
+  }
+
+ .brand
+ {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  color:#1B4F72 ;
+  font-size:140%;
+  font-weight:800;
+  
+ }
+ .name{
+   letter-spacing:1px;
+   color:#1F618D  ;
+ }
+ .price{
+  text-align:right;
+  color:#1F618D;
+   letter-spacing: 2px;
+   padding:2px;
+}
+
+  @media only screen and (max-width: 703px) {
+
+    .background
+    {
+      width:210px;
+      
+    }
+    .button
+    {
+      margin: 0px 0px; 
+      width:10px;
+    }
+    .btn-background
+    {
+      width:180px;
+    }
+    
+    }
  
- 
+
+
+

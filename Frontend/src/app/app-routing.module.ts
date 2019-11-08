@@ -7,6 +7,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductBagComponent } from './product-bag/product-bag.component';
 import { MyOrderComponent } from './my-order/my-order.component';
+import { FrontpageComponent } from './frontpage/frontpage.component';
 
 
   
@@ -14,7 +15,7 @@ const appRoutes: Routes=[
     {path:'',redirectTo: 'frontpage', pathMatch:'full'},
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
-    // {path:'frontpage',component:HomePageComponent},
+     {path:'frontpage',component:FrontpageComponent},
     {path:'products',component:ProductsComponent},
      
     {path:'bag',component:ProductBagComponent},

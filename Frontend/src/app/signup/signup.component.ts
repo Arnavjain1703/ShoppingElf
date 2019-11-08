@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from '@angular/Forms';
  import { ServerService } from '../services/server.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-signup',
@@ -11,9 +12,12 @@ import { NgForm } from '@angular/Forms';
 })
 
 export class SignupComponent implements OnInit {
-   constructor(private serverService:ServerService) { }
+   constructor(private serverService:ServerService,
+               private appComponent:AppComponent) { }
 
   ngOnInit() {
+
+
   
   }
 
@@ -26,15 +30,10 @@ export class SignupComponent implements OnInit {
   {
     const value =form.value;
     console.log(value);
+ 
 
    this.serverService.signup(value.yourName,value.phoneNumber,value.email,value.password,value.confirmPassword)
-   .subscribe(
-     (response)=>
-     {
-       console.log(response);
-     }
-   )
-    
+  
       
   }
  

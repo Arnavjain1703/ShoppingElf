@@ -16,7 +16,8 @@
 <div class="line3"[class.changeline3]="display"></div>    
 </div>
 </nav> -->
-<nav  class=" navbar-default"> 
+<div class="background">
+<nav class="navbar-default"> 
     <div class="navbar-margin">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -31,14 +32,14 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">       
                 <ul  class=" nav navbar-nav navbar-left">
           
-            <li class="items" ><a  
+            <li class="items" ><a    (click)="menProducts()"
               routerLink="products"
               ><span class="color">Men</span> </a></li>
-            <li  class="items"><a
+            <li  class="items"><a    (click)="womenProducts()"
               routerLink="products"
               
               ><span class="color">Women</span></a></li>
-            <li  class="items"><a
+            <li  class="items"><a    (click)="kidsProducts()"
               routerLink="products"
               
               ><span class="color">Kids</span></a></li>
@@ -98,3 +99,4 @@
     </div>
   </nav>     
 
+</div>

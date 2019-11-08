@@ -9,21 +9,35 @@
            
             <div class="col-xs-3 margins">
            
-                {{order.productName}}
+                    {{order.productBrand}}
+
            
-                <div class="margins2">Size</div>
+                <div class="margins2"> 
+
+                        {{order.productName}}
+
+                </div>
            
             </div>
            
-            <div class="col-xs-3 margins">
-           
-                {{order.productBrand}}
-                
+            <div class="col-xs-3 margins" >
+                    
                 <div class="margins2">
+                    <div *ngFor=" let size of Size let num=index" >
+                       
+                        <div *ngIf="num==indx">
+                        {{size.productSize}}
+                    </div>
+                    </div>
+
+
                 
-                    <button (click)="remove()" class=" btn btn-danger position">
-           
-                        <span class="glyphicon glyphicon-trash"></span>  Remove</button>
+                        <span ><button *ngIf="order.OrderQ >1" (click)="subtract()" class="Button">-</button></span>     
+
+                
+                        <span>{{order.OrderQ}}</span>  
+                        <span ><button (click)="add()"class="Button">+</button></span>
+                  
                 
                     </div>
            
@@ -36,13 +50,14 @@
 
                 <div class="margins2">
                 
-                    <div>Quantity</div>
                 
-                    <span ><button (click)="add()"class="Button">+</button></span>
+
+                  
+
+                    <a (click)="remove()" >
+           
+                            <span class="glyphicon glyphicon-remove"></span></a>
                 
-                    <span>{{order.OrderQ}}</span>  
-                
-                    <span ><button *ngIf="order.OrderQ >0" (click)="subtract()" class="Button">-</button></span>     
                 
                 </div>
             

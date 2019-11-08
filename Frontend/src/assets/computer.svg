@@ -8,6 +8,11 @@
 	.st2{fill:#FFFFFF;}
 	.st3{fill:#CAD6DD;}
 	.st4{fill:#384457;}
+
+	.st2 {
+		animation 
+	}
+	@key
 </style>
 <g id="BACKGROUND">
 	<rect class="st0" width="500" height="500"/>

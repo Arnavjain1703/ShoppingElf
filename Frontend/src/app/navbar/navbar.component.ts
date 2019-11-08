@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from '../services/server.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,13 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   display=false;
-  constructor() { }
+  tk:any;
+  constructor(private serverService :ServerService) { }
 
   ngOnInit() {
   }
 Ondisplay()
 {
-  this.display=!this.display
+   this.display=!this.display
 }
  
+menProducts()
+{
+  this.serverService.getallMenProducts()
+
+  
+}
+
+womenProducts()
+{
+  this.serverService.getallWomenProducts()
+}
+
+kidsProducts()
+{
+  this.serverService.getallKidsProducts()
+}
+
 }

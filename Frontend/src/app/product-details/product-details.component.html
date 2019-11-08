@@ -88,13 +88,24 @@
         <h2> Rs {{product.productPrice}}</h2>
         <h3>{{product.productDetails}}</h3>
 
+        <div *ngFor=" let size of Sizes,let i =index">
+        
+       
+             <button  (click)="call(i)" class="btn btn-default">  {{size.productSize}}</button>
+
+      
+                
+         
+              </div>
+
         <div >
                 <button class="Button" (click)="orders()" >
                         <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button>
         </div>
         <div ><button class="Button" (click)="dplay()"><span class="text ">Order now  </span></button></div>
-       
-    </div>
+        
+      
+         </div>
     
      
 

@@ -23,19 +23,7 @@ click=false;
    const value = form.value;
     
     this.serverService.login(value.email,value.password)
-    .subscribe(
-      (response) =>
-       {      
-             this.tk=response;
-            console.log(this.tk);
-          localStorage.setItem('token',this.tk);
-          
-          
-       
-  
-      }                                                
-         
-    );
+   
     
   
     

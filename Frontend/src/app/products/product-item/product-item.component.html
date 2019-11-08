@@ -1,31 +1,31 @@
- <div *ngIf="show ||( ( product.productBrand == brand || showBrand) && (showPrice || ((product.productPrice >= price1)&&( price2 >=product.productPrice))) )" class="background col-lg-3">
+ <div *ngIf="show ||( ( product.productBrand == brand || showBrand) && (showPrice || ((product.productPrice >= price1)&&( price2 >=product.productPrice))) )" class="background col-lg-3  col-xs-12">
 <div  class="shadow" (mouseover)="call()" (mouseout)="uncall()" >
                      <!-- <img  [class.showImg]="display" [src]="product.picture1"> -->
                     
 
-                     <div id="carousel-example-{{index}}" class="carousel slide"  data-interval="false">
+       <div id="carousel-example-{{index}}" class="carousel slide"  data-ride="true ? carousel : null"  data-interval="false">
                                    <!-- Indicators -->
                                 
                                    <!-- Wrapper for slides -->
-                     <a routerLink="/details/{{index}}">
+                     <a >
 
                                    <div class="carousel-inner" role="listbox">
                                      <div class="item active">
-                                       <img style="height:250px;" [src]="product.picture1" alt="...">
+                                       <img id="height" [src]="product.picture1" alt="...">
                                        <div class="carousel-caption">
                                         
                                       </div>
                                      </div>
                                      <div class="item">
-                                       <img style="height:250px;"[src]="product.picture1" alt="...">
+                                       <img id="height" [src]="product.picture2" alt="...">
                                        
                                      </div>
                                      <div class="item">
-                                      <img style="height:250px;"  [src]="product.picture1" alt="...">
+                                      <img id="height"  [src]="product.picture2" alt="...">
                                       
                                     </div>
                                     <div class="item">
-                                      <img style="height:250px;"[src]="product.picture1" alt="...">
+                                      <img id="height"[src]="product.picture4" alt="...">
                                       
                                     </div>
                                    </div>
@@ -44,12 +44,18 @@
                                  </div>
 <div>
   <div class="btn-background"  [class.show]="display">               
-     <button class="Button" (click)="orders()" >
-            <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button> 
+     <button class="Button" routerLink="/details/{{index}}"  >
+            <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span>
+    </button>
+       <div >
+         <span 
+         *ngFor="let sizes of size"
+         ></span>
+       </div>        
   </div>
-       <div class="name" [class.name-hover]="display">{{product.productName }}</div>
-       <div class="brand">{{product.productBrand}}</div>
-       <div class="price"> Rs  {{product.productPrice}}</div>
+       <div class="brand" [class.name-hover]="display">{{product.productBrand}}</div>
+       <div class="price"> Rs {{product.productPrice}}</div>
+       <div class="name">{{product.productName}}</div>
 </div>
      
 

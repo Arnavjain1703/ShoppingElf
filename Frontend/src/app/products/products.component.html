@@ -11,20 +11,20 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           <div class="item active">
-            <img style="height: 500px; width:100%" src="/assets/slider1.jpg" alt="...">
+            <img id="slider1" src="/assets/slider2.jpg" alt="...">
             <div class="carousel-caption">
               ...
             </div>
           </div>
           <div class="item">
-            <img style="height: 500px; width:100%" src="/assets/slider2.jpg" alt="...">
+            <img id="slider1" src="/assets/slider1.jpg" alt="...">
             <div class="carousel-caption">
               ...
             </div>
           </div>
 
           <div class="item">
-            <img style="height: 500px; width:100%" src="/assets/slider3.jpg" alt="...">
+            <img id="slider1" src="/assets/slider3.jpg" alt="...">
             
             <div class="carousel-caption">
               ...
@@ -37,18 +37,18 @@
       </div>
 </div>
 
-<div class=" row">
+<div class=" row  ">
  
   <div class="col-xs-1"></div>
   
-  <div class="col-xs-5">
+  <div class="col-xs-12 col-md-5 center">
      
-    <img class="image" src="/assets/image.5.svg">
+    <img class="image" src="/assets/frontpageImage.svg">
 
 
   </div>
   
-  <div class="col-xs-5 padding">
+  <div class="col-xs-12 col-md-5 padding ">
     <div class="para" >
       
         “Buy Men’s & Women’s Sandals on wecart, Branded Slippers online Shopping Destinations in India. Huge range of comfortable sandals that can be he make one of the most Trendy Product ever. 
@@ -61,17 +61,18 @@
 
   </div>
 </div>
+<div class="row ">
+    <div class="col-xs-12 col-md-2 fixed"  >
+
+        <div class="center font ">Filters</div>
 <div class="row">
-    <div class="col-lg-2 fixed" >
-
-        <div class="center font">Filters</div>
-
-        <div class="hello">
+         
+        <div  class="hello col-md-12 col-sm-3 col-xs-12">
 
 
-      <div class="center"><u>Categories</u></div>
-
-                
+      <div (click)="show()" class="center">Categories<span class ="glyphicon glyphicon-chevron-down  icon"></span></div>
+    
+         <div [class.disappear]="!display">      
          <app-product-category
    
    
@@ -85,14 +86,17 @@
             
           
         </app-product-category>
+      
         
-      <div class="opacity">v</div>
-
+      
+       </div>
         
        </div>
-       <div class="hello">
+       <div class="hello col-md-12 col-sm-3 col-xs-12">
 
-       <div class="center"><u>SubCategories</u></div>
+       <div (click)="show1()" class="center ">SubCategories<span class =" glyphicon glyphicon-chevron-down  icon"></span></div>
+
+       <div [class.disappear]="!display1">      
 
        <app-product-category2 
                     
@@ -107,37 +111,48 @@
         </app-product-category2>
 
        </div>
-       <div class="hello">
+       </div>
+       <div class="hello col-md-12 col-xs-12 col-sm-3">
 
-        <div class="center">Top Brands</div>
+        <div class="center" (click)="show2()">Top Brands  <span class ="
+          glyphicon glyphicon-chevron-down  icon"></span></div>
+        <div [class.disappear]="!display2">      
+        
         <div *ngFor=" let Brand of Brands,let i=index">
          <div class="align">
 
-          <button class="btn btn-default" (click)="call(Brand)" > <span class="name">{{Brand}}</span></button>
+     <li>     <a   (click)="call(Brand)" > <span class="name">{{Brand}}</span></a>  </li>
 
 
           </div>
    
         </div>
         <div class="align">
-           <button class="btn btn-default" (click)="AllBrand()" > <span class="name"> All Brands</span></button>
+       <li>    <a (click)="AllBrand()" > <span class="name"> All Brands</span></a> </li>
          </div>
        </div>
-
-       <div class="hello">
-         <div class="center">Prices Ranges</div>
+       </div>
+       <div class="hello col-xs-12 col-sm-3 col-md-12">
+         <div class="center" (click)="show3()">Prices Ranges 
+          <span class ="
+          glyphicon glyphicon-chevron-down  icon"></span>
+         </div>
+         <div [class.disappear]="!display3">      
+         
          <div *ngFor="let price of Prices ,let i=index">
            <div class="align">
-             <button class="btn btn-default"(click)="ranges(price)"><span class="name">RS {{price.price1}} to RS {{price.price2}} </span></button>
+            <li> <a (click)="ranges(price)"><span class="name1">rs{{price.price1}}-{{price.price2}}</span></a></li>
            </div>
          </div>
          <div class="align">
-           <button class="btn btn-default" (click)="allPrices()" ><span class="name">All Prices</span></button>
+         <li>   <a (click)="allPrices()" ><span class="name">All Prices</span></a></li>
          </div>
        </div>
     </div>
-   
-      <div class="col-lg-10 shadow">
+    </div>
+    </div>
+     <div class="col-xs-1 "></div>
+    <div class="col-xs-12 col-md-10 shadow" >
        
           
                <app-product-item

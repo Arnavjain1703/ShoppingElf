@@ -1,0 +1,318 @@
+.background
+{
+  background: #FEF5E7  ;
+}
+
+.image
+{
+    width:100%;
+    height:auto;
+}
+
+.text
+{
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing:2px;
+    font-size:20px;
+    text-align:center;
+    color:#1B4F72;
+    font-weight:800px;
+    text-shadow: 0px 0px 2px #2980B9;
+}
+
+.border,.border1
+{
+    border-left: 5px solid #F7DC6F ;
+}
+.border
+{
+   padding-left:10px;
+}
+.border1{
+    padding-left:5px;
+    color:#2980B9 ;
+    font-family: 'Montserrat', sans-serif;
+    
+
+
+}
+.font1
+{
+    font-size: 250%;
+}
+.col-md-4
+{
+    text-align:center;
+    padding:5%;
+}
+.large-padding
+{
+    margin-top:108px;
+    padding-left:35%;
+}
+.margin
+{
+    /* margin-top:108px; */
+    padding:0% 18%;
+}
+
+
+
+.font2
+{
+    color:#154360 ;
+    font-weight:900;
+    letter-spacing: 2px;
+    font-size:200%
+}
+
+.heading
+{
+    font-family: 'Roboto Mono', monospace;
+    font-size:400%;
+    position:absolute;
+    top:20%;
+    left:45%;
+    color:white;
+}
+.image1
+{
+    width:100%;
+    height:250px;
+    border-radius:2%;
+    box-shadow: 0px 0px 4px 4px #B3B6B7;
+    transition: box-shadow 0.2s;
+    transition: height 0.2s;
+
+}
+
+.col-sm-4
+{
+    padding:5%;
+}
+.image1:hover
+{
+    box-shadow: 0px 0px 2px 2px #B3B6B7;
+    height:240px;
+
+
+}
+
+.col-lg-3
+{
+    padding:0;
+}
+
+
+
+.frontImage
+
+{
+ width:100%;
+margin-top:3%;    
+}
+.top
+{
+    background: Url('/assets/background_top.svg');
+    height:470px;
+    /* width:100%; */
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+.center
+{
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    color:#1A5276 ;
+    font-size: 300%;
+    text-shadow: 1px 1px 2px ;
+
+}
+.center-image
+{
+  text-align:center; 
+  padding-top:0%;
+ 
+}
+.image-top
+{
+   height:80vh;
+}
+.para
+{
+     
+  
+    color:#1F618D ;
+    
+}
+.padding{
+
+    padding-top:100px
+}
+
+.padding1
+{
+  padding:10px 50px  
+}
+.paragraph-setting
+{
+    padding-top:15%;
+}
+
+.paragraph
+{
+    color:#1B4F72 ;
+     letter-spacing:2px;
+     font-size:150%;
+     font-family: 'Montserrat', sans-serif;
+     font-weight:800px;
+     text-shadow:0px 0px 2px #21618C ;
+
+}
+@media only screen and (max-width: 1200px) {
+
+    .col-sm-4{
+        padding:3%;
+    }
+
+    .margin
+    {
+      padding:0% 10%;
+    }
+    .large-padding
+{
+
+    padding-left:25%;
+}
+    .font1
+    {
+        font-size:230%;
+    }
+    .font2{
+         font-size: 170%;
+    }
+
+    .image-setting
+{
+   padding-top:13%; 
+   
+}
+
+
+}
+.img-margin
+{
+    margin-bottom:14%;
+}
+
+.background_bottom
+{
+    background: url('/assets/background_bottom.svg');
+    height:700px;
+    background-repeat:no-repeat;
+    background-size:cover;
+
+}
+.image-setting
+{
+   padding-top:10%; 
+   
+}
+.img-height
+{
+    height:60vh;
+}
+.img-center
+{
+    text-align: center;
+}
+@media only screen and (max-width:900px)
+{
+    .paragraph-setting
+    {
+        padding-left:5%;
+        
+    }
+}
+@media only screen and (max-width:900px)
+{
+    .col-sm-4{
+         padding: 1%;
+    }
+    .margin
+    {
+        padding:0% 5%;
+    }
+    .image-setting
+    {
+       padding-top:18%; 
+    }
+    .paragraph-setting
+    {
+        padding-left:7%;
+        padding-top:20%;
+        
+    }
+    
+}
+@media only screen and (max-width:768px)
+{
+    .margin
+    {
+       padding:0% 30%;
+    }
+
+    .large-padding
+    {
+        margin-bottom:50px;
+        padding-left:20%;
+    }
+        .font1
+        {
+            font-size:200%;
+        }
+        .font2{
+             font-size: 130%;
+        }
+        .image-setting
+        {
+            display:none;
+        }
+    
+}
+ 
+@media only screen and (max-width:584px)
+{
+    .large-padding
+    {
+    
+         padding-left:15%;
+         margin-bottom:50px;
+    }
+        .font1
+        {
+            font-size:150%;
+        }
+        .font2{
+             font-size: 100%;
+        }
+    .margin
+    {
+        margin-top:0px
+    }   
+        
+
+
+
+
+
+}
+@media only screen and (max-width:421px)
+{
+    .large-padding
+    {
+    
+         padding-left:3%;
+         margin-bottom:50px;
+    }
+}

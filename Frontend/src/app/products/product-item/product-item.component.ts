@@ -87,10 +87,7 @@ export class ProductItemComponent implements OnInit,OnDestroy {
     this.display=false;
   }
 
-  orders()
-  {
-    this.productBagService.addorder(this.product);
-  }
+ 
 
   Brand(brand)
   {

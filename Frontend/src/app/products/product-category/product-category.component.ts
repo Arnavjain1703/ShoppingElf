@@ -18,4 +18,10 @@ export class ProductCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
+  hello()
+
+  {
+    alert('dwj');
+  }
+
 }

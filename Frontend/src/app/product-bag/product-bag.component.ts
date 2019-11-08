@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../shared/product.module';
 import { ProductBagService } from '../services/product-bag.service';
 import { Subscription } from 'rxjs';
+import { ProductSize } from '../shared/size.module';
+import { SizeService } from '../services/size.service';
 
 @Component({
   selector: 'app-product-bag',
@@ -12,10 +14,13 @@ export class ProductBagComponent implements OnInit,OnDestroy {
  orders:Product[];
      bagSubscription:Subscription;
      i:number;
+     index:number;
+     Size:ProductSize[];
      total=0;
      
 constructor(
-             private productBagService:ProductBagService
+             private productBagService:ProductBagService,
+             private productSize:SizeService,
            ) { }
 
   ngOnInit() {
@@ -42,7 +47,7 @@ Total()
  for(this.i=0; this.i<this.productBagService.length();this.i++ )  
   {
     
-      this.total=this.total+this.orders[this.i].productTotal;
+      // this.total=this.total+this.orders[this.i].productTotal;
 
 
    }
@@ -54,11 +59,14 @@ Total()
 
 Delete(index:number)
 {
-   this.total=this.total-this.orders[index].productTotal; 
+  //  this.total=this.total-this.orders[index].productTotal; 
 }
 
 
 
-
+num(i:number)
+{
+ this.index=i; 
+}
 
 }

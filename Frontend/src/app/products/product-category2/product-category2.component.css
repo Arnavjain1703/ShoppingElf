@@ -1,12 +1,20 @@
-.center
-{
-    text-align:center;
-    margin:2%;
-   
 
-}
+
 .name
 {
-    color:#1F618D ;
-    letter-spacing: 2px;
+    letter-spacing:2px;
+    font-size:130%;
+    cursor: pointer;
+    
+    transition: font-size 0.4s;
+     transition:text-shadow 0.4s;
+}
+.name:hover{
+  color:#154360;
+  font-size:140%;
+  text-shadow: 0px 0px 1px #A9CCE3;
+
+}
+a{
+  text-decoration: none;
 }
