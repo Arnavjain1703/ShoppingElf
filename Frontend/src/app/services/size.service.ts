@@ -1,5 +1,6 @@
 import { Subject } from 'rxjs';
 import { ProductSize } from '../shared/size.module';
+import { Product } from '../shared/product.module';
 
 export class  SizeService
 {
@@ -9,7 +10,28 @@ export class  SizeService
 
 private  Size:ProductSize[]=[
 
-        new ProductSize ('')
+        new ProductSize ('x',17,
+        
+        [
+            new Product ('sdnvjo',10,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','arnav'),
+
+        ]),
+
+        new ProductSize ('x',17,
+        [
+            new Product ('sdnvjo',10,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','arnav'),
+
+        ]),
+
+        new ProductSize ('x',17,[
+            new Product ('sdnvjo',10,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','arnav'),
+
+        ]),
+        new ProductSize ('x',17,[
+            new Product ('sdnvjo',10,'/assets/slider1.jpg','/assets/slider1.jpg','/assets/Women 8.jpg','/assets/Women 8.jpg','wdjbc','arnav'),
+
+        ]),
+
 
 
                 
@@ -20,6 +42,7 @@ private  Size:ProductSize[]=[
 getSize()
 {
     return this.Size.slice();
+    
 
 }
 
@@ -31,6 +54,7 @@ getsize(index:number)
 setSize( Size:ProductSize[] )
 {
       this.Size=Size;
+      this.AllSize.next(this.Size.slice());
 }
 }
 

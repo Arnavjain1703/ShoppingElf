@@ -4,15 +4,17 @@ import { Product } from './product.module';
   PID:number;
   productSize:string;
   ProductQuantity:number;
-  ProductId:number;
-  producPrice:number;
+  ProductID:number;
+  productPrice:number;
   ProductModel:Product[];
  
-  constructor(productSize:string,productPrice:number,ProductModel:Product[])
+  constructor(productSize:string,productPrice:number,productModel:Product[])
     {
-        this.producPrice=productPrice;
+        this.productPrice=productPrice;
         this.productSize=productSize;
-        this.ProductModel=ProductModel;
+        this.ProductModel=productModel;
+
+
 
     }
 

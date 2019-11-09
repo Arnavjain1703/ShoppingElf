@@ -1,5 +1,7 @@
 export class Product
 {
+    ProductID:number;
+
     public productName:string;
     public productDetails:string;
     public picture1:string;
@@ -10,8 +12,8 @@ export class Product
     public productBrand:string;
     public SubCategoryID:number;
     public SellerID:number;
-    // public  OrderQ:number;
-    // public productTotal:number;
+    
+    
     
 
 

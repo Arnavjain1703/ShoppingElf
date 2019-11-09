@@ -49,14 +49,14 @@
              
             <div class="col-lg-6 image">
                 
-                <img class="img" [src]="product.picture1" alt="picture1">
+                 <img class="img" [src]="product.picture1" alt="picture1"> 
                 
             </div>
 
         
             <div class="col-lg-6 image">
 
-                <img class="img" [src]="product.picture1" alt="picture1">
+                 <img class="img" [src]="product.picture1" alt="picture1"> 
 
              </div>
     
@@ -66,14 +66,13 @@
      
              <div class="col-lg-6 image">
 
-                <img  class="img"[src]="product.picture1" alt="picture1">
+                 <img  class="img"[src]="product.picture1" alt="picture1"> 
                  
              </div> 
      
              <div class="col-lg-6 image">
 
-                <img  class="img" [src]="product.picture1" alt="picture1">
-         
+                 <img  class="img" [src]="product.picture1" alt="picture1">          
              </div>
 
     </div>
@@ -91,7 +90,7 @@
         <div *ngFor=" let size of Sizes,let i =index">
         
        
-             <button  (click)="call(i)" class="btn btn-default">  {{size.productSize}}</button>
+             <button  (click)="call(i)" class="btn btn-default">  {{size. ProductModel[0].productPrice}}</button>
 
       
                 
