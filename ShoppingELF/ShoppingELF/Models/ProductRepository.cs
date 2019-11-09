@@ -144,6 +144,56 @@ namespace ShoppingELF.Models
                 return pt.ProductID;
             }
         }
+
+        public bool AddProductSize(int pid, SizeModel model)
+        {
+            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SizeTable st = new SizeTable()
+                {
+                    ProductID = pid,
+                    productSize = model.productSize,
+                    productPrice = model.productPrice,
+                    productQuantity = model.productQuantity
+                };
+                context.SizeTable.Add(st);
+                context.SaveChanges();
+                SelectMininmumPrice(pid);
+            }
+            return true;
+        }
+
+        public void SelectMininmumPrice(int pid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                ProductTable pt = new ProductTable();
+                SizeTable st = new SizeTable();
+                pt = context.ProductTable.FirstOrDefault(x => x.ProductID == pid);
+                
+                var SizeList = context.SizeTable.Where(m => m.ProductID == pid).ToList();
+                int min_price = 2147483647;
+                foreach(var i in SizeList)
+                {
+                    if(i.productPrice < min_price)
+                    {
+                        min_price = i.productPrice;
+                    }
+                }
+                pt.price = min_price;
+                context.SaveChanges();
+            }
+            
+        }
+
+        public void ImageUpload(int sid, int picid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                ProductTable pt = new ProductTable();
+                pt = context.ProductTable.FirstOrDefault(m => m.SellerID == sid);
+            }
+        }
         
     }
 }

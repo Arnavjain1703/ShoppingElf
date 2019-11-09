@@ -158,7 +158,7 @@ namespace ShoppingELF.Controllers
                 {
                     int x = new UserRepository().AddFromCartToOrder(uid);
 
-                    if (x == 1 || x == 3)
+                    if (x == 3)
                     {
                         new UserRepository().ClearCart(uid);
                         return Ok("Order Placed Successfully");

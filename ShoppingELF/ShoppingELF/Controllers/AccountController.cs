@@ -13,7 +13,7 @@ using System.Web.Security;
 
 namespace ShoppingELF.Controllers
 {
-    [EnableCors(origins: "http://client.domain", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://16f4c92f.ngrok.io", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         [HttpPost]
@@ -45,13 +45,12 @@ namespace ShoppingELF.Controllers
         [Route("api/Account/UserLogin")]
         public HttpResponseMessage Login([FromBody]UserTable user)
         {
-            var y = new UserModel().verification(user.email);
-            var password = new UserModel().Password(user.email);
             UserTable u = new UserRepository().GetUser(user.email);
-
             if (u == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound,
                      "The Account was not found.");
+            var password = new UserModel().Password(user.email);
+            var y = new UserModel().verification(user.email);
             string pass = Crypto.Hash(user.password);
             bool credentials = pass.Equals(password);
             if (credentials && y)
@@ -74,7 +73,7 @@ namespace ShoppingELF.Controllers
 
         [Route("api/Account/{id}")]
         [HttpGet]
-        public HttpResponseMessage VerifyAccount([FromUri]string id, [FromBody]UserModel model)
+        public HttpResponseMessage VerifyAccount([FromUri]string id)
         {
             //bool status = false;
             using (ShoppingELFEntities context = new ShoppingELFEntities())
@@ -88,7 +87,7 @@ namespace ShoppingELF.Controllers
                     v.IsEmailVerified = Convert.ToBoolean(us.IsEmailVerified);
                     context.SaveChanges();
                     //status = true;
-                    return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(us.email));
+                    return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(v.email));
                 }
                 else
                 {
@@ -169,23 +168,12 @@ namespace ShoppingELF.Controllers
             }
         }
 
-        //[HttpGet]
-        //[Route("api/Logout")]
-        //public IHttpActionResult Logout(string email)
-        //{
-        //    bool x = new TokenManager().Logout(email);
-        //    if (x)
-        //        return Ok("You have been logged out");
-        //    else
-        //        return Ok("");
-        //}
-
         [NonAction]
         public void EmailVerification(int UserID, string Email, string ActivationCode, string EmailFor = "Account")
         {
             var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
             //var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
-            var link = "https://d71b2502.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
+            var link = "https://34653dac.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
             var ToEmail = new MailAddress(Email);
             var FromEmailPassword = "Rishabh@2306";

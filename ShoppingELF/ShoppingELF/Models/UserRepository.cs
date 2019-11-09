@@ -147,9 +147,9 @@ namespace ShoppingELF.Models
             {
                 CartTable ct = new CartTable();
                 SizeTable st = new SizeTable();
-                ct = context.CartTable.SingleOrDefault(m => m.UserID == uid);
+                var cart = context.CartTable.Where(m => m.UserID == uid).ToList();
                 var cartitems = context.CartTable.Where(m => m.UserID == uid).ToList();
-                if(ct != null)
+                if(cart.Count > 0)
                 {
                     foreach (var i in cartitems)
                     {
@@ -171,7 +171,7 @@ namespace ShoppingELF.Models
                             st.productQuantity -= i.Quantity;
                             context.OrderTable.Add(ot);
                             context.SaveChanges();
-                            return 1;
+                            //return 1;
                         }
                         else
                             return 2;
