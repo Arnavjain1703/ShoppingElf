@@ -1,0 +1,138 @@
+
+
+.background
+{
+    background:url(/assets/newbackground2.png);
+    height:700px;
+    padding-top: 4%;
+}
+.row
+{
+   height: 550px; 
+   margin: 0%  10%;
+
+}
+.display{
+    padding-top:5%;
+}
+.cursor
+{
+    cursor: not-allowed;
+}
+
+.image
+{
+     width: 100%;
+    padding:5% ;
+    height: 500px;
+}
+.form-control
+{
+ box-shadow: 1px 1px 2px;
+ height: 40px;
+}
+.form
+{
+    text-align: center;
+    padding-top:8%;
+
+}
+.width
+{
+    width: 60%;
+    margin-top: 2%;
+    margin-left: 20%;
+
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #2471A3 ;
+    letter-spacing: 2px;
+  }
+  
+
+.border
+{
+    border-left: 2px solid #1B4F72  ;
+
+}
+.heading
+{
+    font-family: 'Montserrat', sans-serif;
+    color:#2471A3;
+    letter-spacing: 1px;
+    text-shadow:0px 0px 1px #2874A6 ;
+    margin-bottom:6%;
+    font-weight:500;
+
+}
+.Button
+{
+    background: #45B39D;
+    padding: 7px  10px;
+    color: white;
+    border:2px solid #45B39D;
+    border-radius: 10%;
+    margin-top: 4%;
+    width:100px
+}
+input.ng-invalid.ng-touched
+{
+    border:red 1px solid;
+}
+.margin
+{
+margin-top: 2%;
+font-family: 'Roboto', sans-serif;
+}
+.help-block
+{
+    color:red;
+    letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 991px) 
+{
+
+.image
+{
+      width: 100%;
+      padding-top:30% 0% ;
+      height: 400px;
+}
+.width
+{
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 4%;
+}
+.row{
+    padding-top: 3% ;
+    padding-left:10%;
+}
+.display
+ {
+   display: none;
+
+ }
+
+}
+@media only screen and (max-width: 850px)
+{
+ 
+ .width
+{
+    width: 100%;
+    margin: 2% ;
+    
+}
+}
+
+@media only screen and (max-width: 767px)
+{
+   .width{
+     margin:2% 0%;
+    }
+}
+ 
+

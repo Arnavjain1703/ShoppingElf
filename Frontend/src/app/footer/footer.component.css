@@ -1,0 +1,29 @@
+.center
+{
+    text-align: center;
+}
+.items
+{
+    margin:8% 0%;
+    color:#1A5276;
+    letter-spacing:2px;
+    font-size:120%;
+    font-family: 'Montserrat', sans-serif;
+     text-shadow:0px 0px 2px #3498DB;
+
+}
+.background
+{
+    background:#FAD7A0;
+}
+.special
+{
+    font-size:150%;
+    animation: mymove 2s infinite;
+}
+
+@keyframes mymove {
+    0% {color: #1A5276;}
+    50% { color:#E74C3C;}
+    100%{ color: #1A5276;}
+  }

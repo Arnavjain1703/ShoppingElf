@@ -1,0 +1,141 @@
+
+
+<div  class="background">
+        <div class="row">
+                <div class="col-sm-0 col-md-4 col-lg-6 display">
+                       <img class="image"src="/assets/sellerSignup.svg"> 
+                </div>
+                <div class=" col-sm-12 col-md-8 col-lg-6 col-xs-12">
+                    
+                       <div class="form" >
+
+                                <form (ngSubmit)="onSubmit(f)" #f="ngForm" >
+
+                                            <h1 class="heading">Signup</h1>
+                                                    
+                                                   <div class="width"> 
+                                                
+                                                        <div class="border">
+                                                
+                                                                <input type="text" 
+                                                    
+                                                
+                                                                id="yourName"
+                                                    
+                                                
+                                                                placeholder="your name"
+                                                    
+                                                    
+
+                                                
+                                                                class="form-control"
+                                                    
+                                                
+                                                                name="yourName"
+                                                    
+                                                
+                                                                ngModel
+                                                    
+                                                
+                                                                required
+                                                    
+                                                
+                                                                #yourName="ngModel"
+                                                    >
+                                                        </div>                                                
+                                                   <span 
+                                                    
+                                                   class="help-block" *ngIf="!yourName.valid && yourName.touched"  > please enter your name 
+                                                
+                                                  </span>
+                                                  
+                                            
+                                                </div>
+                                               
+                                                <div class="width" >
+                                                        <div class="border">
+                                                        <input type="text" 
+                                                         id="mobileNumber"
+                                                          name="mobileNumber"
+                                                          
+                                                          placeholder="mobile number"
+                                                          class="form-control"
+                                                          ngModel
+                                                          required
+                                                          #mobileNumber="ngModel"
+                                                        
+                                                          minlength="10"
+                                                          #mobileNumber="ngModel"
+                                                        >
+                                                        </div>
+                                                        <span class="help-block" *ngIf="!mobileNumber.valid && mobileNumber.touched">please enter phone number</span> 
+                                                </div>
+                                            
+                                                <div class="width" >
+                                                        <div class="border">
+                                                    <input type="email" 
+                                                     id="email"
+                                                      name="email"
+                                                      placeholder="email"
+                                                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                                                      class="form-control"
+                                                      ngModel
+                                                      required
+                                                      #email="ngModel"
+                                                >
+                                                </div>
+                                                   <span class="help-block" *ngIf="email.touched && !email.valid">please enter correct email</span>
+                                               </div>
+                                            
+                                               <div  class="width">
+                                                       <div class="border">
+                                               <input 
+                                               type="password" 
+                                                 id="password"
+                                                 placeholder="password"
+                                                 name="password"
+                                                pattern = "((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"
+                                                class="form-control"
+                                                required
+                                                ngModel
+                                                #password="ngModel">
+                                                </div>
+                                                <span  *ngIf="!password.valid && password.touched">please enter strong password of minimum 6 length</span>
+                                               </div>
+                                            
+                                             
+                                                <div class="width"  [class.has-error]="confirmPassword.touched && confirmPassword.invalid">    
+                                             
+                                                 <div class="border">
+                                                <input
+                                                 name="confirmPassword" 
+                                                 type="password"
+                                                 placeholder="confirm Password"
+                                                 appConfirmEqualValidator="password"
+                                                 class="form-control"
+                                                 id="confirmPassword"
+                                                 required
+                                                 ngModel
+                                                 #confirmPassword ="ngModel"
+                                                 >
+                                                 </div>
+                                                 <span  class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required">ConfirmPassword is reqired</span>
+                                                 <span  class="help-block  "*ngIf="!confirmPassword.touched && confirmPassword.errors?.notEqual">password not equal</span>
+                                            
+                                                </div>
+                                                
+                                                
+                                            
+                                              
+                                                 <button class="Button"[disabled]="!f.valid"  [class.cursor]="!f.valid" type="submit">Signup</button>
+                                              
+                                            </form>
+                       <p class="margin">Already have an account ?<a routerLink="/seller/login">login</a></p>
+
+  
+                       </div>
+
+                </div>
+        </div>
+
+</div>

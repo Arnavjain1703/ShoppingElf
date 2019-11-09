@@ -32,10 +32,10 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">       
                 <ul  class=" nav navbar-nav navbar-left">
           
-            <li class="items" ><a    (click)="menProducts()"
+            <li class="items" ><a     (click)="menProducts()"
               routerLink="products"
               ><span class="color">Men</span> </a></li>
-            <li  class="items"><a    (click)="womenProducts()"
+            <li  class="items"><a      (click)="womenProducts()"
               routerLink="products"
               
               ><span class="color">Women</span></a></li>
@@ -55,19 +55,19 @@
             </a>
           </li> -->
           <li class="dropdown">
-              <a   class="dropdown-toggle" data-toggle="dropdown">
+              <a   class="dropdown-toggle" data-toggle="dropdown"  *ngIf="serverService.loggedIn()"  >
                  
                 <span class="color items">
                       Profile
                       </span> </a>
 
               <ul class="dropdown-menu">
-                <li class="margin" ><a   routerLink="/orders" class="color1" >  My Orders </a></li>
+                <li class="margin" ><a    routerLink="/orders" class="color1" >  My Orders </a></li>
               </ul>
             </li>
          
           <li class="items">
-            <a routerLink="/bag"> 
+            <a routerLink="/bag" *ngIf="serverService.loggedIn()" > 
             <span class="color">  
               <span class="glyphicon glyphicon-briefcase"></span>  Bag
             </span>
@@ -75,7 +75,7 @@
           </li>
 
          <li class="items"  >
-           <a routerLink="/login" >
+           <a routerLink="/login" *ngIf="! serverService.loggedIn()" >
           <span class="color">
             <span class="glyphicon glyphicon-user" ></span> 
           Log in
@@ -85,13 +85,22 @@
          
          
           <li class="items">
-               <a routerLink="/signup">
+               <a routerLink="/signup" *ngIf="! serverService.loggedIn()"  >
              <span class="color">
                 <span class="glyphicon glyphicon-user" ></span> 
                 Sign Up
             </span>
               </a> 
           </li>
+
+          <li class="items">
+            <a routerLink="/frontpage"  (click)="remove()" *ngIf="serverService.loggedIn()" >
+          <span class="color">
+             <span class="glyphicon glyphicon-user" ></span> 
+              logOut
+         </span>
+           </a> 
+       </li>
 
           
         </ul>

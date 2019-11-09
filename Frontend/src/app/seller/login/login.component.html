@@ -1,0 +1,69 @@
+<div class="background">
+        <div class="row">
+            <div class="col-sm-5 col-md-6 display ">
+            <img class="image" src="/assets/loginImg.svg">
+            </div>
+            <div class=" col-sm-7 col-md-6 col-xs-12 ">
+                        
+                    <div class="form">
+    
+                             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    
+                                         <h1 class="heading">Login</h1>
+                                                 
+                                                                                       
+                                                                                 
+                                             <div class="width " >
+                                                 <div class="border">
+                                                 <input type="email" 
+                                                  id="email"
+                                                   name="email"
+                                                   placeholder="email"
+                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                                                   class="form-control"
+                                                   ngModel
+                                                   required
+                                                   #email="ngModel"
+                                             >   
+                                                </div>
+                                                <span class="help-block" *ngIf="email.touched && !email.valid">please enter correct email</span>
+                                            </div>
+                                            
+                                            <div  class="width">
+                                            <div class="border">
+                                            <input 
+                                            type="password" 
+                                              id="password"
+                                              placeholder="password"
+                                              name="password"
+                                             pattern = "((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"
+                                             class="form-control"
+                                             required
+                                             ngModel
+                                             #password="ngModel">
+                                             </div>
+                                             <span class="help-block" *ngIf="!password.valid && password.touched">please enter password of minimum 6 length</span>
+                                            </div>
+                                         
+                                          
+                                           
+                                         
+                                             
+                                             
+                                         
+    
+                                              <button class="Button" [class.cursor]="!f.valid" [disabled]="!f.valid"  type="submit">Login
+                                              </button>
+                                            
+                                         </form>
+                                         <p class="margin">Don't have an account? <a routerLink="/seller/signup">signup</a></p>
+                                         
+    
+    
+                    </div>
+    
+             </div>
+        </div>
+       
+    </div>
+    

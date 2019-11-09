@@ -28,6 +28,9 @@ import { ShowService } from './services/show.service';
 import { PriceService } from './services/priceService';
 import { SizeService } from './services/size.service';
 import { FrontpageComponent } from './frontpage/frontpage.component';
+import { FooterComponent } from './footer/footer.component';
+import { SellerLoginComponent } from './seller/login/login.component';
+import { SellerSignupComponent } from './seller/signup/signup.component';
 
 
 @NgModule({
@@ -47,6 +50,9 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
     ProductCategoryComponent,
     ProductCategory2Component,
     FrontpageComponent,
+    FooterComponent,
+    SellerLoginComponent,
+    SellerSignupComponent
   ],
   imports: [
     BrowserModule,

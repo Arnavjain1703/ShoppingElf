@@ -35,4 +35,9 @@ kidsProducts()
   this.serverService.getallKidsProducts()
 }
 
+remove()
+{
+  this.serverService.loggOut();
+}
+
 }

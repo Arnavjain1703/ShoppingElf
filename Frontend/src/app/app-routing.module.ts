@@ -8,6 +8,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductBagComponent } from './product-bag/product-bag.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
+import { SellerLoginComponent } from './seller/login/login.component';
+import { SellerSignupComponent } from './seller/signup/signup.component';
 
 
   
@@ -22,6 +24,8 @@ const appRoutes: Routes=[
      
     {path:'details/:id',component: ProductDetailsComponent},
     {path:'orders',component: MyOrderComponent},
+    {path:'seller/login',component:SellerLoginComponent},
+    {path:'seller/signup',component:SellerSignupComponent}
     
 
 

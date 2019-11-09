@@ -11,7 +11,7 @@ export class ServerService
 {      
   tk:any;
   Products:Product[];
-  private rootUrl="http://8297107c.ngrok.io"
+  private rootUrl="https://34653dac.ngrok.io"
 
 
   constructor(private http :HttpClient,
@@ -22,12 +22,41 @@ export class ServerService
   signup(yourName:string,phoneNumber:string,email:string,password:string,confirmPassword:string) 
    
     {  
-      console.log(this.rootUrl+'/api/account/userlogin')
+      console.log(this.rootUrl+'/api/Account')
+        const headers = new HttpHeaders({'Content-Type':'application/json'});
+         console.log(JSON.stringify({yourName,email,password,confirmPassword,phoneNumber}));
+        return this.http.post(this.rootUrl+'/api/Account',JSON.stringify({yourName,email,password,confirmPassword,phoneNumber}),
+        {headers:headers})
+       
+    }
+
+    login(email:string ,password:string)
+  { 
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(JSON.stringify({email,password}));
+    console.log(this.rootUrl+'/api/Account/UserLogin')
+   this.http.post(this.rootUrl+'/api/Account/UserLogin',JSON.stringify({email,password}),{headers:headers})
+   .subscribe(
+    (response) =>
+     {      
+           this.tk=response;
+          console.log(this.tk);
+        localStorage.setItem('token',this.tk);
+     }                                                
+       
+  );
+    
+  }
+
+  sellersignup(yourName:string,mobileNumber:string,email:string,password:string,confirmPassword:string) 
+   
+    {  
+      
         const headers = new HttpHeaders({'Content-Type':'application/json'});
         
        
-        console.log(JSON.stringify({yourName,email,password,confirmPassword,phoneNumber}));
-         this.http.post(this.rootUrl+'/api/Account',JSON.stringify({yourName,email,password,confirmPassword,phoneNumber}),
+        console.log(JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}));
+         this.http.post(this.rootUrl,JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}),
         {headers:headers})
         .subscribe(
           response=>
@@ -35,7 +64,7 @@ export class ServerService
             
          console.log(response);
         
-            // this.productService.setService(this.Products);
+        
           },
            error=> {
              console.log(error);
@@ -44,7 +73,8 @@ export class ServerService
         )
     }
 
-    login(email:string ,password:string)
+
+    sellerlogin(email:string ,password:string)
   { 
     const headers = new HttpHeaders({'Content-Type':'application/json'});
     console.log(JSON.stringify({email,password}));
@@ -56,14 +86,26 @@ export class ServerService
            this.tk=response;
           console.log(this.tk);
         localStorage.setItem('token',this.tk);
-        
-        
-     
-
-    }                                                
+     }                                                
        
   );
     
+  }
+
+
+
+
+ loggedIn()
+  {
+    return !!localStorage.getItem('token')
+  }
+  getToken(){
+    return localStorage.getItem('token')
+  }
+  loggOut()
+  {
+    localStorage.removeItem('token');
+
   }
   getallMenProducts()
   {
