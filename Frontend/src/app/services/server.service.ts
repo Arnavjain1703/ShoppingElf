@@ -35,16 +35,8 @@ export class ServerService
     const headers = new HttpHeaders({'Content-Type':'application/json'});
     console.log(JSON.stringify({email,password}));
     console.log(this.rootUrl+'/api/Account/UserLogin')
-   this.http.post(this.rootUrl+'/api/Account/UserLogin',JSON.stringify({email,password}),{headers:headers})
-   .subscribe(
-    (response) =>
-     {      
-           this.tk=response;
-          console.log(this.tk);
-        localStorage.setItem('token',this.tk);
-     }                                                
-       
-  );
+   return this.http.post(this.rootUrl+'/api/Account/UserLogin',JSON.stringify({email,password}),{headers:headers})
+   
     
   }
 
@@ -56,21 +48,9 @@ export class ServerService
         
        
         console.log(JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}));
-         this.http.post(this.rootUrl,JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}),
+        return this.http.post(this.rootUrl,JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}),
         {headers:headers})
-        .subscribe(
-          response=>
-          {  
-            
-         console.log(response);
         
-        
-          },
-           error=> {
-             console.log(error);
-           }
-      
-        )
     }
 
 

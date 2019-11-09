@@ -1,5 +1,91 @@
 .background
 {
-     background:url('otpbackground.svg');
-     height: 400px;
+    background:url('/assets/otpbackground.png');
+     height:700px;
+    
+}
+.border
+{
+   border-left:3px solid #1A5276;
+   border-radius:3%;
+}
+::placeholder
+{
+  color:#1F618D ;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:700;
+
+
+}
+.padding
+{
+    padding: 15% 2%;
+}
+.center
+{
+    text-align:center;
+}
+.margin
+{
+    margin-top:5%;
+}
+.setting
+{
+    font-size:150%;
+    letter-spacing:1px;
+    font-family: 'Montserrat', sans-serif;
+    color:#E74C3C;
+
+
+}
+.color
+{
+    color:#1F618D;
+    font-weight:600;
+}
+@media only screen and (max-width: 1200px)
+{
+    .padding
+    {
+        padding:20% 5%;
+
+
+    };
+    
+    
+    
+}
+@media only screen and (max-width: 886px)
+{
+    .padding
+    {
+        padding:25% 5%;
+
+
+    };
+    
+    
+    
+}
+@media only screen and (max-width: 767px)
+{
+    .padding{
+        padding:30% 14%;
+    };
+
+}
+@media only screen and (max-width: 640px)
+{
+    .padding{
+        padding:35% 14%;
+    };
+
+}
+@media only screen and (max-width: 500px)
+{
+    .padding{
+        padding:50% 14%;
+    };
+
 }

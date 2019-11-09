@@ -1,3 +1,52 @@
 
 <div class="background">
+
+    <div class="row ">
+
+        <div class="col-lg-4 col-md-3 col-sm-2" col></div>
+
+        <div class="col-lg-4 col-md-6 col-sm-8 padding">
+       
+            <form  (ngSubmit)="onSubmitotp(o)"  #o="ngForm">
+       
+                <label class="heading"> ENTER OTP</label>
+       
+                <div class="border"><input type="text"placeholder="ENTER OTP" name="otp"  ngModel
+       
+                    class="form-control" required #otp="ngModel"></div>
+
+       
+                    <div  *ngIf="timeLeft>9" class="center setting"> <span class="color"> Otp will Expire in</span> {{minut}}:{{timeLeft}}  </div>
+       
+                    <div  *ngIf=" 9 >timeLeft" class="center setting"> <span class="color"> Otp will Expire in</span> {{minut}}:0{{timeLeft}}  </div>
+                     
+       
+                    <div class="row margin" >
+       
+                        <div class="col-sm-6 center">
+       
+                            <button type="submit"  [disabled]="!o.valid" class="btn btn-primary margin family">SUBMIT</button>
+       
+                        </div>
+                   
+       
+                        <div class="col-sm-6 center">
+       
+                            <button type="button" (click)="ngOnInit()" (click)="resendOtp()"class="btn btn-default margin family">RESEND OTP</button>
+       
+                        </div>
+                   
+                    </div> 
+                
+                </form>
+            
+            </div> 
+            
+            <div class="col-lg-4 col-md-3 col-sm-3" >
+
+            
+            </div>  
+    
+        </div>
+
 </div>

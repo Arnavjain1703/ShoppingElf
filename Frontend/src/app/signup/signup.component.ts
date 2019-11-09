@@ -31,15 +31,19 @@ export class SignupComponent implements OnInit {
     const value =form.value;
     console.log(value);
  
+   this.appComponent.loaders();
 
    this.serverService.signup(value.yourName,value.phoneNumber,value.email,value.password,value.confirmPassword)
    .subscribe(
+
+    
     response=>
     {  
       
    console.log(response);
+   this.appComponent.loaderOff();
   
-      // this.productService.setService(this.Products);
+      
     },
      error=> {
        console.log(error);

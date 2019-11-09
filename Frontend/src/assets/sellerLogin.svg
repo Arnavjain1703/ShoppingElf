@@ -27,8 +27,7 @@
            animation: motion 4s infinite
        }
       #Character {
-           animation: motion 4s infinite
-
+		  animation: motion 4s infinite
 	  }
 	 @keyframes motion 
 	 {

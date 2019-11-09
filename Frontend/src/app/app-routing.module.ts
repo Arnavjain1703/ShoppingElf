@@ -26,7 +26,7 @@ const appRoutes: Routes=[
     {path:'details/:id',component: ProductDetailsComponent},
     {path:'orders',component: MyOrderComponent},
     {path:'seller/login',component:SellerLoginComponent},
-    {path:'seller/signup',component:SellerSignupComponent}
+    {path:'seller/signup',component:SellerSignupComponent},
     {path:'seller/otp',component:OtpComponent},
     
 

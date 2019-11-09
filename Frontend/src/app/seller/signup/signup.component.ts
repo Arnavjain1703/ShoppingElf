@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from 'src/app/services/server.service';
 import { NgForm } from '@angular/Forms';
+import { OtpComponent } from '../otp/otp.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +11,9 @@ import { NgForm } from '@angular/Forms';
 })
 export class SellerSignupComponent implements OnInit {
 
-  constructor( private serverService:ServerService) { }
+  constructor( private serverService:ServerService,
+                private  otpComponent:OtpComponent,
+                private route:Router) { }
 
   ngOnInit() {
   }
@@ -18,9 +22,24 @@ export class SellerSignupComponent implements OnInit {
   {
     const value =form.value;
     console.log(value);
- 
+    
 
    this.serverService.sellersignup(value.yourName,value.mobileNumber,value.email,value.password,value.confirmPassword)
+   .subscribe(
+    response=>
+    {  
+      
+   console.log(response);
+   this.route.navigate(['seller/otp'])
+     
   
-  }
+    },
+     error=> {
+       console.log(error);
+     }
+
+  )
+   
+}
+
 }

@@ -7,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
  
-display=false ;
+loader=false ;
   ngOnInit() {
    
 }
-loader()
+loaders()
 {
-
+  this.loader=true;
 }
-
+loaderOff()
+{
+  this.loader=false;
+}
 
 }
