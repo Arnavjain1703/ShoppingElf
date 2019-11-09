@@ -10,6 +10,7 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { SellerLoginComponent } from './seller/login/login.component';
 import { SellerSignupComponent } from './seller/signup/signup.component';
+import { OtpComponent } from './seller/otp/otp.component';
 
 
   
@@ -26,6 +27,7 @@ const appRoutes: Routes=[
     {path:'orders',component: MyOrderComponent},
     {path:'seller/login',component:SellerLoginComponent},
     {path:'seller/signup',component:SellerSignupComponent}
+    {path:'seller/otp',component:OtpComponent},
     
 
 

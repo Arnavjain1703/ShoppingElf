@@ -31,6 +31,7 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
 import { FooterComponent } from './footer/footer.component';
 import { SellerLoginComponent } from './seller/login/login.component';
 import { SellerSignupComponent } from './seller/signup/signup.component';
+import { OtpComponent } from './seller/otp/otp.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { SellerSignupComponent } from './seller/signup/signup.component';
     FrontpageComponent,
     FooterComponent,
     SellerLoginComponent,
-    SellerSignupComponent
+    SellerSignupComponent,
+    OtpComponent
   ],
   imports: [
     BrowserModule,
