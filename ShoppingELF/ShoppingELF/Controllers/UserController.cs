@@ -188,6 +188,7 @@ namespace ShoppingELF.Controllers
                     int x = new UserRepository().OrderNow(uid, pid, model);
                     if (x == 1)
                     {
+                        new UserRepository().ClearCart(uid);
                         return Ok("Order Placed Successfully");
                     }
                     else

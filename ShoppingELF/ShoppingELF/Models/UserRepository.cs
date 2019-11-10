@@ -208,6 +208,8 @@ namespace ShoppingELF.Models
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
+                UserTable user = new UserTable();
+                user = context.UserTable.FirstOrDefault(m => m.UserID == uid);
                 SizeTable st = new SizeTable();
                 st = context.SizeTable.FirstOrDefault(m => m.PID == pid);
                 if (st.productQuantity > 0)
@@ -226,6 +228,25 @@ namespace ShoppingELF.Models
                     st.productQuantity -= model.productQuantity;
                     context.OrderTable.Add(ot);
                     context.SaveChanges();
+
+                    ProductTable seller = new ProductTable();
+                    seller = context.ProductTable.FirstOrDefault(x => x.ProductID == pid);
+
+                    SoldTable soldt = new SoldTable()
+                    {
+                        SellerID = seller.SellerID,
+                        productName = st.ProductTable.productName,
+                        productBrand = st.ProductTable.productBrand,
+                        productPrice = st.productPrice,
+                        productQuantity = model.productQuantity,
+                        productSize = st.productSize,
+                        productPicture = st.ProductTable.picture1,
+                        PID = pid,
+                        UserName = user.email
+                    };
+                    context.SoldTable.Add(soldt);
+                    context.SaveChanges();
+
                     return 1;
                 }
                 else

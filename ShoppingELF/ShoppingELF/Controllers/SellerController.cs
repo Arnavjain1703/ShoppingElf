@@ -70,7 +70,7 @@ namespace ShoppingELF.Controllers
                 {
                     seller.IsAccountVerified = true;
                     context.SaveChanges();
-                    return Ok("Your Account has been verified Successfully");
+                    return Ok(TokenManager.GenerateToken(seller.email));
                 }
                 else
                     return Ok("Please enter a valid OTP");
@@ -90,6 +90,17 @@ namespace ShoppingELF.Controllers
                 return Ok("OTP sent sucessfully");
             }
 
+        }
+
+        [HttpPost]
+        [Route("api/Seller/EnterDetails/{sid}")]
+        public IHttpActionResult EnterDetails(int sid, SellerDetailsModel model)
+        {
+            bool x = new SellerModel().EnterDetails(sid, model);
+            if (x)
+                return Ok("Details addded successfully");
+            else
+                return Ok("Something went wrong");
         }
 
         [NonAction]

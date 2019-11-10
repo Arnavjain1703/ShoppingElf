@@ -56,6 +56,7 @@ namespace ShoppingELF.Controllers
         [Route("api/Product/GetProductBySuitableID/{sid}")]
         public IHttpActionResult GetProductsBySuitableID(int sid)
         {
+            //var y = new ProductRepository().GetCategory(sid);
             var x = new ProductRepository().GetProductsBySuitableID(sid);
             return Ok(x);
         }

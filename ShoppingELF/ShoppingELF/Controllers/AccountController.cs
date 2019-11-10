@@ -139,7 +139,7 @@ namespace ShoppingELF.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    return Ok("Something Went Wrong");
                 }
             }
         }
