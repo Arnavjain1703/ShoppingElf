@@ -147,6 +147,8 @@ namespace ShoppingELF.Models
             {
                 CartTable ct = new CartTable();
                 SizeTable st = new SizeTable();
+                UserTable user = new UserTable();
+                user = context.UserTable.FirstOrDefault(m => m.UserID == uid);
                 var cart = context.CartTable.Where(m => m.UserID == uid).ToList();
                 var cartitems = context.CartTable.Where(m => m.UserID == uid).ToList();
                 if(cart.Count > 0)
@@ -165,11 +167,30 @@ namespace ShoppingELF.Models
                                 productPrice = i.SizeTable.productPrice,
                                 productSize = i.SizeTable.productSize,
                                 productQuantity = i.Quantity,
-                                PID = i.PID
+                                PID = i.PID,
                             };
 
                             st.productQuantity -= i.Quantity;
                             context.OrderTable.Add(ot);
+                            context.SaveChanges();
+
+                            ProductTable seller = new ProductTable();
+                            seller = context.ProductTable.FirstOrDefault(x => x.ProductID == i.SizeTable.ProductID);
+                            
+
+                            SoldTable soldt = new SoldTable()
+                            {
+                                SellerID = seller.SellerID,
+                                productName = i.SizeTable.ProductTable.productName,
+                                productBrand = i.SizeTable.ProductTable.productBrand,
+                                productPrice = i.SizeTable.productPrice,
+                                productQuantity = i.SizeTable.productQuantity,
+                                productSize = i.SizeTable.productSize,
+                                productPicture = i.SizeTable.ProductTable.picture1,
+                                PID = i.PID,
+                                UserName = user.email
+                            };
+                            context.SoldTable.Add(soldt);
                             context.SaveChanges();
                             //return 1;
                         }

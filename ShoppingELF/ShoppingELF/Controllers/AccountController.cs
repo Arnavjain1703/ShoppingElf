@@ -14,7 +14,7 @@ using System.Web.Security;
 namespace ShoppingELF.Controllers
 {
     //[EnableCors(origins: "http://16f4c92f.ngrok.io", headers: "*", methods: "*")]
-    [EnableCors("https://9f906e85.ngrok.io", "*","*")]
+    //[EnableCors("https://9f906e85.ngrok.io", "*","*")]
     public class AccountController : ApiController
     {
         [HttpPost]

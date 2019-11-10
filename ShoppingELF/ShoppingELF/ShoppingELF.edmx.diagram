@@ -30,6 +30,7 @@
         <AssociationConnector Association="ShoppingELFModel.FK_SizeTable_ProductTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SellerDetailsTable_SellerTable" ManuallyRouted="false" />
         <AssociationConnector Association="ShoppingELFModel.FK_SoldTable_SoldTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingELFModel.FK_SoldTable_SizeTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

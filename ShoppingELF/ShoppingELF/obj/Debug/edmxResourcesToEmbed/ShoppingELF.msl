@@ -115,6 +115,10 @@
     <EntitySetMapping Name="SoldTable">
       <EntityTypeMapping TypeName="ShoppingELFModel.SoldTable">
         <MappingFragment StoreEntitySet="SoldTable">
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="productPicture" ColumnName="productPicture" />
+          <ScalarProperty Name="productSize" ColumnName="productSize" />
           <ScalarProperty Name="SoldID" ColumnName="SoldID" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
           <ScalarProperty Name="productName" ColumnName="productName" />

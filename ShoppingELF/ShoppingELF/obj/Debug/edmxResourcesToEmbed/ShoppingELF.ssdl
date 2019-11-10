@@ -113,6 +113,10 @@
     <Property Name="productBrand" Type="nvarchar(max)" Nullable="false" />
     <Property Name="productPrice" Type="int" Nullable="false" />
     <Property Name="productQuantity" Type="int" Nullable="false" />
+    <Property Name="productSize" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="productPicture" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SubCategoryTable">
     <Key>
@@ -277,6 +281,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SoldTable_SizeTable">
+    <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="1" />
+    <End Role="SoldTable" Type="Self.SoldTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SizeTable">
+        <PropertyRef Name="PID" />
+      </Principal>
+      <Dependent Role="SoldTable">
+        <PropertyRef Name="PID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SoldTable_SoldTable">
     <End Role="SellerTable" Type="Self.SellerTable" Multiplicity="1" />
     <End Role="SoldTable" Type="Self.SoldTable" Multiplicity="*" />
@@ -357,6 +373,10 @@
     <AssociationSet Name="FK_SizeTable_ProductTable" Association="Self.FK_SizeTable_ProductTable">
       <End Role="ProductTable" EntitySet="ProductTable" />
       <End Role="SizeTable" EntitySet="SizeTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldTable_SizeTable" Association="Self.FK_SoldTable_SizeTable">
+      <End Role="SizeTable" EntitySet="SizeTable" />
+      <End Role="SoldTable" EntitySet="SoldTable" />
     </AssociationSet>
     <AssociationSet Name="FK_SoldTable_SoldTable" Association="Self.FK_SoldTable_SoldTable">
       <End Role="SellerTable" EntitySet="SellerTable" />
