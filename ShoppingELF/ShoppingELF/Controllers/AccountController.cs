@@ -14,6 +14,7 @@ using System.Web.Security;
 namespace ShoppingELF.Controllers
 {
     //[EnableCors(origins: "http://16f4c92f.ngrok.io", headers: "*", methods: "*")]
+    [EnableCors("https://9f906e85.ngrok.io", "*","*")]
     public class AccountController : ApiController
     {
         [HttpPost]
@@ -173,7 +174,7 @@ namespace ShoppingELF.Controllers
         {
             var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
             //var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
-            var link = "https://34653dac.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
+            var link = "https://9f906e85.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
             var ToEmail = new MailAddress(Email);
             var FromEmailPassword = "Rishabh@2306";
