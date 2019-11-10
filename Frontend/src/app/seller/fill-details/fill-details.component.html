@@ -1,0 +1,192 @@
+
+<div class="background">
+ 
+        
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+ <div class="row">
+
+<div class="col-md-6 ">
+
+        <label for="AddressLine1"  class="heading">Address 1</label>
+    <div class="center">    <input 
+        type="text" 
+        id="AddressLine1"
+         name="AddressLine1"
+         ngModel 
+
+         placeholder="enter your Address"
+      class="form-control"
+        #AddressLine1="ngModel"
+        required 
+
+></div>
+<span class="help-block" *ngIf="AddressLine1.touched && !AddressLine1.valid">please enter your adderss</span>
+        
+  <label for="AddressLine2" class="heading">Address2 (OPTIONAL)</label>
+  <input
+   type="text"
+    id="AddressLine2" 
+    name="AddressLine2"
+    ngModel
+    placeHolder="Enter your address "
+     class="form-control"
+     #AddressLine2="ngModel"
+     required
+     >
+  
+
+  
+  <label for ="pincode" class="heading">Pincode</label><br>
+  <input  
+  type="text" 
+  id="pincode" 
+  name="pincode" 
+  placeholder="Enter Picode" 
+  class="form-control"
+  ngModel
+  #pincode="ngModel"
+  required
+  >
+  <span class="help-block" *ngIf="pincode.touched && !pincode.valid">please enter pincode</span>    
+
+    
+    <label for ="state" class="heading">State</label><br>
+   <input 
+   type="text" 
+   id="state" name="state" 
+   placeholder="enter your State"
+   class="form-control"
+   ngModel
+   required
+   #state="ngModel"
+        >
+   
+        <span class="help-block" *ngIf="state.touched && !state.valid">please enter state</span>
+
+    <label for ="city" class="heading">City</label><br>
+  <input 
+  type="text" 
+  id="city" 
+  name="city" 
+  placeholder="enter your City"
+  class="form-control"
+  required
+  ngModel
+  #city="ngModel" >
+     
+  <span class="help-block" *ngIf="city.touched && !city.valid">please enter city</span>
+
+     </div>
+ <div class="col-md-6 " >
+
+        
+          <label for ="AccountHolderName" class="heading">Account Holder Name</label><br>
+        <input 
+        type="text" 
+        id="AccountHolderName" 
+        name="AccountHolderName"
+        placeholder="enter account holder"
+        class="form-control" 
+        required
+        ngModel
+        #AccountHolderName="ngModel"
+        >
+        <span class="help-block" *ngIf="AccountHolderName.touched && !AccountHolderName.valid">please enter account holder Name</span>
+        
+
+        
+        
+
+        
+                <label for ="accountNumber" class="heading">Account Number</label><br>
+        <input 
+        type="text" 
+        id="accountNumber"
+         name="accountNumber"
+          placeholder="enter your City" 
+          class="form-control"
+          ngModel
+          required
+          #accountNumber="ngModel">
+
+          <span class="help-block" *ngIf="accountNumber.touched && !accountNumber.valid">please enter account number</span>
+        
+                <label for ="IFSCCode" class="heading">IFSCCode</label><br>
+                
+        <input 
+        type="text"
+         id="IFSCCode" 
+         name="IFSCCode" 
+         placeholder="enter your City" 
+         class="form-control"
+         required
+         ngModel
+         #IFSCCode="ngModel">
+        
+         <span class="help-block" *ngIf="IFSCCode.touched && !IFSCCode.valid">please enter IFSCCode</span>
+                <label for ="accountType" class="heading">Account Type</label><br>
+         <input 
+         type="text" 
+         id="accountType" 
+         name="accountType" 
+         placeholder="enter your City" 
+         class="form-control"
+         ngModel
+         required
+         #accountType="ngModel">
+
+        
+         <span class="help-block" *ngIf="accountType.touched && !accountType.valid">please enter accountType</span>
+        
+            <label for="ShippingFee" class="heading">Shipping Fee</label><br>
+        <input 
+        type="number" 
+        id="shippingFee"
+         name="ShippingFee" 
+         placeholder="enter your shipping fee" 
+         class="form-control"
+         ngModel
+         required
+          #ShippingFee="ngModel">
+          <span class="help-block" *ngIf="ShippingFee.touched && !ShippingFee.valid">please enter shippingFee</span>
+        
+                <label for="GSTNumber" class="heading">GST Number</label><br>
+        <input 
+        type="text"
+         id="GSTNumber" 
+         name="GSTNumber"
+          placeholder="enter your GSTNumber" 
+          class="form-control"
+          ngModel
+          required
+          #GSTNumber="ngModel">
+          <span class="help-block" *ngIf="GSTNumber.touched && !GSTNumber.valid">please enter GST number</span>
+        
+                <label for="PANCardNumber" class="heading">PAN Card Number</label><br>
+        <input 
+        type="text" 
+        id="PANCardNumber" 
+        name="PANCardNumber" 
+        placeholder="enter your PAN Number" 
+        class="form-control"
+        ngModel
+        #PANCardNumber="ngModel"
+        required
+        >
+        
+        <span class="help-block" *ngIf="PANCardNumber.touched && !PANCardNumber.valid">please enter PAN card number</span>
+
+
+        
+
+
+
+ </div>
+
+ </div>
+ 
+<div class="center margin" ><button type="submit" class="btn btn-success"> Submit </button></div>
+</form>
+
+</div>

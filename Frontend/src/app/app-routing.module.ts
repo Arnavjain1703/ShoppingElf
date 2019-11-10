@@ -11,6 +11,7 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
 import { SellerLoginComponent } from './seller/login/login.component';
 import { SellerSignupComponent } from './seller/signup/signup.component';
 import { OtpComponent } from './seller/otp/otp.component';
+import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
 
 
   
@@ -28,6 +29,7 @@ const appRoutes: Routes=[
     {path:'seller/login',component:SellerLoginComponent},
     {path:'seller/signup',component:SellerSignupComponent},
     {path:'seller/otp',component:OtpComponent},
+    {path:'seller/details',component:FillDetailsComponent}
     
 
 

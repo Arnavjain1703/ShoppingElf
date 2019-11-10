@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ParticlesModule } from 'angular-particle';
-import {FormsModule} from '@angular/Forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/Forms';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { ServerService } from './services/server.service';
@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SellerLoginComponent } from './seller/login/login.component';
 import { SellerSignupComponent } from './seller/signup/signup.component';
 import { OtpComponent } from './seller/otp/otp.component';
+import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
 
 
 @NgModule({
@@ -54,19 +55,21 @@ import { OtpComponent } from './seller/otp/otp.component';
     FooterComponent,
     SellerLoginComponent,
     SellerSignupComponent,
-    OtpComponent
+    OtpComponent,
+    FillDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ParticlesModule
+    ParticlesModule,
+    ReactiveFormsModule
 
     
   ],
   providers: [ServerService,ProductService,ProductBagService,ProductBagItemComponent,ProductBagComponent,
-    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService],
+    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService,OtpComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,40 @@
+.background
+{
+    padding:3% 2%;
+     min-height: 660px;
+}
+.center
+{
+    text-align: center;
+}
+.heading
+{
+    letter-spacing: 1px;
+    color:#1A5276;
+    text-align:left;
+    margin-top:3%;
+
+
+}
+.background{
+    background:#FEF9E7   ;
+}
+
+input{
+    border-left: 3px solid #1A5276;
+}
+
+::placeholder{
+
+color:#2980B9;
+letter-spacing: 1px;
+
+}
+.margin{
+    margin-top:2%;
+}
+.help-block
+{
+    color:red;
+    letter-spacing:1px
+}
