@@ -33,6 +33,7 @@ import { SellerLoginComponent } from './seller/login/login.component';
 import { SellerSignupComponent } from './seller/signup/signup.component';
 import { OtpComponent } from './seller/otp/otp.component';
 import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
+import { ConfirmValidatorDirective } from './shared/confirm-equal-validator.direcive';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { FillDetailsComponent } from './seller/fill-details/fill-details.compone
     SellerLoginComponent,
     SellerSignupComponent,
     OtpComponent,
-    FillDetailsComponent
+    FillDetailsComponent,
+    // ConfirmValidatorDirective
   ],
   imports: [
     BrowserModule,

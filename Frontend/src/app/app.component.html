@@ -1,3 +1,10 @@
+<div class="popups" *ngIf="model" [class.success]="success" [class.warning]="warning">
+    <div class="center"><img [src]=srcs></div>
+    <div class=" center">{{sentence}}</div>
+    <div class="center"><button (click)="remove()" class="btn btn-info">ok</button></div>
+</div> 
+
+
 <div  [class.remove]="!loader" class="bg  " >
 <div class="roter1"></div>
 <div class="router2"></div>

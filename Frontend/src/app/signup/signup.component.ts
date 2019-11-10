@@ -32,7 +32,10 @@ export class SignupComponent implements OnInit {
     console.log(value);
  
    this.appComponent.loaders();
-
+   
+  //  this.appComponent.SuccessModel('kjbntnbtb');
+  this.appComponent.WarningModel('error');
+ 
    this.serverService.signup(value.yourName,value.phoneNumber,value.email,value.password,value.confirmPassword)
    .subscribe(
 
@@ -42,12 +45,13 @@ export class SignupComponent implements OnInit {
       
    console.log(response);
    this.appComponent.loaderOff();
-  
+   this.appComponent.SuccessModel('success');
       
     },
      error=> {
        console.log(error);
        this.appComponent.loaderOff();
+       this.appComponent.WarningModel('error');
 
      }
 
