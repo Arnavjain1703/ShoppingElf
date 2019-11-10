@@ -103,6 +103,17 @@ namespace ShoppingELF.Controllers
                 return Ok("Something went wrong");
         }
 
+        [HttpPut]
+        [Route("api/Seller/EditSellerDetails/{sid}")]
+        public IHttpActionResult EditDetails(int sid, SellerDetailsModel model)
+        {
+            bool x = new SellerModel().EditDetails(sid, model);
+            if (x)
+                return Ok("Details Edited Successfully");
+            else
+                return Ok("Something went wrong please try again later");
+        }
+
         [NonAction]
         public void EmailVerification(int UserID, string Email, string OTP, string EmailFor = "Account")
         {
