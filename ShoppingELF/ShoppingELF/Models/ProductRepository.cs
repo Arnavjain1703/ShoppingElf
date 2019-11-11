@@ -118,6 +118,10 @@ namespace ShoppingELF.Models
                         ProductModel = new ProductModel()
                         {
                             productName = x.ProductTable.productName,
+                            picture1 = x.ProductTable.picture1,
+                            picture2 = x.ProductTable.picture2,
+                            picture3 = x.ProductTable.picture3,
+                            picture4 = x.ProductTable.picture4,
                             productBrand = x.ProductTable.productBrand,
                             productDetails = x.ProductTable.productDetails,
                             ProductID = x.ProductTable.ProductID

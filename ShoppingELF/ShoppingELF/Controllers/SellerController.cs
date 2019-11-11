@@ -29,7 +29,7 @@ namespace ShoppingELF.Controllers
                     new SellerAccountModel().AddSeller(seller);
                     EmailVerification(seller.SellerID, seller.email, seller.OTP);
                     new SellerAccountModel().OTPSentTime(seller.email);
-                    return Request.CreateResponse(HttpStatusCode.Created, "An OTP has been sent to your email , Please Verify it to continue access");
+                    return Request.CreateResponse(HttpStatusCode.Created, seller.SellerID);
                 }
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace ShoppingELF.Controllers
                 return Ok("Something went wrong please try again later");
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/Seller/Change/Password/{sid}")]
         public IHttpActionResult ChangePassword(int sid, ChangePasswordModel model, string Username, string token)
         {
