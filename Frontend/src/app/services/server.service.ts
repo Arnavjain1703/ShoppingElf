@@ -90,15 +90,17 @@ export class ServerService
   getallMenProducts()
   {
 
-    console.log(this.rootUrl+'/api/Product/Category/1');
-     this.http.get(this.rootUrl+'/api/Product/Category/1')
+    console.log(this.rootUrl+'/api/Product/GetProductBySuitableID/1');
+     this.http.get( this.rootUrl+'/api/Product/GetProductBySuitableID/1')
      .subscribe(
       response=>
       {  
         
      console.log(response);
+     this.tk=response;
+     this.productService.setService(this.tk);
     
-        // this.productService.setService(this.Products);
+        
       },
        error=> {
          console.log(error);

@@ -8,7 +8,7 @@ export class Product
     public picture2:string;
     public picture3:string;
     public picture4:string;
-    public productPrice:number;
+    public price:number;
     public productBrand:string;
     public SubCategoryID:number;
     public SellerID:number;
