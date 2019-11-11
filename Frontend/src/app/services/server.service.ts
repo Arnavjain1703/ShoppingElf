@@ -6,6 +6,7 @@ import { ProductService } from './product.service';
 import { AppComponent } from '../app.component';
 import { Category1Service } from './category1.service';
 import { Category2Service } from './category2.service';
+import { SizeService } from './size.service';
 
 @Injectable()
 
@@ -19,7 +20,8 @@ export class ServerService
   constructor(private http :HttpClient,
               private productService:ProductService,
               private CategoryService:Category1Service ,
-              private CategoryService2:Category2Service
+              private CategoryService2:Category2Service,
+              private sizeService:SizeService
               ){}
 
 
@@ -52,7 +54,7 @@ export class ServerService
         
        
         console.log(JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}));
-        return this.http.post(this.rootUrl,JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}),
+        return this.http.post(this.rootUrl+'/api/Seller/Signup',JSON.stringify({yourName,email,password,confirmPassword,mobileNumber}),
         {headers:headers})
         
     }
@@ -91,11 +93,11 @@ export class ServerService
     localStorage.removeItem('token');
 
   }
-  getallMenProducts()
+  getallProducts(index:number)
   {
 
-    console.log(this.rootUrl+'/api/Product/GetProductBySuitableID/1');
-     this.http.get( this.rootUrl+'/api/Product/GetProductBySuitableID/1')
+    console.log(this.rootUrl+'/api/Product/GetProductBySuitableID/'+index);
+     this.http.get( this.rootUrl+'/api/Product/GetProductBySuitableID/'+index)
      .subscribe(
       response=>
       {  
@@ -117,10 +119,10 @@ export class ServerService
   
   }
 
-  GetCategory1()
+  GetCategory1(Index:number)
   {
-    console.log(this.rootUrl+'/api/Product/Category/1');
-    this.http.get( this.rootUrl+'/api/Product/Category/1')
+    console.log(this.rootUrl+'/api/Product/Category/'+Index);
+    this.http.get( this.rootUrl+'/api/Product/Category/'+Index)
     .subscribe(
       response=>
       {
@@ -156,44 +158,52 @@ export class ServerService
   }
   
   
-  getallWomenProducts()
-  {
-
-    console.log('reached');
-     this.http.get(this.rootUrl+'')
-     .subscribe(
-      response=>
-      {  
-        
-        this.tk=response;
-        this.Products=this.tk;
-        console.log(this.Products);
-    
-        this.productService.setService(this.Products);
-      }
-       
   
-    )
+  CategoryProducts(Index:number)
+  {
+    this.http.get(this.rootUrl+'/api/Product/GetProduct/'+Index)
+    .subscribe(
+     response=>
+     {  
+       
+       this.tk=response;
+       this.Products=this.tk;
+       console.log(this.Products);
+   
+       this.productService.setService(this.Products);
+     },
+     error=>
+     {
+       console.log(error);
+     }
+      
+ 
+   )  
   }
 
-  getallKidsProducts()
-  {
 
-    console.log('reached');
-     this.http.get(this.rootUrl+'')
-     .subscribe(
-      response=>
-      {  
-        
-        this.tk=response;
-        this.Products=this.tk;
-        console.log(this.Products);
-    
-        this.productService.setService(this.Products);
-      }
+  size(Index:number)
+  {
+    console.log(this.rootUrl+'/api/Product/ProductDetails/'+Index)
+    this.http.get(this.rootUrl+'/api/Product/ProductDetails/'+Index)
+    .subscribe(
+     response=>
+     {  
        
-  
-    )
+          console.log(response);
+          this.tk=response
+          console.log(this.tk)
+          this.sizeService.setSize(this.tk);
+          
+   
+     },
+     error=>
+     {
+       console.log(error);
+     }
+      
+ 
+   ) 
   }
 
   SellerDetails(AddressLine1,AddressLine2,pincode,
@@ -210,4 +220,6 @@ export class ServerService
       {headers:headers})
       
   }
+
+
 }

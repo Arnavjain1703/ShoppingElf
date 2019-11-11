@@ -9,6 +9,7 @@
  import { ProductBagService } from '../services/product-bag.service';
  import { ProductSize } from '../shared/size.module';
  import { ProductBagItemComponent } from '../product-bag/product-bag-item/product-bag-item.component';
+import { callbackify } from 'util';
 
 
  @Component({
@@ -20,6 +21,8 @@ export class ProductDetailsComponent implements OnInit {
  paramsubscription:Subscription;
   sizeSubscription:Subscription;
  index:number;
+ 
+
 // display=false;
 
 // added=false;
@@ -44,15 +47,17 @@ export class ProductDetailsComponent implements OnInit {
          this.index=+params['id']
        }
      )
-    //   this.sizeSubscription=this.SizeService.AllSize
-    //     .subscribe((Sizes:ProductSize[])=>
-    // { 
-    //           this.Sizes=Sizes;
+    
+     this.sizeSubscription=this.sizeService.AllSize
+         .subscribe((Sizes:ProductSize[])=>
+     { 
+               this.Sizes=Sizes;
+               console.log(Sizes[0].ProductModel.productBrand)
       
 
-    //  }
+     }
     
-    //  )
+    )
     this.product=this.productService.getProduct(this.index);
      this.Sizes=this.sizeService.getSize();
     
@@ -77,8 +82,12 @@ export class ProductDetailsComponent implements OnInit {
 //      this.productBagService.addorder(this.product);
     
 //   }
- }
+call()
+  {
      
+  } 
+ }
+   
 
     
   

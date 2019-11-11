@@ -44,7 +44,7 @@
                                  </div>
 <div>
   <div class="btn-background"  [class.show]="display">               
-     <button class="Button" routerLink="/details/{{index}}"  >
+     <button class="Button" (click)="details()" routerLink="/details/{{index}}"  >
             <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span>
     </button>
        <!-- <div >

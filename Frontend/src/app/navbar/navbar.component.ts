@@ -20,20 +20,24 @@ Ondisplay()
  
 menProducts()
 {
-  this.serverService.getallMenProducts();
-  this.serverService.GetCategory1();
+  this.serverService.getallProducts(1);
+  this.serverService.GetCategory1(1);
 
   
 }
 
 womenProducts()
 {
-  this.serverService.getallWomenProducts()
+  this.serverService.getallProducts(2)
+  this.serverService.GetCategory1(2)
+
 }
 
 kidsProducts()
 {
-  this.serverService.getallKidsProducts()
+  this.serverService.getallProducts(3)
+  this.serverService.GetCategory1(3);
+
 }
 
 remove()

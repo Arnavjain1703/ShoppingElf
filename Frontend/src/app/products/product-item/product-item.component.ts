@@ -4,6 +4,7 @@ import { ProductBagService } from 'src/app/services/product-bag.service';
 import {  Subscription } from 'rxjs';
 import { ShowService } from 'src/app/services/show.service';
 import { Price } from 'src/app/shared/price.module';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
   selector: 'app-product-item',
@@ -32,7 +33,8 @@ export class ProductItemComponent implements OnInit,OnDestroy {
   price1:number;
   price2:number;
   constructor( private productBagService:ProductBagService,
-                private showService:ShowService) { }
+                private showService:ShowService,
+                private serverService:ServerService) { }
 
   ngOnInit() {
 
@@ -76,7 +78,10 @@ export class ProductItemComponent implements OnInit,OnDestroy {
 
   }
 
-
+  details()
+  {
+    this.serverService.size(this.product.ProductID)
+  }
 
   call()
   {

@@ -7,15 +7,16 @@
 .image
 {
      padding: 5px;
-     width: 250px;
-     margin:5px ;
+     width: 260px;
+     margin:1px ;
 
 }
-.margin
+
+ .margin
 {
   padding-left: 7%;
   border-right: 2px #B3B6B7 solid;
-}
+} 
 
 
 .font
@@ -24,7 +25,7 @@
 }
 .background
 {
-  background:#FBFCFC   ;
+  background:#F9E79F  ;
 }
 .bg-img
 {
@@ -43,15 +44,16 @@
 }
 .Button{
      
-  background: #E91D83;
+  background: #EB984E;
   color: white;
-  border: 2px solid #E91D83;
+  border: 2px solid #EB984E;
   border-radius: 5px ;
-  height: 40px;
-  width: 150px;
+  width:120px;
+
+  
 
  
-  margin: 10px  30px;
+  margin: 10px 0px;
      }
 
 .Button:hover
@@ -61,24 +63,121 @@
  border-color:#85C1E9
 
 }   
-.text
-{
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
 
-}
-.styling
+.clicked
 {
-  color:#21618C ;
-  letter-spacing: 2px;
-}
-.alert
-{
-  text-align: center;
-  margin:2% 10% ;
-  box-shadow: 1px 1px 4px #B3B6B7 ;
-  letter-spacing:2px;
-
-
+   background:#F7DC6F ;
 }
 
+
+.brand,.name,.detail
+{  
+   color:#1B4F72 ; 
+    font-Size:200%;   
+
+} 
+.spacing
+{
+   margin-bottom:3%;
+}
+
+
+.details{
+   color:#2C3E50 ;
+   font-size: 200%;
+   font-family: 'Roboto Mono', monospace;
+
+}
+.padding
+{
+  padding-left:7%;
+}
+.key
+{
+  font-size: 200%;
+  color:#2C3E50 ;
+  font-family: 'Roboto Mono', monospace;
+}
+.size
+{
+    background:#E59866;
+   width:50px;
+   height:50px;
+   border-radius: 100%;
+   text-align:center;
+   padding-top:13px;
+   color:white ;
+   font-size: 130%;
+   box-shadow:0px 0px 2px  #E59866 ;
+   transition: box-shadow 0.2s;
+   cursor:pointer;
+   box-shadow:0px 0px 0px 1px #E59866 ;
+
+}
+.size:hover{
+  background:#DC7633;
+  color:#D6EAF8;
+  box-shadow:0px 0px 0px 0px #E59866 ;
+  
+}
+.price
+{
+  
+  color:#1F618D; 
+  
+}
+.spacing2
+{
+  margin-bottom:1%;
+}
+@media screen and (max-width: 584px)
+{
+   .image
+   {
+    width: 160px;
+    
+
+   } 
+   .margin{
+     padding-left:15%
+   } 
+   
+.brand,.name,.detail
+{  
+   color:#1B4F72 ; 
+    font-Size:130%;   
+
+} 
+.key{
+  font-Size:130%;
+}
+}
+@media screen and (max-width: 584px)
+{
+  .margin
+  {
+    padding-left: 10%;
+  }
+  .brand,.name,.detail
+{  
+   color:#1B4F72 ; 
+    font-Size:100%;   
+
+} 
+.key{
+  font-Size:100%;
+}
+}
+@media screen and (max-width: 354px)
+{
+  .image
+   {
+    width: 120px;
+    
+
+   } 
+  .margin
+  {
+    padding-left: 10%;
+  }
+}

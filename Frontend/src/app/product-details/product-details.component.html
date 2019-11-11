@@ -9,52 +9,45 @@
             
             </div>
            
-            <div class="col-xs-3 col-md-5 center ">
-
-                <span>Get your product details here</span>
-
-            </div>
-           
-            <div class="col-xs-1 ">
-                
-            </div>
+            
         
         </div>
 
-
+<!-- 
       <div *ngIf="display" class="alert alert-info">
           
         <h3>Confirm Order</h3>
         
         <button class="btn btn-success " (click)="dplay()"><span class="text">confirm</span>!!</button>
       
-    </div>
+    </div> -->
 
-      <div *ngIf="added" class="alert alert-success">
+      <!-- <div *ngIf="added" class="alert alert-success">
           
         <h3> Added to bag</h3>
     
      <button class="btn btn-primary" (click)="orders()"><span class="text">ok</span></button>
     
     </div>
-          
+           -->
             
 
     <div class="row ">
 
-        <div class="col-lg-6 margin">
+        <div class="col-xs-6 margin">
 
 
             <div class="row border ">
              
-            <div class="col-lg-6 image">
+            <div class="col-xs-6 image">
                 
                  <img class="img" [src]="product.picture1" alt="picture1"> 
                 
             </div>
 
+
         
-            <div class="col-lg-6 image">
+            <div class="col-xs-6 image">
 
                  <img class="img" [src]="product.picture1" alt="picture1"> 
 
@@ -64,13 +57,13 @@
    
     <div class="row">
      
-             <div class="col-lg-6 image">
+             <div class="col-xs-6 image">
 
                  <img  class="img"[src]="product.picture1" alt="picture1"> 
                  
              </div> 
      
-             <div class="col-lg-6 image">
+             <div class="col-xs-6 image">
 
                  <img  class="img" [src]="product.picture1" alt="picture1">          
              </div>
@@ -78,19 +71,22 @@
     </div>
 
 </div>
-<div class="col-lg-6 ">
+<div class="col-xs-6  padding ">
 
-    <div class="styling">
-        <h1 class="font">{{product.productBrand}}</h1>
+    <div  >
+        
+        <!-- <h3 class="font">{{product.productBrand}}</h3> -->
+        <div class="spacing"><span class="key">Brand</span>: <span class="brand"> {{product.productBrand}}</span></div>
          
-        <h1>{{product.productBrand}}</h1>
-        <h2> Rs {{product.productPrice}}</h2>
-        <h3>{{product.productDetails}}</h3>
+        <!-- <h3>{{product.productDetails}}</h3> -->
+        <div class="spacing" ><span class="key">Product Name</span> : <span class="name">{{product.productName}}</span></div>
+
+        <div class="detail spacing">{{product.productDetails}}</div>
 
         <div *ngFor=" let size of Sizes,let i =index">
         
        
-             <button  (click)="call(i)" class="btn btn-default">  {{size. ProductModel[0].productPrice}}</button>
+             <div (click)="call()" class="spacing2">  <div class="size" [class.clicked]="clicked"> {{size.productSize}}</div><span class="price"> Rs  {{size.productPrice}} </span>  </div>
 
       
                 

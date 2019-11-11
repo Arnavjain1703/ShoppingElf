@@ -6,13 +6,13 @@ import { Product } from './product.module';
   ProductQuantity:number;
   ProductID:number;
   productPrice:number;
-  ProductModel:Product[];
+  ProductModel:Product;
  
-  constructor(productSize:string,productPrice:number,productModel:Product[])
+  constructor(productSize:string,productPrice:number)
     {
         this.productPrice=productPrice;
         this.productSize=productSize;
-        this.ProductModel=productModel;
+        
 
 
 

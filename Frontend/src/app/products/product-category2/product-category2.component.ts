@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SubCategory } from 'src/app/shared/SubCategory.model';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
   selector: 'app-product-category2',
@@ -8,11 +9,18 @@ import { SubCategory } from 'src/app/shared/SubCategory.model';
 })
 export class ProductCategory2Component implements OnInit {
 
-  constructor() { }
 
   @Input() Index:number;
   @Input() category2 :SubCategory;
+  constructor( private serverService:ServerService
+    ) { }
+
   ngOnInit() {
+  }
+
+  Products()
+  {
+    this.serverService.CategoryProducts(this.category2.SubCategoryID);
   }
 
 }
