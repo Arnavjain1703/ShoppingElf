@@ -245,6 +245,57 @@ namespace ShoppingELF.Models
             }
         }
 
+        public List<ProductModel> ShowSellerProduct(int sellID)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var result = context.ProductTable
+                    .Where(x => x.SellerID == sellID)
+                    .Select(x => new ProductModel()
+                    {
+                        ProductID = x.ProductID,
+                        productName = x.productName,
+                        productBrand = x.productBrand,
+                        price = x.price,
+                        productDetails = x.productDetails,
+                        picture1 = x.picture1,
+                        picture2 = x.picture2,
+                        picture3 = x.picture3,
+                        picture4 = x.picture4
+                    }).ToList();
+                return result;
+            }
+        }
+
+        public List<SizeModel> ShowSellerProductSize(int pid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var result = context.SizeTable
+                    .Where(x => x.ProductID == pid)
+                    .Select(x => new SizeModel()
+                    {
+                        PID = x.PID,
+                        ProductID = x.ProductID,
+                        productSize = x.productSize,
+                        productQuantity = x.productQuantity,
+                        productPrice = x.productPrice,
+                        ProductModel = new ProductModel()
+                        {
+                            productName = x.ProductTable.productName,
+                            picture1 = x.ProductTable.picture1,
+                            picture2 = x.ProductTable.picture2,
+                            picture3 = x.ProductTable.picture3,
+                            picture4 = x.ProductTable.picture4,
+                            productBrand = x.ProductTable.productBrand,
+                            productDetails = x.ProductTable.productDetails,
+                            ProductID = x.ProductTable.ProductID
+                        }
+                    }).ToList();
+                return result;
+            }
+        }
+
         public void ImageUpload(int sid, int picid)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())

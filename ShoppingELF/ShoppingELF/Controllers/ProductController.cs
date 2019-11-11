@@ -113,6 +113,22 @@ namespace ShoppingELF.Controllers
                 return BadRequest("Unable to delete product");
         }
 
+        [HttpGet]
+        [Route("api/Product/Seller/Show/{sellID}")]
+        public IHttpActionResult ShowSellerProduct(int sellID)
+        {
+            var x = new ProductRepository().ShowSellerProduct(sellID);
+            return Ok(x);
+        }
+
+        [HttpGet]
+        [Route("api/Product/Seller/Show/Size/{pid}")]
+        public IHttpActionResult ShowSellerProductSize(int pid)
+        {
+            var x = new ProductRepository().ShowSellerProductSize(pid);
+            return Ok(x);
+        }
+
         [HttpPost]
         [Route("api/UploadImage/{sid}/{picid}")]
         public HttpResponseMessage PostUserImage(int sid)
