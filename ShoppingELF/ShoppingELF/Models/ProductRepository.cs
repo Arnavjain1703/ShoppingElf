@@ -88,6 +88,7 @@ namespace ShoppingELF.Models
                         ProductID = x.ProductID,
                         productName = x.productName,
                         productBrand = x.productBrand,
+                        price = x.price,
                         productDetails = x.productDetails,
                         picture1 = x.picture1,
                         picture2 = x.picture2,

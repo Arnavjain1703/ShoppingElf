@@ -17,6 +17,7 @@ namespace ShoppingELF.Models
         public string picture4 { get; set; }
         public int SubCategoryID { get; set; }
         public int SellerID { get; set; }
+        public Nullable<int> price { get; set; }
         public int SuitableID { get; set; }
 
         public virtual ICollection<CartTable> CartTable { get; set; }

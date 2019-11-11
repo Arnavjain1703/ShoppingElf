@@ -114,6 +114,32 @@ namespace ShoppingELF.Controllers
                 return Ok("Something went wrong please try again later");
         }
 
+        [HttpPut]
+        [Route("api/Seller/Change/Password/{sid}")]
+        public IHttpActionResult ChangePassword(int sid, ChangePasswordModel model, string Username, string token)
+        {
+            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                seller = context.SellerTable.FirstOrDefault(m => m.email == Username);
+                bool y = TokenManager.ValidateToken(token, Username);
+                if (y && seller.Role == "Seller")
+                {
+                    int x = new SellerModel().ChangePassword(sid, model);
+                    if (x == 1)
+                        return Ok("Please enter correct old password");
+                    else if (x == 4)
+                        return Ok("new password cannot be equal to old password");
+                    else if (x == 2)
+                        return Ok("Password Updated successfully");
+                    else
+                        return BadRequest("Something went wrong");
+                }
+                else
+                    return Unauthorized();
+            }
+        }
+
         [NonAction]
         public void EmailVerification(int UserID, string Email, string OTP, string EmailFor = "Account")
         {

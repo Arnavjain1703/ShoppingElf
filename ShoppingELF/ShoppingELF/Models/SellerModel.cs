@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 
 namespace ShoppingELF.Models
 {
@@ -48,6 +49,7 @@ namespace ShoppingELF.Models
                     AccountHolderName = model.AccountHolderName,
                     accountNumber = model.accountNumber,
                     accountType = model.accountType,
+                    IFSCCode = model.IFSCCode,
                     ShippingFee = model.ShippingFee,
                     GSTNumber = model.GSTNumber,
                     PANCardNumber = model.PANCardNumber,
@@ -83,6 +85,32 @@ namespace ShoppingELF.Models
                 }
                 else
                     return false;
+            }
+        }
+
+        public int ChangePassword(int sid, ChangePasswordModel model)
+        {
+            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var seller = context.SellerTable.FirstOrDefault(x => x.SellerID == sid);
+                if (seller != null)
+                {
+                    string oldPassword = Crypto.Hash(model.oldPassword);
+                    string newPassword = Crypto.Hash(model.NewPassword);
+                    if (oldPassword != seller.password)
+                        return 1;
+                    else if (newPassword == seller.password)
+                        return 4;
+                    else
+                    {
+                        seller.password = newPassword;
+                        context.SaveChanges();
+                        return 2;
+                    }
+                    //return 0;
+                }
+                else
+                    return 3;
             }
         }
     }
