@@ -88,12 +88,30 @@ namespace ShoppingELF.Controllers
             if (x)
                 return Ok("Product Details Updated successfully");
             else
-                return Ok("Something Went Wrong , please try again later");
+                return BadRequest("Something Went Wrong , please try again later");
+        }
+
+        [HttpPost]
+        [Route("api/Product/Delete/Size/{pid}")]
+        public IHttpActionResult DeleteProductSize(int pid)
+        {
+            bool x = new ProductRepository().DeleteSize(pid);
+            if (x)
+                return Ok("Size Removed successfully");
+            else
+                return BadRequest("Unable to proccess request");
         }
 
         [HttpPost]
         [Route("api/Product/Delete/{pid}")]
-        public
+        public IHttpActionResult DeleteProduct(int pid)
+        {
+            bool x = new ProductRepository().DeleteProduct(pid);
+            if (x)
+                return Ok("Product deleted successfully");
+            else
+                return BadRequest("Unable to delete product");
+        }
 
         [HttpPost]
         [Route("api/UploadImage/{sid}/{picid}")]

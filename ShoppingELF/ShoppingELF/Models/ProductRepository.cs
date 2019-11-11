@@ -209,6 +209,42 @@ namespace ShoppingELF.Models
             }
         }
 
+        public bool DeleteSize(int pid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var size = context.SizeTable.FirstOrDefault(x => x.PID == pid);
+                if (size != null)
+                {
+                    context.SizeTable.Remove(size);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public bool DeleteProduct(int pid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var size = context.SizeTable.Where(x => x.ProductID == pid).ToList();
+                var product = context.ProductTable.FirstOrDefault(x => x.ProductID == pid);
+                if (size != null && product != null)
+                {
+                    foreach (var i in size)
+                        context.SizeTable.Remove(i);
+                    context.SaveChanges();
+                    context.ProductTable.Remove(product);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
         public void ImageUpload(int sid, int picid)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
