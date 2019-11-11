@@ -191,6 +191,24 @@ namespace ShoppingELF.Models
             
         }
 
+        public bool EditProduct(int pid, SizeModel model)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var product = context.SizeTable.FirstOrDefault(x => x.PID == pid);
+                if (product != null)
+                {
+                    product.productPrice = model.productPrice;
+                    product.productQuantity = model.productQuantity;
+                    product.productSize = model.productSize;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
         public void ImageUpload(int sid, int picid)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())

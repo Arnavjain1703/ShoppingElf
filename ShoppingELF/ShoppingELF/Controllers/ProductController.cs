@@ -81,6 +81,21 @@ namespace ShoppingELF.Controllers
         }
 
         [HttpPost]
+        [Route("api/Product/EditProduct/{pid}")]
+        public IHttpActionResult EditProduct(int pid, SizeModel model)
+        {
+            bool x = new ProductRepository().EditProduct(pid, model);
+            if (x)
+                return Ok("Product Details Updated successfully");
+            else
+                return Ok("Something Went Wrong , please try again later");
+        }
+
+        [HttpPost]
+        [Route("api/Product/Delete/{pid}")]
+        public
+
+        [HttpPost]
         [Route("api/UploadImage/{sid}/{picid}")]
         public HttpResponseMessage PostUserImage(int sid)
         {

@@ -286,7 +286,7 @@ namespace ShoppingELF.Controllers
         }
 
         //[Authorize]
-        [HttpPut]
+        [HttpPost]
         [Route("api/User/ChangePassword/{uid}")]
         public IHttpActionResult ChangePassword(int uid, ChangePasswordModel model, string Username, string token)
         {
