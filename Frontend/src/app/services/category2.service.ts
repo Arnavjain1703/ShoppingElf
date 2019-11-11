@@ -1,16 +1,16 @@
 
 import { Subject } from 'rxjs';
-import { Category } from '../shared/category.model';
+import { SubCategory } from '../shared/SubCategory.model';
 
 export class Category2Service
 {
 
-    category2Changed= new Subject<Category[]>();
+    category2Changed= new Subject<SubCategory[]>();
 
-    private category2:Category[]=
+    private category2:SubCategory[]=
     [
         
-           new Category (1,'arnav',2),       
+           new SubCategory (1,'arnav',2),       
     ]
 
     getCategories()
@@ -18,7 +18,7 @@ export class Category2Service
       return  this.category2.slice();
     }
          
-    addCategory( category:Category)
+    addCategory( category:SubCategory)
     {
         this.category2.push(category);
         this.category2Changed.next(this.category2.slice())
@@ -30,7 +30,7 @@ export class Category2Service
         this.category2Changed.next(this.category2.slice())
 
     }
-    SetService(category:Category[])
+    SetService(category:SubCategory[])
     {
         this.category2=category
         this.category2Changed.next(this.category2.slice())

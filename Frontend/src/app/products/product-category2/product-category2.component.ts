@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SubCategory } from 'src/app/shared/SubCategory.model';
 
 @Component({
   selector: 'app-product-category2',
@@ -10,7 +11,7 @@ export class ProductCategory2Component implements OnInit {
   constructor() { }
 
   @Input() Index:number;
-  @Input() category2 :string;
+  @Input() category2 :SubCategory;
   ngOnInit() {
   }
 

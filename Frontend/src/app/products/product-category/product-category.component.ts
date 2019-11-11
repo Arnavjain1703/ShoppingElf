@@ -1,4 +1,6 @@
 import { Component, OnInit,Input,  } from '@angular/core';
+import { ServerService } from 'src/app/services/server.service';
+import { Category } from 'src/app/shared/category.model';
 
 @Component({
   selector: 'app-product-category',
@@ -7,11 +9,11 @@ import { Component, OnInit,Input,  } from '@angular/core';
 })
 export class ProductCategoryComponent implements OnInit {
   
-  @Input() category:string;
+  @Input() category:Category;
   @Input() index:number;
    
    
-  constructor(
+  constructor( private serverService:ServerService
   ) { }
 
   
@@ -21,7 +23,7 @@ export class ProductCategoryComponent implements OnInit {
   hello()
 
   {
-    alert('dwj');
+      this.serverService.GetCategory2(this.category.CategoryID)
   }
 
 }

@@ -5,6 +5,7 @@ import { Product } from '../shared/product.module';
 import { ProductService } from './product.service';
 import { AppComponent } from '../app.component';
 import { Category1Service } from './category1.service';
+import { Category2Service } from './category2.service';
 
 @Injectable()
 
@@ -17,7 +18,8 @@ export class ServerService
 
   constructor(private http :HttpClient,
               private productService:ProductService,
-              private CategoryService:Category1Service 
+              private CategoryService:Category1Service ,
+              private CategoryService2:Category2Service
               ){}
 
 
@@ -133,6 +135,27 @@ export class ServerService
     )
 
   }
+
+  GetCategory2(index:number)
+  {
+    console.log(this.rootUrl+'/api/Product/SubCategory/'+index);
+    this.http.get( this.rootUrl+'/api/Product/SubCategory/'+index)
+    .subscribe(
+      response=>
+      {
+        console.log(response)
+        this.tk=response;
+        this.CategoryService2.SetService(this.tk)
+      },
+       error=>
+       {
+         console.log(error)
+       }
+    )
+
+  }
+  
+  
   getallWomenProducts()
   {
 
