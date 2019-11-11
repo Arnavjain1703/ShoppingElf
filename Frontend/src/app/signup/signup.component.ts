@@ -14,6 +14,7 @@ import { AppComponent } from '../app.component';
 export class SignupComponent implements OnInit {
    constructor(private serverService:ServerService,
                private appComponent:AppComponent) { }
+               tk:any;
 
   ngOnInit() {
 
@@ -34,7 +35,7 @@ export class SignupComponent implements OnInit {
    this.appComponent.loaders();
    
   //  this.appComponent.SuccessModel('kjbntnbtb');
-  this.appComponent.WarningModel('error');
+  // this.appComponent.WarningModel('error');
  
    this.serverService.signup(value.yourName,value.phoneNumber,value.email,value.password,value.confirmPassword)
    .subscribe(
@@ -44,14 +45,15 @@ export class SignupComponent implements OnInit {
     {  
       
    console.log(response);
+   this.tk=response;
    this.appComponent.loaderOff();
-   this.appComponent.SuccessModel('success');
+   this.appComponent.SuccessModel(this.tk);
       
     },
      error=> {
        console.log(error);
        this.appComponent.loaderOff();
-       this.appComponent.WarningModel('error');
+       this.appComponent.WarningModel(error.error);
 
      }
 

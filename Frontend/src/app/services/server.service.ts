@@ -11,7 +11,7 @@ export class ServerService
 {      
   tk:any;
   Products:Product[];
-  private rootUrl="https://395b6b24.ngrok.io"
+  private rootUrl="https://b9cd060a.ngrok.io"
 
 
   constructor(private http :HttpClient,
