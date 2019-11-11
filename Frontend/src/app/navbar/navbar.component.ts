@@ -20,7 +20,8 @@ Ondisplay()
  
 menProducts()
 {
-  this.serverService.getallMenProducts()
+  this.serverService.getallMenProducts();
+  this.serverService.GetCategory1();
 
   
 }

@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Product } from '../shared/product.module';
 import { ProductService } from './product.service';
 import { AppComponent } from '../app.component';
+import { Category1Service } from './category1.service';
 
 @Injectable()
 
@@ -15,7 +16,8 @@ export class ServerService
 
 
   constructor(private http :HttpClient,
-              private productService:ProductService, 
+              private productService:ProductService,
+              private CategoryService:Category1Service 
               ){}
 
 
@@ -108,7 +110,28 @@ export class ServerService
   
     )
 
+
+
   
+  }
+
+  GetCategory1()
+  {
+    console.log(this.rootUrl+'/api/Product/Category/1');
+    this.http.get( this.rootUrl+'/api/Product/Category/1')
+    .subscribe(
+      response=>
+      {
+        console.log(response)
+        this.tk=response;
+        this.CategoryService.SetService(this.tk)
+      },
+       error=>
+       {
+         console.log(error)
+       }
+    )
+
   }
   getallWomenProducts()
   {

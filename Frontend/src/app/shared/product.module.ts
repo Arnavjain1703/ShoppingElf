@@ -32,7 +32,7 @@ constructor(productName:string,productPrice:number,picture1:string ,picture2:str
                 this.picture3=picture3;
                 this.picture4=picture4;
                 this.productDetails=productDetails;
-                this.productPrice=productPrice;
+                this.price=productPrice;
 
 
            }

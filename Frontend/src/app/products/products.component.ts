@@ -8,6 +8,7 @@ import { BrandsService } from '../services/brands.service';
 import { ShowService } from '../services/show.service';
 import { PriceService } from '../services/priceService';
 import { Price } from '../shared/price.module';
+import { Category } from '../shared/category.model';
 
 @Component({
   selector: 'app-products',
@@ -16,8 +17,8 @@ import { Price } from '../shared/price.module';
 })
 export class ProductsComponent implements OnInit, OnDestroy  {
    products:Product[];
-   categories:string[];
-   categories2:string[];
+   categories:Category[];
+   categories2:Category[];
    Brands:string[];
    Prices:Price[];
    disply = false;
@@ -51,7 +52,7 @@ export class ProductsComponent implements OnInit, OnDestroy  {
     })
        this.Prices=this.priceService.getPrices();
     this.category2Subscription = this.category2Service.category2Changed
-    .subscribe(( categories2:string[])=>
+    .subscribe(( categories2:Category[])=>
     {
        this.categories2=categories2;
     })
@@ -72,7 +73,7 @@ export class ProductsComponent implements OnInit, OnDestroy  {
    
    
    this.category1Subscription=this.category1Service.category1Changed
-    .subscribe((categories:string[])=>
+    .subscribe((categories:Category[])=>
     {
       this.categories=categories;
     }
