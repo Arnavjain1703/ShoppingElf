@@ -1,0 +1,23 @@
+<div class="background">
+
+
+    <div class="row">
+    <div class="col-md-3"><img  src="/assets/orderimg.svg"></div>
+    <div class="col-md-2" ></div>
+    <div class="col-md-6 margin" >
+            <app-order-item
+          
+            *ngFor="let order of orders; let i=index" 
+  
+            [order]="order"
+        
+  
+            >
+                 
+           </app-order-item>
+    
+   
+    </div>
+    <div class="col-md-1"></div>
+    </div>
+</div>

@@ -46,7 +46,7 @@ color:#21618C ;
 .responsive
 {
     width:100%;
-    height:auto;
+    height:100px;
 }
 .col-xs-3
 {
@@ -76,13 +76,28 @@ color:#21618C ;
     color:#2874A6;
     font-size: 170%;
     letter-spacing:1px;
+     font-weight:600;
+    font-family: 'Montserrat', sans-serif
 }
-
+.price,.name,.quantity
+{
+    color:#2874A6 ;
+    margin-top:2%;
+    font-family: 'Roboto Mono', monospace;
+    font-weight:500;
+    font-size:120%;
+}
+.quantity,.cross{
+    margin:5%;
+}
+.cross{
+    text-align:right;
+}
 
 .dropdown
 {
     
-     background:#FDEBD0  ;
+     background:#F9E79F ;
      position:fixed;
      top:40%;
      left:50%;
@@ -92,12 +107,13 @@ color:#21618C ;
      border-radius:1%;
      animation :change 1s 1;
      text-align:center;
+     border:1px solid #2471A3;
 }
 .button
 {
     
-    background:#FDEBD0;
-    border:2px solid #FDEBD0;
+    background:#F9E79F;
+    border:2px solid #F9E79F;
     color:#2471A3 ;
 }
 

@@ -1,0 +1,10 @@
+.background
+{
+    min-height:620px;
+    background:url('/assets/orderbg.png') ;
+    padding-top:11%;
+}
+img{
+    width:120vh;
+    
+}

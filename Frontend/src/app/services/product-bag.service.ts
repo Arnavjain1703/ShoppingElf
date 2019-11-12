@@ -10,9 +10,9 @@ bagChanged= new Subject<Bag[]>();
 private orders:Bag[]=[
 
    
-    new Bag('shirt','olla',42,'/assets/slider1.jpg',42),
-    new Bag('shirt','olla',42,'/assets/slider1.jpg',42),
-    new Bag('shirt','olla',42,'/assets/slider1.jpg',42)
+    // new Bag('shirt','olla',42,'/assets/slider1.jpg',42),
+    // new Bag('shirt','olla',42,'/assets/slider1.jpg',42),
+    // new Bag('shirt','olla',42,'/assets/slider1.jpg',42)
 
 
 
@@ -21,8 +21,16 @@ private orders:Bag[]=[
 
 
 getBag()
+{   return this.orders.slice()
+}
+
+delete(i:number)
+
 {
-   return this.orders.slice()
+    this.orders.splice(i,1);
+
+   this.bagChanged.next(this.orders.slice());
+     
 }
 
  setService(orders:Bag[])

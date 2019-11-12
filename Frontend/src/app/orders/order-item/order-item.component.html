@@ -1,0 +1,18 @@
+
+     
+     <div class="row item">
+         <div class="col-xs-3 align">
+             <img class="responsive" src={{order.productPicture}}>
+         </div>
+         <div class="col-xs-3">
+          <div class="brand">  {{order.productBrand}}</div>
+          <div class="price"> Price :{{order.productPrice}}</div>
+         </div>
+         <div class="col-xs-4" >
+             <div class="name">{{order.ProductName}}</div>
+             <div class="quantity"> Quantity :{{order.productQuantity}}</div>
+         </div>
+         <div class="col-xs-2">
+             <div (click)="delete()" class="cross"> Size : {{order.productSize}}</div>
+         </div>
+     </div>

@@ -12,6 +12,7 @@ import { SellerLoginComponent } from './seller/login/login.component';
 import { SellerSignupComponent } from './seller/signup/signup.component';
 import { OtpComponent } from './seller/otp/otp.component';
 import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
   
@@ -25,11 +26,12 @@ const appRoutes: Routes=[
     {path:'bag',component:ProductBagComponent},
      
     {path:'details/:id',component: ProductDetailsComponent},
-    {path:'orders',component: MyOrderComponent},
+    
     {path:'seller/login',component:SellerLoginComponent},
     {path:'seller/signup',component:SellerSignupComponent},
     {path:'seller/otp',component:OtpComponent},
-    {path:'seller/details',component:FillDetailsComponent}
+    {path:'seller/details',component:FillDetailsComponent},
+    {path:"orders",component:OrdersComponent},
     
 
 

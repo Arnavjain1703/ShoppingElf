@@ -1,5 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Product } from 'src/app/shared/product.module';
+import { Bag } from 'src/app/shared/bag.model';
+
 @Component({
   selector: 'app-prodict-cost',
   templateUrl: './prodict-cost.component.html',
@@ -8,7 +10,7 @@ import { Product } from 'src/app/shared/product.module';
 export class ProdictCostComponent implements OnInit {
 
   
-  @Input () order:Product;
+  @Input () order:Bag;
 
  @Input() index:number;
  
@@ -16,9 +18,11 @@ export class ProdictCostComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    
 
+  ngOnInit() {
+    // this.price=this.order.SizeModel.productPrice;
+    console.log(this.order.SizeModel.productPrice);
+  
   }
 
   

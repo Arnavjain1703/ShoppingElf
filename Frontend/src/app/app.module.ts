@@ -34,6 +34,9 @@ import { SellerSignupComponent } from './seller/signup/signup.component';
 import { OtpComponent } from './seller/otp/otp.component';
 import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
 import { ConfirmValidatorDirective } from './shared/confirm-equal-validator.direcive';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderService } from './services/order.service';
+import { OrderItemComponent } from './orders/order-item/order-item.component';
 
 
 @NgModule({
@@ -58,6 +61,8 @@ import { ConfirmValidatorDirective } from './shared/confirm-equal-validator.dire
     SellerSignupComponent,
     OtpComponent,
     FillDetailsComponent,
+    OrdersComponent,
+    OrderItemComponent,
     // ConfirmValidatorDirective
   ],
   imports: [
@@ -70,8 +75,8 @@ import { ConfirmValidatorDirective } from './shared/confirm-equal-validator.dire
 
     
   ],
-  providers: [ServerService,ProductService,ProductBagService,ProductBagItemComponent,ProductBagComponent,
-    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService,OtpComponent],
+  providers: [ServerService,ProductService,ProductBagService,ProductBagItemComponent,ProductBagComponent,AppComponent,
+    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService,OtpComponent,OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

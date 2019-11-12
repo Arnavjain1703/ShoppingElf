@@ -1,0 +1,50 @@
+.responsive
+{
+    width:100px;
+    height:100px;
+}
+.col-xs-3
+{
+    text-align:center;
+
+}
+.btn-primary
+{
+  padding:2%;
+  background:#F8C471 ;
+  border:2px solid #F8C471;
+}
+.glyphicon-chevron-down
+{
+    font-size:10px;
+}
+.item
+{
+    margin:2% 10%;
+     background:white;
+    box-shadow:1px 2px 4px #D0D3D4 ;
+    border-radius:1%;
+}
+.brand
+{
+    color:#2874A6;
+    font-size: 170%;
+    letter-spacing:1px;
+     font-weight:600;
+    font-family: 'Montserrat', sans-serif
+}
+.price,.name,.quantity
+{
+    color:#2874A6 ;
+    margin-top:2%;
+    font-family: 'Roboto Mono', monospace;
+    font-weight:500;
+    font-size:120%;
+}
+.quantity,.cross{
+    margin:5%;
+}
+.align
+{
+    text-align:left;
+}

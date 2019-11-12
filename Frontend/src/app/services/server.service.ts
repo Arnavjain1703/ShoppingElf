@@ -14,14 +14,15 @@ export class ServerService
 {      
   tk:any;
   Products:Product[];
-  private rootUrl="https://b9cd060a.ngrok.io"
+  private rootUrl="https://c1e861ee.ngrok.io"
 
 
   constructor(private http :HttpClient,
               private productService:ProductService,
               private CategoryService:Category1Service ,
               private CategoryService2:Category2Service,
-              private sizeService:SizeService
+              private sizeService:SizeService,
+              private appComponent:AppComponent,
               ){}
 
 
@@ -219,6 +220,44 @@ export class ServerService
    IFSCCode,accountType,ShippingFee,GSTNumber,PANCardNumber}),
       {headers:headers})
       
+  }
+
+  myOrders()
+  {
+      this.appComponent.loaders()
+    this.http.get(this.rootUrl+'/api/User/OrderList/')
+    .subscribe(
+     response=>
+     {  
+      this.appComponent.loaderOff()
+       
+          console.log(response);
+          this.tk=response
+      
+          
+   
+     },
+     error=>
+     {
+       console.log(error);
+       this.appComponent.loaderOff()
+
+     }
+      
+ 
+   ) 
+  }
+
+  MyBag()
+  {   
+    
+     console.log(this.rootUrl+'/api/User/GetCart/?token='+localStorage.getItem('token'))
+   return this.http.get(this.rootUrl+'/api/User/GetCart/?token='+localStorage.getItem('token'))
+    
+   
+ 
+    
+  
   }
 
 

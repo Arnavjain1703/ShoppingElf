@@ -13,9 +13,8 @@ import { Bag } from 'src/app/shared/bag.model';
 })
 export class ProductBagItemComponent implements OnInit {
 
-  constructor(
-              
-                ) { }
+  constructor( private BagService :ProductBagService,
+                private BagComponenet:ProductBagComponent) { }
                 
                 
  @Input () order:Bag;
@@ -26,11 +25,16 @@ export class ProductBagItemComponent implements OnInit {
    number:number
    indx:number;            
      dropdown=false;
+     name:any;
+     
 
   ngOnInit() {
     // this.order.productTotal=0;
     // this.order.OrderQ=1
-    console.log(this.order)
+    
+
+    this.order.Total=this.order.SizeModel.productPrice*this.order.Quantity;
+    
 
   }
 
@@ -42,6 +46,10 @@ export class ProductBagItemComponent implements OnInit {
   {
     this.order.Quantity=i;
     this.dropdown=false;
+    this.order.Total=this.order.SizeModel.productPrice*this.order.Quantity;
+    
+    this.BagComponenet.Total();
+
   }
   num(index:number)
 {
@@ -49,6 +57,13 @@ export class ProductBagItemComponent implements OnInit {
   
   this.indx=index;
    
+}
+
+delete()
+{
+  this.BagService.delete(this.index)
+  this.BagComponenet.Total();
+
 }
 
  

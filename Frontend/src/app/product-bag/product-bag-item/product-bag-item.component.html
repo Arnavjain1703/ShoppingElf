@@ -82,26 +82,24 @@
    <div> <button (click)="call(8)" class="button"> 8 </button> </div>
    <div> <button (click)="call(9)" class="button">9 </button> </div>
    <div> <button (click)="call(10)" class="button"> 10 </button> </div>
-   
+</div>
 
      
 
-</div>
-
 <div class="row item">
     <div class="col-xs-3">
-        <img class="responsive" src={{order.Picture1}}>
+        <img class="responsive" src="{{order.SizeModel.ProductModel.picture1 }}">
     </div>
     <div class="col-xs-3">
-     <div class="brand"> {{order.ProductBrand}}</div>
-     <div class="price">{{order.ProductPrice}}</div>
+     <div class="brand"> {{order.SizeModel.ProductModel.productBrand}}</div>
+     <div class="price">{{order.SizeModel.productPrice}}</div>
     </div>
     <div class="col-xs-3">
-        <div class="name">{{order.ProductName}}</div>
+        <div class="name">{{order.SizeModel.ProductModel.productName}}</div>
         <div class="quantity">{{order.Quantity}}</div>
     </div>
     <div class="col-xs-3">
-        <div class="cross"><span class="glyphicon glyphicon-remove"></span></div>
+    <div> <span class="size">{{order.SizeModel.productSize}}</span>   <span (click)="delete()" class="cross"><span class="glyphicon glyphicon-remove"></span></span></div>
         <div (click)="drop()" class="btn btn-primary">Quantity <span class="glyphicon glyphicon-chevron-down"></span></div>
     </div>
 </div>
