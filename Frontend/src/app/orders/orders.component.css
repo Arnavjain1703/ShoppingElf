@@ -2,9 +2,32 @@
 {
     min-height:620px;
     background:url('/assets/orderbg.png') ;
-    padding-top:11%;
+    
+    background-repeat:no-repeat;
+     background-size:cover;
+     text-align:center;
+}
+
+.motion
+{
+    
 }
 img{
     width:120vh;
     
 }
+@media only screen and (max-width: 1204px)
+{
+    /* img
+    {
+        width:20vh;
+    }*/
+    img
+    {
+        display:none;
+    }
+    .background{
+        padding-top:10%;
+    }
+   
+} 

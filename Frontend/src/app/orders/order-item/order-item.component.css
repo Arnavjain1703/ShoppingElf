@@ -33,7 +33,7 @@
      font-weight:600;
     font-family: 'Montserrat', sans-serif
 }
-.price,.name,.quantity
+.price,.name,.quantity,.cross
 {
     color:#2874A6 ;
     margin-top:2%;
@@ -47,4 +47,43 @@
 .align
 {
     text-align:left;
+}
+.col-xs-12
+{
+    padding:0%;
+}
+@media only screen and (max-width: 671px)
+{
+    .brand{
+        font-size:150%;
+    }
+    .item{
+        margin:2% 0%;
+    }
+}
+@media only screen and (max-width: 491px)
+{
+    .brand{
+        font-size:120%;
+    }
+    .item{
+        margin:2% 0%;
+    }
+    .price,.name,.quantity,.cross
+    {
+        font-size:100% ;
+    }
+}
+@media only screen and (max-width: 491px)
+{
+    .brand{
+        font-size:100%;
+    }
+    .item{
+        margin:2% 0%;
+    }
+    .price,.name,.quantity,.cross
+    {
+        font-size:80% ;
+    }
 }

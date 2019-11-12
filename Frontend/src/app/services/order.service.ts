@@ -8,10 +8,10 @@ orderChanged= new Subject<Order[]>();
     
 private orders:Order[]=[
    
-      new Order ('OLA','shirt',456,'x','/assets/Women 8.jpg',5) ,
+    //   new Order ('OLA','shirt',456,'x','/assets/Women 8.jpg',5) ,
 
-      new Order ('OLA','shirt',456,'x','/assets/Women 8.jpg',5), 
-      new Order ('OLA','shirt',456,'x','/assets/Women 8.jpg',5) ,
+    //   new Order ('OLA','shirt',456,'x','/assets/Women 8.jpg',5), 
+    //   new Order ('OLA','shirt',456,'x','/assets/Women 8.jpg',5) ,
 
      
 ]

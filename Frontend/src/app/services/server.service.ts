@@ -224,28 +224,9 @@ export class ServerService
 
   myOrders()
   {
-      this.appComponent.loaders()
-    this.http.get(this.rootUrl+'/api/User/OrderList/')
-    .subscribe(
-     response=>
-     {  
-      this.appComponent.loaderOff()
-       
-          console.log(response);
-          this.tk=response
-      
-          
+    
+   return this.http.get(this.rootUrl+'/api/User/OrderList/?token='+localStorage.getItem('token'))
    
-     },
-     error=>
-     {
-       console.log(error);
-       this.appComponent.loaderOff()
-
-     }
-      
- 
-   ) 
   }
 
   MyBag()
