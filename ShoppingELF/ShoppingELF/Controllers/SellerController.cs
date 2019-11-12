@@ -93,39 +93,64 @@ namespace ShoppingELF.Controllers
         }
 
         [HttpPost]
-        [Route("api/Seller/EnterDetails/{sid}")]
-        public IHttpActionResult EnterDetails(int sid, SellerDetailsModel model)
+        [Route("api/Seller/EnterDetails")]
+        public IHttpActionResult EnterDetails(SellerDetailsModel model, string token)
         {
-            bool x = new SellerModel().EnterDetails(sid, model);
-            if (x)
-                return Ok("Details addded successfully");
-            else
-                return Ok("Something went wrong");
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
+                {
+                    bool x = new SellerModel().EnterDetails(seller.SellerID, model);
+                    if (x)
+                        return Ok("Details addded successfully");
+                    else
+                        return Ok("Something went wrong");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpPost]
-        [Route("api/Seller/EditSellerDetails/{sid}")]
-        public IHttpActionResult EditDetails(int sid, SellerDetailsModel model)
+        [Route("api/Seller/EditSellerDetails")]
+        public IHttpActionResult EditDetails(SellerDetailsModel model, string token)
         {
-            bool x = new SellerModel().EditDetails(sid, model);
-            if (x)
-                return Ok("Details Edited Successfully");
-            else
-                return Ok("Something went wrong please try again later");
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                if (seller != null && seller.Role == "Seller")
+                {
+                    bool x = new SellerModel().EditDetails(seller.SellerID, model);
+                    if (x)
+                        return Ok("Details Edited Successfully");
+                    else
+                        return Ok("Something went wrong please try again later");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpPost]
         [Route("api/Seller/Change/Password/{sid}")]
-        public IHttpActionResult ChangePassword(int sid, ChangePasswordModel model, string Username, string token)
+        public IHttpActionResult ChangePassword(ChangePasswordModel model, string token)
         {
             using (ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 SellerTable seller = new SellerTable();
-                seller = context.SellerTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && seller.Role == "Seller")
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(m => m.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
                 {
-                    int x = new SellerModel().ChangePassword(sid, model);
+                    int x = new SellerModel().ChangePassword(seller.SellerID, model);
                     if (x == 1)
                         return Ok("Please enter correct old password");
                     else if (x == 4)
@@ -141,11 +166,23 @@ namespace ShoppingELF.Controllers
         }
 
         [HttpGet]
-        [Route("api/Seller/Show/OrderPlaced/{sellid}")]
-        public IHttpActionResult ShowOrderedItems(int sellid)
+        [Route("api/Seller/Show/OrderPlaced")]
+        public IHttpActionResult ShowOrderedItems(string token)
         {
-            var x = new SellerModel().ShowOrderedItems(sellid);
-            return Ok(x);
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
+                {
+                    var x = new SellerModel().ShowOrderedItems(seller.SellerID);
+                    return Ok(x);
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [NonAction]

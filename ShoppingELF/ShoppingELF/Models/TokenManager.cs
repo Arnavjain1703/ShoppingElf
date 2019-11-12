@@ -57,13 +57,13 @@ namespace ShoppingELF.Models
             }
         }
 
-        public static bool ValidateToken(string token, string email)
+        public static string ValidateToken(string token)
         {
             
             string username = null;
             ClaimsPrincipal principal = GetPrincipal(token);
             if (principal == null)
-                return false;
+                return null;
             ClaimsIdentity identity = null;
             try
             {
@@ -71,14 +71,11 @@ namespace ShoppingELF.Models
             }
             catch (NullReferenceException)
             {
-                return false;
+                return null;
             }
             Claim usernameClaim = identity.FindFirst(ClaimTypes.Name);
             username = usernameClaim.Value;
-            if (email == username)
-                return true;
-            else
-                return false;
+            return username;
 
         }
 

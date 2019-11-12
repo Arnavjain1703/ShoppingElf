@@ -12,15 +12,16 @@ namespace ShoppingELF.Controllers
     {
         //[Authorize] 
         [HttpPost]
-        [Route("api/User/Addtocart/{uid}/{pid}")]
-        public IHttpActionResult AddToCart(int uid, int pid, string Username, string token)
+        [Route("api/User/Addtocart/{pid}")]
+        public IHttpActionResult AddToCart(int pid, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
                     var v = context.CartTable.Where(a => a.PID == pid).FirstOrDefault();
 
@@ -30,7 +31,7 @@ namespace ShoppingELF.Controllers
                     }
                     else
                     {
-                        var x = new UserRepository().AddToCart(uid, pid);
+                        var x = new UserRepository().AddToCart(user.UserID, pid);
                         return Ok("Product has been added to cart Successfully");
                     }
                 }
@@ -41,14 +42,15 @@ namespace ShoppingELF.Controllers
 
         [HttpPost]
         [Route("api/User/UpdateCart/{cid}")]
-        public IHttpActionResult UpdateCart(int cid, CartModel model, string Username, string token)
+        public IHttpActionResult UpdateCart(int cid, CartModel model, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
                     bool x = new UserRepository().UpdateCartModel(cid, model);
                     if (x)
@@ -65,17 +67,18 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpGet]
-        [Route("api/User/GetCart/{uid}")]
-        public IHttpActionResult GetCart(int uid, string Username, string token)
+        [Route("api/User/GetCart")]
+        public IHttpActionResult GetCart(string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    var x = new UserRepository().GetCart(uid);
+                    var x = new UserRepository().GetCart(user.UserID);
                     return Ok(x);
                 }
                 else
@@ -86,14 +89,15 @@ namespace ShoppingELF.Controllers
         //[Authorize]
         [HttpPost]
         [Route("api/User/Cart/{cid}")]
-        public IHttpActionResult DeleteFromCart(int cid, string Username, string token)
+        public IHttpActionResult DeleteFromCart(int cid, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
                     int x = new UserRepository().RemoveFromCart(cid);
                     if (x == 1)
@@ -108,17 +112,18 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpPost]
-        [Route("api/User/ClearCart/{uid}")]
-        public IHttpActionResult ClearCart(int uid, string Username, string token)
+        [Route("api/User/ClearCart")]
+        public IHttpActionResult ClearCart(string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    new UserRepository().ClearCart(uid);
+                    new UserRepository().ClearCart(user.UserID);
                     return Ok("All items removed from cart");
                 }
                 else
@@ -128,17 +133,18 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpGet]
-        [Route("api/User/OrderList/{uid}")]
-        public IHttpActionResult ShowOrderedItems(int uid, string Username, string token)
+        [Route("api/User/OrderList")]
+        public IHttpActionResult ShowOrderedItems(string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    var x = new UserRepository().ShowOrderedItem(uid);
+                    var x = new UserRepository().ShowOrderedItem(user.UserID);
                     return Ok(x);
                 }
                 else
@@ -148,21 +154,22 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpPost]
-        [Route("api/User/OrderFromCart/{uid}")]
-        public IHttpActionResult OrderFromCart(int uid, string Username, string token)
+        [Route("api/User/OrderFromCart")]
+        public IHttpActionResult OrderFromCart(string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    int x = new UserRepository().AddFromCartToOrder(uid);
+                    int x = new UserRepository().AddFromCartToOrder(user.UserID);
 
                     if (x == 3)
                     {
-                        new UserRepository().ClearCart(uid);
+                        new UserRepository().ClearCart(user.UserID);
                         return Ok("Order Placed Successfully");
                     }
                     else if (x == 2 || x == 3)
@@ -177,20 +184,21 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpPost]
-        [Route("api/User/OrderNow/{uid}/{pid}")]
-        public IHttpActionResult OrderNow(int uid, int pid, OrderModel model, string Username, string token)
+        [Route("api/User/OrderNow/{pid}")]
+        public IHttpActionResult OrderNow(int pid, OrderModel model, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    int x = new UserRepository().OrderNow(uid, pid, model);
+                    int x = new UserRepository().OrderNow(user.UserID, pid, model);
                     if (x == 1)
                     {
-                        new UserRepository().ClearCart(uid);
+                        new UserRepository().ClearCart(user.UserID);
                         return Ok("Order Placed Successfully");
                     }
                     else
@@ -203,17 +211,18 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpPost]
-        [Route("api/User/Address/{uid}")]
-        public IHttpActionResult AddAddress(int uid, AddressModel model, string Username, string token)
+        [Route("api/User/Address")]
+        public IHttpActionResult AddAddress(AddressModel model, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    new UserModel().AddAddress(uid, model);
+                    new UserModel().AddAddress(user.UserID, model);
                     return Ok("Address added successfully");
                 }
                 else
@@ -223,17 +232,18 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpPost]
-        [Route("api/User/EditAddress/{uid}")]
-        public IHttpActionResult EditAddress(int uid, AddressModel model, string Username, string token)
+        [Route("api/User/EditAddress")]
+        public IHttpActionResult EditAddress(AddressModel model, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    bool x = new UserModel().EditAddress(uid, model);
+                    bool x = new UserModel().EditAddress(user.UserID, model);
                     if (x)
                         return Ok("Address updated successfully");
                     else
@@ -246,17 +256,18 @@ namespace ShoppingELF.Controllers
         
         //[Authorize]
         [HttpGet]
-        [Route("api/User/GetAddress/{uid}")]
-        public IHttpActionResult GetAddress(int uid, string Username, string token)
+        [Route("api/User/GetAddress")]
+        public IHttpActionResult GetAddress(string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                if (user != null && user.Role == "User")
                 {
-                    var x = new UserModel().GetAddress(uid);
+                    var x = new UserModel().GetAddress(user.UserID);
                     return Ok(x);
                 }
                 else
@@ -266,17 +277,18 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpPost]
-        [Route("api/User/EditAccount/{uid}")]
-        public IHttpActionResult EditAccount(int uid, UserModel model, string Username, string token)
+        [Route("api/User/EditAccount")]
+        public IHttpActionResult EditAccount(UserModel model, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    bool x = new UserModel().EditAccount(uid, model);
+                    bool x = new UserModel().EditAccount(user.UserID, model);
                     if (x)
                         return Ok("Account details has been updated");
                     else
@@ -289,17 +301,18 @@ namespace ShoppingELF.Controllers
 
         //[Authorize]
         [HttpPost]
-        [Route("api/User/ChangePassword/{uid}")]
-        public IHttpActionResult ChangePassword(int uid, ChangePasswordModel model, string Username, string token)
+        [Route("api/User/ChangePassword")]
+        public IHttpActionResult ChangePassword(ChangePasswordModel model, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 UserTable user = new UserTable();
-                user = context.UserTable.FirstOrDefault(m => m.email == Username);
-                bool y = TokenManager.ValidateToken(token, Username);
-                if (y && user.Role == "User")
+                string username = TokenManager.ValidateToken(token);
+                user = context.UserTable.FirstOrDefault(m => m.email == username);
+                
+                if (user != null && user.Role == "User")
                 {
-                    int x = new UserModel().ChangePassword(uid, model);
+                    int x = new UserModel().ChangePassword(user.UserID, model);
                     if (x == 1)
                         return Ok("Please enter correct old password");
                     else if (x == 4)

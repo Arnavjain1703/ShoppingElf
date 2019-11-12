@@ -66,8 +66,8 @@ namespace ShoppingELF.Controllers
             bool exists = new UserRepository().GetUser(username) != null;
             if (!exists) return Request.CreateResponse(HttpStatusCode.NotFound,
                  "The Account was not found.");
-            bool x = TokenManager.ValidateToken(token, username);
-            if (x)
+            string x = TokenManager.ValidateToken(token);
+            if (x == username)
                 return Request.CreateResponse(HttpStatusCode.OK);
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }

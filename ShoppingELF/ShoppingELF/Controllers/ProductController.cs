@@ -82,51 +82,111 @@ namespace ShoppingELF.Controllers
 
         [HttpPost]
         [Route("api/Product/EditProduct/{pid}")]
-        public IHttpActionResult EditProduct(int pid, SizeModel model)
+        public IHttpActionResult EditProduct(int pid, SizeModel model, string token)
         {
-            bool x = new ProductRepository().EditProduct(pid, model);
-            if (x)
-                return Ok("Product Details Updated successfully");
-            else
-                return BadRequest("Something Went Wrong , please try again later");
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
+                {
+                    bool x = new ProductRepository().EditProduct(pid, model);
+                    if (x)
+                        return Ok("Product Details Updated successfully");
+                    else
+                        return BadRequest("Something Went Wrong , please try again later");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpPost]
         [Route("api/Product/Delete/Size/{pid}")]
-        public IHttpActionResult DeleteProductSize(int pid)
+        public IHttpActionResult DeleteProductSize(int pid, string token)
         {
-            bool x = new ProductRepository().DeleteSize(pid);
-            if (x)
-                return Ok("Size Removed successfully");
-            else
-                return BadRequest("Unable to proccess request");
+            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
+                {
+                    bool x = new ProductRepository().DeleteSize(pid);
+                    if (x)
+                        return Ok("Size Removed successfully");
+                    else
+                        return BadRequest("Unable to proccess request");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpPost]
         [Route("api/Product/Delete/{pid}")]
-        public IHttpActionResult DeleteProduct(int pid)
+        public IHttpActionResult DeleteProduct(int pid, string token)
         {
-            bool x = new ProductRepository().DeleteProduct(pid);
-            if (x)
-                return Ok("Product deleted successfully");
-            else
-                return BadRequest("Unable to delete product");
+            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
+                {
+                    bool x = new ProductRepository().DeleteProduct(pid);
+                    if (x)
+                        return Ok("Product deleted successfully");
+                    else
+                        return BadRequest("Unable to delete product");
+                }
+                else
+                    return Unauthorized(); 
+            }
         }
 
         [HttpGet]
-        [Route("api/Product/Seller/Show/{sellID}")]
-        public IHttpActionResult ShowSellerProduct(int sellID)
+        [Route("api/Product/Seller/Show")]
+        public IHttpActionResult ShowSellerProduct(string token)
         {
-            var x = new ProductRepository().ShowSellerProduct(sellID);
-            return Ok(x);
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
+                {
+                    var x = new ProductRepository().ShowSellerProduct(seller.SellerID);
+                    return Ok(x);
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpGet]
         [Route("api/Product/Seller/Show/Size/{pid}")]
-        public IHttpActionResult ShowSellerProductSize(int pid)
+        public IHttpActionResult ShowSellerProductSize(int pid, string token)
         {
-            var x = new ProductRepository().ShowSellerProductSize(pid);
-            return Ok(x);
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+                
+                if (seller != null && seller.Role == "Seller")
+                {
+                    var x = new ProductRepository().ShowSellerProductSize(pid);
+                    return Ok(x);
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpPost]
