@@ -62,22 +62,46 @@ namespace ShoppingELF.Controllers
         }
 
         [HttpPost]
-        [Route("api/Product/AddProduct/{subid}/{sid}/{Suitid}")]
-        public IHttpActionResult AddProduct(int subid, int sid, int suitid, ProductModel model)
+        [Route("api/Product/AddProduct/{subid}/{Suitid}")]
+        public IHttpActionResult AddProduct(int subid, int suitid, ProductModel model, string token)
         {
-            int x = new ProductRepository().AddProduct(subid, sid, suitid, model);
-            return Ok("Product Added successfully");
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                if (seller != null && seller.Role == "Seller")
+                {
+                    int x = new ProductRepository().AddProduct(subid, seller.SellerID, suitid, model);
+                    return Ok("Product Added successfully");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpPost]
         [Route("api/Product/AddSize/{pid}")]
-        public IHttpActionResult AddProductSize(int pid, SizeModel model)
+        public IHttpActionResult AddProductSize(int pid, SizeModel model, string token)
         {
-            bool x = new ProductRepository().AddProductSize(pid, model);
-            if (x)
-                return Ok("Product Size Added");
-            else
-                return Ok("Their is some problem adding the product size");
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                if (seller != null && seller.Role == "Seller")
+                {
+                    bool x = new ProductRepository().AddProductSize(pid, model);
+                    if (x)
+                        return Ok("Product Size Added");
+                    else
+                        return Ok("Their is some problem adding the product size");
+                }
+                else
+                    return Unauthorized();
+            }
         }
 
         [HttpPost]
