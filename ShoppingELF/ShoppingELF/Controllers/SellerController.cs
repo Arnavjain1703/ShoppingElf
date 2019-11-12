@@ -77,7 +77,7 @@ namespace ShoppingELF.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/Seller/ResendOTP/{sid}")]
         public IHttpActionResult ResendOTP(int sid)
         {
@@ -103,7 +103,7 @@ namespace ShoppingELF.Controllers
                 return Ok("Something went wrong");
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/Seller/EditSellerDetails/{sid}")]
         public IHttpActionResult EditDetails(int sid, SellerDetailsModel model)
         {
@@ -138,6 +138,14 @@ namespace ShoppingELF.Controllers
                 else
                     return Unauthorized();
             }
+        }
+
+        [HttpGet]
+        [Route("api/Seller/Show/OrderPlaced/{sellid}")]
+        public IHttpActionResult ShowOrderedItems(int sellid)
+        {
+            var x = new SellerModel().ShowOrderedItems(sellid);
+            return Ok(x);
         }
 
         [NonAction]

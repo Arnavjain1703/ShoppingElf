@@ -113,5 +113,26 @@ namespace ShoppingELF.Models
                     return 3;
             }
         }
+
+        public List<SoldModel> ShowOrderedItems(int sellid)
+        {
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            {
+                var result = context.SoldTable
+                    .Where(x => x.SellerID == sellid)
+                    .Select(x => new SoldModel()
+                    {
+                        productName = x.productName,
+                        productBrand = x.productBrand,
+                        productPrice = x.productPrice,
+                        productQuantity = x.productQuantity,
+                        productPicture = x.productPicture,
+                        productSize = x.productSize,
+                        UserName = x.UserName
+                    }).ToList();
+
+                return result;
+            }
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace ShoppingELF.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/User/UpdateCart/{cid}")]
         public IHttpActionResult UpdateCart(int cid, CartModel model, string Username, string token)
         {
@@ -84,6 +84,7 @@ namespace ShoppingELF.Controllers
         }
 
         //[Authorize]
+        [HttpPost]
         [Route("api/User/Cart/{cid}")]
         public IHttpActionResult DeleteFromCart(int cid, string Username, string token)
         {
@@ -106,6 +107,7 @@ namespace ShoppingELF.Controllers
         }
 
         //[Authorize]
+        [HttpPost]
         [Route("api/User/ClearCart/{uid}")]
         public IHttpActionResult ClearCart(int uid, string Username, string token)
         {
@@ -220,7 +222,7 @@ namespace ShoppingELF.Controllers
         }
 
         //[Authorize]
-        [HttpPut]
+        [HttpPost]
         [Route("api/User/EditAddress/{uid}")]
         public IHttpActionResult EditAddress(int uid, AddressModel model, string Username, string token)
         {
@@ -263,7 +265,7 @@ namespace ShoppingELF.Controllers
         }
 
         //[Authorize]
-        [HttpPut]
+        [HttpPost]
         [Route("api/User/EditAccount/{uid}")]
         public IHttpActionResult EditAccount(int uid, UserModel model, string Username, string token)
         {

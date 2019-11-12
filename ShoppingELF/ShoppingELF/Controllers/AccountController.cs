@@ -174,7 +174,7 @@ namespace ShoppingELF.Controllers
         {
             var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
             //var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
-            var link = "https://b9cd060a.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
+            var link = "https://f1db9866.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
             var ToEmail = new MailAddress(Email);
             var FromEmailPassword = "Rishabh@2306";
