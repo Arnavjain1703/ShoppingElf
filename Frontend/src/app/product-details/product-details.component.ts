@@ -82,13 +82,16 @@ call(pid:number)
       {  
           this.tk=response;
         this.appComponent.loaderOff();
+        this.appComponent.SuccessModel(this.tk)
         console.log(response);
     
       },
       error=>
       {
         this.appComponent.loaderOff();
-        console.log(error);
+        console.log(error.error.Message);
+        this.appComponent.WarningModel(error.error.Message);
+        
       }
        
   

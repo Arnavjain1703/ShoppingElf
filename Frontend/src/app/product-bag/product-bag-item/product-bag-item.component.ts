@@ -5,6 +5,7 @@ import { ProductBagComponent } from '../product-bag.component';
 import { ProductSize } from 'src/app/shared/size.module';
 import { SizeService } from 'src/app/services/size.service';
 import { Bag } from 'src/app/shared/bag.model';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
   selector: 'app-product-bag-item',
@@ -14,7 +15,8 @@ import { Bag } from 'src/app/shared/bag.model';
 export class ProductBagItemComponent implements OnInit {
 
   constructor( private BagService :ProductBagService,
-                private BagComponenet:ProductBagComponent) { }
+                private BagComponenet:ProductBagComponent,
+                private serverService:ServerService) { }
                 
                 
  @Input () order:Bag;
@@ -63,6 +65,14 @@ delete()
 {
   this.BagService.delete(this.index)
   this.BagComponenet.Total();
+  this.serverService.Delete(this.order.CartID)
+  .subscribe
+  (
+    (response)=>
+    {
+      console.log(response)
+    }
+  )
 
 }
 

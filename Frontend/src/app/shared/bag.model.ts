@@ -2,7 +2,7 @@ import { ProductSize } from './size.module';
 
 export class  Bag
 {
-    CardID:number;
+    CartID:number;
     UserID:number;
     PID:number;
     SizeModel:ProductSize;

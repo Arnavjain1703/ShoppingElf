@@ -244,11 +244,19 @@ export class ServerService
 
   Addtocart(pid:number)
   {
-  console.log(pid)
+  
     const headers = new HttpHeaders({'Content-Type':'application/json'});
     console.log(this.rootUrl+'/api/User/AddtoCart/'+pid+'/?token='+localStorage.getItem('token'))
     return this.http.post(this.rootUrl+'/api/User/AddtoCart/'+pid+'/?token='+localStorage.getItem('token'),this.body,{headers:headers})
   }
 
-
+  Delete(id:number)
+  {
+    console.log(id);
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(this.rootUrl+'/api/User/Cart/'+id+'/?token='+localStorage.getItem('token'))
+    return this.http.post(this.rootUrl+'/api/User/Cart/'+id+'/?token='+localStorage.getItem('token'),this.body,{headers:headers})
+ 
+  }
+   
 }
