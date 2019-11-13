@@ -223,6 +223,13 @@ export class ServerService
       
   }
 
+  SendOtp(OTP:string)
+  {   
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(JSON.stringify({OTP}));
+    return this.http.post(this.rootUrl+'/api/Seller/EnterOTP/'+localStorage.getItem('num'),JSON.stringify({OTP}), {headers:headers})
+  }
+
   myOrders()
   {
     

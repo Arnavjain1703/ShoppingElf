@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from 'src/app/services/server.service';
+import { NgForm } from '@angular/Forms';
 
 @Component({
   selector: 'app-otp',
@@ -10,8 +12,11 @@ export class OtpComponent implements OnInit {
 timeLeft:number;
 minut:number;
 interval:any;
+tk:any;
 
-  constructor() { }
+  constructor( 
+     private serverService:ServerService
+  ) { }
 
   ngOnInit() {
 
@@ -52,5 +57,30 @@ interval:any;
       this.timeLeft=60;
      
   }
+
+  // OTP(num:number)
+  // { 
+  //  this.tk=num;
+  //   localStorage.setItem('num' , this.tk)
+  
+  // }
+  onSubmitotp(form:NgForm)
+{
+  const value =form.value;
+   
+   this.serverService.SendOtp(value.OTP)
+   .subscribe(
+     (response)=>
+     {
+       console.log(response)
+     }
+     ,
+     (error) =>
+     {
+       console.log(error.error.Message)
+     }
+   )
+}
+
 
 }
