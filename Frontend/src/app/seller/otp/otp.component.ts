@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from 'src/app/services/server.service';
 import { NgForm } from '@angular/Forms';
+import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-otp',
@@ -15,7 +17,9 @@ interval:any;
 tk:any;
 
   constructor( 
-     private serverService:ServerService
+     private serverService:ServerService,
+     private route:Router,
+     private appComponent:AppComponent
   ) { }
 
   ngOnInit() {
@@ -67,20 +71,43 @@ tk:any;
   onSubmitotp(form:NgForm)
 {
   const value =form.value;
+  this.appComponent.loaders()
    
    this.serverService.SendOtp(value.OTP)
    .subscribe(
      (response)=>
      {
        console.log(response)
+       this.tk=response
+       localStorage.setItem('token2',this.tk);
+       this.route.navigate(['seller/details'])
+       this.appComponent.loaderOff   
      }
      ,
      (error) =>
      {
        console.log(error.error.Message)
+       this.appComponent.loaderOff();
      }
    )
-}
+    }
+resendOtp()
+{  this.appComponent.loaders()
+    this.serverService.resendOtp()
+  .subscribe(
+    (response)=>
+    {  this.tk=response
+      console.log(this.tk)
+      this.appComponent.loaderOff()
+    },
+     (error)=>
+     {
+       console.log(error);
+       this.appComponent.loaderOff()
 
+     }
+    
+  )
+}
 
 }

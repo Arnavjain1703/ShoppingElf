@@ -229,6 +229,11 @@ export class ServerService
     console.log(JSON.stringify({OTP}));
     return this.http.post(this.rootUrl+'/api/Seller/EnterOTP/'+localStorage.getItem('num'),JSON.stringify({OTP}), {headers:headers})
   }
+  resendOtp()
+  {
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    return this.http.post(this.rootUrl+'/api/Seller/ResendOTP/'+localStorage.getItem('num'),this.body, {headers:headers})
+  }
 
   myOrders()
   {
