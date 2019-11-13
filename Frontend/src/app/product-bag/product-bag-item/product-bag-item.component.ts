@@ -49,7 +49,17 @@ export class ProductBagItemComponent implements OnInit {
     this.order.Quantity=i;
     this.dropdown=false;
     this.order.Total=this.order.SizeModel.productPrice*this.order.Quantity;
-    
+    this.serverService.upQuantity(this.order.CartID,i)
+    .subscribe(
+      (response) =>
+      {
+        console.log(response);
+      },
+      (error) =>
+      {
+        console.log(error);
+      }
+    )
     this.BagComponenet.Total();
 
   }

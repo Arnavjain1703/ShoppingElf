@@ -100,6 +100,23 @@ call(pid:number)
   
     
   }
+
+
+
+  oneOrder()
+  {
+    this.appComponent.loaders()
+
+    this.serverService.oneOrder(this.PID)
+    .subscribe(
+      (response)=>
+      {
+        this.appComponent.loaderOff();
+        this.tk=response
+        this.appComponent.SuccessModel(this.tk)
+      }
+    )
+  }
  }
    
 

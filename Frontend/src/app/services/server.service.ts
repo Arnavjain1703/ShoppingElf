@@ -15,7 +15,7 @@ export class ServerService
   tk:any;
   Products:Product[];
   body:{}; 
-  private rootUrl="https://6a3fdfcc.ngrok.io"
+  private rootUrl="https://6c05625a.ngrok.io"
 
 
   constructor(private http :HttpClient,
@@ -258,5 +258,24 @@ export class ServerService
     return this.http.post(this.rootUrl+'/api/User/Cart/'+id+'/?token='+localStorage.getItem('token'),this.body,{headers:headers})
  
   }
-   
+  upQuantity(cid:number,Quantity:number)
+  {
+
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(this.rootUrl+'/api/User/UpdateCart/'+cid+'/?token='+localStorage.getItem('token'))
+    console.log(JSON.stringify({Quantity}));
+    return this.http.post(this.rootUrl+'/api/User/UpdateCart/'+cid+'/?token='+localStorage.getItem('token'),JSON.stringify({Quantity}),{headers:headers})
+  }
+  AllOrder()
+  {
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(this.rootUrl+'/api/User/OrderFromCart/?token='+localStorage.getItem('token'))
+    return this.http.post(this.rootUrl+'/api/User/OrderFromCart/?token='+localStorage.getItem('token'),this.body,{headers:headers})
+  }
+  oneOrder(pid:number)
+  {
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(this.rootUrl+'/api/User/OrderNow/'+pid+'/?token='+localStorage.getItem('token'))
+    return this.http.post(this.rootUrl+'/api/User/OrderNow/'+pid+'/?token='+localStorage.getItem('token'),this.body,{headers:headers})
+  }
 }

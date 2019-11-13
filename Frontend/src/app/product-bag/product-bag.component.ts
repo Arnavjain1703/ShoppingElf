@@ -79,7 +79,20 @@ ngOnDestroy()
 
   
 
+ }
+ order()
+ {  this.appComponent.loaders()
+   this.serverService.AllOrder()
+   .subscribe(
+     (response)=>
+     {  this.tk=response
+       this.appComponent.SuccessModel(this.tk);
+       this.appComponent.loaderOff();
+ 
+       
 
+     }
+   )
  }
 }
 
