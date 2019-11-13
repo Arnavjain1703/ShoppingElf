@@ -10,6 +10,8 @@
  import { ProductSize } from '../shared/size.module';
  import { ProductBagItemComponent } from '../product-bag/product-bag-item/product-bag-item.component';
 import { callbackify } from 'util';
+import { ServerService } from '../services/server.service';
+import { AppComponent } from '../app.component';
 
 
  @Component({
@@ -21,6 +23,8 @@ export class ProductDetailsComponent implements OnInit {
  paramsubscription:Subscription;
   sizeSubscription:Subscription;
  index:number;
+ PID:number;
+ tk:any;
  
 
 // display=false;
@@ -33,9 +37,8 @@ export class ProductDetailsComponent implements OnInit {
    constructor( private route:ActivatedRoute ,
                 private productService:ProductService,
                  private sizeService:SizeService,
-//                private productBagService:ProductBagService,
-//                private productBagItem:ProductBagItemComponent,
-              
+                 private serverService:ServerService,
+                 private appComponent:AppComponent
                ) { }
 
   ngOnInit() {
@@ -63,29 +66,37 @@ export class ProductDetailsComponent implements OnInit {
     
   }
 
-//   dplay()
-//   {
-//     this.display=!this.display;
-//   }
-
-//    call(num:number)
-//   {
-    
-//     this.productBagItem.num(num)
-     
-//   }
-
-//   orders()
-//   {
-//      this.added=!this.added;
-    
-//      this.productBagService.addorder(this.product);
-    
-//   }
-call()
+call(pid:number)
   {
-     
+     this.PID=pid;
+     console.log(this.PID);
+    
   } 
+
+  Add()
+  {    this.appComponent.loaders()
+    console.log(this.PID)
+    this.serverService.Addtocart(this.PID)     
+    .subscribe(
+      response=>
+      {  
+          this.tk=response;
+        this.appComponent.loaderOff();
+        console.log(response);
+    
+      },
+      error=>
+      {
+        this.appComponent.loaderOff();
+        console.log(error);
+      }
+       
+  
+    )  
+
+  
+    
+  }
  }
    
 

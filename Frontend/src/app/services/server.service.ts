@@ -14,7 +14,8 @@ export class ServerService
 {      
   tk:any;
   Products:Product[];
-  private rootUrl="https://c1e861ee.ngrok.io"
+  body:{}; 
+  private rootUrl="https://6a3fdfcc.ngrok.io"
 
 
   constructor(private http :HttpClient,
@@ -239,6 +240,14 @@ export class ServerService
  
     
   
+  }
+
+  Addtocart(pid:number)
+  {
+  console.log(pid)
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(this.rootUrl+'/api/User/AddtoCart/'+pid+'/?token='+localStorage.getItem('token'))
+    return this.http.post(this.rootUrl+'/api/User/AddtoCart/'+pid+'/?token='+localStorage.getItem('token'),this.body,{headers:headers})
   }
 
 

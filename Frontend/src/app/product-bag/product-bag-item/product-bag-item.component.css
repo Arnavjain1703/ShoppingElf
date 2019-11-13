@@ -73,15 +73,17 @@ color:#21618C ;
 }
 .brand
 {
-    color:#2874A6;
+    color:#1B4F72 ;
+   
     font-size: 170%;
     letter-spacing:1px;
      font-weight:600;
     font-family: 'Montserrat', sans-serif
 }
-.price,.name,.quantity
+.price,.name,.quantity,.cross
 {
-    color:#2874A6 ;
+    color:#1B4F72 ;
+    
     margin-top:2%;
     font-family: 'Roboto Mono', monospace;
     font-weight:500;
@@ -128,3 +130,48 @@ color:#21618C ;
     }
 
 }
+
+@media only screen and (max-width: 768px)
+{
+    .item{
+        margin:2% 2%;
+    }
+}
+@media only screen and (max-width: 671px)
+{
+    
+    .brand
+    {
+        font-size: 150%;
+    }
+
+    .price,.name,.quantity,.cross
+    {
+        font-size:80%;
+    }
+
+
+}
+@media only screen and (max-width: 521px)
+{
+    .brand
+    {
+        font-size: 120%;
+    }
+    .responsive{
+        width:80%;
+        height:70px;
+    }
+    .price,.name,.quantity,.cross
+    {
+        font-size:70%;
+    }
+
+    
+
+}
+@media only screen and (max-width: 521px)
+{
+    
+}
+

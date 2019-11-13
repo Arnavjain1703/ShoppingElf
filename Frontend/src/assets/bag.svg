@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
+	 viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#F8E69E;stroke:#F8E69E;stroke-miterlimit:10;}
-	.st1{fill:#736759;}
-	.st2{fill:#A12A22;}
-	.st3{fill:url(#XMLID_15_);}
-	.st4{fill:#B63227;}
-	.st5{fill:#BC3529;}
-	.st6{fill:#EF4237;}
-	.st7{fill:#471212;}
-	.st8{fill:#5A4B43;}
-	.st9{fill:#F7E59D;}
-	.st10{font-family:'MyriadPro-Regular';}
-	.st11{font-size:52.0676px;}
+	.st0{fill:#74685A;}
+	.st1{fill:#A22C23;}
+	.st2{fill:url(#XMLID_14_);}
+	.st3{fill:#B63427;}
+	.st4{fill:#BC3729;}
+	.st5{fill:#EF4338;}
+	.st6{fill:#461616;}
+	.st7{fill:#5B4C44;}
+	.st8{fill:#F8E69E;}
+	.st9{font-family:'MyriadPro-Regular';}
+	.st10{font-size:39.236px;}
 </style>
-<rect id="XMLID_1_" class="st0" width="300" height="300"/>
 <g id="XMLID_3_">
 	<g id="XMLID_4_">
-		<path id="XMLID_13_" class="st1" d="M179.3,47.4c0.2-11.4-4.5-23.5-20.9-24.2c-1.5-0.1-2.9-0.1-4.3-0.1
-			c-14.6-0.2-21.6,4.7-24.4,13.3c-2.9,8.5-2.8,20.3-5.3,35.6l3.1,0.4c2.6-15.5,2.5-27.5,5.2-35.1c2.8-7.5,7.4-11.2,21.5-11.3
-			c1.3,0,2.7,0,4.1,0.1c14.3,0.8,17.7,10.3,17.9,21.3c0,12.1-4.9,24.8-4.9,24.8l2.9,1C174.3,73.2,179.3,60.2,179.3,47.4z"/>
-		<polygon id="XMLID_12_" class="st2" points="88.2,48.6 87.7,64.3 91.2,66.1 131.8,80.5 218.4,79.5 237.3,53.9 		"/>
+		<path id="XMLID_13_" class="st0" d="M119.9,21.9c0.2-9.8-4.1-20.2-19.2-20.8C99.3,1,98,1,96.7,1c-13.4-0.2-19.8,4-22.4,11.4
+			c-2.7,7.3-2.6,17.4-4.9,30.5l2.8,0.3c2.4-13.3,2.3-23.6,4.8-30.1c2.6-6.4,6.8-9.6,19.7-9.7c1.2,0,2.5,0,3.8,0.1
+			c13.1,0.7,16.2,8.8,16.4,18.3c0,10.4-4.5,21.3-4.5,21.3l2.7,0.9C115.3,44,119.9,32.9,119.9,21.9z"/>
+		<polygon id="XMLID_12_" class="st1" points="36.3,22.9 35.9,36.4 39.1,37.9 76.3,50.3 155.7,49.4 173,27.5 		"/>
 		
-			<linearGradient id="XMLID_15_" gradientUnits="userSpaceOnUse" x1="-78.4128" y1="92.6223" x2="-73.0756" y2="69.5181" gradientTransform="matrix(-1 0 0 1 6.2451 0)">
-			<stop  offset="0" style="stop-color:#EF4237"/>
-			<stop  offset="1" style="stop-color:#A21D26"/>
+			<linearGradient id="XMLID_14_" gradientUnits="userSpaceOnUse" x1="-1744.1917" y1="141.8666" x2="-1739.7037" y2="161.2948" gradientTransform="matrix(-1 0 0 -1 -1711.7549 202)">
+			<stop  offset="0" style="stop-color:#EF4338"/>
+			<stop  offset="1" style="stop-color:#A31D27"/>
 		</linearGradient>
-		<polygon id="XMLID_11_" class="st3" points="81,56.1 63,58 68.4,69.1 88.9,64 88.2,48.6 		"/>
-		<polygon id="XMLID_10_" class="st4" points="225.6,61.6 214.4,62.1 200.4,171.5 217.4,253.1 240.8,231.4 240.8,142.7 		"/>
-		<polygon id="XMLID_9_" class="st5" points="237.3,53.9 225.6,61.6 240.8,231.4 261.4,225.4 		"/>
-		<polygon id="XMLID_8_" class="st6" points="214.4,62.1 63,58 50.9,240.9 217.4,253.1 		"/>
-		<path id="XMLID_7_" class="st7" d="M158.9,71.1c0,2,1.6,3.6,3.6,3.6c2,0,3.6-1.6,3.6-3.6c0-2-1.6-3.6-3.6-3.6
-			C160.5,67.5,158.9,69.1,158.9,71.1z"/>
-		<path id="XMLID_6_" class="st7" d="M111.9,70.2c0,2,1.6,3.6,3.6,3.6c2,0,3.6-1.6,3.6-3.6c0-2-1.6-3.6-3.6-3.6
-			C113.5,66.6,111.9,68.2,111.9,70.2z"/>
-		<path id="XMLID_5_" class="st8" d="M169,46.2c0.2-11.4-4.5-23.5-20.9-24.2c-1.5-0.1-2.9-0.1-4.3-0.1c-14.6-0.1-21.6,4.7-24.4,13.3
-			c-2.8,8.2-2.8,19.6-5.1,34.2c-0.1,0.8,0.4,1.5,1.3,1.7l0,0c0.9,0.1,1.7-0.4,1.8-1.2c2.3-14.8,2.3-26.3,4.9-33.7
-			c2.8-7.5,7.4-11.2,21.5-11.3c1.3,0,2.7,0,4.1,0.1c14.3,0.8,17.7,10.3,17.9,21.3c0,9.8-3.2,19.9-4.4,23.5c-0.3,0.7,0.2,1.5,1,1.8
-			l0,0c0.8,0.3,1.7-0.1,2-0.9C165.7,66.9,169,56.5,169,46.2z"/>
+		<polygon id="XMLID_11_" class="st2" points="29.7,29.3 13.2,31 18.2,40.5 37,36.1 36.3,22.9 		"/>
+		<polygon id="XMLID_10_" class="st3" points="162.3,34.1 152,34.5 139.2,128.3 154.8,198.3 176.2,179.7 176.2,103.6 		"/>
+		<polygon id="XMLID_9_" class="st4" points="173,27.5 162.3,34.1 176.2,179.7 195.1,174.6 		"/>
+		<polygon id="XMLID_8_" class="st5" points="152,34.5 13.2,31 2.1,187.9 154.8,198.3 		"/>
+		<path id="XMLID_7_" class="st6" d="M101.1,42.2c0,1.7,1.5,3.1,3.3,3.1c1.8,0,3.3-1.4,3.3-3.1s-1.5-3.1-3.3-3.1
+			C102.6,39.1,101.1,40.5,101.1,42.2z"/>
+		<path id="XMLID_6_" class="st6" d="M58.1,41.4c0,1.7,1.5,3.1,3.3,3.1s3.3-1.4,3.3-3.1s-1.5-3.1-3.3-3.1S58.1,39.7,58.1,41.4z"/>
+		<path id="XMLID_5_" class="st7" d="M110.4,20.8c0.2-9.8-4.1-20.2-19.2-20.8C89.9,0,88.6,0,87.3,0C73.9-0.1,67.5,4,64.9,11.4
+			c-2.6,7-2.6,16.8-4.7,29.3c-0.1,0.7,0.4,1.3,1.2,1.5l0,0c0.8,0.1,1.6-0.3,1.7-1c2.1-12.7,2.1-22.6,4.5-28.9
+			c2.6-6.4,6.8-9.6,19.7-9.7c1.2,0,2.5,0,3.8,0.1c13.1,0.7,16.2,8.8,16.4,18.3c0,8.4-2.9,17.1-4,20.2c-0.3,0.6,0.2,1.3,0.9,1.5l0,0
+			c0.7,0.3,1.6-0.1,1.8-0.8C107.4,38.6,110.4,29.7,110.4,20.8z"/>
 	</g>
 </g>
-<text id="XMLID_2_" transform="matrix(0.5516 2.037071e-002 -3.690192e-002 0.9993 62.4411 156.198)" class="st9 st10 st11">ShoppingElf</text>
+<text id="XMLID_1_" transform="matrix(1.0374 6.574063e-002 -5.320319e-002 0.9986 14.2854 117.1809)" class="st8 st9 st10">My Bag</text>
 </svg>

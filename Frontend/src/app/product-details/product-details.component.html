@@ -86,7 +86,7 @@
         <div *ngFor=" let size of Sizes,let i =index">
         
        
-             <div (click)="call()" class="spacing2">  <div class="size" [class.clicked]="clicked"> {{size.productSize}}</div><span class="price"> Rs  {{size.productPrice}} </span>  </div>
+             <div (click)="call(size.PID)" class="spacing2">  <div class="size" [class.clicked]="clicked"> {{size.productSize}}</div><span class="price"> Rs  {{size.productPrice}} </span>  </div>
 
       
                 
@@ -94,7 +94,7 @@
               </div>
 
         <div >
-                <button class="Button" (click)="orders()" >
+                <button class="Button" (click)="Add()"  >
                         <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button>
         </div>
         <div ><button class="Button" (click)="dplay()"><span class="text ">Order now  </span></button></div>

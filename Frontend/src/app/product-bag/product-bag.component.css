@@ -28,5 +28,14 @@
     height:120px;
 }
 .background{
-    background:#F9E79F ;
+    background:url('/assets/bagbg.png');
+    background-repeat:no-repeat;
+}
+.center
+{
+    text-align: center;
+}
+.border
+{
+    border:2px solid #F9E79F;
 }

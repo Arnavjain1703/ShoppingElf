@@ -20,7 +20,7 @@ export class ProdictCostComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.price=this.order.SizeModel.productPrice;
+    
     console.log(this.order.SizeModel.productPrice);
   
   }
