@@ -297,6 +297,12 @@ export class ServerService
      console.log(this.rootUrl+'/api/User/Address/?token='+localStorage.getItem('token'))
      return this.http.post(this.rootUrl+'/api/User/Address/?token='+localStorage.getItem('token'),JSON.stringify({AddressLine1,AddressLine2,pincode,State,city}),{headers:headers})
   }
+ 
+  sellerProduct()
+  {
+    
+    return this.http.get(this.rootUrl+'/api/Product/Seller/Show/?token='+localStorage.getItem('token2'))
 
-  
+  }
+
 }
