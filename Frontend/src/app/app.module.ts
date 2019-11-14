@@ -33,10 +33,11 @@ import { SellerLoginComponent } from './seller/login/login.component';
 import { SellerSignupComponent } from './seller/signup/signup.component';
 import { OtpComponent } from './seller/otp/otp.component';
 import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
-import { ConfirmValidatorDirective } from './shared/confirm-equal-validator.direcive';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderService } from './services/order.service';
 import { OrderItemComponent } from './orders/order-item/order-item.component';
+import { AddressPannelComponent } from './address-pannel/address-pannel.component';
+import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.direcive';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { OrderItemComponent } from './orders/order-item/order-item.component';
     FillDetailsComponent,
     OrdersComponent,
     OrderItemComponent,
-    // ConfirmValidatorDirective
+    AddressPannelComponent,
+    // ConfirmEqualValidatorDirective
   ],
   imports: [
     BrowserModule,

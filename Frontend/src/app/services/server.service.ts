@@ -15,7 +15,7 @@ export class ServerService
   tk:any;
   Products:Product[];
   body:{}; 
-  private rootUrl="https://6c05625a.ngrok.io"
+  private rootUrl="https://c2c2a332.ngrok.io"
 
 
   constructor(private http :HttpClient,
@@ -289,5 +289,12 @@ export class ServerService
     const headers = new HttpHeaders({'Content-Type':'application/json'});
     console.log(this.rootUrl+'/api/User/OrderNow/'+pid+'/?token='+localStorage.getItem('token'))
     return this.http.post(this.rootUrl+'/api/User/OrderNow/'+pid+'/?token='+localStorage.getItem('token'),this.body,{headers:headers})
+  }
+  address(AddressLine1:string,AddressLine2:string,pincode:number,city:string,State:string)
+  {
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(JSON.stringify({AddressLine1,AddressLine2,pincode,State,city}));
+     console.log(this.rootUrl+'/api/User/Address/?token='+localStorage.getItem('token'))
+     return this.http.post(this.rootUrl+'/api/User/Address/?token='+localStorage.getItem('token'),JSON.stringify({AddressLine1,AddressLine2,pincode,State,city}),{headers:headers})
   }
 }

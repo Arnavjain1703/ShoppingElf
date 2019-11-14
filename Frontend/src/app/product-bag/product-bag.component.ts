@@ -5,6 +5,7 @@ import { Bag } from '../shared/bag.model';
 
 import { ServerService } from '../services/server.service';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-bag',
@@ -24,6 +25,7 @@ constructor(
              private serverService:ServerService,
              private productBag:ProductBagService,
              private appComponent:AppComponent,
+             private router:Router,
           ) { }
 
   ngOnInit() {
@@ -81,18 +83,8 @@ ngOnDestroy()
 
  }
  order()
- {  this.appComponent.loaders()
-   this.serverService.AllOrder()
-   .subscribe(
-     (response)=>
-     {  this.tk=response
-       this.appComponent.SuccessModel(this.tk);
-       this.appComponent.loaderOff();
- 
-       
-
-     }
-   )
+ {  
+    this.router.navigate(['/address/add'])
  }
 }
 

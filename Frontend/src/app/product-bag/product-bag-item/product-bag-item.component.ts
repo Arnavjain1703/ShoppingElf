@@ -1,9 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { Product } from 'src/app/shared/product.module';
 import { ProductBagService } from 'src/app/services/product-bag.service';
 import { ProductBagComponent } from '../product-bag.component';
-import { ProductSize } from 'src/app/shared/size.module';
-import { SizeService } from 'src/app/services/size.service';
 import { Bag } from 'src/app/shared/bag.model';
 import { ServerService } from 'src/app/services/server.service';
 

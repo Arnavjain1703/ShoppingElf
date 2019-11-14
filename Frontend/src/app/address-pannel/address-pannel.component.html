@@ -1,0 +1,88 @@
+<div class="background">
+
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+        <div class="row">
+       <div class="col-md-4 col-sm-3 col-xs-0"></div>
+       <div class="col-md-4 col-sm-6 col-xs-12 ">
+       
+               <div class="form-group">        
+               <label for="AddressLine1"  class="heading">Address 1</label>
+              <input 
+               type="text" 
+               id="AddressLine1"
+                name="AddressLine1"
+                ngModel 
+       
+                placeholder="enter your Address"
+             class="form-control"
+               #AddressLine1="ngModel"
+               required 
+             >
+             </div>
+       <span class="help-block" *ngIf="AddressLine1.touched && !AddressLine1.valid">please enter your adderss</span>
+              
+       <div class="form-group">
+         <label for="AddressLine2" class="heading">Address2 (OPTIONAL)</label>
+         <input
+          type="text"
+           id="AddressLine2" 
+           name="AddressLine2"
+           ngModel
+           placeHolder="Enter your address "
+            class="form-control"
+            #AddressLine2="ngModel"
+            required
+            >
+            </div>
+         
+       
+         <div class="form-group">
+         <label for ="pincode" class="heading">Pincode</label><br>
+         <input  
+         type="text" 
+         id="pincode" 
+         name="Pincode" 
+         placeholder="Enter Picode" 
+         class="form-control"
+         ngModel
+         #Pincode="ngModel"
+         required
+         >
+         </div>
+         <span class="help-block" *ngIf="Pincode.touched && !Pincode.valid">please enter pincode</span>    
+       
+          <div class="form-group">     
+          <label for ="state" class="heading">State</label><br>
+          <input 
+          type="text" 
+          id="state" name="State" 
+          placeholder="enter your State"
+          class="form-control"
+          ngModel
+          required
+          #State="ngModel"
+               >
+           </div>    
+          
+               <span class="help-block" *ngIf="State.touched && !State.valid">please enter state</span>
+          <div class="form-group">
+           <label for ="city" class="heading">City</label><br>
+         <input 
+         type="text" 
+         id="city" 
+         name="city" 
+         placeholder="enter your City"
+         class="form-control"
+         required
+         ngModel
+         #city="ngModel" >
+            </div>
+         <span class="help-block" *ngIf="city.touched && !city.valid">please enter city</span>
+       
+            
+       <div class="center"><button  [disabled]="!f.valid" [class.disable]="!f.valid" [class.button]="f.valid">Place Order</button></div>
+</div>
+<div class="col-md-4 col-sm-3 col-xs-0"></div>
+</div>
+</form>

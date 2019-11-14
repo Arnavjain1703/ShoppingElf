@@ -1,0 +1,73 @@
+.background
+{
+
+    background:url(/assets/address.png);
+    min-height:670px;
+    padding-top:10%;
+}
+
+input{
+    border-left:2px solid #2471A3 ;
+    border-top:1px solid #2C3E50;
+    border-right: 1px solid #2C3E50;
+    border-bottom: 1px solid #2C3E50; 
+
+}
+.center
+{
+    text-align:center;
+}
+.button
+{
+    background:#F8C471;
+    border:2px solid #F8C471;
+    color:white;
+    border-radius:7%;
+    box-shadow:0px 0px 2px #D0D3D4 ;
+    width:100px;
+    height:30px
+}
+.button:hover{
+    box-shadow:0px 0px 1px #D0D3D4 ;
+    background:#F5B041 ;
+
+}
+::placeholder
+{
+    
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    color:#7FB3D5
+}
+.help-block
+{
+    color:red;
+    letter-spacing:1px;
+    font-family: 'Montserrat', sans-serif;
+}
+.heading
+{
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+
+
+}
+.disable
+{
+    background:#F8C471;
+    border:2px solid #F8C471;
+    color:white;
+    border-radius:7%;
+}
+@media only screen and (max-width: 766px)
+{
+   .background{
+        padding:15% 10%;
+   }
+}
+@media only screen and (max-width: 463px)
+{
+   .background{
+        padding:20% 6%;
+   }
+}

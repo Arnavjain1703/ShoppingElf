@@ -13,6 +13,7 @@ import { SellerSignupComponent } from './seller/signup/signup.component';
 import { OtpComponent } from './seller/otp/otp.component';
 import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AddressPannelComponent } from './address-pannel/address-pannel.component';
 
 
   
@@ -32,6 +33,9 @@ const appRoutes: Routes=[
     {path:'seller/otp',component:OtpComponent},
     {path:'seller/details',component:FillDetailsComponent},
     {path:"orders",component:OrdersComponent},
+    {path:"address/:id/add",component:AddressPannelComponent},
+    {path:"address/add",component:AddressPannelComponent}
+
     
 
 

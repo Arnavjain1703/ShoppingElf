@@ -79,9 +79,16 @@ tk:any;
      {
        console.log(response)
        this.tk=response
+       {
+        clearInterval(this.interval);
+        this.minut=1;
+          this.timeLeft=60;
+         
+      }
        localStorage.setItem('token2',this.tk);
        this.route.navigate(['seller/details'])
-       this.appComponent.loaderOff   
+       this.appComponent.loaderOff
+
      }
      ,
      (error) =>
