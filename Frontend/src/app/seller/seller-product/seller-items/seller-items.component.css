@@ -1,0 +1,164 @@
+
+
+/* img{
+    width: 520px;   
+    height:270px;
+    border-radius:1%;
+    box-shadow: 0px 0px 1px #979A9A;
+  
+ } */
+ .background
+ {
+     
+     width: 250px;
+     padding: 15px;
+}
+
+#slider
+{
+  height:500px
+}
+
+.name,.brand,.price
+{
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-left:10px;
+    transition: margin-top 0.5s;
+
+}
+.name-hover{
+  margin-top: 27px;
+}
+
+.text
+{
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+
+}
+
+.price,.name
+{
+  font-weight:600;
+}
+
+
+ .Button{
+     
+    background: #E91D83;
+    color: white;
+    border: 2px solid #E91D83;
+    border-radius: 5px ;
+    height: 35px;
+    width: 150px;
+    /* margin: 10px  30px; */
+    margin-top:10px;
+       }
+
+  .Button:hover
+  {
+   
+   background: #85C1E9 ;
+   border-color:#85C1E9
+  
+  }   
+  .btn-background
+  {
+    background:white;
+      position: absolute;
+    top: 235px;
+    width: 220px; 
+   
+    transition: opacity 0.5s;
+    text-align:center;
+    
+    
+
+  } 
+  
+  .arrow,.btn-background
+  {
+    opacity:0;
+  }
+
+
+
+  .shadow
+  {
+    box-shadow: 0px 0px 10px #979A9A;
+
+      /* box-shadow: 0px 0px 1px #D7BDE2 ;  */
+      border-radius:3%;
+      transition: box-shadow 0.5s;
+      height: 350px;
+     background: white;
+     
+      
+
+       
+  }    
+  .shadow:hover{
+    /* box-shadow: 0px 0px 15px #979A9A; */
+    box-shadow: 0px 0px 1px #D7BDE2 ; 
+
+  }
+  .show
+  {
+
+   opacity:1
+    
+  }
+  .showImg
+  {
+    height:250px;
+  }
+
+  #height
+  {
+    height:250px;
+  }
+
+ .brand
+ {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  color:#1B4F72 ;
+  font-size:140%;
+  font-weight:800;
+  
+ }
+ .name{
+   letter-spacing:1px;
+   color:#1F618D  ;
+ }
+ .price{
+  text-align:right;
+  color:#1F618D;
+   letter-spacing: 2px;
+   padding:2px;
+}
+
+  @media only screen and (max-width: 703px) {
+
+    .background
+    {
+      width:210px;
+      
+    }
+    .button
+    {
+      margin: 0px 0px; 
+      width:10px;
+    }
+    .btn-background
+    {
+      width:180px;
+    }
+    
+    }
+ 
+
+
+

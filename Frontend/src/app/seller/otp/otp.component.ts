@@ -79,15 +79,16 @@ tk:any;
      {
        console.log(response)
        this.tk=response
-       {
+       
+       
         clearInterval(this.interval);
         this.minut=1;
           this.timeLeft=60;
          
-      }
+      
        localStorage.setItem('token2',this.tk);
        this.route.navigate(['seller/details'])
-       this.appComponent.loaderOff
+       this.appComponent.loaderOff()
 
      }
      ,
@@ -95,6 +96,9 @@ tk:any;
      {
        console.log(error.error.Message)
        this.appComponent.loaderOff();
+       this.appComponent.WarningModel(error.error.Message)
+       this.appComponent.loaderOff()
+
      }
    )
     }
@@ -105,7 +109,9 @@ resendOtp()
     (response)=>
     {  this.tk=response
       console.log(this.tk)
+
       this.appComponent.loaderOff()
+      this.appComponent.SuccessModel(this.tk)
     },
      (error)=>
      {

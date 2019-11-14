@@ -14,6 +14,7 @@ import { OtpComponent } from './seller/otp/otp.component';
 import { FillDetailsComponent } from './seller/fill-details/fill-details.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddressPannelComponent } from './address-pannel/address-pannel.component';
+import { SellerProductComponent } from './seller/seller-product/seller-product.component';
 
 
   
@@ -34,7 +35,8 @@ const appRoutes: Routes=[
     {path:'seller/details',component:FillDetailsComponent},
     {path:"orders",component:OrdersComponent},
     {path:"address/:id/add",component:AddressPannelComponent},
-    {path:"address/add",component:AddressPannelComponent}
+    {path:"address/add",component:AddressPannelComponent},
+    {path:'sellerProduct',component:SellerProductComponent}
 
     
 

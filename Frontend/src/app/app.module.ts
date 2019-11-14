@@ -38,6 +38,9 @@ import { OrderService } from './services/order.service';
 import { OrderItemComponent } from './orders/order-item/order-item.component';
 import { AddressPannelComponent } from './address-pannel/address-pannel.component';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.direcive';
+import { SellerProductComponent } from './seller/seller-product/seller-product.component';
+import { SellerItemsComponent } from './seller/seller-product/seller-items/seller-items.component';
+import { sellerService } from './services/sellerProduct.service';
 
 
 @NgModule({
@@ -65,6 +68,8 @@ import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator
     OrdersComponent,
     OrderItemComponent,
     AddressPannelComponent,
+    SellerProductComponent,
+    SellerItemsComponent,
     // ConfirmEqualValidatorDirective
   ],
   imports: [
@@ -77,8 +82,9 @@ import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator
 
     
   ],
-  providers: [ServerService,ProductService,ProductBagService,ProductBagItemComponent,ProductBagComponent,AppComponent,
-    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService,OtpComponent,OrderService],
+  providers: [ServerService,ProductService,ProductBagService,ProductBagItemComponent,ProductBagComponent,AppComponent,sellerService,
+    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService,OtpComponent,OrderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

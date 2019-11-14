@@ -1,7 +1,6 @@
 export class Product
 {
-    ProductID:number;
-
+    public ProductID:number;
     public productName:string;
     public productDetails:string;
     public picture1:string;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/Forms';
 import { ServerService } from 'src/app/services/server.service';
 import { AppComponent } from 'src/app/app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fill-details',
@@ -12,7 +13,8 @@ export class FillDetailsComponent implements OnInit {
 
 
   constructor( private serverService:ServerService,
-                private appComponent:AppComponent) { }
+                private appComponent:AppComponent,
+                private router:Router) { }
   ngOnInit() {
  
   
@@ -31,10 +33,14 @@ export class FillDetailsComponent implements OnInit {
       (response)=>
       {
           this.appComponent.loaderOff();
+          console.log(response);
+          this.router.navigate(['/sellerProduct'])
       },
       (error)=>
       {
            this.appComponent.loaders();
+           console.log(error)
+
       }
     )
 
