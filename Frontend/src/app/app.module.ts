@@ -41,6 +41,8 @@ import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator
 import { SellerProductComponent } from './seller/seller-product/seller-product.component';
 import { SellerItemsComponent } from './seller/seller-product/seller-items/seller-items.component';
 import { sellerService } from './services/sellerProduct.service';
+import { SailItemComponent } from './seller/seller-product/sail-item/sail-item.component';
+import { sailService } from './services/sails.service';
 
 
 @NgModule({
@@ -70,6 +72,7 @@ import { sellerService } from './services/sellerProduct.service';
     AddressPannelComponent,
     SellerProductComponent,
     SellerItemsComponent,
+    SailItemComponent,
     // ConfirmEqualValidatorDirective
   ],
   imports: [
@@ -83,8 +86,8 @@ import { sellerService } from './services/sellerProduct.service';
     
   ],
   providers: [ServerService,ProductService,ProductBagService,ProductBagItemComponent,ProductBagComponent,AppComponent,sellerService,
-    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService,OtpComponent,OrderService
-  ],
+    Category1Service,Category2Service,BrandsService,ProductItemComponent,ShowService,PriceService,SizeService,OtpComponent,OrderService,
+  sailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

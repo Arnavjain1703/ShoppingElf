@@ -7,6 +7,7 @@ import { AppComponent } from '../app.component';
 import { Category1Service } from './category1.service';
 import { Category2Service } from './category2.service';
 import { SizeService } from './size.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 
@@ -15,7 +16,7 @@ export class ServerService
   tk:any;
   Products:Product[];
   body:{}; 
-  private rootUrl="https://4e4d53c8.ngrok.io"
+  private rootUrl="https://5341ea6c.ngrok.io"
 
 
   constructor(private http :HttpClient,
@@ -24,6 +25,7 @@ export class ServerService
               private CategoryService2:Category2Service,
               private sizeService:SizeService,
               private appComponent:AppComponent,
+              private router:Router
               ){}
 
 
@@ -66,14 +68,21 @@ export class ServerService
   { 
     const headers = new HttpHeaders({'Content-Type':'application/json'});
     console.log(JSON.stringify({email,password}));
-    console.log(this.rootUrl+'/api/account/userlogin')
-   this.http.post(this.rootUrl+'/api/account/userlogin',JSON.stringify({email,password}),{headers:headers})
+    this.appComponent.loaders();
+   this.http.post(this.rootUrl+'/api/Seller/Login',JSON.stringify({email,password}),{headers:headers})
    .subscribe(
     (response) =>
      {      
            this.tk=response;
           console.log(this.tk);
-        localStorage.setItem('token',this.tk);
+        localStorage.setItem('token2',this.tk);
+        this.router.navigate(['/sellerProduct']);
+        this.appComponent.loaderOff();
+
+     },
+     (error) =>
+     {
+       this.appComponent.WarningModel(error.error);
      }                                                
        
   );
@@ -303,6 +312,12 @@ export class ServerService
     
     return this.http.get(this.rootUrl+'/api/Product/Seller/Show/?token='+localStorage.getItem('token2'))
 
+  }
+
+  Selled()
+  {
+    return this.http.get(this.rootUrl+'/api/Seller/Show/OrderPlaced/?token='+localStorage.getItem('token2'))
+    
   }
 
 }

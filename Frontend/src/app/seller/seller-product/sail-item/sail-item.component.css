@@ -1,0 +1,41 @@
+.image
+{
+    width:70px;
+    height:70px;
+}
+.margin
+{
+    margin-top:2%;
+    padding:2%;
+}
+.brand
+{
+    color:#F8C471;
+    letter-spacing: 2px;
+    font-size:140%;
+    
+}
+.name
+{
+   color:#1F618D;   
+}
+.heading
+{
+    font-size:110%;
+    color:#F8C471 ;
+}
+.border
+{
+    border-right:2px solid #F9E79F ;
+    height:50px;
+    
+}
+
+.price
+{
+    color:#F7DC6F ;
+}
+.answer
+{
+    color:#2980B9 ;
+}

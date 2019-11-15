@@ -1,5 +1,27 @@
 .height
 {
-  width:100%;
-  height:160vh;
+   min-height:700px;
+}
+/* .padding
+{
+  padding:1%;
+} */
+.details
+{
+  border:2px solid #F9E79F;
+}
+.heading
+{
+  text-align:center;
+  color:#1F618D ;
+  font-size:170%;
+  font-family: 'Montserrat', sans-serif;
+}
+.padding
+{
+  
+    position:sticky;
+    top:0;
+    left:2px;
+    
 }

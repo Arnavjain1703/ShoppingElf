@@ -1,8 +1,15 @@
-<div class="row">
-    
+<div class=image>
+    <img src="/assets/order.png">
+</div>
+
+<div class="row height">
+    <div class="col-lg-8 col-md-8 col-xs-12">
+            
+
+        <div class="heading">Products you added</div>
  <app-seller-items 
                 
-*ngFor="let product of products ; let i=index "
+*ngFor="let product of products , let i=index "
  
 [product]="product"
 
@@ -10,6 +17,20 @@
 
 </app-seller-items>
 </div>
+
+<div class="col-md-4 col-xs-12 padding">
+    <div class="heading">Selled Products</div>
+    <div class="details">
+        <app-sail-item *ngFor="let Sail of Sails;let i=index"
+            [Sail]="Sail"
+            [index]="i"
+        >
+        </app-sail-item>
+   <div>{{total}}</div>
+    </div>
+</div>
+</div>
+
 
 
 

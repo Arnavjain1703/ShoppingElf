@@ -4,6 +4,8 @@ import { Product } from 'src/app/shared/product.module';
 import { ServerService } from 'src/app/services/server.service';
 import { AppComponent } from 'src/app/app.component';
 import { TouchSequence } from 'selenium-webdriver';
+import { Sail } from 'src/app/shared/sellersails.module';
+import { sailService } from 'src/app/services/sails.service';
 
 @Component({
   selector: 'app-seller-product',
@@ -13,13 +15,15 @@ import { TouchSequence } from 'selenium-webdriver';
 export class SellerProductComponent implements OnInit {
 tk:any;
 products:Product[];
+Sails:Sail[];
   constructor( private sellerService:sellerService,
                private serverService:ServerService,
-               private appComponent:AppComponent) { }
+               private appComponent:AppComponent,
+               private sailService:sailService) { }
 
   ngOnInit() {
     this.appComponent.loaders();
-
+    
     this.serverService.sellerProduct()
     .subscribe
     (
@@ -30,14 +34,40 @@ products:Product[];
       }
 
     )
+    this.serverService.Selled()
+    .subscribe
+    (
+      (response)=>
+      {
+        this.tk=response;
+        this.sailService.setService(this.tk);
+        
+
+      }
+    )
    this.sellerService.ProductChanged
    .subscribe((products:Product[])=>
     {
       this.products=products;
     })
 
-   this.products=this.sellerService.getProducts();
+   
+    this.products=this.sellerService.getProducts();
+   
+   this.sailService.sailChanged.subscribe((Sails:Sail[]) =>
+   {
+     this.Sails=Sails;
+   }
 
+   
+   
+    
+
+   )
+
+
+   this.Sails=this.sailService.getProducts();
+   
   }
 
 }
