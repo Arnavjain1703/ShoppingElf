@@ -16,7 +16,7 @@ namespace ShoppingELF
                 .Add(new MediaTypeHeaderValue("text/html"));
             //config.EnableCors();
 
-            var cors = new EnableCorsAttribute("https://f1db9866.ngrok.io", "*", "*");
+            var cors = new EnableCorsAttribute("https://5341ea6c.ngrok.io", "*", "*");
             config.EnableCors(cors);
             // Web API routes
             config.MapHttpAttributeRoutes();

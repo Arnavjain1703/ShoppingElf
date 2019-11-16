@@ -73,7 +73,7 @@ namespace ShoppingELF.Controllers
                     return Ok(TokenManager.GenerateToken(seller.email));
                 }
                 else
-                    return Ok("Please enter a valid OTP");
+                    return BadRequest("Please enter a valid OTP");
             }
         }
 

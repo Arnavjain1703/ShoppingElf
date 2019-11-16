@@ -296,12 +296,44 @@ namespace ShoppingELF.Models
             }
         }
 
-        public void ImageUpload(int sid, int picid)
+        public int ImageUpload(int pid, int picimg, string imgpath)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
                 ProductTable pt = new ProductTable();
-                pt = context.ProductTable.FirstOrDefault(m => m.SellerID == sid);
+                pt = context.ProductTable.FirstOrDefault(m => m.ProductID == pid);
+                if (pt != null)
+                {
+                    if (picimg == 1)
+                    {
+                        pt.picture1 = imgpath;
+                        context.SaveChanges();
+                        return 1;
+                    }
+                    else if (picimg == 2)
+                    {
+                        pt.picture2 = imgpath;
+                        context.SaveChanges();
+                        return 1;
+                    }
+                    else if (picimg == 3)
+                    {
+                        pt.picture3 = imgpath;
+                        context.SaveChanges();
+                        return 1;
+                    }
+                    else if (picimg == 4)
+                    {
+                        pt.picture4 = imgpath;
+                        context.SaveChanges();
+                        return 1;
+                    }
+                    else
+                        return 0;
+                }
+                else
+                    return 2;
+                
             }
         }
         

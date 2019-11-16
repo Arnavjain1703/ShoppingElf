@@ -71,10 +71,10 @@ namespace ShoppingELF.Controllers
                 string username = TokenManager.ValidateToken(token);
                 seller = context.SellerTable.FirstOrDefault(x => x.email == username);
 
-                if (seller != null && seller.Role == "Seller")
+                if(seller != null && seller.Role == "Seller")
                 {
                     int x = new ProductRepository().AddProduct(subid, seller.SellerID, suitid, model);
-                    return Ok("Product Added successfully");
+                    return Ok(x);
                 }
                 else
                     return Unauthorized();
@@ -214,70 +214,67 @@ namespace ShoppingELF.Controllers
         }
 
         [HttpPost]
-        [Route("api/UploadImage/{sid}/{picid}")]
-        public HttpResponseMessage PostUserImage(int sid)
+        [Route("api/UploadImage/{pid}/{picimg}")]
+        public HttpResponseMessage PostUserImage(int pid, int picimg, string token)
         {
-            Dictionary<string, object> dict = new Dictionary<string, object>();
-            try
+            using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
-
-                var httpRequest = HttpContext.Current.Request;
-
-                foreach (string file in httpRequest.Files)
+                SellerTable seller = new SellerTable();
+                string username = TokenManager.ValidateToken(token);
+                seller = context.SellerTable.FirstOrDefault(m => m.email == username);
+                if (seller != null && seller.Role == "Seller")
                 {
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
-
-                    var postedFile = httpRequest.Files[file];
-                    if (postedFile != null && postedFile.ContentLength > 0)
+                    Dictionary<string, object> dict = new Dictionary<string, object>();
+                    try
                     {
-
-                        //int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
-
-                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
-                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
-                        var extension = ext.ToLower();
-                        if (!AllowedFileExtensions.Contains(extension))
+                        var httpRequest = HttpContext.Current.Request;
+                        foreach (string file in httpRequest.Files)
                         {
+                            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+                            var postedFile = httpRequest.Files[file];
+                            if (postedFile != null && postedFile.ContentLength > 0)
+                            {
+                                IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                                var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                                var extension = ext.ToLower();
+                                if (!AllowedFileExtensions.Contains(extension))
+                                {
+                                    var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+                                    dict.Add("error", message);
+                                    return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                                }
+                                else
+                                {
+                                    var filePath = HttpContext.Current.Server.MapPath("~/ProductImage/" + postedFile.FileName);
+                                    postedFile.SaveAs(filePath);
+                                    string imagepath = "/ProductImage/" + postedFile.FileName;
+                                    int image = new ProductRepository().ImageUpload(pid, picimg, imagepath);
+                                    if (image == 2)
+                                        return Request.CreateResponse(HttpStatusCode.NotFound, "Product Not found");
+                                    if (image == 0)
+                                        return Request.CreateResponse(HttpStatusCode.BadRequest, "Your image might be greater than the 1mb ,please upload a valid image");
 
-                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+                                }
+                            }
 
-                            dict.Add("error", message);
-                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                            var message1 = string.Format("Image Updated Successfully.");
+                            return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
                         }
-                        //else if (postedFile.ContentLength > MaxContentLength)
-                        //{
-
-                        //    var message = string.Format("Please Upload a file upto 1 mb.");
-
-                        //    dict.Add("error", message);
-                        //    return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
-                        //}
-                        else
-                        {
-
-
-
-                            var filePath = HttpContext.Current.Server.MapPath("~/ProductImage/" + postedFile.FileName + extension);
-
-                            postedFile.SaveAs(filePath);
-
-
-                        }
+                        var res = string.Format("Please Upload a image.");
+                        dict.Add("error", res);
+                        return Request.CreateResponse(HttpStatusCode.NotFound, dict);
                     }
-
-                    var message1 = string.Format("Image Updated Successfully.");
-                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                    catch (Exception ex)
+                    {
+                        var res = string.Format("please check your internet connection");
+                        dict.Add("error", res);
+                        return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+                    }
                 }
-                var res = string.Format("Please Upload a image.");
-                dict.Add("error", res);
-                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
-            }
-            catch (Exception ex)
-            {
-                var res = string.Format("some Message");
-                dict.Add("error", res);
-                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+                else
+                    return Request.CreateResponse(HttpStatusCode.Forbidden, "Access to this page is denied");
             }
         }
+
     }
 }

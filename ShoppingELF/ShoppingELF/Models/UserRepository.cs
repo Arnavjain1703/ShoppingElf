@@ -68,6 +68,7 @@ namespace ShoppingELF.Models
                         UserID = uid,
                         PID = x.PID,
                         CartID = x.CartID,
+                        Quantity = x.Quantity,
                         SizeModel = new SizeModel()
                         {
                             productPrice = x.SizeTable.productPrice,
@@ -223,22 +224,24 @@ namespace ShoppingELF.Models
                         productPicture = st.ProductTable.picture1,
                         productPrice = st.productPrice,
                         productSize = st.productSize,
-                        productQuantity = model.productQuantity
+                        productQuantity = 1
                     };
-                    st.productQuantity -= model.productQuantity;
+                    st.productQuantity -= 1;
                     context.OrderTable.Add(ot);
                     context.SaveChanges();
 
-                    ProductTable seller = new ProductTable();
-                    seller = context.ProductTable.FirstOrDefault(x => x.ProductID == pid);
+                    SizeTable seller = new SizeTable();
+                    seller = context.SizeTable.FirstOrDefault(x => x.PID == pid);
+                    ProductTable pp = new ProductTable();
+                    pp = context.ProductTable.FirstOrDefault(m => m.ProductID == seller.ProductID);
 
                     SoldTable soldt = new SoldTable()
                     {
-                        SellerID = seller.SellerID,
+                        SellerID = pp.SellerID,
                         productName = st.ProductTable.productName,
                         productBrand = st.ProductTable.productBrand,
                         productPrice = st.productPrice,
-                        productQuantity = model.productQuantity,
+                        productQuantity = 1,
                         productSize = st.productSize,
                         productPicture = st.ProductTable.picture1,
                         PID = pid,
