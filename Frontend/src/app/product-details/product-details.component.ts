@@ -4,15 +4,9 @@
  import { Subscription } from 'rxjs';
  import { ProductService } from '../services/product.service';
  import { SizeService } from '../services/size.service';
- import { Category1Service } from '../services/category1.service';
- import { BrandsService } from '../services/brands.service';
- import { ProductBagService } from '../services/product-bag.service';
  import { ProductSize } from '../shared/size.module';
- import { ProductBagItemComponent } from '../product-bag/product-bag-item/product-bag-item.component';
-import { callbackify } from 'util';
 import { ServerService } from '../services/server.service';
 import { AppComponent } from '../app.component';
-import { ThrowStmt } from '@angular/compiler';
 
 
  @Component({
@@ -27,12 +21,11 @@ export class ProductDetailsComponent implements OnInit {
  PID:number;
  tk:any;
  clicked=false;
- 
+ image1:any;
+ image2:any;
+ image3:any;
+ image4:any;
 
-// display=false;
-
-// added=false;
-// number:number;
  product:Product;
    Sizes:ProductSize[];
 
@@ -66,7 +59,14 @@ export class ProductDetailsComponent implements OnInit {
     )
     this.product=this.productService.getProduct(this.index);
      this.Sizes=this.sizeService.getSize();
-    
+
+       this.image1=this.serverService.rootUrl+this.product.picture1;
+
+this.image2=this.serverService.rootUrl+this.product.picture2;
+this.image3=this.serverService.rootUrl+this.product.picture3;
+this.image4=this.serverService.rootUrl+this.product.picture4;
+
+
   }
 
 call(pid:number,index)

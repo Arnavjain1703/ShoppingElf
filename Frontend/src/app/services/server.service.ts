@@ -338,10 +338,10 @@ export class ServerService
     return this.http.post(this.rootUrl+'/api/UploadImage/'+productID+'/'+index+'/?token='+localStorage.getItem('token2'),fd)
     
   }
-  addSize(productId:number,productPrice:number,productSize)
+  addSize(productId:number,productPrice:number,productSize,productQuantity)
   {
     const headers =new HttpHeaders({'Content-Type':'application/json'});
-    return this.http.post(this.rootUrl +'/api/Product/AddSize/'+productId,JSON.stringify({productPrice,productSize}),{headers:headers})
+    return this.http.post(this.rootUrl +'/api/Product/AddSize/'+productId+'/?token='+localStorage.getItem('token2'),JSON.stringify({productPrice,productSize,productQuantity}),{headers:headers})
   }
 
 

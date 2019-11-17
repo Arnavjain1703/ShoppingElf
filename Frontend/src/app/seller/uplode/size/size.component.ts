@@ -24,6 +24,7 @@ export class SizeComponent implements OnInit {
     this.SizeForm =new FormGroup({
       'productPrice':new FormControl(null,Validators.required),
       'productSize':new FormControl(null,Validators.required),
+      'productQuantity':new FormControl(null,Validators.required)
     })
 
    this.paramSubscription= this.router.params
@@ -40,17 +41,20 @@ export class SizeComponent implements OnInit {
   this.appComponent.loaders();
   const productSize=this.SizeForm.value.productSize;
   const productPrice=this.SizeForm.value.productPrice;
+  const productQuantity=this.SizeForm.value.productQuantity;
 
-  this.serverService.addSize(this.productID,productPrice,productSize)
+  this.serverService.addSize(this.productID,productPrice,productSize,productQuantity)
   .subscribe
   (
      (response)=>
      {
         console.log(response);
+        this.appComponent.loaderOff();
      },
      (error) =>
      {
          console.log(error);
+         this.appComponent.loaderOff();
      }
   )
 

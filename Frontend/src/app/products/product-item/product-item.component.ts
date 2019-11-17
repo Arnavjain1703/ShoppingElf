@@ -27,7 +27,11 @@ export class ProductItemComponent implements OnInit,OnDestroy {
   show:boolean;
   showBrand:boolean;
   showPrice:boolean;
-  
+   image1:any;
+   image2:any;
+   image3:any;
+   image4:any;
+
   brand:string;
   
   price1:number;
@@ -75,6 +79,13 @@ export class ProductItemComponent implements OnInit,OnDestroy {
       this.price2=price.price2;
     })
       
+   this.image1=this.serverService.rootUrl+this.product.picture1;
+
+this.image2=this.serverService.rootUrl+this.product.picture2;
+this.image3=this.serverService.rootUrl+this.product.picture3;
+this.image4=this.serverService.rootUrl+this.product.picture4;
+
+
 
   }
 
