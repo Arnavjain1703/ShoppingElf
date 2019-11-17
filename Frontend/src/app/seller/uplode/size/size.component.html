@@ -1,0 +1,54 @@
+ <div class="shadow" *ngIf="img1 && img2 && img3 && img4">
+
+  <div class="row">
+
+    <div class="col-xs-2"></div>
+
+    <div class="col-xs-8">
+  <form [formGroup]="SizeForm" (ngSubmit)="onSubmitSize()">
+
+      <div class="form-group">
+          <label id="ProductSize"  class="heading">Product Size</label>
+          <input for="productSize"
+           class="form-control" 
+           type=text 
+           placeholder="enter product name"
+           formControlName="productSize"
+           >
+           <span 
+           *ngIf="!SizeForm.get('productSize').valid && SizeForm.get('productSize').touched"
+           class="help-block">Please enter a product Size</span>
+          </div>
+
+
+
+          <div class="form-group">
+              <label id="ProductPrice"  class="heading">Product Price</label>
+              <input for="productPrice"
+               class="form-control" 
+               type=text 
+               placeholder="enter product name"
+               formControlName="productPrice"
+               >
+               <span 
+               *ngIf="!SizeForm.get('productPrice').valid && SizeForm.get('productPrice').touched"
+               class="help-block">Please enter a product Price</span>
+              </div>
+
+              <div class="center">
+                  <button 
+                      class="submit" 
+                      type="submit">
+                      Submit
+                    </button>
+                  </div>
+        
+
+
+  </form>
+</div>
+<div class="col-xs-2"></div>
+  </div>
+
+</div> 
+ 

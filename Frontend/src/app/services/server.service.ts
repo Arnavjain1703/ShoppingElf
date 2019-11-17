@@ -16,7 +16,8 @@ export class ServerService
   tk:any;
   Products:Product[];
   body:{}; 
-  private rootUrl="https://5341ea6c.ngrok.io"
+  public rootUrl="https://8bcc3a4a.ngrok.io"
+  
 
 
   constructor(private http :HttpClient,
@@ -133,17 +134,20 @@ export class ServerService
   GetCategory1(Index:number)
   {
     console.log(this.rootUrl+'/api/Product/Category/'+Index);
+    this.appComponent.loaders();
     this.http.get( this.rootUrl+'/api/Product/Category/'+Index)
     .subscribe(
       response=>
-      {
+      {   
         console.log(response)
         this.tk=response;
-        this.CategoryService.SetService(this.tk)
+        this.CategoryService.SetService(this.tk);
+        this.appComponent.loaderOff();
       },
        error=>
        {
-         console.log(error)
+         console.log(error);
+         this.appComponent.loaderOff();
        }
     )
 
@@ -319,5 +323,26 @@ export class ServerService
     return this.http.get(this.rootUrl+'/api/Seller/Show/OrderPlaced/?token='+localStorage.getItem('token2'))
     
   }
+
+
+  addProduct(productName:string,productBrand:string,SuitableID:number,SubCategory:number,productDetails:string)
+  {   
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(JSON.stringify({productName,productBrand,SuitableID,SubCategory,productDetails}));
+    return this.http.post(this.rootUrl+'/api/Product/AddProduct/'+SubCategory+'/'+SuitableID+'/?token='+localStorage.getItem('token2'),JSON.stringify({productName,productBrand,productDetails}),{headers:headers})
+     
+  }
+  
+  uplode( fd:FormData,index:number,productID:number)
+  {
+    return this.http.post(this.rootUrl+'/api/UploadImage/'+productID+'/'+index+'/?token='+localStorage.getItem('token2'),fd)
+    
+  }
+  addSize(productId:number,productPrice:number,productSize)
+  {
+    const headers =new HttpHeaders({'Content-Type':'application/json'});
+    return this.http.post(this.rootUrl +'/api/Product/AddSize/'+productId,JSON.stringify({productPrice,productSize}),{headers:headers})
+  }
+
 
 }

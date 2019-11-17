@@ -1,0 +1,77 @@
+        <div class="background">
+        <div class="top-image"><img src="/assets/order.png"></div>
+             
+
+        <div class=" heading">Uplode 4 Images of your Product </div>
+        
+          <div class="row">
+           <div class="col-sm-3 col-xs-6">
+             <div class="center">
+               
+              <img class="image" [src]="image1">
+              
+             </div>
+             <div>
+                <input  style="display:none" type="file" (change)="onFileSelected($event)"
+                #fileInput>
+                <div class="center">
+                <button  class="button"type="button" (click)="fileInput.click()">Pick file</button>
+                <button  class="button" type="submit" (click)="onUplode1()">Uplode</button>
+                </div>
+             </div>
+        
+            </div>
+        
+            <div class="col-sm-3 col-xs-6">
+        
+                <div class="center">
+               
+                    <img class="image" [src]="image2">
+                    
+                   </div>
+                   <div>
+                      <input  style="display:none" type="file" (change)="onFileSelected($event)"
+                      #fileInput>
+                      <div class="center">
+                      <button class="button" type="button" (click)="fileInput.click()">Pick file</button>
+                      <button  class="button" type="submit" (click)="onUplode2()">Upload</button>
+                      </div>
+                   </div>
+        
+            </div>
+            <div class="col-sm-3 col-xs-6">
+        
+                <div class="center">
+               
+                    <img  class="image"[src]="image3">
+                    
+                   </div>
+                   <div>
+                      <input  style="display:none" type="file" (change)="onFileSelected($event)"
+                      #fileInput>
+                      <div class="center">
+                      <button  class="button" type="button" (click)="fileInput.click()">Pick file</button>
+                      <button class="button" type="submit" (click)="onUplode3()">Upload</button>
+                      </div>
+                   </div>
+        
+            </div>
+            <div class="col-sm-3 col-xs-6">
+        
+                <div class="center">
+               
+                    <img  class="image" [src]="image4">
+                    
+                   </div>
+                   <div>
+                      <input  style="display:none" type="file" (change)="onFileSelected($event)"
+                      #fileInput>
+                      <div class="center">
+                      <button class="button" type="button" (click)="fileInput.click()">Pick file</button>
+                      <button class="button" type="submit" (click)="onUplode4()">Upload</button>
+                      </div>
+                   </div>
+        
+            </div>
+           </div>
+         </div>

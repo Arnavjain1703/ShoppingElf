@@ -1,0 +1,143 @@
+
+        
+             <div class="background">
+        <div class="top-image"><img src="/assets/order.png"></div>
+
+  <div class="row ">
+   <div class="col-md-1"></div>
+   <div class="col-md-5 shadow"  >
+     <form [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+       <div class="form-group">
+       <label id="ProductName"  class="heading">Product name</label>
+       <input for="productName"
+        class="form-control" 
+        type=text 
+        placeholder="enter product name"
+        formControlName="productName"
+        >
+        <span 
+        *ngIf="!ProductForm.get('productName').valid && ProductForm.get('productName').touched"
+        class="help-block">Please enter a product name</span>
+       </div>
+      
+       <div class="form-group">
+       <label class="heading" for="productBrand">Product Brand</label>
+       <div *ngFor="let Brand of Brands, let i=index">
+           <input id="productBrand"
+          
+            type="radio" 
+            formControlName="productBrand"
+            [value]="Brand">{{Brand}} 
+          
+            
+           
+       </div>
+       <div class="message">Brand is required</div>
+      </div>
+      <div class="form-group">
+        <label class="heading" for="categ">Category</label>
+        <div ><input type="radio" 
+           id="categ" 
+           value=1
+           formControlName="SuitableID" (click)="category1(1)"
+           
+           >  Men </div>
+
+        <div ><input 
+          type="radio" 
+          id="categ" 
+          value=2 
+          formControlName="SuitableID"
+          (click)="category1(2)"
+          >  Women </div>
+        <div><input 
+          type="radio" 
+          id="categ"
+           value=3
+           formControlName="SuitableID"
+           (click)="category1(3)"
+           >  Kids </div>
+         
+           <div class="message">Category is reqiured</div>
+      </div> 
+
+      <div class="form-group" *ngIf="categ1">
+          <label for="category1"class="heading">Category2</label>
+          <div *ngFor="let category of categories">
+              <input  
+                (click)="category2(category)" 
+                id="category1"
+                type="radio"
+                [value]="category.CategoryName"
+                formControlName="productCategory2"
+                > {{category.CategoryName}}
+          </div>
+          <div class="message">Category2 is reqiured</div>
+
+         </div> 
+
+         <div class="form-group" *ngIf="categ2">
+            <label for="category2" class="heading" >Category3</label>
+            <div *ngFor="let category of categories2">
+               <input 
+               id="category2" 
+               type="radio" 
+               [value]="category.SubCategoryID"
+               formControlName="SubCategoryID"
+            
+               > {{category.SubCategoryName}}
+            </div>
+            <div class="message">Category3 is reqiured</div>
+
+           </div> 
+
+         <div class="form-group">
+           <label 
+           class="heading" 
+           id ="description"
+           >Product Description</label>
+          
+              <textarea  placeholder="Enter product details"
+                formControlName="productDetails"
+                type="text" 
+                id="description"
+                class="form-control"
+                rows="7">
+                </textarea>
+
+                <span 
+                *ngIf="!ProductForm.get('productName').valid && ProductForm.get('productName').touched"
+                class="help-block">Please enter a product name</span>
+               </div>
+
+           
+        
+          
+        <div class="center">
+          <button 
+              class="submit" 
+              type="submit">
+              Submit
+            </button>
+          </div>
+             
+      </form>
+    
+    
+
+   </div> 
+
+  
+   <div class="col-lg-6">
+      <img src="/assets/seller.svg">
+ </div>
+
+ </div>             
+
+  </div>
+ 
+
+
+  
+ 
+ 

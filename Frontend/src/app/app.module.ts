@@ -43,6 +43,10 @@ import { SellerItemsComponent } from './seller/seller-product/seller-items/selle
 import { sellerService } from './services/sellerProduct.service';
 import { SailItemComponent } from './seller/seller-product/sail-item/sail-item.component';
 import { sailService } from './services/sails.service';
+import { UplodeComponent } from './seller/uplode/uplode.component';
+import { Category1Component } from './seller/uplode/category1/category1.component';
+import { PhotoUplodeComponent } from './seller/uplode/photo-uplode/photo-uplode.component';
+import { SizeComponent } from './seller/uplode/size/size.component';
 
 
 @NgModule({
@@ -73,6 +77,10 @@ import { sailService } from './services/sails.service';
     SellerProductComponent,
     SellerItemsComponent,
     SailItemComponent,
+    UplodeComponent,
+    Category1Component,
+    PhotoUplodeComponent,
+    SizeComponent,
     // ConfirmEqualValidatorDirective
   ],
   imports: [

@@ -15,6 +15,9 @@ import { FillDetailsComponent } from './seller/fill-details/fill-details.compone
 import { OrdersComponent } from './orders/orders.component';
 import { AddressPannelComponent } from './address-pannel/address-pannel.component';
 import { SellerProductComponent } from './seller/seller-product/seller-product.component';
+import { UplodeComponent } from './seller/uplode/uplode.component';
+import { PhotoUplodeComponent } from './seller/uplode/photo-uplode/photo-uplode.component';
+import { SizeComponent } from './seller/uplode/size/size.component';
 
 
   
@@ -36,7 +39,10 @@ const appRoutes: Routes=[
     {path:"orders",component:OrdersComponent},
     {path:"address/:id/add",component:AddressPannelComponent},
     {path:"address/add",component:AddressPannelComponent},
-    {path:'sellerProduct',component:SellerProductComponent}
+    {path:'sellerProduct',component:SellerProductComponent},
+    {path:'addProduct',component:UplodeComponent},
+    {path:'Upload/:id',component:PhotoUplodeComponent},
+    {path:'size/:id',component:SizeComponent}
 
     
 

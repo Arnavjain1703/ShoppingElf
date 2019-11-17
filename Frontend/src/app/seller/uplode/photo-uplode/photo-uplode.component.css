@@ -1,0 +1,41 @@
+.button
+{
+  background:#FDEBD0;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif;
+  color:#1F618D;
+  font-weight:700;
+  border:2px solid #FDEBD0;
+  border-radius:4%;
+  margin:2%;
+  box-shadow:0px 0px 2px #D0D3D4 ;
+  transition: box-shadow 0.4s;
+  transition: color 0.2s;
+   font-size:120%;   
+
+  
+}
+.button:hover{
+  box-shadow:0px 0px 0px #D0D3D4 ;
+  color:#F7DC6F;
+
+}
+.image
+{
+
+  width:100%;
+  height:200px
+}
+.heading
+{
+  color:#2874A6 ;
+  letter-spacing: 1px;
+  font-size:120%;
+  font-family: 'Montserrat', sans-serif;
+  
+
+}
+.row
+{
+    margin:2% 5%;
+}
