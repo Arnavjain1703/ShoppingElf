@@ -51,7 +51,7 @@ export class ProductDetailsComponent implements OnInit {
          .subscribe((Sizes:ProductSize[])=>
      { 
                this.Sizes=Sizes;
-               console.log(Sizes[0].ProductModel.productBrand)
+              
       
 
      }

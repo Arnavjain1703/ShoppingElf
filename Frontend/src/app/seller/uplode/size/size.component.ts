@@ -4,6 +4,8 @@ import { AppComponent } from 'src/app/app.component';
 import { ServerService } from 'src/app/services/server.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ProductSize } from 'src/app/shared/size.module';
+import { SizeService } from 'src/app/services/size.service';
 
 @Component({
   selector: 'app-size',
@@ -11,14 +13,17 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./size.component.css']
 })
 export class SizeComponent implements OnInit {
-
+  edit=false;
   SizeForm:FormGroup;
   productID:number;
-  paramSubscription:Subscription
-  
+  paramSubscription:Subscription;
+  sizeSubscription:Subscription;
+  Sizes:ProductSize[];
+  tk:any;
   constructor(private appComponent:AppComponent,
               private serverService:ServerService,
-              private router:ActivatedRoute) { }
+              private router:ActivatedRoute,
+              private sizeService:SizeService) { }
 
   ngOnInit() {
     this.SizeForm =new FormGroup({
@@ -27,12 +32,34 @@ export class SizeComponent implements OnInit {
       'productQuantity':new FormControl(null,Validators.required)
     })
 
+
+    
+
+    this.sizeSubscription=this.sizeService.AllSize
+         .subscribe((Sizes:ProductSize[])=>
+     { 
+               this.Sizes=Sizes;
+
+              
+              
+      
+
+     }   
+      )
+
+     this.Sizes=this.sizeService.getSize();
+     console.log(this.Sizes);
+     
    this.paramSubscription= this.router.params
     .subscribe(
       (params:Params)=>
       this.productID=+params['id']
     
     )
+    
+    this.serverService.size(this.productID)
+    
+
   
   }
 
@@ -42,12 +69,15 @@ export class SizeComponent implements OnInit {
   const productSize=this.SizeForm.value.productSize;
   const productPrice=this.SizeForm.value.productPrice;
   const productQuantity=this.SizeForm.value.productQuantity;
+ 
+  this.sizeService.addSize(this.SizeForm.value)
+  
 
   this.serverService.addSize(this.productID,productPrice,productSize,productQuantity)
   .subscribe
   (
      (response)=>
-     {
+     {  this.sizeService
         console.log(response);
         this.appComponent.loaderOff();
      },
@@ -58,5 +88,28 @@ export class SizeComponent implements OnInit {
      }
   )
 
+}
+
+deletesize( index:number,i:number)
+  { console.log(this.Sizes[i].PID)
+   this.appComponent.loaders();
+  this.sizeService.delete(i);
+  this.serverService.deleteSize(this.Sizes[i].PID)
+  .subscribe
+  (
+    (response)=>
+    {
+         console.log(response);
+         this.tk=response;
+         this.appComponent.SuccessModel(this.tk);
+         this.appComponent.loaderOff();
+
+    },
+    (error)=>
+    {
+         console.log(error);
+         this.appComponent.loaderOff();
+    }
+  )
 }
 }

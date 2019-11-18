@@ -11,10 +11,6 @@ export class  SizeService
 private  Size:ProductSize[]=[
 
        
-         new ProductSize('x',300,1),
-         new ProductSize('xl',400,2),
-         new ProductSize('xxl',450,3),
-         new ProductSize('Xv',500,4),
 
                 
 
@@ -28,11 +24,23 @@ getSize()
 
 }
 
+addSize(size:ProductSize)
+{    
+    this.Size.push(size)
+    this.AllSize.next(this.Size.slice());
+
+}
+
 getsize(index:number)
 {
     return this.Size[index];
 }
+delete(index:number)
+{
+    this.Size.splice(index,1);
+    this.AllSize.next(this.Size.slice());
 
+}
 
 setSize( Size:ProductSize[] )
 {

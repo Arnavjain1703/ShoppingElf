@@ -185,7 +185,7 @@ export class ServerService
   size(Index:number)
   {
     console.log(this.rootUrl+'/api/Product/ProductDetails/'+Index)
-    this.http.get(this.rootUrl+'/api/Product/ProductDetails/'+Index)
+  return this.http.get(this.rootUrl+'/api/Product/ProductDetails/'+Index)
     .subscribe(
      response=>
      {  
@@ -335,5 +335,12 @@ export class ServerService
     console.log(this.rootUrl+'/api/Product/Delete/'+id+'/?token='+localStorage.getItem('token2'))
     return this.http.post(this.rootUrl+'/api/Product/Delete/'+id+'/?token='+localStorage.getItem('token2'),this.body,{headers:headers})
    }
+
+  deleteSize(id:number)
+  {
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(this.rootUrl+'/api/Product/Delete/Size'+id+'/?token='+localStorage.getItem('token2'))
+    return this.http.post(this.rootUrl+'/api/Product/Delete/Size/'+id+'/?token='+localStorage.getItem('token2'),this.body,{headers:headers})
+  } 
 
 }

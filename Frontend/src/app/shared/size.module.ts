@@ -3,7 +3,7 @@ import { Product } from './product.module';
  export class ProductSize {
   PID:number;
   productSize:string;
-  ProductQuantity:number;
+  productQuantity:number;
   ProductID:number;
   productPrice:number;
   ProductModel:Product;
@@ -12,7 +12,7 @@ import { Product } from './product.module';
     {
         this.productPrice=productPrice;
         this.productSize=productSize;
-        this.ProductQuantity=productQuantity;
+        this.productQuantity=productQuantity;
         
 
 

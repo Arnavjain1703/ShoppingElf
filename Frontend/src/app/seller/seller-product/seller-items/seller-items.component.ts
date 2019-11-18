@@ -4,6 +4,7 @@ import { ServerService } from 'src/app/services/server.service';
 import { AppComponent } from 'src/app/app.component';
 import { SellerProductComponent } from '../seller-product.component';
 import { sellerService } from 'src/app/services/sellerProduct.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seller-items',
@@ -25,7 +26,8 @@ export class SellerItemsComponent implements OnInit {
    display=false;
   constructor( private serverService:ServerService,
                private appComponent:AppComponent,
-               private sellerService:sellerService ) { }
+               private sellerService:sellerService,
+               private router:Router ) { }
 
   ngOnInit() {
   
@@ -64,6 +66,10 @@ delete()
       this.appComponent.loaderOff();
     }
   )
+}
+navigate()
+{
+   this.router.navigate(['size/'+this.product.ProductID])
 }
 
 }
