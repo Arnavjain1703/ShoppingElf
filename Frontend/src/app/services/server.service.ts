@@ -16,7 +16,7 @@ export class ServerService
   tk:any;
   Products:Product[];
   body:{}; 
-  public rootUrl="https://8bcc3a4a.ngrok.io"
+  public rootUrl="https://4ceb3484.ngrok.io"
   
 
 
@@ -109,23 +109,8 @@ export class ServerService
   {
 
     console.log(this.rootUrl+'/api/Product/GetProductBySuitableID/'+index);
-     this.http.get( this.rootUrl+'/api/Product/GetProductBySuitableID/'+index)
-     .subscribe(
-      response=>
-      {  
-        
-     console.log(response);
-     this.tk=response;
-     this.productService.setService(this.tk);
+     return this.http.get( this.rootUrl+'/api/Product/GetProductBySuitableID/'+index)
     
-        
-      },
-       error=> {
-         console.log(error);
-       }
-  
-    )
-
 
 
   
@@ -343,6 +328,12 @@ export class ServerService
     const headers =new HttpHeaders({'Content-Type':'application/json'});
     return this.http.post(this.rootUrl +'/api/Product/AddSize/'+productId+'/?token='+localStorage.getItem('token2'),JSON.stringify({productPrice,productSize,productQuantity}),{headers:headers})
   }
-
+   DeleteProduct(id:number)
+  {  
+    
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    console.log(this.rootUrl+'/api/Product/Delete/'+id+'/?token='+localStorage.getItem('token2'))
+    return this.http.post(this.rootUrl+'/api/Product/Delete/'+id+'/?token='+localStorage.getItem('token2'),this.body,{headers:headers})
+   }
 
 }

@@ -47,12 +47,12 @@
 
  .Button{
      
-    background: #E91D83;
-    color: white;
-    border: 2px solid #E91D83;
+    background:#F7DC6F ;
+    color: #21618C ;
+    border: 2px solid #F7DC6F;
     border-radius: 5px ;
     height: 35px;
-    width: 150px;
+    width: 80px;
     /* margin: 10px  30px; */
     margin-top:10px;
        }
@@ -60,8 +60,8 @@
   .Button:hover
   {
    
-   background: #85C1E9 ;
-   border-color:#85C1E9
+   background: #F8C471  ;
+   border-color:#F8C471
   
   }   
   .btn-background

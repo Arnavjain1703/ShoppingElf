@@ -1,4 +1,4 @@
- <div *ngIf="show ||( ( product.productBrand == brand || showBrand) && (showPrice || ((product.productPrice >= price1)&&( price2 >=product.productPrice))) )" class="background col-lg-3  col-xs-12">
+ <div *ngIf="show ||( ( product.productBrand == brand || showBrand) && (showPrice || ((product.price >= price1)&&( price2 >=product.price))) )" class="background col-lg-3  col-xs-12">
 <div  class="shadow" (mouseover)="call()" (mouseout)="uncall()" >
                      <!-- <img  [class.showImg]="display" [src]="product.picture1"> -->
                     
@@ -34,18 +34,18 @@
 
                                    <!-- Controls -->
                                    <a  class=" carousel-control arrow" [class.show]="display" href="#carousel-example-{{index}}" role="button" data-slide="prev">
-                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                     <span class="glyphicon glyphicon-chevron-left" ></span>
                                      <span class="sr-only">Previous</span>
                                    </a>
                                    <a class="right carousel-control arrow"  [class.show]="display"href="#carousel-example-{{index}}" role="button" data-slide="next">
-                                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                     <span class="glyphicon glyphicon-chevron-right" ></span>
                                      <span class="sr-only">Next</span>
                                    </a>
                                  </div>
 <div>
   <div class="btn-background"  [class.show]="display">               
      <button class="Button" (click)="details()" routerLink="/details/{{index}}"  >
-            <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span>
+            <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Deatails </span>
     </button>
        <!-- <div >
          <span 
@@ -54,8 +54,19 @@
        </div>         -->
   </div>
        <div class="brand" [class.name-hover]="display">{{product.productBrand}}</div>
-       <div class="price"> Rs {{product.price}}</div>
-       <div class="name">{{product.productName}}</div>
+       <div class="row padding-top">
+
+          <div class="col-xs-6">
+              <div class="name">{{product.productName}}</div> 
+    
+             </div>
+         <div class="col-xs-6">
+          <div class="price"> Rs {{product.price}}</div>
+
+         </div>
+         
+
+       </div>
 </div>
      
 

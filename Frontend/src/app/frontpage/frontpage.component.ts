@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from '../services/server.service';
+import { ProductService } from '../services/product.service';
+import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-frontpage',
@@ -7,12 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontpageComponent implements OnInit {
 
-  constructor() { }
+  constructor( private serverService:ServerService,
+               private productService:ProductService,
+               private appComponent:AppComponent,
+               private router:Router) { }
   title = 'shoppingELF';
   myStyle: object = {};
   myParams: object = {};
   width: number = 100;
   height: number = 100;
+  tk:any;
 
   ngOnInit() {
     this.myStyle = {
@@ -40,5 +48,90 @@ this.myParams = {
   }
 };
   }
+
+  menProducts()
+{  this.appComponent.loaders();
+  this.serverService.getallProducts(1)
+  .subscribe(
+    response=>
+    {  
+      
+   console.log(response);
+   this.tk=response;
+   this.productService.setService(this.tk);
+   this.router.navigate(['products'])
+   this.appComponent.loaderOff();
+  
+      
+    },
+     error=> {
+       console.log(error);
+       this.appComponent.loaderOff();
+
+     }
+
+  )
+
+  this.serverService.GetCategory1(1)
+  
+
+  
+}
+
+womenProducts()
+{
+  this.appComponent.loaders();
+  this.serverService.getallProducts(2)
+  .subscribe(
+    response=>
+    {  
+      
+   console.log(response);
+   this.tk=response;
+   this.productService.setService(this.tk);
+   this.router.navigate(['products'])
+
+   this.appComponent.loaderOff();
+  
+      
+    },
+     error=> {
+       console.log(error);
+       this.appComponent.loaderOff();
+
+     }
+
+  )
+  this.serverService.GetCategory1(2)
+
+
+}
+
+kidsProducts()
+{  this.appComponent.loaders()
+  this.serverService.getallProducts(3)
+  .subscribe(
+    response=>
+    {  
+      
+   console.log(response);
+   this.tk=response;
+   this.productService.setService(this.tk);
+   this.router.navigate(['products'])
+
+   this.appComponent.loaderOff();
+  
+      
+    },
+     error=> {
+       console.log(error);
+       this.appComponent.loaderOff();
+
+     }
+
+  )
+  this.serverService.GetCategory1(3);
+
+}
 
 }

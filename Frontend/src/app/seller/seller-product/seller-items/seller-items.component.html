@@ -44,14 +44,15 @@
                                      </div>
     <div>
       <div class="btn-background"  [class.show]="display">               
-         <button class="Button" (click)="details()" routerLink="/details/{{index}}"  >
-                <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span>
-        </button>
-           <!-- <div >
-             <span 
-             *ngFor="let sizes of size"
-             ></span>
-           </div>         -->
+      
+           <div class="row">
+             <div class="col-xs-6">
+          <button class="btn btn-default Button">Edit</button>
+             </div>
+             <div class="col-xs-6">
+          <button (click)="delete()" class="btn btn-default Button"><span class="glyphicon glyphicon-trash"></span></button>
+             </div>
+           </div>
       </div>
            <div class="brand" [class.name-hover]="display">{{product.productBrand}}</div>
            <div class="price"> Rs {{product.price}}</div>

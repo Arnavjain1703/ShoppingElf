@@ -82,8 +82,8 @@
         <div class="spacing" ><span class="key">Product Name</span> : <span class="name">{{product.productName}}</span></div>
 
         <div class="detail spacing">{{product.productDetails}}</div>
-
-        <div *ngFor=" let size of Sizes,let i =index">
+          <div class="row">
+        <div class="col-lg-2" *ngFor=" let size of Sizes,let i =index">
         
        
              <div (click)="call(size.PID,index)" class="spacing2">  <div [class.size]="!clicked.index" [class.clicked]="clicked.index"> {{size.productSize}}</div><span class="price"> Rs  {{size.productPrice}} </span>  </div>
@@ -93,10 +93,12 @@
          
               </div>
 
-        <div >
+              
+
+         </div>
                 <button class="Button" (click)="Add()"  >
                         <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button>
-        </div>
+        
         <div ><button class="Button" (click)="oneOrder()"  > <span class="text ">Order now  </span></button></div>
         
       

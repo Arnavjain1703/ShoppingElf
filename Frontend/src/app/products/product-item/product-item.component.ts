@@ -50,13 +50,17 @@ export class ProductItemComponent implements OnInit,OnDestroy {
 
     this.showBrand=true;
 
+    console.log('showBrand'+this.showBrand)
+    this.showPrice=true;
+
     this.showPriceSubscription=this.showService.ShowPrices
     .subscribe((showPrice:boolean)=>
     {
       this.showPrice=showPrice;
     })
+    console.log('showPrice'+this.showPrice)
 
-    this.showPrice=true;
+
 
     this.subscription= this.showService.AllChanged
     .subscribe((show:boolean)=>
@@ -77,6 +81,7 @@ export class ProductItemComponent implements OnInit,OnDestroy {
     {
       this.price1=price.price1;
       this.price2=price.price2;
+    
     })
       
    this.image1=this.serverService.rootUrl+this.product.picture1;

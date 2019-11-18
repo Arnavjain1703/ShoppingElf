@@ -8,10 +8,11 @@ import { Product } from './product.module';
   productPrice:number;
   ProductModel:Product;
  
-  constructor(productSize:string,productPrice:number)
+  constructor(productSize:string,productPrice:number,productQuantity:number)
     {
         this.productPrice=productPrice;
         this.productSize=productSize;
+        this.ProductQuantity=productQuantity;
         
 
 

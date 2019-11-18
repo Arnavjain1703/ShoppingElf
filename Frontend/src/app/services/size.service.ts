@@ -11,10 +11,10 @@ export class  SizeService
 private  Size:ProductSize[]=[
 
        
-         new ProductSize('x',300),
-         new ProductSize('xl',400),
-         new ProductSize('xxl',450),
-         new ProductSize('Xv',500),
+         new ProductSize('x',300,1),
+         new ProductSize('xl',400,2),
+         new ProductSize('xxl',450,3),
+         new ProductSize('Xv',500,4),
 
                 
 
@@ -32,6 +32,7 @@ getsize(index:number)
 {
     return this.Size[index];
 }
+
 
 setSize( Size:ProductSize[] )
 {
