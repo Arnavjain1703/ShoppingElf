@@ -63,159 +63,208 @@ namespace ShoppingELF.Controllers
 
         [HttpPost]
         [Route("api/Product/AddProduct/{subid}/{Suitid}")]
-        public IHttpActionResult AddProduct(int subid, int suitid, ProductModel model, string token)
+        public HttpResponseMessage AddProduct(int subid, int suitid, ProductModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-
-                if(seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    int x = new ProductRepository().AddProduct(subid, seller.SellerID, suitid, model);
-                    return Ok(x);
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        int x = new ProductRepository().AddProduct(subid, seller.SellerID, suitid, model);
+                        return Request.CreateResponse(HttpStatusCode.OK, x);
+                    }
+                    else
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized, "Access to this page is denied");
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [HttpPost]
         [Route("api/Product/AddSize/{pid}")]
-        public IHttpActionResult AddProductSize(int pid, SizeModel model, string token)
+        public HttpResponseMessage AddProductSize(int pid, SizeModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new ProductRepository().AddProductSize(pid, model);
-                    if (x)
-                        return Ok("Product Size Added");
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        bool x = new ProductRepository().AddProductSize(pid, model);
+                        if (x)
+                            return Request.CreateResponse(HttpStatusCode.OK, "Product Size Added");
+                        else
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Their is some problem adding the product size");
+                    }
                     else
-                        return Ok("Their is some problem adding the product size");
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized, "Access to this page is denied");
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [HttpPost]
         [Route("api/Product/EditProduct/{pid}")]
-        public IHttpActionResult EditProduct(int pid, SizeModel model, string token)
+        public HttpResponseMessage EditProduct(int pid, SizeModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new ProductRepository().EditProduct(pid, model);
-                    if (x)
-                        return Ok("Product Details Updated successfully");
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        bool x = new ProductRepository().EditProduct(pid, model);
+                        if (x)
+                            return Request.CreateResponse(HttpStatusCode.OK, "Product Details Updated successfully");
+                        else
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Something Went Wrong , please try again later");
+                    }
                     else
-                        return BadRequest("Something Went Wrong , please try again later");
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized, "Access to this page is denied");
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [HttpPost]
         [Route("api/Product/Delete/Size/{pid}")]
-        public IHttpActionResult DeleteProductSize(int pid, string token)
+        public HttpResponseMessage DeleteProductSize(int pid, string token)
         {
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new ProductRepository().DeleteSize(pid);
-                    if (x)
-                        return Ok("Size Removed successfully");
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        bool x = new ProductRepository().DeleteSize(pid);
+                        if (x)
+                            return Request.CreateResponse(HttpStatusCode.OK, "Size Removed successfully");
+                        else
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Unable to proccess request");
+                    }
                     else
-                        return BadRequest("Unable to proccess request");
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized, "Access to this page is denied");
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [HttpPost]
         [Route("api/Product/Delete/{pid}")]
-        public IHttpActionResult DeleteProduct(int pid, string token)
+        public HttpResponseMessage DeleteProduct(int pid, string token)
         {
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new ProductRepository().DeleteProduct(pid);
-                    if (x)
-                        return Ok("Product deleted successfully");
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        bool x = new ProductRepository().DeleteProduct(pid);
+                        if (x)
+                            return Request.CreateResponse(HttpStatusCode.OK, "Product deleted successfully");
+                        else
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "Unable to delete product");
+                    }
                     else
-                        return BadRequest("Unable to delete product");
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized, "Access to this page is denied");
                 }
-                else
-                    return Unauthorized(); 
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [HttpGet]
         [Route("api/Product/Seller/Show")]
-        public IHttpActionResult ShowSellerProduct(string token)
+        public HttpResponseMessage ShowSellerProduct(string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    var x = new ProductRepository().ShowSellerProduct(seller.SellerID);
-                    return Ok(x);
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        var x = new ProductRepository().ShowSellerProduct(seller.SellerID);
+                        return Request.CreateResponse(HttpStatusCode.OK, x);
+                    }
+                    else
+                        return Request.CreateResponse(HttpStatusCode.Forbidden, "Access to this page is denied");
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [HttpGet]
         [Route("api/Product/Seller/Show/Size/{pid}")]
-        public IHttpActionResult ShowSellerProductSize(int pid, string token)
+        public HttpResponseMessage ShowSellerProductSize(int pid, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    var x = new ProductRepository().ShowSellerProductSize(pid);
-                    return Ok(x);
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        var x = new ProductRepository().ShowSellerProductSize(pid);
+                        return Request.CreateResponse(HttpStatusCode.OK, x);
+                    }
+                    else
+                        return Request.CreateResponse(HttpStatusCode.Forbidden, "Access to this page is denied");
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [HttpPost]
         [Route("api/UploadImage/{pid}/{picimg}")]
-        public HttpResponseMessage PostUserImage(int pid, int picimg, string token)
+        public IHttpActionResult PostUserImage(int pid, int picimg, string token)
         {
             using(ShoppingELFEntities context = new ShoppingELFEntities())
             {
@@ -227,6 +276,7 @@ namespace ShoppingELF.Controllers
                     Dictionary<string, object> dict = new Dictionary<string, object>();
                     try
                     {
+                        
                         var httpRequest = HttpContext.Current.Request;
                         foreach (string file in httpRequest.Files)
                         {
@@ -241,7 +291,7 @@ namespace ShoppingELF.Controllers
                                 {
                                     var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
                                     dict.Add("error", message);
-                                    return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                                    return BadRequest();
                                 }
                                 else
                                 {
@@ -250,29 +300,30 @@ namespace ShoppingELF.Controllers
                                     string imagepath = "/ProductImage/" + postedFile.FileName;
                                     int image = new ProductRepository().ImageUpload(pid, picimg, imagepath);
                                     if (image == 2)
-                                        return Request.CreateResponse(HttpStatusCode.NotFound, "Product Not found");
+                                        return NotFound();
                                     if (image == 0)
-                                        return Request.CreateResponse(HttpStatusCode.BadRequest, "Your image might be greater than the 1mb ,please upload a valid image");
+                                        return BadRequest("Your image might be greater than the 1mb ,please upload a valid image");
+                                       
 
                                 }
                             }
 
-                            var message1 = string.Format("Image Updated Successfully.");
-                            return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                            var message1 = "/ProductImage/" + postedFile.FileName;
+                            return Ok(message1); 
                         }
                         var res = string.Format("Please Upload a image.");
                         dict.Add("error", res);
-                        return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+                        return NotFound();
                     }
                     catch (Exception ex)
                     {
                         var res = string.Format("please check your internet connection");
                         dict.Add("error", res);
-                        return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+                        return NotFound();
                     }
                 }
                 else
-                    return Request.CreateResponse(HttpStatusCode.Forbidden, "Access to this page is denied");
+                    return Unauthorized();
             }
         }
 

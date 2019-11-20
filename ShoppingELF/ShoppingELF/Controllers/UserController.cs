@@ -15,28 +15,35 @@ namespace ShoppingELF.Controllers
         [Route("api/User/Addtocart/{pid}")]
         public IHttpActionResult AddToCart(int pid, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    var v = context.CartTable.Where(a => a.PID == pid).FirstOrDefault();
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
 
-                    if (v != null)
+                    if (user != null && user.Role == "User")
                     {
-                        return BadRequest("Product already added in the cart");
+                        var v = context.CartTable.Where(a => a.PID == pid).FirstOrDefault();
+
+                        if (v != null)
+                        {
+                            return BadRequest("Product already added in the cart");
+                        }
+                        else
+                        {
+                            var x = new UserRepository().AddToCart(user.UserID, pid);
+                            return Ok("Product has been added to cart Successfully");
+                        }
                     }
                     else
-                    {
-                        var x = new UserRepository().AddToCart(user.UserID, pid);
-                        return Ok("Product has been added to cart Successfully");
-                    }
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -44,24 +51,31 @@ namespace ShoppingELF.Controllers
         [Route("api/User/UpdateCart/{cid}")]
         public IHttpActionResult UpdateCart(int cid, CartModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new UserRepository().UpdateCartModel(cid, model);
-                    if (x)
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
                     {
-                        return Ok("updated cart");
+                        bool x = new UserRepository().UpdateCartModel(cid, model);
+                        if (x)
+                        {
+                            return Ok("updated cart");
+                        }
+                        else
+                            return Ok("Something went wrong , please try again later");
                     }
                     else
-                        return Ok("Something went wrong , please try again later");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -70,19 +84,26 @@ namespace ShoppingELF.Controllers
         [Route("api/User/GetCart")]
         public IHttpActionResult GetCart(string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    var x = new UserRepository().GetCart(user.UserID);
-                    return Ok(x);
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        var x = new UserRepository().GetCart(user.UserID);
+                        return Ok(x);
+                    }
+                    else
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -91,22 +112,29 @@ namespace ShoppingELF.Controllers
         [Route("api/User/Cart/{cid}")]
         public IHttpActionResult DeleteFromCart(int cid, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    int x = new UserRepository().RemoveFromCart(cid);
-                    if (x == 1)
-                        return Ok("Item removed from cart successfully");
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        int x = new UserRepository().RemoveFromCart(cid);
+                        if (x == 1)
+                            return Ok("Item removed from cart successfully");
+                        else
+                            return BadRequest("Cart is already empty");
+                    }
                     else
-                        return BadRequest("Cart is already empty");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -115,19 +143,26 @@ namespace ShoppingELF.Controllers
         [Route("api/User/ClearCart")]
         public IHttpActionResult ClearCart(string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    new UserRepository().ClearCart(user.UserID);
-                    return Ok("All items removed from cart");
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        new UserRepository().ClearCart(user.UserID);
+                        return Ok("All items removed from cart");
+                    }
+                    else
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -136,19 +171,26 @@ namespace ShoppingELF.Controllers
         [Route("api/User/OrderList")]
         public IHttpActionResult ShowOrderedItems(string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    var x = new UserRepository().ShowOrderedItem(user.UserID);
-                    return Ok(x);
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        var x = new UserRepository().ShowOrderedItem(user.UserID);
+                        return Ok(x);
+                    }
+                    else
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -157,28 +199,35 @@ namespace ShoppingELF.Controllers
         [Route("api/User/OrderFromCart")]
         public IHttpActionResult OrderFromCart(string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    int x = new UserRepository().AddFromCartToOrder(user.UserID);
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
 
-                    if (x == 3)
+                    if (user != null && user.Role == "User")
                     {
-                        new UserRepository().ClearCart(user.UserID);
-                        return Ok("Order Placed Successfully");
+                        int x = new UserRepository().AddFromCartToOrder(user.UserID);
+
+                        if (x == 3)
+                        {
+                            new UserRepository().ClearCart(user.UserID);
+                            return Ok("Order Placed Successfully");
+                        }
+                        else if (x == 2 || x == 3)
+                            return Ok("Item you are looking for seems to be out of stock");
+                        else
+                            return BadRequest("cart is empty");
                     }
-                    else if (x == 2 || x == 3)
-                        return Ok("Item you are looking for seems to be out of stock");
                     else
-                        return BadRequest("cart is empty");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -187,25 +236,32 @@ namespace ShoppingELF.Controllers
         [Route("api/User/OrderNow/{pid}")]
         public IHttpActionResult OrderNow(int pid, OrderModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    int x = new UserRepository().OrderNow(user.UserID, pid, model);
-                    if (x == 1)
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
                     {
-                        new UserRepository().ClearCart(user.UserID);
-                        return Ok("Order Placed Successfully");
+                        int x = new UserRepository().OrderNow(user.UserID, pid, model);
+                        if (x == 1)
+                        {
+                            new UserRepository().ClearCart(user.UserID);
+                            return Ok("Order Placed Successfully");
+                        }
+                        else
+                            return Ok("The item you are looking for seems to be out of stock");
                     }
                     else
-                        return Ok("The item you are looking for seems to be out of stock");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized(); 
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -214,19 +270,26 @@ namespace ShoppingELF.Controllers
         [Route("api/User/Address")]
         public IHttpActionResult AddAddress(AddressModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    new UserModel().AddAddress(user.UserID, model);
-                    return Ok("Address added successfully");
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        new UserModel().AddAddress(user.UserID, model);
+                        return Ok("Address added successfully");
+                    }
+                    else
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -235,22 +298,29 @@ namespace ShoppingELF.Controllers
         [Route("api/User/EditAddress")]
         public IHttpActionResult EditAddress(AddressModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new UserModel().EditAddress(user.UserID, model);
-                    if (x)
-                        return Ok("Address updated successfully");
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        bool x = new UserModel().EditAddress(user.UserID, model);
+                        if (x)
+                            return Ok("Address updated successfully");
+                        else
+                            return Ok("Something went Wrong , unable to update Address");
+                    }
                     else
-                        return Ok("Something went Wrong , unable to update Address");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
         
@@ -259,19 +329,26 @@ namespace ShoppingELF.Controllers
         [Route("api/User/GetAddress")]
         public IHttpActionResult GetAddress(string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    var x = new UserModel().GetAddress(user.UserID);
-                    return Ok(x);
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        var x = new UserModel().GetAddress(user.UserID);
+                        return Ok(x);
+                    }
+                    else
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -280,22 +357,29 @@ namespace ShoppingELF.Controllers
         [Route("api/User/EditAccount")]
         public IHttpActionResult EditAccount(UserModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new UserModel().EditAccount(user.UserID, model);
-                    if (x)
-                        return Ok("Account details has been updated");
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        bool x = new UserModel().EditAccount(user.UserID, model);
+                        if (x)
+                            return Ok("Account details has been updated");
+                        else
+                            return Ok("unable to update account");
+                    }
                     else
-                        return Ok("unable to update account");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -304,26 +388,33 @@ namespace ShoppingELF.Controllers
         [Route("api/User/ChangePassword")]
         public IHttpActionResult ChangePassword(ChangePasswordModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                UserTable user = new UserTable();
-                string username = TokenManager.ValidateToken(token);
-                user = context.UserTable.FirstOrDefault(m => m.email == username);
-                
-                if (user != null && user.Role == "User")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    int x = new UserModel().ChangePassword(user.UserID, model);
-                    if (x == 1)
-                        return Ok("Please enter correct old password");
-                    else if (x == 4)
-                        return Ok("new password cannot be equal to old password");
-                    else if (x == 2)
-                        return Ok("Password Updated successfully");
+                    UserTable user = new UserTable();
+                    string username = TokenManager.ValidateToken(token);
+                    user = context.UserTable.FirstOrDefault(m => m.email == username);
+
+                    if (user != null && user.Role == "User")
+                    {
+                        int x = new UserModel().ChangePassword(user.UserID, model);
+                        if (x == 1)
+                            return Ok("Please enter correct old password");
+                        else if (x == 4)
+                            return Ok("new password cannot be equal to old password");
+                        else if (x == 2)
+                            return Ok("Password Updated successfully");
+                        else
+                            return BadRequest("Something went wrong");
+                    }
                     else
-                        return BadRequest("Something went wrong");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
     }

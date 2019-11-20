@@ -46,18 +46,25 @@ namespace ShoppingELF.Controllers
         [Route("api/Account/UserLogin")]
         public HttpResponseMessage Login([FromBody]UserTable user)
         {
-            UserTable u = new UserRepository().GetUser(user.email);
-            if (u == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound,
-                     "The Account was not found.");
-            var password = new UserModel().Password(user.email);
-            var y = new UserModel().verification(user.email);
-            string pass = Crypto.Hash(user.password);
-            bool credentials = pass.Equals(password);
-            if (credentials && y)
-                return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(user.email));
-            else
-                return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
+            try
+            {
+                UserTable u = new UserRepository().GetUser(user.email);
+                if (u == null)
+                    return Request.CreateResponse(HttpStatusCode.NotFound,
+                         "The Account was not found.");
+                var password = new UserModel().Password(user.email);
+                var y = new UserModel().verification(user.email);
+                string pass = Crypto.Hash(user.password);
+                bool credentials = pass.Equals(password);
+                if (credentials && y)
+                    return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(user.email));
+                else
+                    return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         [HttpGet]
@@ -77,24 +84,31 @@ namespace ShoppingELF.Controllers
         public HttpResponseMessage VerifyAccount([FromUri]string id)
         {
             //bool status = false;
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-
-                UserTable us = new UserTable();
-                var v = context.UserTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
-                if (v != null)
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    us.IsEmailVerified = true;
-                    v.IsEmailVerified = Convert.ToBoolean(us.IsEmailVerified);
-                    context.SaveChanges();
-                    //status = true;
-                    return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(v.email));
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "Unable to activate account");
-                }
 
+                    UserTable us = new UserTable();
+                    var v = context.UserTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+                    if (v != null)
+                    {
+                        us.IsEmailVerified = true;
+                        v.IsEmailVerified = Convert.ToBoolean(us.IsEmailVerified);
+                        context.SaveChanges();
+                        //status = true;
+                        return Request.CreateResponse(HttpStatusCode.OK, "Your account has been successfully verified, Please go back on the login page to continue shopping with us<br/>Thank You!!!<br/>Team ShoppingELF");
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "Unable to activate account");
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
@@ -103,22 +117,29 @@ namespace ShoppingELF.Controllers
         public IHttpActionResult ForgotPassword(ChangePasswordModel model)
         {
             
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                var acc = context.UserTable.Where(x => x.email == model.EmailID).FirstOrDefault();
-                if (acc != null)
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    string ResetCode = Guid.NewGuid().ToString();
-                    EmailVerification(acc.UserID, acc.email, ResetCode, "ResetPassword");
-                    acc.ResetPasswordCode = ResetCode;
-                    context.Configuration.ValidateOnSaveEnabled = false;
-                    context.SaveChanges();
-                    return Ok("Reset password code has been sent to your email");
+                    var acc = context.UserTable.Where(x => x.email == model.EmailID).FirstOrDefault();
+                    if (acc != null)
+                    {
+                        string ResetCode = Guid.NewGuid().ToString();
+                        EmailVerification(acc.UserID, acc.email, ResetCode, "ResetPassword");
+                        acc.ResetPasswordCode = ResetCode;
+                        context.Configuration.ValidateOnSaveEnabled = false;
+                        context.SaveChanges();
+                        return Ok("Reset password code has been sent to your email");
+                    }
+                    else
+                    {
+                        return Ok("Account Not found");
+                    }
                 }
-                else
-                {
-                    return Ok("Account Not found");
-                }
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -126,21 +147,28 @@ namespace ShoppingELF.Controllers
         [Route("api/ResetPassword/{ID}")]
         public IHttpActionResult ResetPassword(string ID)
         {
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                var user = context.UserTable.Where(x => x.ResetPasswordCode == ID).FirstOrDefault();
-                if (user != null)
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    ChangePasswordModel model = new ChangePasswordModel();
-                    user.IsResetPassword = true;
-                    
-                    context.SaveChanges();
-                    return Ok("Account Verified");
+                    var user = context.UserTable.Where(x => x.ResetPasswordCode == ID).FirstOrDefault();
+                    if (user != null)
+                    {
+                        ChangePasswordModel model = new ChangePasswordModel();
+                        user.IsResetPassword = true;
+
+                        context.SaveChanges();
+                        return Ok("Account Verified");
+                    }
+                    else
+                    {
+                        return Ok("Something Went Wrong");
+                    }
                 }
-                else
-                {
-                    return Ok("Something Went Wrong");
-                }
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -150,22 +178,29 @@ namespace ShoppingELF.Controllers
         [System.Web.Mvc.ValidateAntiForgeryToken]
         public IHttpActionResult ResetPassword(ChangePasswordModel model)
         {
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                var user = context.UserTable.Where(x => x.email == model.EmailID).FirstOrDefault();
-                if (user != null && Convert.ToBoolean(user.IsResetPassword))
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    user.password = Crypto.Hash(model.NewPassword);
-                    user.ResetPasswordCode = "";
-                    user.IsResetPassword = false;
-                    context.Configuration.ValidateOnSaveEnabled = false;
-                    context.SaveChanges();
-                    return Ok("New Password updated successfully");
+                    var user = context.UserTable.Where(x => x.email == model.EmailID).FirstOrDefault();
+                    if (user != null && Convert.ToBoolean(user.IsResetPassword))
+                    {
+                        user.password = Crypto.Hash(model.NewPassword);
+                        user.ResetPasswordCode = "";
+                        user.IsResetPassword = false;
+                        context.Configuration.ValidateOnSaveEnabled = false;
+                        context.SaveChanges();
+                        return Ok("New Password updated successfully");
+                    }
+                    else
+                    {
+                        return Ok("unable to reach account please try again");
+                    }
                 }
-                else
-                {
-                    return Ok("unable to reach account please try again");
-                }
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -174,7 +209,7 @@ namespace ShoppingELF.Controllers
         {
             var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
             //var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
-            var link = "https://5341ea6c.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
+            var link = "https://37778f58.ngrok.io/api/" + EmailFor + "/" + ActivationCode;
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
             var ToEmail = new MailAddress(Email);
             var FromEmailPassword = "Rishabh@2306";

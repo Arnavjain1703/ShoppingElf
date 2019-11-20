@@ -42,38 +42,52 @@ namespace ShoppingELF.Controllers
         [Route("api/Seller/Login")]
         public HttpResponseMessage Login([FromBody]SellerTable seller)
         {
-            var y = new SellerAccountModel().verification(seller.email);
-            var password = new SellerAccountModel().Password(seller.email);
-            SellerTable u = new SellerAccountModel().GetSeller(seller.email);
+            try
+            {
+                var y = new SellerAccountModel().verification(seller.email);
+                var password = new SellerAccountModel().Password(seller.email);
+                SellerTable u = new SellerAccountModel().GetSeller(seller.email);
 
-            if (u == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound,
-                     "The Account was not found.");
-            string pass = Crypto.Hash(seller.password);
-            bool credentials = pass.Equals(password);
-            if (credentials && y)
-                return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(seller.email));
-            else
-                return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
+                if (u == null)
+                    return Request.CreateResponse(HttpStatusCode.NotFound,
+                         "The Account was not found.");
+                string pass = Crypto.Hash(seller.password);
+                bool credentials = pass.Equals(password);
+                if (credentials && y)
+                    return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(seller.email));
+                else
+                    return Request.CreateResponse(HttpStatusCode.Forbidden, "The email/password combination was wrong.");
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
         
         [HttpPost]
         [Route("api/Seller/EnterOTP/{sid}")]
         public IHttpActionResult EnterOTP(int sid, SellerModel model)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                seller = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
-                bool x = new SellerAccountModel().IsOTPExpired(sid);
-                if (seller.OTP == model.OTP && !x)
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    seller.IsAccountVerified = true;
-                    context.SaveChanges();
-                    return Ok(TokenManager.GenerateToken(seller.email));
+                    SellerTable seller = new SellerTable();
+                    seller = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
+                    bool x = new SellerAccountModel().IsOTPExpired(sid);
+                    if (seller.OTP == model.OTP && !x)
+                    {
+                        seller.IsAccountVerified = true;
+                        context.SaveChanges();
+                        return Ok(TokenManager.GenerateToken(seller.email));
+                    }
+                    else
+                        return BadRequest("Please enter a valid OTP");
                 }
-                else
-                    return BadRequest("Please enter a valid OTP");
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -81,13 +95,20 @@ namespace ShoppingELF.Controllers
         [Route("api/Seller/ResendOTP/{sid}")]
         public IHttpActionResult ResendOTP(int sid)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                new SellerAccountModel().ResendOTP(sid);
-                SellerTable st = new SellerTable();
-                st = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
-                EmailVerification(sid, st.email, st.OTP);
-                return Ok("OTP sent sucessfully");
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
+                {
+                    new SellerAccountModel().ResendOTP(sid);
+                    SellerTable st = new SellerTable();
+                    st = context.SellerTable.FirstOrDefault(m => m.SellerID == sid);
+                    EmailVerification(sid, st.email, st.OTP);
+                    return Ok("OTP sent sucessfully");
+                }
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
 
         }
@@ -96,22 +117,29 @@ namespace ShoppingELF.Controllers
         [Route("api/Seller/EnterDetails")]
         public IHttpActionResult EnterDetails(SellerDetailsModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new SellerModel().EnterDetails(seller.SellerID, model);
-                    if (x)
-                        return Ok("Details addded successfully");
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        bool x = new SellerModel().EnterDetails(seller.SellerID, model);
+                        if (x)
+                            return Ok("Details addded successfully");
+                        else
+                            return Ok("Something went wrong");
+                    }
                     else
-                        return Ok("Something went wrong");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -119,22 +147,29 @@ namespace ShoppingELF.Controllers
         [Route("api/Seller/EditSellerDetails")]
         public IHttpActionResult EditDetails(SellerDetailsModel model, string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    bool x = new SellerModel().EditDetails(seller.SellerID, model);
-                    if (x)
-                        return Ok("Details Edited Successfully");
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        bool x = new SellerModel().EditDetails(seller.SellerID, model);
+                        if (x)
+                            return Ok("Details Edited Successfully");
+                        else
+                            return Ok("Something went wrong please try again later");
+                    }
                     else
-                        return Ok("Something went wrong please try again later");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -142,26 +177,33 @@ namespace ShoppingELF.Controllers
         [Route("api/Seller/Change/Password/{sid}")]
         public IHttpActionResult ChangePassword(ChangePasswordModel model, string token)
         {
-            using (ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(m => m.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    int x = new SellerModel().ChangePassword(seller.SellerID, model);
-                    if (x == 1)
-                        return Ok("Please enter correct old password");
-                    else if (x == 4)
-                        return Ok("new password cannot be equal to old password");
-                    else if (x == 2)
-                        return Ok("Password Updated successfully");
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(m => m.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        int x = new SellerModel().ChangePassword(seller.SellerID, model);
+                        if (x == 1)
+                            return Ok("Please enter correct old password");
+                        else if (x == 4)
+                            return Ok("new password cannot be equal to old password");
+                        else if (x == 2)
+                            return Ok("Password Updated successfully");
+                        else
+                            return BadRequest("Something went wrong");
+                    }
                     else
-                        return BadRequest("Something went wrong");
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -169,19 +211,26 @@ namespace ShoppingELF.Controllers
         [Route("api/Seller/Show/OrderPlaced")]
         public IHttpActionResult ShowOrderedItems(string token)
         {
-            using(ShoppingELFEntities context = new ShoppingELFEntities())
+            try
             {
-                SellerTable seller = new SellerTable();
-                string username = TokenManager.ValidateToken(token);
-                seller = context.SellerTable.FirstOrDefault(x => x.email == username);
-                
-                if (seller != null && seller.Role == "Seller")
+                using (ShoppingELFEntities context = new ShoppingELFEntities())
                 {
-                    var x = new SellerModel().ShowOrderedItems(seller.SellerID);
-                    return Ok(x);
+                    SellerTable seller = new SellerTable();
+                    string username = TokenManager.ValidateToken(token);
+                    seller = context.SellerTable.FirstOrDefault(x => x.email == username);
+
+                    if (seller != null && seller.Role == "Seller")
+                    {
+                        var x = new SellerModel().ShowOrderedItems(seller.SellerID);
+                        return Ok(x);
+                    }
+                    else
+                        return Unauthorized();
                 }
-                else
-                    return Unauthorized();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -191,41 +240,48 @@ namespace ShoppingELF.Controllers
             //var verifyUrl = "/api/" + EmailFor + "/" + ActivationCode;
             //var link = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.PathAndQuery, verifyUrl);
             //var link = "http://localhost:54039/api/" + EmailFor + "/" + ActivationCode;
-            var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
-            var ToEmail = new MailAddress(Email);
-            var FromEmailPassword = "Rishabh@2306";
-            string Subject = "";
-            string Body = "";
-            if (EmailFor == "Account")
+            try
             {
-                Subject = "Verification for ShoppingELF Account";
-                Body = "<br/>Never Share your OTP with others <br/>Enter this OTP " + OTP + " to verify your account if it was not you then ignore this message <br/>Team ShoppingELF <br/> Thank you!";
-                    
+                var FromEmail = new MailAddress("4as1827000224@gmail.com", "ShoppingELF");
+                var ToEmail = new MailAddress(Email);
+                var FromEmailPassword = "Rishabh@2306";
+                string Subject = "";
+                string Body = "";
+                if (EmailFor == "Account")
+                {
+                    Subject = "Verification for ShoppingELF Account";
+                    Body = "<br/>Never Share your OTP with others <br/>Enter this OTP " + OTP + " to verify your account if it was not you then ignore this message <br/>Team ShoppingELF <br/> Thank you!";
+
+                }
+                //else if (EmailFor == "ResetPassword")
+                //{
+                //    Subject = "Reset Password";
+                //    Body = "Hi,<br/><br/>Forgot your password , Don't worry click on the link below to reset your password<br/><br/><a href= '" + link + "'>" + link + "<a/>";
+                //}
+
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+                };
+
+                using (var message = new MailMessage(FromEmail, ToEmail)
+                {
+                    Subject = Subject,
+                    Body = Body,
+                    IsBodyHtml = true
+                })
+
+                    smtp.Send(message);
             }
-            //else if (EmailFor == "ResetPassword")
-            //{
-            //    Subject = "Reset Password";
-            //    Body = "Hi,<br/><br/>Forgot your password , Don't worry click on the link below to reset your password<br/><br/><a href= '" + link + "'>" + link + "<a/>";
-            //}
-
-            SmtpClient smtp = new SmtpClient()
+            catch(Exception ex)
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-            };
 
-            using (var message = new MailMessage(FromEmail, ToEmail)
-            {
-                Subject = Subject,
-                Body = Body,
-                IsBodyHtml = true
-            })
-
-                smtp.Send(message);
+            }
         }
     }
 }
