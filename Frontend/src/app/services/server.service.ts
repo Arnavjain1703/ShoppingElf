@@ -16,7 +16,7 @@ export class ServerService
   tk:any;
   Products:Product[];
   body:{}; 
-  public rootUrl="https://4ceb3484.ngrok.io"
+  public rootUrl="https://84dba1f7.ngrok.io"
   
 
 
@@ -97,6 +97,11 @@ export class ServerService
   {
     return !!localStorage.getItem('token')
   }
+
+  loggedIn2()
+  {
+    return !!localStorage.getItem('token2')
+  } 
   getToken(){
     return localStorage.getItem('token')
   }
@@ -120,7 +125,7 @@ export class ServerService
   {
     console.log(this.rootUrl+'/api/Product/Category/'+Index);
     this.appComponent.loaders();
-    this.http.get( this.rootUrl+'/api/Product/Category/'+Index)
+  return  this.http.get( this.rootUrl+'/api/Product/Category/'+Index)
     .subscribe(
       response=>
       {   
@@ -141,19 +146,8 @@ export class ServerService
   GetCategory2(index:number)
   {
     console.log(this.rootUrl+'/api/Product/SubCategory/'+index);
-    this.http.get( this.rootUrl+'/api/Product/SubCategory/'+index)
-    .subscribe(
-      response=>
-      {
-        console.log(response)
-        this.tk=response;
-        this.CategoryService2.SetService(this.tk)
-      },
-       error=>
-       {
-         console.log(error)
-       }
-    )
+   return this.http.get( this.rootUrl+'/api/Product/SubCategory/'+index)
+    
 
   }
   
@@ -161,24 +155,8 @@ export class ServerService
   
   CategoryProducts(Index:number)
   {
-    this.http.get(this.rootUrl+'/api/Product/GetProduct/'+Index)
-    .subscribe(
-     response=>
-     {  
-       
-       this.tk=response;
-       this.Products=this.tk;
-       console.log(this.Products);
-   
-       this.productService.setService(this.Products);
-     },
-     error=>
-     {
-       console.log(error);
-     }
+    return this.http.get(this.rootUrl+'/api/Product/GetProduct/'+Index);
       
- 
-   )  
   }
 
 
@@ -186,24 +164,7 @@ export class ServerService
   {
     console.log(this.rootUrl+'/api/Product/ProductDetails/'+Index)
   return this.http.get(this.rootUrl+'/api/Product/ProductDetails/'+Index)
-    .subscribe(
-     response=>
-     {  
-       
-          console.log(response);
-          this.tk=response
-          console.log(this.tk)
-          this.sizeService.setSize(this.tk);
-          
-   
-     },
-     error=>
-     {
-       console.log(error);
-     }
-      
- 
-   ) 
+    
   }
 
   SellerDetails(AddressLine1,AddressLine2,pincode,
@@ -337,10 +298,11 @@ export class ServerService
    }
 
   deleteSize(id:number)
-  {
+  {   console.log(id);
     const headers = new HttpHeaders({'Content-Type':'application/json'});
-    console.log(this.rootUrl+'/api/Product/Delete/Size'+id+'/?token='+localStorage.getItem('token2'))
+      console.log(this.rootUrl+'/api/Product/Delete/Size/'+id+'/?token='+localStorage.getItem('token2'))
     return this.http.post(this.rootUrl+'/api/Product/Delete/Size/'+id+'/?token='+localStorage.getItem('token2'),this.body,{headers:headers})
+    
   } 
 
 }

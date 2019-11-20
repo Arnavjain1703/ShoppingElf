@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="background" >
     
         <div class="bg-img row">
@@ -86,7 +87,7 @@
         <div class="col-lg-2" *ngFor=" let size of Sizes,let i =index">
         
        
-             <div (click)="call(size.PID,index)" class="spacing2">  <div [class.size]="!clicked.index" [class.clicked]="clicked.index"> {{size.productSize}}</div><span class="price"> Rs  {{size.productPrice}} </span>  </div>
+             <div (click)="call(size.PID,i)" class="spacing2">  <div [class.size]="true" [class.clicked]=""> {{size.productSize}}</div><span class="price"> Rs  {{size.productPrice}} </span>  </div>
 
       
                 
@@ -96,10 +97,14 @@
               
 
          </div>
-                <button class="Button" (click)="Add()"  >
+                <button *ngIf="serverService.loggedIn()" [disabled]="!clicked" class="Button" (click)="Add()"  >
                         <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button>
+
+                        <button *ngIf="!serverService.loggedIn()" class="Button" routerLink="/login"  >
+                            <span class="text"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to bag </span></button>       
         
-        <div ><button class="Button" (click)="oneOrder()"  > <span class="text ">Order now  </span></button></div>
+        <div><button class="Button"   *ngIf="!serverService.loggedIn() " routerLink="/login" > <span class="text ">Order now  </span></button></div>
+        <div ><button class="Button" [disabled]="!clicked" *ngIf="serverService.loggedIn()" (click)="oneOrder()"  > <span class="text ">Order now  </span></button></div>
         
       
          </div>
@@ -112,3 +117,5 @@
 </div> 
 
 </div>
+
+<app-footer></app-footer>

@@ -1,48 +1,4 @@
-/* .margin
-{
-    
-    box-shadow: 2px 2px 4px #979A9A;
-    margin: 2% 15%;
-    background: white;
 
-}
-img
-{
-    width: 90%;
-}
-
-.margins
-{
-margin-top:3px;
-font-weight:500;
-font-size:20px;
-color:#21618C ;
-    letter-spacing: 1px;
-}
-
-.margins2
-{
-    margin-top:10px;
-    letter-spacing: 2px;
-    
-
-}
-.Button
-{
-    border-radius: 10%;
-    background: #3498DB;
-    border:2px solid #3498DB ;
-    color: white;
-     width:30%;
-     height:30px;
-     margin: 0px 1px;
-     text-align:center;
-    
-}
-
-.letter
-{
-} */
 .responsive
 {
     width:100%;
@@ -104,20 +60,33 @@ color:#21618C ;
      top:40%;
      left:50%;
     width:150px;
-     z-index:1;
+    z-index: 1;
+    
      box-shadow:0px 0px 2px #D0D3D4 ;
+     box-shadow:0px 0px 3px #BFC9CA;
      border-radius:1%;
      animation :change 1s 1;
      text-align:center;
-     border:1px solid #2471A3;
+       border-radius:3%;
 }
+
 .button
 {
     
     background:#F9E79F;
     border:2px solid #F9E79F;
     color:#2471A3 ;
+    transition: color 0.3s;
+
+
 }
+
+.button:hover
+{
+color:white;
+}
+
+
 
 @keyframes change
 {

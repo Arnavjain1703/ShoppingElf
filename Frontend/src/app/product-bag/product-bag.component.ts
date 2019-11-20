@@ -19,6 +19,7 @@ export class ProductBagComponent implements OnInit,OnDestroy {
      index:number;
      total:number;
      tk:any;
+    
      
 constructor(
              private productBagService:ProductBagService,
@@ -86,5 +87,7 @@ ngOnDestroy()
  {  
     this.router.navigate(['/address/add'])
  }
+ 
+
 }
 

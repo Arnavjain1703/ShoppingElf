@@ -1,7 +1,10 @@
 
-<div class=" background">
-    <div class="center">
-        <img class="image"src="/assets/bag.svg">
+<app-navbar></app-navbar>
+
+<div class="background" >
+
+    <div  class="center">
+        <img  class="image"src="/assets/bag.svg">
     </div>
     <div class="row">
     <div class="col-md-7 col-xs-12 padding">
@@ -19,15 +22,7 @@
 
     <div class="col-md-4 col-xs-12 border">
                
-      <!-- <div class="row">
-       
-            <div class=col-xs-3><img class=".img-responsive"src="/assets/notebook.svg" ></div>
-       
-               <div class="heading2 col-xs-6">Cost Details</div>
-       
-          <div class="col-xs-3"></div>
-     
-      </div> -->
+      
           <app-prodict-cost
           
           *ngFor="let order of orders; let i=index" 
@@ -47,8 +42,10 @@
              <div class="col-xs-4">{{total}} Rs</div>
          </div>
 
-<button (click)="order()" class="btn btn-success">order now</button>
+      <div class="align">   <button (click)="order()" class="Button">order now</button> </div>
 
     </div>
+
     </div>
 </div>
+<app-footer></app-footer>

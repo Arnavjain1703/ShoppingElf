@@ -10,10 +10,11 @@ import { ServerService } from 'src/app/services/server.service';
   styleUrls: ['./product-bag-item.component.css']
 })
 export class ProductBagItemComponent implements OnInit {
-
+image:any;
   constructor( private BagService :ProductBagService,
                 private BagComponenet:ProductBagComponent,
-                private serverService:ServerService) { }
+                private serverService:ServerService,
+                ) { }
                 
                 
  @Input () order:Bag;
@@ -33,16 +34,19 @@ export class ProductBagItemComponent implements OnInit {
     
 
     this.order.Total=this.order.SizeModel.productPrice*this.order.Quantity;
-    
+    this.image=this.serverService.rootUrl+this.order.SizeModel.ProductModel.picture1;
 
   }
 
   drop()
   {
    this.dropdown=true;
+  
+
   }
   call(i:number)
   {
+     
     this.order.Quantity=i;
     this.dropdown=false;
     this.order.Total=this.order.SizeModel.productPrice*this.order.Quantity;

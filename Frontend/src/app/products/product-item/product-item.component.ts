@@ -5,6 +5,9 @@ import {  Subscription } from 'rxjs';
 import { ShowService } from 'src/app/services/show.service';
 import { Price } from 'src/app/shared/price.module';
 import { ServerService } from 'src/app/services/server.service';
+import { SizeComponent } from 'src/app/seller/uplode/size/size.component';
+import { SizeService } from 'src/app/services/size.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-product-item',
@@ -31,6 +34,7 @@ export class ProductItemComponent implements OnInit,OnDestroy {
    image2:any;
    image3:any;
    image4:any;
+   tk:any;
 
   brand:string;
   
@@ -38,7 +42,9 @@ export class ProductItemComponent implements OnInit,OnDestroy {
   price2:number;
   constructor( private productBagService:ProductBagService,
                 private showService:ShowService,
-                private serverService:ServerService) { }
+                private serverService:ServerService,
+                private sizeService:SizeService,
+                private appComponent:AppComponent) { }
 
   ngOnInit() {
 
@@ -95,8 +101,28 @@ this.image4=this.serverService.rootUrl+this.product.picture4;
   }
 
   details()
-  {
+  {  this.appComponent.loaders();
     this.serverService.size(this.product.ProductID)
+    .subscribe(
+      response=>
+      {  
+          this.appComponent.loaderOff();
+           console.log(response);
+           this.tk=response
+           console.log(this.tk)
+           this.sizeService.setSize(this.tk);
+           
+    
+      },
+      error=>
+      {
+        this.appComponent.loaderOff();
+
+        console.log(error);
+      }
+       
+  
+    ) 
   }
 
   call()

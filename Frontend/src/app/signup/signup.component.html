@@ -58,10 +58,11 @@
                                                          id="phoneNumber"
                                                           name="phoneNumber"
                                                           
-                                                          placeholder="phone number"
+                                                          placeholder="enter phone number "
                                                           class="form-control"
                                                           ngModel
                                                           required
+                                                        pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"
                                                           #phoneNumber="ngModel"
                                                         
                                                           minlength="10"

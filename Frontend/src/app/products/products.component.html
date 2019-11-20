@@ -1,6 +1,10 @@
+<app-navbar></app-navbar>
 <div class="background">
 <div class="slider">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="null" >
+
+  
+      
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000"  >
         <!-- Indicators -->
         <!-- <ol class="carousel-indicators">
           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -16,14 +20,14 @@
               ...
             </div>
           </div>
-          <div class="item">
+          <div class="item ">
             <img id="slider1" src="/assets/slider1.jpg" alt="...">
             <div class="carousel-caption">
               ...
             </div>
           </div>
 
-          <div class="item">
+          <div class="item ">
             <img id="slider1" src="/assets/slider3.jpg" alt="...">
             
             <div class="carousel-caption">
@@ -37,30 +41,7 @@
       </div>
 </div>
 
-<!-- <div class=" row  ">
- 
-  <div class="col-xs-1"></div>
-  
-  <div class="col-xs-12 col-md-5 center">
-     
-    <img class="image" src="/assets/frontpageImage.svg">
 
-
-  </div>
-  
-  <div class="col-xs-12 col-md-5 padding ">
-    <div class="para" >
-      
-        “Buy Men’s & Women’s Sandals on wecart, Branded Slippers online Shopping Destinations in India. Huge range of comfortable sandals that can be he make one of the most Trendy Product ever. 
-        ShoppingElf Offering Men’s casual shoes &Women’s Casual Sandals. Online Mobile Accessories store in India.”
-
-    </div>
-  </div>
-  
-  <div class="col-xs-1">
-
-  </div>
-</div> -->
 <div class="row ">
     <div class="col-xs-12 col-md-2 fixed"  >
 
@@ -73,7 +54,7 @@
       <div (click)="show()" class="center">Categories<span class ="glyphicon glyphicon-chevron-down  icon"></span></div>
     
          <div [class.disappear]="!display">      
-         <app-product-category
+         <app-product-category  (click)="alert()"
    
    
         *ngFor="let category of categories,let i=index"
@@ -92,9 +73,9 @@
        </div>
         
        </div>
-       <div class="hello col-md-12 col-sm-3 col-xs-12">
+       <div *ngIf="display5" class="hello col-md-12 col-sm-3 col-xs-12">
 
-       <div (click)="show1()" class="center ">SubCategories<span class =" glyphicon glyphicon-chevron-down  icon"></span></div>
+       <div (click)="show1()"  class="center ">SubCategories<span class =" glyphicon glyphicon-chevron-down  icon"></span></div>
 
        <div [class.disappear]="!display1">      
 
@@ -121,14 +102,14 @@
         <div *ngFor=" let Brand of Brands,let i=index">
          <div class="align">
 
-     <li>     <a   (click)="call(Brand)" > <span class="name">{{Brand}}</span></a>  </li>
+       <a   (click)="call(Brand)" > <span class="name">{{Brand}}</span></a>  
 
 
           </div>
    
         </div>
         <div class="align">
-       <li>    <a (click)="AllBrand()" > <span class="name"> All Brands</span></a> </li>
+          <a (click)="AllBrand()" > <span class="name"> All Brands</span></a> 
          </div>
        </div>
        </div>
@@ -141,11 +122,11 @@
          
          <div *ngFor="let price of Prices ,let i=index">
            <div class="align">
-            <li> <a (click)="ranges(price)"><span class="name1">rs{{price.price1}}-{{price.price2}}</span></a></li>
+             <a (click)="ranges(price)"><span class="name1">Rs {{price.price1}}-{{price.price2}}</span></a>
            </div>
          </div>
          <div class="align">
-         <li>   <a (click)="allPrices()" ><span class="name">All Prices</span></a></li>
+          <a (click)="allPrices()" ><span class="name">All Prices</span></a>
          </div>
        </div>
     </div>
@@ -170,3 +151,4 @@
 
 </div>
 </div>
+<app-footer></app-footer>

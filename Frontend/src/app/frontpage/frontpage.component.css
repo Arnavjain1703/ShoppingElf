@@ -27,11 +27,15 @@
 .border
 {
    padding-left:10px;
+   padding-top:0px;
 }
 .border1{
     padding-left:5px;
     color:#2980B9 ;
     font-family: 'Montserrat', sans-serif;
+    padding-top:0px;
+
+
     
 
 
@@ -233,6 +237,13 @@ margin-top:3%;
         padding-left:5%;
         
     }
+
+    .display
+    {
+        display:none;
+    }
+
+    
 }
 @media only screen and (max-width:900px)
 {

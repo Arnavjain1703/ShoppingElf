@@ -1,4 +1,4 @@
-.center
+/* .center
 {
     text-align: center;
 }
@@ -26,4 +26,58 @@
     0% {color: #1A5276;}
     50% { color:#E74C3C;}
     100%{ color: #1A5276;}
+  } */
+
+  .para
+  {
+    color:#154360 ;
+    font-size:120%;
+    letter-spacing: 2px;
   }
+  .background
+  {
+    background:#FCF3CF;
+
+  }
+  .heading
+  {
+    color:#154360;
+    text-align: center;
+  }
+   .center
+   {
+     text-align: center;
+     color:#1B4F72;
+     transition: color 0.2s;
+     font-size: 120%;;
+   }
+   .center:hover
+   {
+     color:#F4D03F;
+   }
+   .center-img
+   {
+     text-align:center;
+   }
+   a{
+     text-decoration: none;
+   }
+   .image
+   {
+       width:100%;
+   }
+   .padding
+   {
+     padding-top:100px;
+   }
+   @media only screen and (max-width: 991px)
+   {
+     .image{
+          width:20%;
+     }
+
+     .padding{
+       padding-top:10px;
+     }
+   }
+   

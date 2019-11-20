@@ -69,26 +69,26 @@
        </div>
 </div> -->
 
-<div  *ngIf="dropdown"class="dropdown">
-   <div> <button (click)="call(1)" class="button"> 1 </button> </div>
+<div  *ngIf="dropdown"class="dropdown " >
+   <div class="border"> <button (click)="call(1)" class="button"> 1 </button> </div>
 
-   <div> <button (click)="call(2)" class="button">  2 </button> </div>
+   <div class="border"> <button (click)="call(2)" class="button">  2 </button> </div>
 
-   <div> <button (click)="call(3)" class="button"> 3 </button> </div>
-   <div> <button (click)="call(4)" class="button"> 4 </button> </div>
-   <div> <button (click)="call(5)" class="button"> 5 </button> </div>
-   <div> <button (click)="call(6)" class="button"> 6 </button> </div>
-   <div> <button (click)="call(7)" class="button"> 7 </button> </div>
-   <div> <button (click)="call(8)" class="button"> 8 </button> </div>
-   <div> <button (click)="call(9)" class="button">9 </button> </div>
-   <div> <button (click)="call(10)" class="button"> 10 </button> </div>
+   <div class="border"> <button (click)="call(3)" class="button"> 3 </button> </div>
+   <div class="border"> <button (click)="call(4)" class="button"> 4 </button> </div>
+   <div class="border"> <button (click)="call(5)" class="button"> 5 </button> </div>
+   <div class="border"> <button (click)="call(6)" class="button"> 6 </button> </div>
+   <div class="border"> <button (click)="call(7)" class="button"> 7 </button> </div>
+   <div class="border"> <button (click)="call(8)" class="button"> 8 </button> </div>
+   <div class="border"> <button (click)="call(9)" class="button">9 </button> </div>
+   <div class="border"> <button (click)="call(10)" class="button"> 10 </button> </div>
 </div>
 
      
 
 <div class="row item">
     <div class="col-xs-3">
-        <img class="responsive" src="{{order.SizeModel.ProductModel.picture1 }}">
+        <img class="responsive" src="{{image}}">
     </div>
     <div class="col-xs-3">
      <div class="brand"> {{order.SizeModel.ProductModel.productBrand}}</div>

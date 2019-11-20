@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit, OnDestroy  {
    display1=false;
    display2=false;
    display3=false;
+   display5=false;
    subscription:Subscription;
    category1Subscription:Subscription;
    category2Subscription:Subscription;
@@ -110,9 +111,16 @@ export class ProductsComponent implements OnInit, OnDestroy  {
   show()
   {
    this.display=!this.display;
-   this.display=false;
+  //  this.display=false;
    this.display3=false;
    this.display1=false;
+  }
+
+  alert()
+  {
+    
+    this.display5=true;
+
   }
   show1()
   {

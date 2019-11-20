@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <div class="background">
 
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
@@ -32,7 +34,7 @@
            placeHolder="Enter your address "
             class="form-control"
             #AddressLine2="ngModel"
-            required
+          
             >
             </div>
          
@@ -45,12 +47,14 @@
          name="Pincode" 
          placeholder="Enter Picode" 
          class="form-control"
+         pattern="^[1-9][0-9]{5}$"
          ngModel
+         
          #Pincode="ngModel"
          required
          >
          </div>
-         <span class="help-block" *ngIf="Pincode.touched && !Pincode.valid">please enter pincode</span>    
+         <span class="help-block" *ngIf="Pincode.touched && !Pincode.valid">valid pincode is required</span>    
        
           <div class="form-group">     
           <label for ="state" class="heading">State</label><br>

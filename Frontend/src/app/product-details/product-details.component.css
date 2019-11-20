@@ -49,18 +49,17 @@
   border: 2px solid #EB984E;
   border-radius: 5px ;
   width:120px;
-
+  opacity:0.8;
   
-
+ transition: opacity 0.2s;
  
   margin: 10px 0px;
      }
 
 .Button:hover
 {
- 
- background: #85C1E9 ;
- border-color:#85C1E9
+ opacity:1;
+  
 
 }   
 

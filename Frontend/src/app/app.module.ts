@@ -47,6 +47,7 @@ import { UplodeComponent } from './seller/uplode/uplode.component';
 import { Category1Component } from './seller/uplode/category1/category1.component';
 import { PhotoUplodeComponent } from './seller/uplode/photo-uplode/photo-uplode.component';
 import { SizeComponent } from './seller/uplode/size/size.component';
+import { Navbar2Component } from './seller/navbar2/navbar2.component';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { SizeComponent } from './seller/uplode/size/size.component';
     Category1Component,
     PhotoUplodeComponent,
     SizeComponent,
+    Navbar2Component,
     // ConfirmEqualValidatorDirective
   ],
   imports: [

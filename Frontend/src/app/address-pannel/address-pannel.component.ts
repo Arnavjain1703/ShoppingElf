@@ -35,6 +35,8 @@ export class AddressPannelComponent implements OnInit {
 
   onSubmit(form:NgForm)
   {
+
+     console.log(form.valid)
       const value=form.value;
       this.serverService.address(value.AddressLine1,value.AddressLine2,value.Pincode,value.city,value.State)
       .subscribe

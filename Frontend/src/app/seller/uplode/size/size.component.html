@@ -1,4 +1,5 @@
- <div class="shadow">
+<app-navbar2></app-navbar2>
+<div class="shadow">
         <div class="top-image"><img src="/assets/order.png"></div>
     
   <div class="row">
@@ -9,8 +10,8 @@
   <form [formGroup]="SizeForm" (ngSubmit)="onSubmitSize()">
 
       <div class="form-group">
-          <label id="ProductSize"  class="heading">Product Size</label>
-          <input for="productSize"
+          <label  class="heading">Product Size</label>
+          <input 
            class="form-control" 
            type=text 
            placeholder="enter product name"
@@ -24,8 +25,8 @@
 
 
           <div class="form-group">
-              <label id="ProductPrice"  class="heading">Product Price</label>
-              <input for="productPrice"
+              <label   class="heading">Product Price</label>
+              <input 
                class="form-control" 
                type=text 
                placeholder="enter product name"
@@ -38,16 +39,16 @@
 
               <div class="form-group">
                     <label   class="heading">Product Quantity</label>
-                    <input for="productPrice"
+                    <input 
                      class="form-control" 
                      type=text 
                      placeholder="enter product quantity"
                      formControlName="productQuantity"
                      >
-                     <span 
+                     <!-- <span 
                      *ngIf="!SizeForm.get('productQuantity').valid && SizeForm.get('productQuantity').touched"
-                     class="help-block">Please enter a product Quantity</span>
-                    </div>
+                     class="help-block">Please enter a product Quantity</span-->
+                    </div> 
 
               <div class="center">
                   <button 
@@ -76,11 +77,9 @@
   <div class="col-xs-3">
     price:{{Size.productPrice}} 
   </div>
+  
   <div class="col-xs-2">
-    <button class="Button">Edit</button>
-  </div>
-  <div class="col-xs-2">
-      <button  (click)="deletesize(Size.PID,i)" class="Button"><span class="glyphicon glyphicon-trash"></span></button>
+      <button  (click)="deletesize(i)" class="Button"><span class="glyphicon glyphicon-trash"></span></button>
   </div>
 
 </div> 

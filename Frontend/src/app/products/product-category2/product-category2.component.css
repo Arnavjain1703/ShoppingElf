@@ -5,13 +5,13 @@
     letter-spacing:2px;
     font-size:130%;
     cursor: pointer;
-    
-    transition: font-size 0.4s;
+    color:#154360;
+    transition: color 0.4s;
      transition:text-shadow 0.4s;
 }
 .name:hover{
-  color:#154360;
-  font-size:140%;
+  color:#F4D03F;
+  
   text-shadow: 0px 0px 1px #A9CCE3;
 
 }

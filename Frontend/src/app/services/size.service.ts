@@ -4,13 +4,22 @@ import { Product } from '../shared/product.module';
 
 export class  SizeService
 {
-
+number:any;
 
  AllSize= new Subject <ProductSize[]>();
 
 private  Size:ProductSize[]=[
 
        
+                   new ProductSize('s',12,22),
+
+                   new ProductSize('s',12,22),
+
+                   new ProductSize('s',12,22),
+                   new ProductSize('s',12,22),
+                   new ProductSize('s',12,22),
+                   new ProductSize('s',12,22),
+                   new ProductSize('s',12,22),
 
                 
 
@@ -26,8 +35,8 @@ getSize()
 
 addSize(size:ProductSize)
 {    
-    this.Size.push(size)
-    this.AllSize.next(this.Size.slice());
+     this.Size.push(size)
+     this.AllSize.next(this.Size.slice());
 
 }
 
@@ -36,9 +45,9 @@ getsize(index:number)
     return this.Size[index];
 }
 delete(index:number)
-{
-    this.Size.splice(index,1);
-    this.AllSize.next(this.Size.slice());
+{     this.number=index-1
+    this.Size.splice(this.number,1);
+     this.AllSize.next(this.Size.slice());
 
 }
 

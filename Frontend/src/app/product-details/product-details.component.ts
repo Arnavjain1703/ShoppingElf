@@ -20,6 +20,7 @@ export class ProductDetailsComponent implements OnInit {
  index:number;
  PID:number;
  tk:any;
+ i:number;
  clicked=false;
  image1:any;
  image2:any;
@@ -71,15 +72,32 @@ this.image4=this.serverService.rootUrl+this.product.picture4;
 
 call(pid:number,index)
   {
+      console.log(index); 
+    //  this.Sizes[index].click=true;
+    //  console.log(this.Sizes[index].click)
      this.PID=pid;
      console.log(this.PID);
      this.clicked=true;
      console.log(this.clicked);
+
+     for(this.i=0;this.i<this.Sizes.length;this.i++)
+     {
+       if(this.i == index)
+       {
+         this.i++;
+       }
+       else
+       {
+          // this.Sizes[this.i].click=false;
+       }
+     }
+     
       
   } 
 
   Add()
   {   
+     
      
     this.appComponent.loaders()
         console.log(this.PID)
@@ -104,7 +122,7 @@ call(pid:number,index)
       
         ) 
   }
-
+  
 
 
   oneOrder()

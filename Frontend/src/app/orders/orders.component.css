@@ -1,20 +1,21 @@
 .background
 {
     min-height:620px;
-    background:url('/assets/orderbg.png') ;
+    background:#F7F9F9  ;
     
     background-repeat:no-repeat;
      background-size:cover;
      text-align:center;
 }
 
-.motion
-{
+
+.images{
+    width:100vh;
     
 }
-img{
-    width:120vh;
-    
+.position
+{
+   z-index: 1;
 }
 @media only screen and (max-width: 1204px)
 {
@@ -22,9 +23,9 @@ img{
     {
         width:20vh;
     }*/
-    img
+    images
     {
-        display:none;
+        width:80vh;
     }
     .background{
         padding-top:10%;
