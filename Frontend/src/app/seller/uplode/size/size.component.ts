@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/Forms';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/Forms';
 import { AppComponent } from 'src/app/app.component';
 import { ServerService } from 'src/app/services/server.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -93,50 +93,36 @@ export class SizeComponent implements OnInit {
   
   }
 
-  onSubmitSize()
+  onSubmitSize( form:NgForm)
 {
-   
-
-
-
-
-
-
-
-  // this.appComponent.loaders();
-  const productSize=this.SizeForm.value.productSize;
-  const productPrice=this.SizeForm.value.productPrice;
-  const productQuantity=this.SizeForm.value.productQuantity;
+    
+  const productSize=form.value.productSize;
+  const productPrice=form.value.productPrice;
+  const productQuantity=form.value.productQuantity;
  
-  
-  this.sizeService.addSize(this.SizeForm.value)
+  this.appComponent.loaders();
+this.sizeService.addSize(form.value);
 
   this.serverService.addSize(this.productID,productPrice,productSize,productQuantity)
    .subscribe
    (
      (response)=>
      {   this.tk=response;
-        this.sizeService.setSize(this.tk);
-         console.log(response);
          this.appComponent.loaderOff();
+         console.log(response);
+         this.appComponent.SuccessModel(this.tk);
+      
       },
-      // (error) =>
-      // {
-      //     console.log(error);
-      //     this.appComponent.loaderOff();
-      // }
+      (error) =>
+      {
+          console.log(error);
+          this.appComponent.loaderOff();
+      }
   )
-
+    
 }
 
-//  edit(index:number)
-//  {
-//     this.editmode=true;
-//     this.price= this.Sizes[index].productPrice;
-//     this.quantity=this.Sizes[index].productQuantity;
-//     this.size =this.Sizes[index].productSize;
 
-//  }
 
 deletesize(i:number)
   { 

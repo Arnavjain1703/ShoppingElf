@@ -11,16 +11,6 @@ number:any;
 private  Size:ProductSize[]=[
 
        
-                   new ProductSize('s',12,22),
-
-                   new ProductSize('s',12,22),
-
-                   new ProductSize('s',12,22),
-                   new ProductSize('s',12,22),
-                   new ProductSize('s',12,22),
-                   new ProductSize('s',12,22),
-                   new ProductSize('s',12,22),
-
                 
 
 ]

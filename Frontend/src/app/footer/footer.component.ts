@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ServerService } from '../services/server.service';
 import { ProductService } from '../services/product.service';
+import { Category1Service } from '../services/category1.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,7 +13,8 @@ export class FooterComponent implements OnInit {
 
   constructor(private appComponent:AppComponent,
     private serverService:ServerService,
-    private  productService:ProductService) { } 
+    private  productService:ProductService,
+    private category1:Category1Service) { } 
    tk:any;
 
   ngOnInit() {
@@ -40,7 +42,14 @@ export class FooterComponent implements OnInit {
        }
   
     )
-    this.serverService.GetCategory1(1);
+    this.serverService.GetCategory1(1)
+    .subscribe(
+      (response)=>
+      {
+        this.tk=response;
+        this.category1.SetService(this.tk)
+      }
+    )
   
     
   }
@@ -69,6 +78,13 @@ export class FooterComponent implements OnInit {
   
     )
     this.serverService.GetCategory1(2)
+    .subscribe(
+      (response)=>
+      {
+        this.tk=response;
+        this.category1.SetService(this.tk)
+      }
+    )
   
   }
   
@@ -96,7 +112,14 @@ export class FooterComponent implements OnInit {
   
     )
     
-    this.serverService.GetCategory1(3);
+    this.serverService.GetCategory1(3)
+    .subscribe(
+      (response)=>
+      {
+        this.tk=response;
+        this.category1.SetService(this.tk)
+      }
+    )
   
   }
 }

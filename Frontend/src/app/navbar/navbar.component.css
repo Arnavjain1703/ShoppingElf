@@ -125,11 +125,12 @@ nav
       
       .color
       {
-          color:#5499C7;
+          color:#2471A3 ;
+          transition:color 0.3s
       }
       .color:hover{
-           font-size:18px;
-           text-shadow: 0px 0px 1px ;
+           color:#F7DC6F
+        
       }
       nav{
           box-shadow: 0px 0px 10px #B3B6B7 ;
@@ -165,5 +166,19 @@ nav
     }
     .background
     {
-        background:#ECF0F1 ;
+        
+        position:sticky;
+        top:0;
+        background:#FEF9E7;
+        z-index:1;
+    }
+    .pre{
+               color:#FAD7A0;
+               font-size:120%;
+               font-weight:700;
+
+    }
+    .post
+    {
+        color:#1F618D  ;
     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../services/server.service';
 import { ProductService } from '../services/product.service';
 import { AppComponent } from '../app.component';
+import { Category1Service } from '../services/category1.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
   tk:any;
   constructor(private serverService :ServerService,
                private productService:ProductService,
-               private appComponent:AppComponent) { }
+               private appComponent:AppComponent,
+               private category1:Category1Service) { }
 
   ngOnInit() {
   }
@@ -45,7 +47,14 @@ menProducts()
      }
 
   )
-  this.serverService.GetCategory1(1);
+  this.serverService.GetCategory1(1)
+  .subscribe(
+    (response)=>
+    {
+      this.tk=response;
+      this.category1.SetService(this.tk)
+    }
+  )
 
   
 }
@@ -74,6 +83,13 @@ womenProducts()
 
   )
   this.serverService.GetCategory1(2)
+  .subscribe(
+    (response)=>
+    {
+      this.tk=response;
+      this.category1.SetService(this.tk)
+    }
+  )
 
 }
 
@@ -101,7 +117,14 @@ kidsProducts()
 
   )
   
-  this.serverService.GetCategory1(3);
+  this.serverService.GetCategory1(3)
+  .subscribe(
+    (response)=>
+    {
+      this.tk=response;
+      this.category1.SetService(this.tk)
+    }
+  )
 
 }
 

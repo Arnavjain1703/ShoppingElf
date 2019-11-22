@@ -5,8 +5,15 @@ export class BrandsService {
     brandsChanged= new Subject<string[]>();
   private  brands:string[]=
     [
-        ('allians'),
-        ('arnav'),
+        ('Black Berry'),
+        ('kook n keeck'),
+        ('Skult'),
+        ('Woodlnd'),
+        ('Agaani'),
+        ('PepeJeans'),
+
+
+
     ]
         
      getBrands()

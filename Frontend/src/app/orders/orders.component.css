@@ -13,10 +13,13 @@
     width:100vh;
     
 }
-.position
-{
+ .position
+{  
    z-index: 1;
-}
+   background:url('/assets/order.png');
+   /* left:8%; */
+   background-repeat:no-repeat;
+} 
 @media only screen and (max-width: 1204px)
 {
     /* img
@@ -27,8 +30,19 @@
     {
         width:80vh;
     }
-    .background{
-        padding-top:10%;
-    }
+    
    
 } 
+@media only screen and(max-width:467px)
+{
+   .position{
+       left:2%;
+   }
+}
+@media only screen and(max-width:467px)
+{
+   .position{
+       left:0%;
+   }
+}
+

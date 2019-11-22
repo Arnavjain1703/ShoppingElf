@@ -16,7 +16,7 @@ export class ServerService
   tk:any;
   Products:Product[];
   body:{}; 
-  public rootUrl="https://84dba1f7.ngrok.io"
+  public rootUrl="https://b6fc7ab9.ngrok.io"
   
 
 
@@ -70,23 +70,8 @@ export class ServerService
     const headers = new HttpHeaders({'Content-Type':'application/json'});
     console.log(JSON.stringify({email,password}));
     this.appComponent.loaders();
-   this.http.post(this.rootUrl+'/api/Seller/Login',JSON.stringify({email,password}),{headers:headers})
-   .subscribe(
-    (response) =>
-     {      
-           this.tk=response;
-          console.log(this.tk);
-        localStorage.setItem('token2',this.tk);
-        this.router.navigate(['/sellerProduct']);
-        this.appComponent.loaderOff();
-
-     },
-     (error) =>
-     {
-       this.appComponent.WarningModel(error.error);
-     }                                                
-       
-  );
+  return this.http.post(this.rootUrl+'/api/Seller/Login',JSON.stringify({email,password}),{headers:headers})
+ 
     
   }
 
@@ -126,20 +111,7 @@ export class ServerService
     console.log(this.rootUrl+'/api/Product/Category/'+Index);
     this.appComponent.loaders();
   return  this.http.get( this.rootUrl+'/api/Product/Category/'+Index)
-    .subscribe(
-      response=>
-      {   
-        console.log(response)
-        this.tk=response;
-        this.CategoryService.SetService(this.tk);
-        this.appComponent.loaderOff();
-      },
-       error=>
-       {
-         console.log(error);
-         this.appComponent.loaderOff();
-       }
-    )
+    
 
   }
 

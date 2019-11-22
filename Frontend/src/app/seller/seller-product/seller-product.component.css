@@ -25,3 +25,23 @@
     left:2px;
     
 }
+.Button
+{
+  background:#F7DC6F ;
+  border:2px solid #F7DC6F ;
+  width:120px;
+  height:30px;
+  color:#1F618D;
+  transition:color 0.3s;
+  border-radius: 6%;
+  font-size: 120%;
+  letter-spacing:1px;
+}
+.Button:hover{
+  color:white;
+}
+.center
+
+{
+  text-align: center;
+}

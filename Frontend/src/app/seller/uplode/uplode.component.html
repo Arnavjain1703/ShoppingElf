@@ -4,8 +4,8 @@
         <div class="top-image"><img src="/assets/order.png"></div>
 
   <div class="row ">
-   <div class="col-md-1"></div>
-   <div class="col-md-5 shadow"  >
+   <div class="col-xs-1"></div>
+   <div class="col-xs-8 col-sm-6 col-md-5 shadow"  >
      <form [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
        <div class="form-group">
        <label id="ProductName"  class="heading">Product name</label>
@@ -25,7 +25,7 @@
        <div *ngFor="let Brand of Brands, let i=index">
            <input id="productBrand"
           
-            type="radio" 
+            type="radio" (click)=Brand()
             formControlName="productBrand"
             [value]="Brand">{{Brand}} 
           
@@ -81,7 +81,7 @@
             <div *ngFor="let category of categories2">
                <input 
                id="category2" 
-               type="radio" 
+               type="radio" (click)="Valids()"
                [value]="category.SubCategoryID"
                formControlName="SubCategoryID"
             
@@ -106,7 +106,7 @@
                 </textarea>
 
                 <span 
-                *ngIf="!ProductForm.get('productName').valid && ProductForm.get('productName').touched"
+                *ngIf="!ProductForm.get('productDetails').valid && ProductForm.get('productDetails').touched"
                 class="help-block">Please enter a product name</span>
                </div>
 
@@ -114,7 +114,7 @@
         
           
         <div class="center">
-          <button 
+          <button [disabled]="!ProductForm.valid && !valid && !brand"
               class="submit" 
               type="submit">
               Submit

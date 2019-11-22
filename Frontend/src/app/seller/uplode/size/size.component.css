@@ -1,6 +1,6 @@
 ::placeholder
 {
-    color:#F4D03F  ;
+    color:#1A5276  ;
     font-size:80%;
     letter-spacing:1px;
 }
@@ -10,4 +10,60 @@ input{
 .border
 {
     border:2px solid #F9E79F;
+    padding:1%;
+
+}
+.heading
+{
+    color:#21618C ;
+    letter-spacing: 2px;
+}
+.key{
+    color:#2980B9;
+    font-size: 120%;
+}
+.value
+{
+    color:#1A5276;
+    font-size: 120%;
+
+}
+.Button
+{
+    background:#F9E79F;
+    color:#2980B9;
+     transition:color 0.3s;
+     border:2px solid #F7DC6F;
+     border-radius:2%;
+}
+.Button:hover
+{
+  color:white
+}
+.margin
+{
+    margin-bottom:2%;
+}
+.para
+{
+    color:#F5B041    ;
+    text-align:center;
+    font-size:170%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    /* text-shadow: 0px 0px 1px  #2471A3 ; */
+}
+@media only screen and (max-width: 766px)
+{
+    .distance
+    {
+         margin:0% 12%;
+    }
+}
+@media only screen and (max-width: 500px)
+{
+    .distance
+    {
+         margin:0% 8%;
+    }
 }

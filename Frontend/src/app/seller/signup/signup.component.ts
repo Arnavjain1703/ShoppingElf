@@ -37,8 +37,8 @@ export class SellerSignupComponent implements OnInit {
   
     },
      error=> {
-       console.log(error);
-        this.appComponent.WarningModel(error.error.Message)
+      //  console.log(error.error);
+        this.appComponent.WarningModel(error.error)
         this.appComponent.loaderOff();
      }
 

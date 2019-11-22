@@ -12,6 +12,7 @@ import { Subscribable, Subscription } from 'rxjs';
 export class PhotoUplodeComponent implements OnInit {
 
   tk:any;
+  navigate=false;
   productID:number
   selectedFile:File = null;
   paramsubscription:Subscription
@@ -66,7 +67,7 @@ export class PhotoUplodeComponent implements OnInit {
         console.log(this.i);
         if(this.i >3)
         {
-          this.navigate()
+          this.navigate=true;
            
         }
       },
@@ -98,7 +99,7 @@ export class PhotoUplodeComponent implements OnInit {
         console.log(this.i);
         if(this.i>3)
         {
-          this.navigate()
+          this.navigate=true;
            
         }
       },
@@ -129,7 +130,7 @@ export class PhotoUplodeComponent implements OnInit {
         this.i=this.i+1;
         if(this.i>3)
         {
-          this.navigate()
+          this.navigate=true;
           
         }
       },
@@ -159,7 +160,7 @@ export class PhotoUplodeComponent implements OnInit {
         this.i=this.i+1;
         if(this.i>3)
         {
-            this.navigate()
+            this.navigate=true;
         }
       },
       (error)=>
@@ -171,12 +172,12 @@ export class PhotoUplodeComponent implements OnInit {
     
      
   }
-  navigate()
-  {
-
+   move()
+   {
+     alert('sdkcn');
        
-     this.Router.navigate(['/size/'+this.productID])
+      this.Router.navigate(['/size/'+this.productID])
 
-  }
+   }
 
 }

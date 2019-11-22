@@ -30,12 +30,29 @@
 {
   color:#2874A6 ;
   letter-spacing: 1px;
-  font-size:120%;
+  font-size:170%;
   font-family: 'Montserrat', sans-serif;
+  text-align:center;
+  font-weight:800;
   
 
 }
 .row
 {
     margin:2% 5%;
+}
+.center
+{
+  text-align: center;
+}
+.button
+{
+  background:#F9E79F ;
+  color:#2471A3;
+  letter-spacing: 2px;
+  transition: color 0.2s;
+}
+.button:hover
+{
+  color:white;
 }

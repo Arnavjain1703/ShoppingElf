@@ -29,7 +29,8 @@ export class UplodeComponent implements OnInit {
 
   productID:any;  
 
-  
+  valid=false;
+  brand=false;
   
 tk:any
   
@@ -79,15 +80,48 @@ tk:any
  
   
 category1(index:number)
-{
+{this.appComponent.loaders();
  this.categ1=true;
  this.serverService.GetCategory1(index)
+ .subscribe(
+  response=>
+  {   
+    console.log(response)
+    this.tk=response;
+    this.category1Service.SetService(this.tk);
+    this.appComponent.loaderOff();
+  },
+   error=>
+   {
+     console.log(error);
+     this.appComponent.loaderOff();
+   }
+)
  
+}
+Brand()
+{
+  this.brand=true;
 }
 category2(Category:Category)
 {
   this.categ2=true;
+  this.appComponent.loaders();
    this.serverService.GetCategory2(Category.CategoryID)
+   .subscribe(
+    response=>
+    {  this.appComponent.loaderOff()
+      console.log(response)
+      this.tk=response;
+      this.category2Service.SetService(this.tk)
+    },
+     error=>
+     {
+        this.appComponent.loaderOff();
+       console.log(error)
+     }
+  )
+
 }
 onSubmit()
 {
@@ -101,7 +135,7 @@ onSubmit()
  this.serverService.addProduct(productName,productBrand,SuitableID,SubCategoryID,productDetails)
    .subscribe(
     (response)=>
-     { 
+     {  this.appComponent.loaderOff();
        this.productID=response;
     console.log(response);
       this.appComponent.loaderOff();
@@ -109,6 +143,10 @@ onSubmit()
     }
  )
  
+}
+Valids()
+{
+  this.valid=true;
 }
 
 

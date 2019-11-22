@@ -3,6 +3,7 @@ import { ServerService } from '../services/server.service';
 import { ProductService } from '../services/product.service';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
+import { Category1Service } from '../services/category1.service';
 
 @Component({
   selector: 'app-frontpage',
@@ -14,7 +15,8 @@ export class FrontpageComponent implements OnInit {
   constructor( private serverService:ServerService,
                private productService:ProductService,
                private appComponent:AppComponent,
-               private router:Router) { }
+               private router:Router,
+               private category1:Category1Service) { }
   title = 'shoppingELF';
   myStyle: object = {};
   myParams: object = {};
@@ -73,6 +75,13 @@ this.myParams = {
   )
 
   this.serverService.GetCategory1(1)
+  .subscribe(
+    (response)=>
+    {
+      this.tk=response;
+      this.category1.SetService(this.tk)
+    }
+  )
   
 
   
@@ -103,6 +112,13 @@ womenProducts()
 
   )
   this.serverService.GetCategory1(2)
+  .subscribe(
+    (response)=>
+    {
+      this.tk=response;
+      this.category1.SetService(this.tk)
+    }
+  )
 
 
 }
@@ -130,7 +146,14 @@ kidsProducts()
      }
 
   )
-  this.serverService.GetCategory1(3);
+  this.serverService.GetCategory1(3)
+  .subscribe(
+    (response)=>
+    {
+      this.tk=response;
+      this.category1.SetService(this.tk)
+    }
+  )
 
 }
 
