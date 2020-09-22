@@ -13,3 +13,20 @@ The working of the app will be as follows:
 7. Sellers can add/delete their Products for selling
 8. Sellers will be having full details of sold Products
 9. Seller can edit his/her Profile
+
+## Technology Stack
+1. ASP.NET (MVC) version - 4.5
+2. Microsoft SQL Server Management Studio for managing databases.
+3. Angular 8
+4. Bootstrap
+
+## Screenshots
+
+### Homepage
+![Image](/images/homepage.png)
+
+### User Authentication
+![Image](/images/signup.png) 
+
+### Products
+![Image](/images/products.png) 
