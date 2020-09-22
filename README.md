@@ -15,10 +15,10 @@ The working of the app will be as follows:
 9. Seller can edit his/her Profile
 
 ## Technology Stack
-1. ASP.NET (MVC) version - 4.5
-2. Microsoft SQL Server Management Studio for managing databases.
-3. Angular 8
-4. Bootstrap
+1. Angular 8
+2. Bootstrap
+3. ASP.NET (MVC) version - 4.5
+4. Microsoft SQL Server Management Studio for managing databases.
 
 ## Screenshots
 
@@ -29,4 +29,4 @@ The working of the app will be as follows:
 ![Image](/images/signup.png) 
 
 ### Products
-![Image](/images/products.png) 
+![Image](/images/products.png) ![Image](/images/details.png) 
