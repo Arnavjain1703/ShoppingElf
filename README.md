@@ -30,3 +30,10 @@ The working of the app will be as follows:
 
 ### Products
 ![Image](/images/products.png) ![Image](/images/details.png) 
+
+
+### User Cart
+![Image](/images/cart.png) 
+
+### Ordered Products
+![Image](/images/order.png) 
